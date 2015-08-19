@@ -1,5 +1,7 @@
 package kr.co.syncbook.biz.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,12 +18,29 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	@Transactional(readOnly=false)
-	public boolean memberJoin(MemberVO member) throws RuntimeException {
+	public boolean memberJoin(MemberVO member, String post1, String post2) throws RuntimeException {
+		StringBuffer postv = new StringBuffer();
+		postv.append(post1).append("-").append(post2);
+		member.setPost(postv.toString());
 		int result = memberDAO.addMember(member);
-		if(memberDAO.getMember(member.getId()).equals("aa"))
+		MemberVO vo = memberDAO.getMember(member.getId());
+		if(memberDAO.getMember(member.getId()).equals(vo))
 			throw new RuntimeException();
 		if(result==1) return true;
 		else return false;
+	}
+	
+	@Override
+	@Transactional(readOnly=false)
+	public boolean idCheck(String memberId) {
+		List<MemberVO> list = memberDAO.getMemberList();
+		if(list != null){
+			for(MemberVO v : list){
+				if(memberId.equals(v.getId()))
+					return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -29,11 +48,9 @@ public class MemberServiceImpl implements MemberService {
 	public boolean memberLogin(String memberId, String memberPwd) {
 		MemberVO member = memberDAO.getMember(memberId);
 		if(member != null && member.getId().equals(memberId)) {
-			if(member.getPassword().equals(memberPwd)){
+			if(member.getPassword().equals(memberPwd))
 				return true;
-			}
 			return false;
-		}
-		else return false;
+		} else return false;
 	}
 }
