@@ -2,6 +2,7 @@
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <script src="http://dmaps.daum.net/map_js_init/postcode.js"></script>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
 	function openDaumPostcode() {
 		new daum.Postcode({
@@ -13,6 +14,26 @@
 			}
 		}).open();
 	}
+</script>
+<script>
+$(function(){
+	$("#memberId").change(function(){
+		$.ajax({
+			url: "idCheck",
+			data: "memberId=" + $("#memberId").val(),
+			success:function(data){
+				if(data == "fail"){
+					document.getElementById("idCheckLayer").innerHTML = "<font color='red'>이미 등록된 ID 입니다.</font>";
+				} else if(data == "success"){
+					document.getElementById("idCheckLayer").innerHTML = "";
+				}
+			},
+			error:function(){
+				alert("error!");
+			}
+		});	
+	});
+});
 </script>
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
@@ -44,38 +65,41 @@
 						<div class="tab-content">
 							<!-- Validation Forms -->
 							<div class="tab-pane fade in active" id="profile-1">
-								<form action="join" id="sky-form1" class="sky-form">
+								
+								<form action="join" method="post" id="sky-form1" class="sky-form">
 									<fieldset>
 										<div class="row">
-											<section class="col col-6">
-												<label class="label">아이디</label> <label class="input">
+											<section class="col">
+												<label>아이디</label>
+												<label class="input">
 													<i class="icon-append fa fa-asterisk"></i>
-													<input type="text" name="id">
+													<input type="text" name="id" id="memberId">
 													<b class="tooltip tooltip-bottom-right">Needed to enter	the website</b>
 												</label>
+												<span id="idCheckLayer"></span>
 											</section>
 										</div>
 										<div class="row">
 											<section class="col col-6">
-												<label class="label">패스워드</label> <label class="input">
+												<label>패스워드</label> <label class="input">
 													<i class="icon-append fa fa-asterisk"></i>
-													<input type="text" name="password" id="password">
+													<input type="password" name="password" id="password">
 													<b class="tooltip tooltip-bottom-right">Don't forget your password</b>
 												</label>
 											</section>
 										</div>
 										<div class="row">
 											<section class="col col-6">
-												<label class="label">패스워드 확인</label> <label class="input">
+												<label>패스워드 확인</label> <label class="input">
 													<i class="icon-append fa fa-asterisk"></i>
-													<input type="text" name="password_confirm">
+													<input type="password" name="password_confirm">
 													<b class="tooltip tooltip-bottom-right">Don't forget your password</b>
 												</label>
 											</section>
 										</div>
 										<div class="row">
 											<section class="col col-6">
-												<label class="label">이름</label> <label class="input">
+												<label>이름</label> <label class="input">
 													<i class="icon-append fa fa-asterisk"></i>
 													<input type="text" name="name">
 												</label>
@@ -83,18 +107,15 @@
 										</div>
 										<div class="row">
 											<section class="col col-6">
-												<label class="label">전화번호</label> <label class="input">
+												<label>연락처</label> <label class="input">
 													<i class="icon-append fa fa-phone"></i>
 													<input type="tel" name="phone" id="phone">
 												</label>
 											</section>
 										</div>
-
 										<div class="row">
 											<section class="col">
-												<label>우편번호</label>
-											</section>
-											<section class="col">
+												<label>우편번호　</label><br>
 												<input type="text" id="post1" name="post1"> -
 												<input type="text" id="post2" name="post2">
 												<input type="button" onclick="openDaumPostcode()" value="우편번호 찾기">
@@ -102,7 +123,7 @@
 										</div>
 										<div class="row">
 											<section class="col col-6">
-												<label class="label">주소</label> <label class="input">
+												<label>주소</label> <label class="input">
 													<i class="icon-append fa fa-asterisk"></i>
 													<input type="text" id="address" name="address">
 												</label>
@@ -110,7 +131,7 @@
 										</div>
 										<div class="row">
 											<section class="col col-9">
-												<label class="label">상세주소</label> <label class="input">
+												<label>상세주소</label> <label class="input">
 													<i class="icon-append fa fa-asterisk"></i>
 													<input type="text" id="detail_address" name="detail_address">
 												</label>
@@ -118,7 +139,7 @@
 										</div>
 										<div class="row">
 											<section class="col col-6">
-												<label class="label">이메일</label> <label class="input">
+												<label>이메일</label> <label class="input">
 													<i class="icon-append fa fa-envelope"></i>
 													<input type="email" name="email">
 												</label>
