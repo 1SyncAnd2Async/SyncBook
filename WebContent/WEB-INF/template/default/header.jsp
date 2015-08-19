@@ -18,7 +18,7 @@
                     	<c:when test="${sessionScope.id == null}">
                     		<li><a href="loginForm">Login</a></li>
                     		<li class="topbar-devider"></li>
-                    		<li><a href="login">Join</a></li>
+                    		<li><a href="joinForm">Join</a></li>
                     	</c:when>
                     	<c:otherwise>
                     		<li><a href="logout">${sessionScope.id}</a></li> 님 환영합니다.

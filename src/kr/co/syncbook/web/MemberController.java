@@ -19,6 +19,10 @@ public class MemberController {
 	public String loginForm(){
 		return "loginForm";
 	}
+	@RequestMapping("/joinForm")
+	public String joinForm(){
+		return "joinForm";
+	}
 	@RequestMapping("login")
 	public ModelAndView login(String id, String password, HttpSession session) {
 		ModelAndView mav = new ModelAndView();

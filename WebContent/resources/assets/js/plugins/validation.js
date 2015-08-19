@@ -8,7 +8,26 @@ var Validation = function () {
 	            // Rules for form validation
 	            rules:
 	            {
-	                required:
+	                id:
+	                {
+	                    required: true,
+	                    minlength: 6,
+	                    maxlength: 12
+	                },
+	                password:
+	                {
+	                    required: true,
+	                    minlength: 6,
+	                    maxlength: 12
+	                },
+	                password_confirm:
+	                {
+	                    required: true,
+	                    minlength: 6,
+	                    maxlength: 12,
+	                    equalTo: "#password"
+	                },
+	                name:
 	                {
 	                    required: true
 	                },
@@ -72,7 +91,19 @@ var Validation = function () {
 	            // Messages for form validation
 	            messages:
 	            {
-	                required:
+	                id:
+	                {
+	                    required: 'Please enter something'
+	                },
+	                password:
+	                {
+	                    required: 'Please enter something'
+	                },
+	                password_confirm:
+	                {
+	                    required: 'Please enter something'
+	                },
+	                name:
 	                {
 	                    required: 'Please enter something'
 	                },
