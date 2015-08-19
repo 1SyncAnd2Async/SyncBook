@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Member">
+	<resultMap type="Member" id="MemberResultMap">
+		<result column="id" property="id"/>
+		<result column="password" property="password"/>
+		<result column="name" property="name"/>
+		<result column="phone" property="phone"/>
+		<result column="post" property="post"/>
+		<result column="address" property="address"/>
+		<result column="detail_address" property="detail_address"/>
+		<result column="email" property="email"/>
+		<result column="reg_date" property="reg_date"/>
+	</resultMap>
+	
+	<select id="getMember" resultMap="MemberResultMap" parameterType="java.lang.String">
+		<![CDATA[
+			SELECT ID,PASSWORD,NAME,PHONE,POST,ADDRESS,DETAIL_ADDRESS,EMAIL,REG_DATE
+			FROM MEMBER
+			WHERE ID=#{id}
+		]]>
+	</select>
+	
+	<insert id="addMember" parameterType="Member">
+		<![CDATA[
+			INSERT INTO MEMBER VALUES(#{id}, #{password}, #{name}, #{phone},
+			#{post}, #{address}, #{detail_address}, #{email}, #{reg_date})
+		]]>
+	</insert>
+</mapper>
