@@ -26,7 +26,14 @@
 	<insert id="addMember" parameterType="Member">
 		<![CDATA[
 			INSERT INTO MEMBER VALUES(#{id}, #{password}, #{name}, #{phone},
-			#{post}, #{address}, #{detail_address}, #{email}, #{reg_date})
+			#{post}, #{address}, #{detail_address}, #{email}, sysdate)
 		]]>
 	</insert>
+	
+	<select id="getMemberList" resultType="Member">
+		<![CDATA[
+			SELECT ID,PASSWORD,NAME,PHONE,POST,ADDRESS,DETAIL_ADDRESS,EMAIL,REG_DATE
+			FROM MEMBER
+		]]>
+	</select>
 </mapper>
