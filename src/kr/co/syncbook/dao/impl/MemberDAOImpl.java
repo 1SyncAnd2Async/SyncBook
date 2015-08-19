@@ -16,10 +16,10 @@ public class MemberDAOImpl implements MemberDAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public int addMember(MemberVO vo) {
+	public int addMember(MemberVO member) {
 		int result = 0;
 		try {
-			result = sqlSession.insert("Member.addMember", vo);
+			result = sqlSession.insert("Member.addMember", member);
 		} catch(DataIntegrityViolationException e) {
 			result = 0;
 		}
@@ -45,7 +45,6 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public List<MemberVO> getMemberList() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("Member.getMemberList");
 	}
 }
