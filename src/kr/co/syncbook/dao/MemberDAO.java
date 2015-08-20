@@ -8,5 +8,6 @@ public interface MemberDAO {
 	public int updateMember(MemberVO vo);
 	public int deleteMember(String memberId);
 	public MemberVO getMember(String memberId);
+	// ¸®½ºÆ®
 	public List<MemberVO> getMemberList();
 }
