@@ -45,7 +45,6 @@ public class MemberController {
 		session.removeAttribute("id");
 		return "index";
 	}
-	
 	@RequestMapping("/join")
 	public ModelAndView join(MemberVO member, @RequestParam String post1, @RequestParam String post2) {
 		ModelAndView mav = new ModelAndView();
