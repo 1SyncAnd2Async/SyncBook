@@ -27,10 +27,15 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public int updateMember(MemberVO vo) {
+	public int updateMember(MemberVO member) {
 		return 0;
 	}
-
+	
+	@Override
+	public int updateMemberProfile(MemberVO member) {
+		return sqlSession.update("Member.updateMemberProfile", member);
+	}
+	
 	@Override
 	public int deleteMember(String memberId) {
 		return 0;

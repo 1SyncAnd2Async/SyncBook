@@ -1,7 +1,9 @@
 package kr.co.syncbook.web;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,9 +38,14 @@ public class MemberController {
 	@RequestMapping("/login")
 	public ModelAndView login(String id, String password, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		boolean flag = memberService.memberLogin(id, password);
-		if(flag) {
-			session.setAttribute("id", id);
+		MemberVO member = memberService.memberLogin(id, password);
+		StringTokenizer stz = new StringTokenizer(member.getPost(), "-");
+		String post1 = stz.nextToken();
+		String post2 = stz.nextToken();
+		if(member != null) {
+			session.setAttribute("member", member);
+			session.setAttribute("post1", post1);
+			session.setAttribute("post2", post2);
 			mav.setViewName("index");
 		}
 		else mav.setViewName("loginForm");
@@ -46,11 +53,20 @@ public class MemberController {
 	}
 	@RequestMapping("/logout")
 	public String logout(HttpSession session){
-		session.removeAttribute("id");
+		session.removeAttribute("member");
 		return "index";
 	}
 	@RequestMapping("/join")
-	public ModelAndView join(MemberVO member, @RequestParam String post1, @RequestParam String post2) {
+	public ModelAndView join(MemberVO member, @RequestParam String post1, @RequestParam String post2, HttpServletRequest request) {
+		String path = request.getRealPath("/resources/upload");
+		String upPath = path+"\\"+member.getUpfile().getOriginalFilename();
+		File f = new File(upPath);
+		try {
+			member.getUpfile().transferTo(f);
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		member.setImg(member.getUpfile().getOriginalFilename());
 		ModelAndView mav = new ModelAndView();
 		boolean flag = memberService.memberJoin(member, post1, post2);
 		if(flag) {
@@ -70,5 +86,36 @@ public class MemberController {
 		else result = "success";
 		out.print(result);
 		out.close();
+	}
+	@RequestMapping("/myPageForm")
+	public String myPageForm(){
+		return "myPageForm";
+	}
+	@RequestMapping("/updateMemberProfile")
+	public ModelAndView updateMemberProfile(MemberVO member, @RequestParam String post1, @RequestParam String post2, HttpSession session, HttpServletRequest request) {
+		String path = request.getRealPath("/resources/upload");
+		String upPath = path+"\\"+member.getUpfile().getOriginalFilename();
+		File f = new File(upPath);
+		try {
+			member.getUpfile().transferTo(f);
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		member.setImg(member.getUpfile().getOriginalFilename());
+		ModelAndView mav = new ModelAndView();
+		MemberVO vo = (MemberVO) session.getAttribute("member");
+		member.setId(vo.getId());
+		boolean flag = memberService.updateMemberProfile(member, post1, post2);
+		if(flag) {
+			session.setAttribute("post1", post1);
+			session.setAttribute("post2", post2);
+			session.setAttribute("member", member);
+			mav.addObject("msg", "변경 완료");
+			mav.setViewName("myPageForm");
+		} else {
+			mav.addObject("msg", "변경 실패");
+			mav.setViewName("myPageForm");
+		}
+		return mav;
 	}
 }

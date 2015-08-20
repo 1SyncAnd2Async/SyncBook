@@ -1,7 +1,22 @@
 package kr.co.syncbook.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MemberVO {
-	private String id, password, name, phone, post, address, detail_address, email, reg_date;
+	private String id, password, name, phone, post, address, detail_address, email, reg_date, img;
+	private MultipartFile upfile;
+	public MultipartFile getUpfile() {
+		return upfile;
+	}
+	public void setUpfile(MultipartFile upfile) {
+		this.upfile = upfile;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
 	public String getId() {
 		return id;
 	}
