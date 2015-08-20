@@ -30,6 +30,7 @@ public class MemberServiceImpl implements MemberService {
 		else return false;
 	}
 	
+	// ID 중복 체크
 	@Override
 	@Transactional(readOnly=false)
 	public boolean idCheck(String memberId) {
