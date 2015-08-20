@@ -3,6 +3,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <script src="http://dmaps.daum.net/map_js_init/postcode.js"></script>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<!-- ¿Ï·á -->
 <script>
 	function openDaumPostcode() {
 		new daum.Postcode({
