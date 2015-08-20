@@ -31,7 +31,7 @@ public class MemberController {
 	}
 	@RequestMapping("/userSerch")
 	public String userSerch(){
-		return "userSerch()";
+		return "userSerch";
 	}
 	@RequestMapping("/login")
 	public ModelAndView login(String id, String password, HttpSession session) {
