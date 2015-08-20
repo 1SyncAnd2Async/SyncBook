@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Lecture">
+
+	<resultMap type="Lecture" id="LectureResultMap">
+		<result column="lecture_num" property="lecture_num"/>
+		<result column="isbn" property="isbn"/>
+		<result column="lecture_file" property="lecture_file"/>
+	</resultMap>
+
+	<select id="getLecture" resultMap="LectureResultMap" parameterType="java.lang.Integer">
+		<![CDATA[
+			SELECT LECTURE_NUM, ISBN, LECTURE_FILE
+			FROM LECTURE
+			WHERE LECTURE_NUM = #{lecture_num}
+		]]>
+	</select>
+	<select id="getLectureList" resultType="Lecture">
+		<![CDATA[
+			SELECT LECTURE_NUM, ISBN, LECTURE_FILE
+			FROM LECTURE
+		]]>
+	</select>
+	<insert id="addLecture"  parameterType="Lecture">
+		<![CDATA[
+			INSERT INTO LECTURE (LECTURE_NUM, ISBN, LECTURE_FILE) VALUES(#{lecture_num}, #{isbn}, #{lecture_file})
+			
+		]]>
+	</insert>
+	<delete id="deleteLecture"  parameterType="java.lang.Integer">
+		<![CDATA[
+			DELETE LECTURE WHERE LECTURE_NUM = #{lecture_num}			
+		]]>
+	</delete>
+	<update id="updateLecture" parameterType="Lecture">
+		<![CDATA[
+			UPDATE LECTURE SET ISBN = #{isbn}, LECTURE_FILE = #{lecture_file} WHERE LECTURE_NUM = #{lecture_num}			
+		]]>
+	</update>
+	
+
+</mapper>

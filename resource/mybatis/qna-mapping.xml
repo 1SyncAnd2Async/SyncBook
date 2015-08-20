@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Qna">
+
+	<resultMap type="Qna" id="QnaResultMap">
+		<result column="qna_num" property="qna_num"/>
+		<result column="title" property="title"/>
+		<result column="content" property="content"/>
+		<result column="writer" property="writer"/>
+		<result column="write_date" property="write_date"/>
+		<result column="hit" property="hit"/>
+		<result column="qna_file" property="qna_file"/>
+	</resultMap>
+
+	<select id="getQnae" resultMap="QnaResultMap" parameterType="java.lang.Integer">
+		<![CDATA[
+				SELECT QNA_NUM, TITLE, CONTENT, WRITER, WRITER_DATE, HIT, QNA_FILE
+				FROM NOTICE
+				WHERE QNA_NUM = #{qna_num}
+		]]>
+	</select>
+	
+	<select id="getQnaList" resultType="Qna">
+		<![CDATA[
+			SELECT QNA_NUM, TITLE, CONTENT, WRITER, WRITER_DATE, HIT, QNA_FILE
+			FROM QNA
+		]]>
+	</select>
+	<insert id="addQna" parameterType="Qna">
+		<![CDATA[
+			INSERT INTO QNA (QNA_NUM, TITLE, CONTENT, WRITER, WRITE_DATE, QNA_FILE)
+			VALUES(QNA_SEQ.NEXTVAL, #{title}, #{content}, #{writer}, SYSDATE, #{qna_file})
+		]]>
+	</insert>
+	<update id="updateQna" parameterType="Qna">
+		<![CDATA[
+			UPDATE QNA SET TITLE = #{title}, CONTENT = #{content},
+			WRITE_DATE = SYSDATE, QNA_FILE = #{qna_file} WHERE  QNA_NUM = #{qna_num}			
+		]]>
+	</update>
+	<delete id="deleteQna"  parameterType="java.lang.Integer">
+		<![CDATA[
+			DELETE QNA WHERE QNA_NUM = #{qna_num}			
+		]]>
+	</delete>
+</mapper>

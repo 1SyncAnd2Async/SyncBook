@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Book">
+
+	<resultMap type="Book" id="BookResultMap">
+		<result column="isbn" property="isbn"/>
+		<result column="subject_num" property="subject_num"/>
+		<result column="book_name" property="book_name"/>
+		<result column="price" property="price"/>
+		<result column="author" property="author"/>
+		<result column="publisher" property="publisher"/>
+		<result column="publish_date" property="publish_date"/>
+	</resultMap>
+
+	<select id="getBook" resultMap="BookResultMap" parameterType="java.lang.String">
+		<![CDATA[
+				SELECT ISBN, SUBJECT_NUM, BOOK_NAME, PRICE, AUTHOR, PUBLISHER, PUBLISH_DATE
+				FORM BOOK
+			WHERE ISBN=#{isbn}
+		]]>
+	</select>
+	
+	<select id="getBookList" resultType="Book">
+		<![CDATA[
+			SELECT ISBN, SUBJECT_NUM, BOOK_NAME, PRICE, AUTHOR, PUBLISHER, PUBLISH_DATE
+			FORM BOOK
+		]]>
+	</select>
+	
+	<insert id="addBook" parameterType="java.lang.String">
+		<![CDATA[
+			INSERT INTO BOOK (ISBN, SUBJECT_NUM, BOOK_NAME, PRICE, AUTHOR, PUBLISHER, PUBLISH_DATE)
+			VALUES(BOOK_SEQ.NEXTVAL, #{subject_num}, #{book_name}, #{price}, #{author}, #{publisher}, SYSDATE)
+		]]>
+	</insert>
+	<update id="updateBook" parameterType="java.lang.String">
+		<![CDATA[
+			UPDATE BOOK SET SUBJECT_NUM = #{subject_num}, BOOK_NAME = #{book_name},  
+			PRICE = #{price}, AUTHOR = #{author}, PUBLISHER = #{publisher}, PUBLISHE_DATE = SYSDATE WHERE ISBN = #{isbn}			
+		]]>
+	</update>
+	<delete id="deleteBook"  parameterType="java.lang.String">
+		<![CDATA[
+			DELETE BOOK WHERE ISBN = #{isbn}			
+		]]>
+	</delete>
+</mapper>
