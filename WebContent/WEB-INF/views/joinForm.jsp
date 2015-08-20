@@ -43,7 +43,7 @@ $(function(){
 			<div class="container">
 				<h1 class="pull-left">Join</h1>
 				<ul class="pull-right breadcrumb">
-					<li><a href="index.html">Home</a></li>
+					<li><a href="index">Home</a></li>
 					<li class="active">Join</li>
 				</ul>
 			</div>
@@ -66,8 +66,7 @@ $(function(){
 						<div class="tab-content">
 							<!-- Validation Forms -->
 							<div class="tab-pane fade in active" id="profile-1">
-								
-								<form action="join" method="post" id="sky-form1" class="sky-form">
+								<form action="join" method="post" id="sky-form1" enctype="multipart/form-data" class="sky-form">
 									<fieldset>
 										<div class="row">
 											<section class="col">
@@ -143,6 +142,14 @@ $(function(){
 												<label>이메일</label> <label class="input">
 													<i class="icon-append fa fa-envelope"></i>
 													<input type="email" name="email">
+												</label>
+											</section>
+										</div>
+										<div class="row">
+											<section class="col col-6">
+												<label>사진</label> <label class="input">
+													<i class="icon-append fa fa-envelope"></i>
+													<input type="file" name="upfile" id="upfile">
 												</label>
 											</section>
 										</div>

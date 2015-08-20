@@ -13,11 +13,12 @@
 		<result column="detail_address" property="detail_address"/>
 		<result column="email" property="email"/>
 		<result column="reg_date" property="reg_date"/>
+		<result column="img" property="img"/>
 	</resultMap>
 	
 	<select id="getMember" resultMap="MemberResultMap" parameterType="java.lang.String">
 		<![CDATA[
-			SELECT ID,PASSWORD,NAME,PHONE,POST,ADDRESS,DETAIL_ADDRESS,EMAIL,REG_DATE
+			SELECT ID,PASSWORD,NAME,PHONE,POST,ADDRESS,DETAIL_ADDRESS,EMAIL,REG_DATE,IMG
 			FROM MEMBER
 			WHERE ID=#{id}
 		]]>
@@ -26,7 +27,22 @@
 	<insert id="addMember" parameterType="Member">
 		<![CDATA[
 			INSERT INTO MEMBER VALUES(#{id}, #{password}, #{name}, #{phone},
-			#{post}, #{address}, #{detail_address}, #{email}, #{reg_date})
+			#{post}, #{address}, #{detail_address}, #{email}, sysdate, #{img})
 		]]>
 	</insert>
+	
+	<update id="updateMemberProfile" parameterType="Member">
+		<![CDATA[
+			UPDATE MEMBER
+			SET NAME=#{name}, PHONE=#{phone}, POST=#{post}, ADDRESS=#{address}, DETAIL_ADDRESS=#{detail_address}, EMAIL=#{email}, IMG=#{img}
+			WHERE ID=#{id}
+		]]>
+	</update>
+	
+	<select id="getMemberList" resultType="Member">
+		<![CDATA[
+			SELECT ID,PASSWORD,NAME,PHONE,POST,ADDRESS,DETAIL_ADDRESS,EMAIL,REG_DATE
+			FROM MEMBER
+		]]>
+	</select>
 </mapper>

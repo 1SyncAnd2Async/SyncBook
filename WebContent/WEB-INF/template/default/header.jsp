@@ -15,13 +15,13 @@
             <div class="topbar">
                 <ul class="loginbar pull-right">
                     <c:choose>
-                    	<c:when test="${sessionScope.id == null}">
+                    	<c:when test="${sessionScope.member == null}">
                     		<li><a href="loginForm">Login</a></li>
                     		<li class="topbar-devider"></li>
                     		<li><a href="joinForm">Join</a></li>
                     	</c:when>
                     	<c:otherwise>
-                    		<li><a href="logout">${sessionScope.id}</a></li> 님 환영합니다.
+                    		<li><a href="myPageForm">${sessionScope.member.id}</a></li> 님 환영합니다.
                     		<li class="topbar-devider"></li>
                     		<li><a href="logout">Logout</a></li>
                     	</c:otherwise>
@@ -58,7 +58,7 @@
                     <!-- End Member Management -->
                 
                 	<c:choose>
-                	<c:when test="${sessionScope.id != null}">
+                	<c:when test="${sessionScope.member != null}">
                 	<!-- My Books -->
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
@@ -130,7 +130,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                            	<a href="#">공지사항</a>
+                            	<a href="noticeList">공지사항</a>
                                 <a href="#">교재후기</a>
                                 <a href="#">자유게시판</a>
                             </li>

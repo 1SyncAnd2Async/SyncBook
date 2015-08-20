@@ -1,6 +1,9 @@
 package kr.co.syncbook.biz.impl;
 
 import java.util.List;
+import java.util.StringTokenizer;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,12 +49,31 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	@Transactional(readOnly=false)
-	public boolean memberLogin(String memberId, String memberPwd) {
+	public MemberVO memberLogin(String memberId, String memberPwd) {
 		MemberVO member = memberDAO.getMember(memberId);
 		if(member != null && member.getId().equals(memberId)) {
-			if(member.getPassword().equals(memberPwd))
-				return true;
-			return false;
-		} else return false;
+			if(member.getPassword().equals(memberPwd)){
+				return member;
+			}
+			return null;
+		} else return null;
+	}
+	
+	@Override
+	@Transactional(readOnly=false)
+	public MemberVO getMember(String memberId){
+		MemberVO member = memberDAO.getMember(memberId);
+		return member;
+	}
+	
+	@Override
+	@Transactional(readOnly=false)
+	public boolean updateMemberProfile(MemberVO member, String post1, String post2) {
+		StringBuffer postv = new StringBuffer();
+		postv.append(post1).append("-").append(post2);
+		member.setPost(postv.toString());
+		int result = memberDAO.updateMemberProfile(member);
+		if(result==1) return true;
+		else return false;
 	}
 }
