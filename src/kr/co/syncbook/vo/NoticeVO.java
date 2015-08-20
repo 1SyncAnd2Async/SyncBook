@@ -10,6 +10,23 @@ public class NoticeVO {
 	private Date write_date;
 	private int hit;
 	private String notice_file;
+	private String searchKind;
+	private String searchValue;
+	
+	
+	
+	public String getSearchKind() {
+		return searchKind;
+	}
+	public void setSearchKind(String searchKind) {
+		this.searchKind = searchKind;
+	}
+	public String getSearchValue() {
+		return searchValue;
+	}
+	public void setSearchValue(String searchValue) {
+		this.searchValue = searchValue;
+	}
 	public int getNotice_num() {
 		return notice_num;
 	}
