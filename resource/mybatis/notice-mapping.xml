@@ -18,7 +18,7 @@
 		<![CDATA[
 				SELECT NOTICE_NUM, TITLE, CONTENT, WRITER, WRITE_DATE, HIT, NOTICE_FILE
 				FROM NOTICE
-				WHERE NOTICE_NUM = #{NOTICE_NUM}
+				WHERE NOTICE_NUM = #{notice_num}
 		]]>
 	</select>
 	
@@ -26,6 +26,14 @@
 		<![CDATA[
 			SELECT NOTICE_NUM, TITLE, CONTENT, WRITER, WRITE_DATE, HIT, NOTICE_FILE
 			FROM NOTICE
+		]]>
+	</select>
+	<select id="getNoticeSearchList" resultType="Notice">
+		<![CDATA[
+		
+			SELECT NOTICE_NUM, TITLE, CONTENT, WRITER, WRITE_DATE, HIT, NOTICE_FILE
+			FROM NOTICE
+			WHERE #{searchKind} LIKE #{% searchValue %}
 		]]>
 	</select>
 	<insert id="addNotice" parameterType="Notice">
@@ -38,6 +46,11 @@
 		<![CDATA[
 			UPDATE NOTICE SET TITLE = #{title}, CONTENT = #{content},
 			WRITE_DATE = SYSDATE, NOTICE_FILE = #{notice_file} WHERE  NOTICE_NUM = #{notice_num}			
+		]]>
+	</update>
+	<update id="updateNoticeHit" parameterType="java.lang.Integer">
+		<![CDATA[
+			UPDATE NOTICE SET Hit = Hit+1 WHERE  NOTICE_NUM = #{notice_num}			
 		]]>
 	</update>
 	<delete id="deleteNotice"  parameterType="java.lang.Integer">

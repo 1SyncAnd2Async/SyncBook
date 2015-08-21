@@ -36,6 +36,16 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
+	public boolean noticeHitUpdate(int notice_num) {
+		int result = noticeDAO.updateNoticeHit(notice_num);
+		if(result==1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
 	public boolean noticeDelete(int notice_num) {
 		int result = noticeDAO.deleteNotice(notice_num);
 		if(result==1){
@@ -52,8 +62,14 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public List<NoticeVO> getNoticeVOList() {
+	public List<NoticeVO> getNoticeList() {
 		List<NoticeVO> list = noticeDAO.getNoticeList();
+		return list;
+	}
+
+	@Override
+	public List<NoticeVO> getNoticeSearchList(String searchKind, String searchValue) {
+		List<NoticeVO> list = noticeDAO.getNoticeSearchList(searchKind, searchValue);
 		return list;
 	}
 
