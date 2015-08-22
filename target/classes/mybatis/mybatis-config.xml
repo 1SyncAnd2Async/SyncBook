@@ -7,6 +7,7 @@
 		<typeAlias type="kr.co.syncbook.vo.MemberVO" alias="Member"/>
 		<typeAlias type="kr.co.syncbook.vo.NoticeVO" alias="Notice"/>
 		<typeAlias type="kr.co.syncbook.vo.QnaVO" alias="Qna"/>
+		<typeAlias type="kr.co.syncbook.vo.SubjectVO" alias="Subject"/>
 		<typeAlias type="kr.co.syncbook.vo.BookVO" alias="Book"/>
 		<typeAlias type="kr.co.syncbook.vo.QuestionVO" alias="Question"/>
 		<typeAlias type="kr.co.syncbook.vo.LectureVO" alias="Lecture"/>
@@ -16,6 +17,7 @@
 		<mapper resource="mybatis/member-mapping.xml"/>
 		<mapper resource="mybatis/notice-mapping.xml"/>
 		<mapper resource="mybatis/qna-mapping.xml"/>
+		<mapper resource="mybatis/subject-mapping.xml"/>
 		<mapper resource="mybatis/book-mapping.xml"/>
 		<mapper resource="mybatis/question-mapping.xml"/>
 		<mapper resource="mybatis/lecture-mapping.xml"/>

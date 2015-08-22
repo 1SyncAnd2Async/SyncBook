@@ -57,22 +57,12 @@ public class MemberController {
 		return "index";
 	}
 	@RequestMapping("/join")
-	public ModelAndView join(MemberVO member, @RequestParam String post1, @RequestParam String post2, HttpServletRequest request) {
-		String path = request.getRealPath("/resources/upload");
-		String upPath = path+"\\"+member.getUpfile().getOriginalFilename();
-		File f = new File(upPath);
-		try {
-			member.getUpfile().transferTo(f);
-		} catch (IllegalStateException | IOException e) {
-			e.printStackTrace();
-		}
-		member.setImg(member.getUpfile().getOriginalFilename());
+	public ModelAndView join(MemberVO member, @RequestParam String post1, @RequestParam String post2) {
 		ModelAndView mav = new ModelAndView();
 		boolean flag = memberService.memberJoin(member, post1, post2);
 		if(flag) {
 			mav.setViewName("loginForm");
-		}
-		else {
+		} else {
 			mav.setViewName("joinForm");
 		}
 		return mav;
@@ -111,6 +101,36 @@ public class MemberController {
 			session.setAttribute("post2", post2);
 			session.setAttribute("member", member);
 			mav.addObject("msg", "변경 완료");
+			mav.setViewName("myPageForm");
+		} else {
+			mav.addObject("msg", "변경 실패");
+			mav.setViewName("myPageForm");
+		}
+		return mav;
+	}
+	@RequestMapping("/pwdCheck")
+	public void pwdCheck(HttpServletRequest request, HttpServletResponse response, @RequestParam String memberPwd) throws IOException {
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		String memberId = member.getId();
+		boolean flag = memberService.pwdCheck(memberId, memberPwd);
+		String result = null;
+		PrintWriter out = response.getWriter();
+		if(flag) result = "success";
+		else result = "fail";
+		out.print(result);
+		out.close();
+	}
+	
+	@RequestMapping("/updateMemberPwd")
+	public ModelAndView updateMemberPwd(@RequestParam String password, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		member.setPassword(password);
+		ModelAndView mav = new ModelAndView();
+		boolean flag = memberService.updateMemberPwd(member);
+		if(flag) {
+			// 팝업으로!
 			mav.setViewName("myPageForm");
 		} else {
 			mav.addObject("msg", "변경 실패");

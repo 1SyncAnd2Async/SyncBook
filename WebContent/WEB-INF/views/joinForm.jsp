@@ -3,7 +3,6 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <script src="http://dmaps.daum.net/map_js_init/postcode.js"></script>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<!-- 완료 -->
 <script>
 	function openDaumPostcode() {
 		new daum.Postcode({
@@ -66,7 +65,7 @@ $(function(){
 						<div class="tab-content">
 							<!-- Validation Forms -->
 							<div class="tab-pane fade in active" id="profile-1">
-								<form action="join" method="post" id="sky-form1" enctype="multipart/form-data" class="sky-form">
+								<form action="join" method="post" id="sky-form1" class="sky-form">
 									<fieldset>
 										<div class="row">
 											<section class="col">
@@ -81,8 +80,8 @@ $(function(){
 										</div>
 										<div class="row">
 											<section class="col col-6">
-												<label>패스워드</label> <label class="input">
-													<i class="icon-append fa fa-asterisk"></i>
+												<label>비밀번호</label> <label class="input">
+													<i class="icon-append fa fa-lock"></i>
 													<input type="password" name="password" id="password">
 													<b class="tooltip tooltip-bottom-right">Don't forget your password</b>
 												</label>
@@ -90,8 +89,8 @@ $(function(){
 										</div>
 										<div class="row">
 											<section class="col col-6">
-												<label>패스워드 확인</label> <label class="input">
-													<i class="icon-append fa fa-asterisk"></i>
+												<label>비밀번호 확인</label> <label class="input">
+													<i class="icon-append fa fa-lock"></i>
 													<input type="password" name="password_confirm">
 													<b class="tooltip tooltip-bottom-right">Don't forget your password</b>
 												</label>
@@ -142,14 +141,6 @@ $(function(){
 												<label>이메일</label> <label class="input">
 													<i class="icon-append fa fa-envelope"></i>
 													<input type="email" name="email">
-												</label>
-											</section>
-										</div>
-										<div class="row">
-											<section class="col col-6">
-												<label>사진</label> <label class="input">
-													<i class="icon-append fa fa-envelope"></i>
-													<input type="file" name="upfile" id="upfile">
 												</label>
 											</section>
 										</div>

@@ -27,7 +27,7 @@
 	<insert id="addMember" parameterType="Member">
 		<![CDATA[
 			INSERT INTO MEMBER VALUES(#{id}, #{password}, #{name}, #{phone},
-			#{post}, #{address}, #{detail_address}, #{email}, sysdate, #{img})
+			#{post}, #{address}, #{detail_address}, #{email}, SYSDATE, DEFAULT)
 		]]>
 	</insert>
 	
@@ -35,6 +35,14 @@
 		<![CDATA[
 			UPDATE MEMBER
 			SET NAME=#{name}, PHONE=#{phone}, POST=#{post}, ADDRESS=#{address}, DETAIL_ADDRESS=#{detail_address}, EMAIL=#{email}, IMG=#{img}
+			WHERE ID=#{id}
+		]]>
+	</update>
+	
+	<update id="updateMemberPwd" parameterType="Member">
+		<![CDATA[
+			UPDATE MEMBER
+			SET PASSWORD=#{password}
 			WHERE ID=#{id}
 		]]>
 	</update>

@@ -2,15 +2,19 @@ package kr.co.syncbook.vo;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class BookVO {
-	private String isbn;
-	private int subject_num;
-	private String book_name;
-	private int price;
-	private String author;
-	private String publisher;
+	private MultipartFile upfile;
+	private String isbn, book_name, author, publisher, explanation, img;
+	private int subject_num, price;
 	private Date publish_date;
-	
+	public MultipartFile getUpfile() {
+		return upfile;
+	}
+	public void setUpfile(MultipartFile upfile) {
+		this.upfile = upfile;
+	}
 	public String getIsbn() {
 		return isbn;
 	}
@@ -53,12 +57,22 @@ public class BookVO {
 	public void setPublish_date(Date publish_date) {
 		this.publish_date = publish_date;
 	}
+	public String getExplanation() {
+		return explanation;
+	}
+	public void setExplanation(String explanation) {
+		this.explanation = explanation;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
 	@Override
 	public String toString() {
-		return "BookVO [isbn=" + isbn + ", subject_num=" + subject_num + ", book_name=" + book_name + ", price=" + price
-				+ ", author=" + author + ", publisher=" + publisher + ", publish_date=" + publish_date + "]";
+		return "BookVO [upfile=" + upfile + ", isbn=" + isbn + ", book_name=" + book_name + ", author=" + author
+				+ ", publisher=" + publisher + ", explanation=" + explanation + ", img=" + img + ", subject_num="
+				+ subject_num + ", price=" + price + ", publish_date=" + publish_date + "]";
 	}
-	
-	
-
 }

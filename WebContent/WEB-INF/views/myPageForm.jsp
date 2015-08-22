@@ -22,8 +22,30 @@
 			$("label.input input").show();
 			$("label.input label").show();
 			$("i.fa fa-pencil").hide();
-			$("#modify_btn").show();
+			$("#profile_edit_btn").show();
 			$("input:file").show();
+		});
+	});
+</script>
+<script>
+	$(function(){
+		$("#memberPwd").change(function(){
+			jQuery.ajax({
+				url: "pwdCheck",
+				data: "memberPwd=" + $("#memberPwd").val(),
+				success: function(data) {
+					if(data == "success"){
+						document.getElementById("pwdCheckLayer").innerHTML = "<font color='green'>비밀번호가 일치합니다.</font>";
+						$("#pwd_edit_btn").show();
+					} else if(data == "fail"){
+						document.getElementById("pwdCheckLayer").innerHTML = "<font color='red'>잘못된 비밀번호입니다.</font>";
+						$("#pwd_edit_btn").hide();
+					}
+				},
+				error:function(){
+					alert("error!");
+				}
+			});
 		});
 	});
 </script>
@@ -57,39 +79,6 @@
 								Settings</a></li>
 					</ul>
 
-					<div class="panel-heading-v2 overflow-h">
-						<h2 class="heading-xs pull-left">
-							<i class="fa fa-bar-chart-o"></i> Task Progress
-						</h2>
-						<a href="#"><i class="fa fa-cog pull-right"></i></a>
-					</div>
-					<h3 class="heading-xs">
-						Web Design <span class="pull-right">92%</span>
-					</h3>
-					<div class="progress progress-u progress-xxs">
-						<div style="width: 92%" aria-valuemax="100" aria-valuemin="0"
-							aria-valuenow="92" role="progressbar"
-							class="progress-bar progress-bar-u"></div>
-					</div>
-					<h3 class="heading-xs">
-						Unify Project <span class="pull-right">85%</span>
-					</h3>
-					<div class="progress progress-u progress-xxs">
-						<div style="width: 85%" aria-valuemax="100" aria-valuemin="0"
-							aria-valuenow="85" role="progressbar"
-							class="progress-bar progress-bar-blue"></div>
-					</div>
-					<h3 class="heading-xs">
-						Sony Corporation <span class="pull-right">64%</span>
-					</h3>
-					<div class="progress progress-u progress-xxs margin-bottom-40">
-						<div style="width: 64%" aria-valuemax="100" aria-valuemin="0"
-							aria-valuenow="64" role="progressbar"
-							class="progress-bar progress-bar-dark"></div>
-					</div>
-					<hr>
-					<div class="margin-bottom-50"></div>
-
 					<!--Datepicker-->
 					<form action="#" id="sky-form2" class="sky-form">
 						<div id="inline-start"></div>
@@ -110,8 +99,9 @@
 								<li><a data-toggle="tab" href="#settings">내 교재</a></li>
 							</ul>
 							<div class="tab-content">
-								<form action="updateMemberProfile" method="post" enctype="multipart/form-data">
-									<div id="profile" class="profile-edit tab-pane fade in active">
+								<!-- Member Profile Edit -->
+								<div id="profile" class="profile-edit tab-pane fade in active">
+									<form action="updateMemberProfile" method="post" enctype="multipart/form-data">
 										<h2 class="heading-md">Manage your Name, ID and Email
 											Addresses.</h2>
 										<p>Below are the name and email addresses on file for your
@@ -125,7 +115,7 @@
 												${sessionScope.member.id}
 												<span>
 													<a class="pull-right" href="#">
-														${msg} <i class="fa fa-pencil"></i>
+														정보 변경 <i class="fa fa-pencil"></i>
 													</a>
 												</span>
 											</dd>
@@ -197,83 +187,72 @@
 											<dd>
 												<font class="text">${sessionScope.member.img}</font>
 												<label class="input">
-													<input type="file" name="upfile" id="upfile" style="display: none">
+													<input type="file" name="upfile" id="upfile" value="${sessionScope.member.img}" style="display: none">
 												</label>
 											</dd>
 										</dl>
 										<div class="pull-right">
-											<input type="submit" class="btn-u" id="modify_btn"
-												value="변경 완료" style="display: none">
-											<button type="button" class="btn-u btn-u-default">변경
-												취소</button>
+											<input type="submit" class="btn-u" id="profile_edit_btn" value="변경 완료" style="display: none">
+											<button type="button" class="btn-u btn-u-default" onclick="location.href='myPageForm'">변경 취소</button>
 										</div>
-									</div>
-								</form>
-
+									</form>
+								</div>
+								<!-- End Member Profile Edit -->
+								
+								<!-- Member Password Edit -->
 								<div id="passwordTab" class="profile-edit tab-pane fade">
 									<h2 class="heading-md">Manage your Security Settings</h2>
 									<p>Change your password.</p>
 									<br>
-									<form class="sky-form" id="sky-form4" action="#">
+									<form class="sky-form" id="sky-form1" action="updateMemberPwd" method="post">
 										<dl class="dl-horizontal">
-											<dt>Username</dt>
+											<dt>현재 비밀번호</dt>
 											<dd>
 												<section>
-													<label class="input"> <i
-														class="icon-append fa fa-user"></i> <input type="text"
-														placeholder="Username" name="username"> <b
-														class="tooltip tooltip-bottom-right">Needed to enter
-															the website</b>
+													<label class="input">
+														<i class="icon-append fa fa-lock"></i>
+														<input type="password" placeholder="Current password" id="memberPwd">
+														<b class="tooltip tooltip-bottom-right">Input your current password</b>
+													</label>
+													<span id="pwdCheckLayer"></span>
+												</section>
+											</dd>
+											<dt>새 비밀번호</dt>
+											<dd>
+												<section>
+													<label class="input">
+														<i class="icon-append fa fa-lock"></i>
+														<input type="password" id="password" name="password" placeholder="New password">
+														<b class="tooltip tooltip-bottom-right">Don't forget your password</b>
 													</label>
 												</section>
 											</dd>
-											<dt>Email address</dt>
+											<dt>새 비밀번호 확인</dt>
 											<dd>
 												<section>
-													<label class="input"> <i
-														class="icon-append fa fa-envelope"></i> <input
-														type="email" placeholder="Email address" name="email">
-														<b class="tooltip tooltip-bottom-right">Needed to
-															verify your account</b>
-													</label>
-												</section>
-											</dd>
-											<dt>Enter your password</dt>
-											<dd>
-												<section>
-													<label class="input"> <i
-														class="icon-append fa fa-lock"></i> <input type="password"
-														id="password" name="password" placeholder="Password">
-														<b class="tooltip tooltip-bottom-right">Don't forget
-															your password</b>
-													</label>
-												</section>
-											</dd>
-											<dt>Confirm Password</dt>
-											<dd>
-												<section>
-													<label class="input"> <i
-														class="icon-append fa fa-lock"></i> <input type="password"
-														name="passwordConfirm" placeholder="Confirm password">
-														<b class="tooltip tooltip-bottom-right">Don't forget
-															your password</b>
+													<label class="input">
+														<i class="icon-append fa fa-lock"></i>
+														<input type="password" name="password_confirm" placeholder="Confirm new password">
+														<b class="tooltip tooltip-bottom-right">Don't forget your password</b>
 													</label>
 												</section>
 											</dd>
 										</dl>
-										<label class="toggle toggle-change"><input
-											type="checkbox" checked="" name="checkbox-toggle-1"><i
-											class="no-rounded"></i>Remember password</label> <br>
 										<section>
-											<label class="checkbox"><input type="checkbox"
-												id="terms" name="terms"><i></i><a href="#">I
-													agree with the Terms and Conditions</a></label>
+											<label class="checkbox">
+												<input type="checkbox" id="terms" name="terms"><i></i>
+												<a href="#">비밀번호 변경에 동의합니다.</a>
+											</label>
 										</section>
-										<button type="button" class="btn-u btn-u-default">Cancel</button>
-										<button class="btn-u" type="submit">Save Changes</button>
+										<div class="pull-right">
+											<input type="submit" class="btn-u" id="pwd_edit_btn" value="변경 완료" style="display: none">
+											<button type="button" class="btn-u btn-u-default" onclick="location.href='myPageForm'">변경 취소</button>
+										</div>
 									</form>
 								</div>
-
+								<!-- End Member Password Edit -->
+								
+								<!-- Order List -->
 								<div id="payment" class="profile-edit tab-pane fade">
 									<h2 class="heading-md">Manage your Payment Settings</h2>
 									<p>Below are the payment options for your account.</p>
@@ -341,7 +320,9 @@
 										<!--End Checkout-Form-->
 									</form>
 								</div>
-
+								<!-- End Order List -->
+								
+								<!-- My Books -->
 								<div id="settings" class="profile-edit tab-pane fade">
 									<h2 class="heading-md">Manage your Notifications.</h2>
 									<p>Below are the notifications you may manage.</p>
@@ -374,6 +355,7 @@
 										<button class="btn-u" type="submit">Save Changes</button>
 									</form>
 								</div>
+								<!-- End My Books -->
 							</div>
 						</div>
 					</div>

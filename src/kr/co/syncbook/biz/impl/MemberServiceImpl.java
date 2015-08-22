@@ -27,7 +27,7 @@ public class MemberServiceImpl implements MemberService {
 		member.setPost(postv.toString());
 		int result = memberDAO.addMember(member);
 		MemberVO vo = memberDAO.getMember(member.getId());
-		if(memberDAO.getMember(member.getId()).equals(vo))
+		if(memberDAO.getMember(member.getId()).equals(vo.getId()))
 			throw new RuntimeException();
 		if(result==1) return true;
 		else return false;
@@ -75,5 +75,23 @@ public class MemberServiceImpl implements MemberService {
 		int result = memberDAO.updateMemberProfile(member);
 		if(result==1) return true;
 		else return false;
+	}
+	
+	@Override
+	@Transactional(readOnly=false)
+	public boolean updateMemberPwd(MemberVO member) {
+		int result = memberDAO.updateMemberPwd(member);
+		if(result==1) return true;
+		else return false;
+	}
+
+	@Override
+	public boolean pwdCheck(String memberId, String memberPwd) {
+		MemberVO member = memberDAO.getMember(memberId);
+		if(member != null){
+			if(memberPwd.equals(member.getPassword()))
+				return true;
+		}
+		return false;
 	}
 }

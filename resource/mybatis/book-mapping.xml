@@ -12,36 +12,40 @@
 		<result column="author" property="author"/>
 		<result column="publisher" property="publisher"/>
 		<result column="publish_date" property="publish_date"/>
+		<result column="explanation" property="explanation"/>
+		<result column="img" property="img"/>
 	</resultMap>
 
 	<select id="getBook" resultMap="BookResultMap" parameterType="java.lang.String">
 		<![CDATA[
-				SELECT ISBN, SUBJECT_NUM, BOOK_NAME, PRICE, AUTHOR, PUBLISHER, PUBLISH_DATE
-				FORM BOOK
+			SELECT ISBN, SUBJECT_NUM, BOOK_NAME, PRICE, AUTHOR, PUBLISHER, PUBLISH_DATE, EXPLANATION, IMG
+			FROM BOOK
 			WHERE ISBN=#{isbn}
 		]]>
 	</select>
 	
 	<select id="getBookList" resultType="Book">
 		<![CDATA[
-			SELECT ISBN, SUBJECT_NUM, BOOK_NAME, PRICE, AUTHOR, PUBLISHER, PUBLISH_DATE
-			FORM BOOK
+			SELECT ISBN, SUBJECT_NUM, BOOK_NAME, PRICE, AUTHOR, PUBLISHER, PUBLISH_DATE, EXPLANATION, IMG
+			FROM BOOK
 		]]>
 	</select>
 	
 	<insert id="addBook" parameterType="java.lang.String">
 		<![CDATA[
-			INSERT INTO BOOK (ISBN, SUBJECT_NUM, BOOK_NAME, PRICE, AUTHOR, PUBLISHER, PUBLISH_DATE)
-			VALUES(BOOK_SEQ.NEXTVAL, #{subject_num}, #{book_name}, #{price}, #{author}, #{publisher}, SYSDATE)
+			INSERT INTO BOOK (ISBN, SUBJECT_NUM, BOOK_NAME, PRICE, AUTHOR, PUBLISHER, PUBLISH_DATE, EXPLANATION, IMG)
+			VALUES(BOOK_SEQ.NEXTVAL, #{subject_num}, #{book_name}, #{price}, #{author}, #{publisher}, SYSDATE, #{explanation}, #{img})
 		]]>
 	</insert>
 	<update id="updateBook" parameterType="java.lang.String">
 		<![CDATA[
 			UPDATE BOOK SET SUBJECT_NUM = #{subject_num}, BOOK_NAME = #{book_name},  
-			PRICE = #{price}, AUTHOR = #{author}, PUBLISHER = #{publisher}, PUBLISHE_DATE = SYSDATE WHERE ISBN = #{isbn}			
+			PRICE = #{price}, AUTHOR = #{author}, PUBLISHER = #{publisher},
+			PUBLISHE_DATE = SYSDATE, EXPLANATION = #{explanation}, IMG = #{img}
+			WHERE ISBN = #{isbn}			
 		]]>
 	</update>
-	<delete id="deleteBook"  parameterType="java.lang.String">
+	<delete id="deleteBook" parameterType="java.lang.String">
 		<![CDATA[
 			DELETE BOOK WHERE ISBN = #{isbn}			
 		]]>

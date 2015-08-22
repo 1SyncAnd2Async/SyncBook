@@ -1,7 +1,5 @@
 package kr.co.syncbook.biz;
 
-import javax.servlet.http.HttpSession;
-
 import kr.co.syncbook.vo.MemberVO;
 
 public interface MemberService {
@@ -12,4 +10,6 @@ public interface MemberService {
 	public MemberVO getMember(String memberId);
 	// 사용자 프로필 수정
 	public boolean updateMemberProfile(MemberVO member, String post1, String post2);
+	public boolean updateMemberPwd(MemberVO member);
+	public boolean pwdCheck(String memberId, String memberPwd);
 }

@@ -56,6 +56,19 @@
                         </ul>
                     </li>
                     <!-- End Member Management -->
+                    
+                    <!-- Member Management -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                            	과목
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-submenu">
+                                <a href="subject">과목관리</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- End Member Management -->
                 
                 	<c:choose>
                 	<c:when test="${sessionScope.member != null}">
@@ -95,6 +108,11 @@
                             	교재
                         </a>
                         <ul class="dropdown-menu">
+                        	<!-- Books List Pages -->
+                            <li>
+                                <a href="bookList">교재목록</a>
+                            </li>
+                            <!-- End Books List Pages -->
                             <!-- Category Pages -->
                             <li class="dropdown-submenu">
                                 <a href="javascript:void(0);">북 카테고리</a>

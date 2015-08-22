@@ -10,36 +10,33 @@ import kr.co.syncbook.dao.BookDAO;
 import kr.co.syncbook.vo.BookVO;
 
 @Repository("BookDAO")
-public class BookDAOImpl implements BookDAO{
+public class BookDAOImpl implements BookDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
 	@Override
-	public int addBook(BookVO vo) {
+	public int addBook(BookVO book) {
 		int result = 0;
 		try{
-			result = sqlSession.insert("Book.addBook", vo);
-		}catch(DataIntegrityViolationException e){
+			result = sqlSession.insert("Book.addBook", book);
+		} catch(DataIntegrityViolationException e){
 			result = 0;
 		}
 		return result;
 	}
 
 	@Override
-	public int updateBook(BookVO vo) {
-		// TODO Auto-generated method stub
-		return sqlSession.update("Book.updateBook", vo);
+	public int updateBook(BookVO book) {
+		return sqlSession.update("Book.updateBook", book);
 	}
 
 	@Override
 	public int deleteBook(String isbn) {
-		// TODO Auto-generated method stub
 		return sqlSession.delete("Book.deleteBook", isbn);
 	}
 
 	@Override
 	public BookVO getBook(String isbn) {
-		// TODO Auto-generated method stub
 		return (BookVO) sqlSession.selectOne("Book.getBook", isbn);
 	}
 
