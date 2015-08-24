@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+
 <tiles:insertDefinition name="defaultTemplate">
     <tiles:putAttribute name="body">
     	<!--=== Breadcrumbs ===-->
@@ -19,7 +20,7 @@
     	<!--=== Content ===-->
     	<div class="container content height-500">
         	<!-- Write Your HTML Codes Here -->
-        	<div class="news-v3-in">
+        	<div style="min-height:400px;" class="news-v3-in">
                     <ul class="list-inline posted-info">
                         <li>By ${NoticeDetail.writer}</li>                        
                         <li>${NoticeDetail.write_date }</li>
@@ -27,8 +28,10 @@
                     </ul>
                     <h2>${NoticeDetail.title}</h2>
                     <p>${NoticeDetail.content}</p>
-                    
-                </div>
+            </div>
+            <c:if ${NoticeDetail.notice_file} != null >
+            <div><a href="fileDownload?notice_file=${NoticeDetail.notice_file}">${NoticeDetail.notice_file}</a></div>
+            </c:if>
     	</div>
     	<!--=== End Content ===-->
     </tiles:putAttribute>

@@ -1,10 +1,14 @@
 package kr.co.syncbook.web;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,7 +39,7 @@ public class NoticeController {
 	}
 	@RequestMapping("noticeWrite")
 	public String write(@ModelAttribute NoticeVO vo, HttpServletRequest request){
-		String path = request.getRealPath("/resources/upload");
+		String path = request.getRealPath("/resources/upload/notice");
 		String upPath = path+"\\"+vo.getUpfile().getOriginalFilename();
 		File f = new File(upPath);
 		try {
@@ -64,9 +68,57 @@ public class NoticeController {
 		
 		return mv;
 	}
+	
+	private static final int BUFFER_SIZE = 4096;
+	@RequestMapping("fileDownload")
+	public void Download(HttpServletRequest request,
+            HttpServletResponse response, String notice_file) throws IOException {
+		String filepath = "/resources/upload/notice/"+notice_file;
+        // get absolute path of the application
+        ServletContext context = request.getServletContext();
+        String appPath = context.getRealPath("");
+        System.out.println("appPath = " + appPath);
+ 
+        // construct the complete absolute path of the file
+        String fullPath = appPath + filepath;      
+        File downloadFile = new File(fullPath);
+        FileInputStream inputStream = new FileInputStream(downloadFile);
+         
+        // get MIME type of the file
+        String mimeType = context.getMimeType(fullPath);
+        if (mimeType == null) {
+            // set to binary type if MIME mapping not found
+            mimeType = "application/octet-stream";
+        }
+        System.out.println("MIME type: " + mimeType);
+ 
+        // set content attributes for the response
+        response.setContentType(mimeType);
+        response.setContentLength((int) downloadFile.length());
+ 
+        // set headers for the response
+        String headerKey = "Content-Disposition";
+        String headerValue = String.format("attachment; filename=\"%s\"",
+                downloadFile.getName());
+        response.setHeader(headerKey, headerValue);
+ 
+        // get output stream of the response
+        OutputStream outStream = response.getOutputStream();
+ 
+        byte[] buffer = new byte[BUFFER_SIZE];
+        int bytesRead = -1;
+ 
+        // write bytes read from the input stream into the output stream
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            outStream.write(buffer, 0, bytesRead);
+        }
+ 
+        inputStream.close();
+        outStream.close();
+ 
+    }
 	@RequestMapping("noticeSearchList")
 	public ModelAndView noticeSearchList(@RequestParam String searchKind, @RequestParam String searchValue){
-		System.out.println("searchKind : "+searchKind +"   searchValue : "+searchValue);
 		List<NoticeVO> list = noticeService.getNoticeSearchList(searchKind, searchValue);
 		ModelAndView mv = new ModelAndView("noticeList");
 		mv.addObject("NotciceSearchList",list);
