@@ -1,5 +1,7 @@
 package kr.co.syncbook.biz.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +65,7 @@ public class NoticeServiceImpl implements NoticeService{
 
 	@Override
 	public List<NoticeVO> getNoticeList() {
+		
 		List<NoticeVO> list = noticeDAO.getNoticeList();
 		return list;
 	}

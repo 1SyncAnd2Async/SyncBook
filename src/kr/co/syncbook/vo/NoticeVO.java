@@ -2,6 +2,8 @@ package kr.co.syncbook.vo;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class NoticeVO {
 	private int notice_num;
 	private String title;
@@ -12,9 +14,15 @@ public class NoticeVO {
 	private String notice_file;
 	private String searchKind;
 	private String searchValue;
+	private MultipartFile upfile;
 	
 	
-	
+	public MultipartFile getUpfile() {
+		return upfile;
+	}
+	public void setUpfile(MultipartFile upfile) {
+		this.upfile = upfile;
+	}
 	public String getSearchKind() {
 		return searchKind;
 	}

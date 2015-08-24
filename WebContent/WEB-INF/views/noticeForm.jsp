@@ -30,12 +30,12 @@
                             </label>
                         </section>
 
-                        <!-- <section>
+                        <section>
                             <label class="label">파일</label>
                             <label for="file" class="input input-file">
-                                <div class="button"><input type="file" id="file" name="file" onchange="this.parentNode.nextSibling.value = this.value">Browse</div><input type="text" readonly>
+                                <div class="button"><input type="file" id="upfile" name="upfile" onchange="this.parentNode.nextSibling.value = this.value">Browse</div><input type="text" readonly>
                             </label>
-                        </section> -->
+                        </section>
 
                         <section>
                             <label class="label">글쓴이 : 관리자</label>  

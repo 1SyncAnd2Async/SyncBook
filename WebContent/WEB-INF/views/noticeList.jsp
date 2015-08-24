@@ -40,6 +40,10 @@
 	                           	</form>
 	                           <button class="btn-u" type="submit" >Go</button>
 	                           </span>
+	        
+	                    </div>
+	                    <div style="padding-left:94%; padding-top:20px;">
+	                    <button class="btn-u btn-u-default box-shadow-inset" onclick="location.href='noticeForm'">±Û¾²±â</button>
 	                    </div>
                     
                     </div>

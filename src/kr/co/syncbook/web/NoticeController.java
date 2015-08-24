@@ -1,6 +1,10 @@
 package kr.co.syncbook.web;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,11 +34,16 @@ public class NoticeController {
 		return "noticeForm";
 	}
 	@RequestMapping("noticeWrite")
-	public String write(@ModelAttribute NoticeVO vo){
-		System.out.println(vo.getTitle());
-		System.out.println(vo.getContent());
-		System.out.println(vo.getWriter());
-		vo.setNotice_file("null");
+	public String write(@ModelAttribute NoticeVO vo, HttpServletRequest request){
+		String path = request.getRealPath("/resources/upload");
+		String upPath = path+"\\"+vo.getUpfile().getOriginalFilename();
+		File f = new File(upPath);
+		try {
+			vo.getUpfile().transferTo(f);
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		vo.setNotice_file(vo.getUpfile().getOriginalFilename());
 		
 		boolean flag=noticeService.noticeUpload(vo);
 		if(flag){
