@@ -72,6 +72,7 @@ public class NoticeServiceImpl implements NoticeService{
 
 	@Override
 	public List<NoticeVO> getNoticeSearchList(String searchKind, String searchValue) {
+		System.out.println(searchKind+searchValue);
 		List<NoticeVO> list = noticeDAO.getNoticeSearchList(searchKind, searchValue);
 		return list;
 	}

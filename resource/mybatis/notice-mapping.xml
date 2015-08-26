@@ -33,7 +33,7 @@
 		
 			SELECT NOTICE_NUM, TITLE, CONTENT, WRITER, WRITE_DATE, HIT, NOTICE_FILE
 			FROM NOTICE
-			WHERE #{searchKind} LIKE #{% searchValue %}
+			WHERE #{searchKind} LIKE '%'||#{searchValue}||'%'
 		]]>
 	</select>
 	<insert id="addNotice" parameterType="Notice">

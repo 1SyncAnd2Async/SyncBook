@@ -61,6 +61,7 @@ public class NoticeDAOImpl implements NoticeDAO{
 
 	@Override
 	public List<NoticeVO> getNoticeSearchList(String searchKind, String searchValue) {
+		System.out.println(searchKind+searchValue);
 		List<NoticeVO> list = (List<NoticeVO>) sqlSession.selectMap("Notice.getNoticeList",searchKind,searchValue);
 		return list;
 	}

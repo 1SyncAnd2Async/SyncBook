@@ -28,6 +28,7 @@
                     </ul>
                     <h2>${NoticeDetail.title}</h2>
                     <p>${NoticeDetail.content}</p>
+                   
             </div>
             <c:if ${NoticeDetail.notice_file} != null >
             <div><a href="fileDownload?notice_file=${NoticeDetail.notice_file}">${NoticeDetail.notice_file}</a></div>
