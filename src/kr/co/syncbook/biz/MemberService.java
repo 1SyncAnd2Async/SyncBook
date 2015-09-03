@@ -1,5 +1,7 @@
 package kr.co.syncbook.biz;
 
+import java.util.List;
+
 import kr.co.syncbook.vo.MemberVO;
 
 public interface MemberService {
@@ -12,4 +14,5 @@ public interface MemberService {
 	public boolean updateMemberProfile(MemberVO member, String post1, String post2);
 	public boolean updateMemberPwd(MemberVO member);
 	public boolean pwdCheck(String memberId, String memberPwd);
+	public List<MemberVO> getMemberList();
 }

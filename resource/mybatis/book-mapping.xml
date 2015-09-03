@@ -5,49 +5,41 @@
 <mapper namespace="Book">
 
 	<resultMap type="Book" id="BookResultMap">
-		<result column="isbn" property="isbn"/>
-		<result column="subject_num" property="subject_num"/>
+		<result column="book_num" property="book_num"/>
+		<result column="subj_num" property="subj_num"/>
 		<result column="book_name" property="book_name"/>
-		<result column="price" property="price"/>
-		<result column="author" property="author"/>
-		<result column="publisher" property="publisher"/>
-		<result column="publish_date" property="publish_date"/>
-		<result column="explanation" property="explanation"/>
-		<result column="img" property="img"/>
 	</resultMap>
 
-	<select id="getBook" resultMap="BookResultMap" parameterType="java.lang.String">
+	<select id="getBook" resultMap="BookResultMap" parameterType="java.lang.Integer">
 		<![CDATA[
-			SELECT ISBN, SUBJECT_NUM, BOOK_NAME, PRICE, AUTHOR, PUBLISHER, PUBLISH_DATE, EXPLANATION, IMG
-			FROM BOOK
-			WHERE ISBN=#{isbn}
+			SELECT BOOK_NUM, SUBJ_NUM, BOOK_NAME
+			FROM BOOK	
+			WHERE BOOK_NUM=#{book_num}
 		]]>
 	</select>
 	
 	<select id="getBookList" resultType="Book">
 		<![CDATA[
-			SELECT ISBN, SUBJECT_NUM, BOOK_NAME, PRICE, AUTHOR, PUBLISHER, PUBLISH_DATE, EXPLANATION, IMG
+			SELECT BOOK_NUM, SUBJ_NUM, BOOK_NAME
 			FROM BOOK
 		]]>
 	</select>
 	
-	<insert id="addBook" parameterType="java.lang.String">
+	<insert id="addBook" parameterType="Book">
 		<![CDATA[
-			INSERT INTO BOOK (ISBN, SUBJECT_NUM, BOOK_NAME, PRICE, AUTHOR, PUBLISHER, PUBLISH_DATE, EXPLANATION, IMG)
-			VALUES(BOOK_SEQ.NEXTVAL, #{subject_num}, #{book_name}, #{price}, #{author}, #{publisher}, SYSDATE, #{explanation}, #{img})
+			INSERT INTO BOOK (BOOK_NUM, SUBJ_NUM, BOOK_NAME)
+			VALUES(BOOK_SEQ.NEXTVAL, #{subject_num}, #{book_name})
 		]]>
 	</insert>
-	<update id="updateBook" parameterType="java.lang.String">
+	<update id="updateBook" parameterType="Book">
 		<![CDATA[
-			UPDATE BOOK SET SUBJECT_NUM = #{subject_num}, BOOK_NAME = #{book_name},  
-			PRICE = #{price}, AUTHOR = #{author}, PUBLISHER = #{publisher},
-			PUBLISHE_DATE = SYSDATE, EXPLANATION = #{explanation}, IMG = #{img}
-			WHERE ISBN = #{isbn}			
+			UPDATE BOOK SET SUBJ_NUM = #{subj_num}, BOOK_NAME = #{book_name},  
+			WHERE BOOK_NUM = #{book_num}			
 		]]>
 	</update>
 	<delete id="deleteBook" parameterType="java.lang.String">
 		<![CDATA[
-			DELETE BOOK WHERE ISBN = #{isbn}			
+			DELETE BOOK WHERE BOOK_NUM = #{book_num}			
 		]]>
 	</delete>
 </mapper>

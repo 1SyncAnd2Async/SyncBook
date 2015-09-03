@@ -32,13 +32,13 @@ public class SubjectDAOImpl implements SubjectDAO {
 	}
 
 	@Override
-	public int deleteSubject(int subject_num) {
-		return sqlSession.delete("Subject.deleteSubject", subject_num);
+	public int deleteSubject(int subj_num) {
+		return sqlSession.delete("Subject.deleteSubject", subj_num);
 	}
 
 	@Override
-	public SubjectVO getSubject(int subject_num) {
-		return sqlSession.selectOne("Subject.getSubject", subject_num);
+	public SubjectVO getSubject(int subj_num) {
+		return sqlSession.selectOne("Subject.getSubject", subj_num);
 	}
 
 	@Override

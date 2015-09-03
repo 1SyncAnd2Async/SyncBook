@@ -22,9 +22,9 @@ public class SubjectServiceImpl implements SubjectService {
 		else return false;
 	}
 	@Override
-	public SubjectVO getSubject() {
-		// TODO Auto-generated method stub
-		return null;
+	public SubjectVO getSubject(int subj_num) {
+		SubjectVO subject = subjectDAO.getSubject(subj_num);
+		return subject;
 	}
 	@Override
 	public List<SubjectVO> getSubjectList() {
@@ -32,8 +32,8 @@ public class SubjectServiceImpl implements SubjectService {
 		return list;
 	}
 	@Override
-	public boolean deleteSubject(int subject_num) {
-		int result = subjectDAO.deleteSubject(subject_num);
+	public boolean deleteSubject(int subj_num) {
+		int result = subjectDAO.deleteSubject(subj_num);
 		if(result==1) return true;
 		else return false;
 	}

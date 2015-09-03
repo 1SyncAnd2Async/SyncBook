@@ -1,29 +1,23 @@
 package kr.co.syncbook.vo;
 
 public class SubjectVO {
-	private int subject_num;
-	private String category, subject_name;
-	public int getSubject_num() {
-		return subject_num;
+	private int subj_num;
+	private String subj_name;
+	public int getSubj_num() {
+		return subj_num;
 	}
-	public void setSubject_num(int subject_num) {
-		this.subject_num = subject_num;
+	public void setSubj_num(int subj_num) {
+		this.subj_num = subj_num;
 	}
-	public String getCategory() {
-		return category;
+	public String getSubj_name() {
+		return subj_name;
 	}
-	public void setCategory(String category) {
-		this.category = category;
-	}
-	public String getSubject_name() {
-		return subject_name;
-	}
-	public void setSubject_name(String subject_name) {
-		this.subject_name = subject_name;
+	public void setSubj_name(String subj_name) {
+		this.subj_name = subj_name;
 	}
 	@Override
 	public String toString() {
-		return "SubjectVO [subject_num=" + subject_num + ", category=" + category + ", subject_name=" + subject_name
-				+ "]";
+		return "SubjectVO [subj_num=" + subj_num + ", subj_name=" + subj_name + "]";
 	}
+	
 }

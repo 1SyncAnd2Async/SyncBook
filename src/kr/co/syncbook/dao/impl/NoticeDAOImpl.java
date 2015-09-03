@@ -48,8 +48,7 @@ public class NoticeDAOImpl implements NoticeDAO{
 	@Override
 	public List<NoticeVO> getNoticeList() {
 		List<NoticeVO> list = sqlSession.selectList("Notice.getNoticeList");
-		for(NoticeVO vo : list)
-			System.out.println(vo.getWrite_date());
+		
 		return list;
 	}
 

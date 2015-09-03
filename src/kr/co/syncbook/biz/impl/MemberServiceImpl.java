@@ -94,4 +94,11 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return false;
 	}
+
+	@Override
+	public List<MemberVO> getMemberList(){
+		List<MemberVO> list = memberDAO.getMemberList();
+		return list;
+	}
+
 }

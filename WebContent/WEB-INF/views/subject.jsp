@@ -35,7 +35,6 @@
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>분류</th>
 											<th>과목명</th>
 											<th></th>
 										</tr>
@@ -43,11 +42,10 @@
 									<tbody>
 										<c:forEach var="list" items="${list}">
 											<tr>
-												<td>${list.subject_num}</td>
-												<td>${list.category}</td>
-												<td>${list.subject_name}</td>
+												<td>${list.subj_num}</td>
+												<td>${list.subj_name}</td>
 												<td>
-													<button class="btn btn-danger btn-xs" onclick="location.href='deleteSubject?subject_num='+${list.subject_num}">
+													<button class="btn btn-danger btn-xs" onclick="location.href='deleteSubject?subject_num='+${list.subj_num}">
 														<i class="fa fa-trash-o"></i>삭제
 													</button>
 												</td>
@@ -61,24 +59,12 @@
 						<div class="col-md-4">
 							<!-- Reg-Form -->
 							<form action="addSubject" method="post" id="sky-form4" class="sky-form">
-								<header>과목 등록</header>
-								<fieldset>
-									<section>
-										<label>분류 </label>
-										<select name="category">
-											<option value="국어">국어</option>
-											<option value="영어">영어</option>
-											<option value="수학">수학</option>
-											<option value="사회">사회</option>
-											<option value="과학">과학</option>
-										</select>
-									</section>
-								</fieldset>
+								<header>과목 등록</header>							
 								<fieldset>
 									<section>
 										<label>과목명 </label> <label class="input"> <i
 											class="icon-append fa fa-user"></i> <input type="text"
-											name="subject_name" placeholder="Subject name">
+											name="subj_name" placeholder="Subject name">
 										</label>
 									</section>
 								</fieldset>

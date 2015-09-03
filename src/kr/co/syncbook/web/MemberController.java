@@ -3,6 +3,7 @@ package kr.co.syncbook.web;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +35,21 @@ public class MemberController {
 	@RequestMapping("/userSerch")
 	public String userSerch(){
 		return "userSerch";
+	}
+	@RequestMapping("/memberList")
+	public ModelAndView memberList(){
+		List<MemberVO> list = memberService.getMemberList();
+		ModelAndView mv = new ModelAndView("memberList");
+		mv.addObject("memberList",list);
+		return mv;
+	}
+	@RequestMapping("/memberDetail")
+	public ModelAndView memberDetail(String id){
+		MemberVO member =  memberService.getMember(id);
+		ModelAndView mv = new ModelAndView("memberDetail");
+		mv.addObject("member", member);
+		
+		return mv;
 	}
 	@RequestMapping("/login")
 	public ModelAndView login(String id, String password, HttpSession session) {
@@ -138,4 +154,5 @@ public class MemberController {
 		}
 		return mav;
 	}
+	
 }

@@ -51,7 +51,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-submenu">
-                                <a href="#">회원목록</a>
+                                <a href="memberList">회원목록</a>
                             </li>
                         </ul>
                     </li>

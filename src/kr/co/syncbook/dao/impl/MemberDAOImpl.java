@@ -51,8 +51,11 @@ public class MemberDAOImpl implements MemberDAO {
 		return (MemberVO) sqlSession.selectOne("Member.getMember", memberId);
 	}
 
+
 	@Override
 	public List<MemberVO> getMemberList() {
-		return sqlSession.selectList("Member.getMemberList");
+		List<MemberVO> list = sqlSession.selectList("Member.getMemberList");
+		
+		return list;
 	}
 }
