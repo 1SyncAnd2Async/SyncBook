@@ -28,9 +28,13 @@ public class MemberController {
 	public String loginForm(){
 		return "loginForm";
 	}
-	@RequestMapping("/joinForm")
+	@RequestMapping("/memberJoinForm")
 	public String joinForm(){
-		return "joinForm";
+		return "memberJoinForm";
+	}
+	@RequestMapping("/joinOption")
+	public String joinOption(){
+		return "joinOption";
 	}
 	@RequestMapping("/userSerch")
 	public String userSerch(){
@@ -72,7 +76,7 @@ public class MemberController {
 		session.removeAttribute("member");
 		return "index";
 	}
-	@RequestMapping("/join")
+	@RequestMapping("/memberJoin")
 	public ModelAndView join(MemberVO member, @RequestParam String post1, @RequestParam String post2) {
 		ModelAndView mav = new ModelAndView();
 		boolean flag = memberService.memberJoin(member, post1, post2);

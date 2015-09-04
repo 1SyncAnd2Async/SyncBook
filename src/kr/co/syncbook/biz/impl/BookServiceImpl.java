@@ -31,17 +31,20 @@ public class BookServiceImpl implements BookService {
 		}
 	}
 	@Override
-	public boolean deleteBook(String isbn) {
-		int result = bookDAO.deleteBook(isbn);
+	public boolean deleteBook(int book_num) {
+		int result = bookDAO.deleteBook(book_num);
 		if(result==1) {
 			return true;
 		} else {
 			return false;
 		}
 	}
+	
+	
+	
 	@Override
-	public BookVO getBook(String isbn) {
-		return bookDAO.getBook(isbn);
+	public BookVO getBook(int book_num) {
+		return bookDAO.getBook(book_num);
 	}
 	@Override
 	public List<BookVO> getBookList() {

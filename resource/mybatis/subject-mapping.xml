@@ -4,6 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Subject">
 	<resultMap type="Subject" id="SubjectResultMap">
+		<result column="num" property="num"/>
 		<result column="subj_num" property="subj_num"/>
 		<result column="subj_name" property="subj_name"/>
 	</resultMap>
@@ -24,13 +25,13 @@
 	
 	<delete id="deleteSubject" parameterType="java.lang.Integer">
 		<![CDATA[
-			DELETE SUBJECT WHERE SUBJECT_NUM = #{subj_num}
+			DELETE SUBJECT WHERE SUBJ_NUM = #{subj_num}
 		]]>
 	</delete>
 	
 	<select id="getSubjectList" resultType="Subject">
 		<![CDATA[
-			SELECT SUBJ_NUM, SUBJ_NAME
+			SELECT ROWNUM NUM, SUBJ_NUM, SUBJ_NAME
 			FROM SUBJECT
 		]]>
 	</select>

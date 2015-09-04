@@ -12,7 +12,7 @@
             	<h1 class="pull-left">공지사항</h1>
             	<ul class="pull-right breadcrumb">
                 	<li><a href="index">Home</a></li>
-                	<li class="active">공지사항</li>
+                	<li class="active">Notice</li>
             	</ul>
         	</div><!--/container-->
     	</div><!--/breadcrumbs-->

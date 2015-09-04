@@ -5,30 +5,33 @@
 <mapper namespace="Book">
 
 	<resultMap type="Book" id="BookResultMap">
+		<result column="num" property="num"/>
 		<result column="book_num" property="book_num"/>
 		<result column="subj_num" property="subj_num"/>
+		<result column="subj_name" property="subj_name"/>
 		<result column="book_name" property="book_name"/>
 	</resultMap>
 
 	<select id="getBook" resultMap="BookResultMap" parameterType="java.lang.Integer">
 		<![CDATA[
-			SELECT BOOK_NUM, SUBJ_NUM, BOOK_NAME
-			FROM BOOK	
-			WHERE BOOK_NUM=#{book_num}
+			SELECT B.BOOK_NUM, S.SUBJ_NAME, B.BOOK_NAME
+			FROM BOOK B, SUBJECT S WHERE B.SUBJ_NUM = S.SUBJ_NUM 
+			AND
+			B.BOOK_NUM=#{book_num}
 		]]>
 	</select>
 	
 	<select id="getBookList" resultType="Book">
 		<![CDATA[
-			SELECT BOOK_NUM, SUBJ_NUM, BOOK_NAME
-			FROM BOOK
+			SELECT ROWNUM NUM, B.BOOK_NUM, S.SUBJ_NAME, B.BOOK_NAME
+			FROM BOOK B, SUBJECT S WHERE B.SUBJ_NUM = S.SUBJ_NUM 
 		]]>
 	</select>
 	
 	<insert id="addBook" parameterType="Book">
 		<![CDATA[
 			INSERT INTO BOOK (BOOK_NUM, SUBJ_NUM, BOOK_NAME)
-			VALUES(BOOK_SEQ.NEXTVAL, #{subject_num}, #{book_name})
+			VALUES(BOOK_SEQ.NEXTVAL, #{subj_num}, #{book_name})
 		]]>
 	</insert>
 	<update id="updateBook" parameterType="Book">
@@ -37,7 +40,7 @@
 			WHERE BOOK_NUM = #{book_num}			
 		]]>
 	</update>
-	<delete id="deleteBook" parameterType="java.lang.String">
+	<delete id="deleteBook" parameterType="java.lang.Integer">
 		<![CDATA[
 			DELETE BOOK WHERE BOOK_NUM = #{book_num}			
 		]]>

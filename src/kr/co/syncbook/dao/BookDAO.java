@@ -7,10 +7,9 @@ import kr.co.syncbook.vo.BookVO;
 public interface BookDAO {
 	public int addBook(BookVO book);
 	public int updateBook(BookVO book);
-	public int deleteBook(String isbn);
-	public BookVO getBook(String isbn);
+	public int deleteBook(int book_num);
+	public BookVO getBook(int book_num);
 	public List<BookVO> getBookList();
-	public List<BookVO> getBookList(String searchKind, String searchValue);
 	
 	
 	

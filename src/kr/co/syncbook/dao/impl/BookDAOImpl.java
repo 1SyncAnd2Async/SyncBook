@@ -31,13 +31,13 @@ public class BookDAOImpl implements BookDAO {
 	}
 
 	@Override
-	public int deleteBook(String isbn) {
-		return sqlSession.delete("Book.deleteBook", isbn);
+	public int deleteBook(int book_num) {
+		return sqlSession.delete("Book.deleteBook", book_num);
 	}
 
 	@Override
-	public BookVO getBook(String isbn) {
-		return (BookVO) sqlSession.selectOne("Book.getBook", isbn);
+	public BookVO getBook(int book_num) {
+		return (BookVO) sqlSession.selectOne("Book.getBook", book_num);
 	}
 
 	@Override
@@ -46,10 +46,5 @@ public class BookDAOImpl implements BookDAO {
 		return list;
 	}
 
-	@Override
-	public List<BookVO> getBookList(String searchKind, String searchValue) {
-		List<BookVO> list = (List<BookVO>) sqlSession.selectMap("Book.getBookList", searchKind, searchValue);
-		return list;
-	}
 
 }

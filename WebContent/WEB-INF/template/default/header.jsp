@@ -18,7 +18,7 @@
                     	<c:when test="${sessionScope.member == null}">
                     		<li><a href="loginForm">Login</a></li>
                     		<li class="topbar-devider"></li>
-                    		<li><a href="joinForm">Join</a></li>
+                    		<li><a href="joinOption">Join</a></li>
                     	</c:when>
                     	<c:otherwise>
                     		<li><a href="myPageForm">${sessionScope.member.id}</a></li> 님 환영합니다.
@@ -60,11 +60,14 @@
                     <!-- Member Management -->
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            	과목
+                            	관리
                         </a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-submenu">
                                 <a href="subject">과목관리</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="book">교재관리</a>
                             </li>
                         </ul>
                     </li>

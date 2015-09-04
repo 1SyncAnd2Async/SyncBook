@@ -42,7 +42,7 @@
 									<tbody>
 										<c:forEach var="list" items="${list}">
 											<tr>
-												<td>${list.subj_num}</td>
+												<td>${list.num}</td>
 												<td>${list.subj_name}</td>
 												<td>
 													<button class="btn btn-danger btn-xs" onclick="location.href='deleteSubject?subject_num='+${list.subj_num}">

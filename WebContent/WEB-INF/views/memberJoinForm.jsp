@@ -40,10 +40,10 @@ $(function(){
 		<!--=== Breadcrumbs ===-->
 		<div class="breadcrumbs">
 			<div class="container">
-				<h1 class="pull-left">Join</h1>
+				<h1 class="pull-left">학생 회원가입</h1>
 				<ul class="pull-right breadcrumb">
 					<li><a href="index">Home</a></li>
-					<li class="active">Join</li>
+					<li class="active">Student Join</li>
 				</ul>
 			</div>
 			<!--/container-->
@@ -60,7 +60,7 @@ $(function(){
 					<div class="tab-v1">
 						<ul class="nav nav-tabs">
 							<li class="active"><a href="#profile-1" data-toggle="tab"
-								aria-expanded="true"> 회원가입 </a></li>
+								aria-expanded="true">학생 회원가입 </a></li>
 						</ul>
 						<div class="tab-content">
 							<!-- Validation Forms -->
