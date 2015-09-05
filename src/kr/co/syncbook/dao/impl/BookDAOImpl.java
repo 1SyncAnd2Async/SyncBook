@@ -46,5 +46,11 @@ public class BookDAOImpl implements BookDAO {
 		return list;
 	}
 
+	@Override
+	public List<BookVO> getSubjectBookList(int subj_num) {
+		List<BookVO> list = sqlSession.selectList("Book.getSubjectBookList", subj_num);
+		return list;
+	}
+
 
 }

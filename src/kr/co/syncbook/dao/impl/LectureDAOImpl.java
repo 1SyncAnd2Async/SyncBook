@@ -47,8 +47,14 @@ public class LectureDAOImpl implements LectureDAO{
 	}
 
 	@Override
-	public List<LectureVO> getLectureList(String isbn) {
+	public List<LectureVO> getAllLectureList() {
 		List<LectureVO> list = sqlSession.selectList("Lecture.getLectureList");
+		return list;
+	}
+
+	@Override
+	public List<LectureVO> getLectureList(int subj_num) {
+		List<LectureVO> list = sqlSession.selectList("Lecture.getLectureList", subj_num);
 		return list;
 	}
 

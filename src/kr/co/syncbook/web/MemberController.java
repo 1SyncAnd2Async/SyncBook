@@ -25,12 +25,20 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	@RequestMapping("/loginForm")
-	public String loginForm(){
-		return "loginForm";
+	public ModelAndView loginForm(String login){
+		System.out.println(login);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("login", login);
+		mav.setViewName("loginForm");
+		return mav;
 	}
 	@RequestMapping("/memberJoinForm")
 	public String joinForm(){
 		return "memberJoinForm";
+	}
+	@RequestMapping("/loginOption")
+	public String loginOption(){
+		return "loginOption";
 	}
 	@RequestMapping("/joinOption")
 	public String joinOption(){
@@ -67,8 +75,7 @@ public class MemberController {
 			session.setAttribute("post1", post1);
 			session.setAttribute("post2", post2);
 			mav.setViewName("index");
-		}
-		else mav.setViewName("loginForm");
+		} else mav.setViewName("loginForm");
 		return mav;
 	}
 	@RequestMapping("/logout")
@@ -96,6 +103,7 @@ public class MemberController {
 		else result = "success";
 		out.print(result);
 		out.close();
+
 	}
 	@RequestMapping("/myPageForm")
 	public String myPageForm(){

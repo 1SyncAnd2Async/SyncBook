@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <tiles:insertDefinition name="defaultTemplate">
     <tiles:putAttribute name="body">
     	<!--=== Breadcrumbs ===-->
@@ -19,7 +20,8 @@
     	<div class="container content">
     		<div class="row">
             	<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-                	<form class="reg-page" action="login" method="post">
+            		
+	                	<form class="reg-page" action="${login}" method="post">
                     	<div class="reg-header">
                         	<h2>Login to your account</h2>
                     	</div>

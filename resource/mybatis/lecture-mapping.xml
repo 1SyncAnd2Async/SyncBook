@@ -5,38 +5,65 @@
 <mapper namespace="Lecture">
 
 	<resultMap type="Lecture" id="LectureResultMap">
-		<result column="lecture_num" property="lecture_num"/>
-		<result column="isbn" property="isbn"/>
-		<result column="lecture_file" property="lecture_file"/>
+		<result column="num" property="num"/>
+		<result column="lect_num" property="lect_num"/>
+		<result column="subj_num" property="subj_num"/>
+		<result column="lect_name" property="lect_name"/>
+		<result column="subj_name" property="subj_name"/>
+		<result column="teacher_id" property="teacher_id"/>
+		<result column="book_num" property="book_num"/>
+		<result column="book_name" property="book_name"/>
+		<result column="day" property="day"/>
+		<result column="beginTime" property="beginTime"/>
+		<result column="endTime" property="endTime"/>
+		
 	</resultMap>
 
 	<select id="getLecture" resultMap="LectureResultMap" parameterType="java.lang.Integer">
 		<![CDATA[
-			SELECT LECTURE_NUM, ISBN, LECTURE_FILE
-			FROM LECTURE
-			WHERE LECTURE_NUM = #{lecture_num}
+			SELECT L.LECT_NUM, S.SUBJ_NAME, L.LECT_NAME, L.TEACHER_ID, B.BOOK_NAME, L.DAY, L.BEGINTIME, L.ENDTIME
+			FROM LECTURE L, SUBJECT S, Book B
+			WHERE L.SUBJ_NUM = S.SUBJ.NUM
+			AND L.BOOK_NUM = B.BOOK_NAME
+			AND L.LECT_NUM = #{lect_num}
+		]]>
+	</select>
+	<select id="getAllLectureList" resultType="Lecture">
+		<![CDATA[
+			SELECT ROWNUM NUM, L.LECT_NUM, S.SUBJ_NAME, L.LECT_NAME, L.TEACHER_ID, B.BOOK_NAME, L.DAY, L.BEGINTIME, L.ENDTIME
+			FROM LECTURE L, SUBJECT S, Book B
+			WHERE L.SUBJ_NUM = S.SUBJ.NUM
+			AND L.BOOK_NUM = B.BOOK_NAME
 		]]>
 	</select>
 	<select id="getLectureList" resultType="Lecture">
 		<![CDATA[
-			SELECT LECTURE_NUM, ISBN, LECTURE_FILE
-			FROM LECTURE
+			SELECT L.LECT_NUM, S.SUBJ_NAME, L.LECT_NAME, L.TEACHER_ID, B.BOOK_NAME, L.DAY, L.BEGINTIME, L.ENDTIME
+			FROM LECTURE L, SUBJECT S, Book B
+			WHERE L.SUBJ_NUM = S.SUBJ.NUM 
+			AND L.BOOK_NUM = B.BOOK_NAME
+			AND L.SUBJ_NUM = #{subj_num}
 		]]>
 	</select>
 	<insert id="addLecture"  parameterType="Lecture">
 		<![CDATA[
-			INSERT INTO LECTURE (LECTURE_NUM, ISBN, LECTURE_FILE) VALUES(#{lecture_num}, #{isbn}, #{lecture_file})
+			INSERT INTO LECTURE
+			(LECT_NUM, SUBJ_NUM, LECT_NAME, TEACHER_ID, BOOK_NUM, DAY, BEGINTIME, ENDTIME)
+			VALUES
+			(#{lect_num}, #{subj_num}, #{lect_name}, #{teacher_id}, #{book_num}, #{day}, #{begintime}, #{endtime})
 			
 		]]>
 	</insert>
 	<delete id="deleteLecture"  parameterType="java.lang.Integer">
 		<![CDATA[
-			DELETE LECTURE WHERE LECTURE_NUM = #{lecture_num}			
+			DELETE LECTURE WHERE LECT_NUM = #{lect_num}			
 		]]>
 	</delete>
 	<update id="updateLecture" parameterType="Lecture">
 		<![CDATA[
-			UPDATE LECTURE SET ISBN = #{isbn}, LECTURE_FILE = #{lecture_file} WHERE LECTURE_NUM = #{lecture_num}			
+			UPDATE LECTURE SET SUBJ_NUM = #{subj_num}, LECT_NAME = #{lect_name}, TEACHER_ID = #{teacher_id},
+			BOOK_NUM = #{book_num}, DAY = #{day}, BEGINTIME = #{begintime}, ENDTIME = #{endtime}
+			WHERE LECT_NUM = #{lect_num}			
 		]]>
 	</update>
 	

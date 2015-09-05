@@ -10,6 +10,7 @@ public interface BookDAO {
 	public int deleteBook(int book_num);
 	public BookVO getBook(int book_num);
 	public List<BookVO> getBookList();
+	public List<BookVO> getSubjectBookList(int subj_num);
 	
 	
 	

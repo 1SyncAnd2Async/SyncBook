@@ -17,6 +17,8 @@
 </script>
 <script>
 $(function(){
+	
+	
 	$("#memberId").change(function(){
 		$.ajax({
 			url: "idCheck",
@@ -65,7 +67,7 @@ $(function(){
 						<div class="tab-content">
 							<!-- Validation Forms -->
 							<div class="tab-pane fade in active" id="profile-1">
-								<form action="join" method="post" id="sky-form1" class="sky-form">
+								<form action="memberJoin" method="post" id="sky-form1" class="sky-form">
 									<fieldset>
 										<div class="row">
 											<section class="col">

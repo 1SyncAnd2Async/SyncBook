@@ -27,6 +27,14 @@
 			FROM BOOK B, SUBJECT S WHERE B.SUBJ_NUM = S.SUBJ_NUM 
 		]]>
 	</select>
+	<select id="getSubjectBookList" resultType="Book">
+		<![CDATA[
+			SELECT ROWNUM NUM, B.BOOK_NUM, S.SUBJ_NAME, B.BOOK_NAME
+			FROM BOOK B, SUBJECT S 
+			WHERE B.SUBJ_NUM = S.SUBJ_NUM 
+			AND B.SUBJ_NUM = #{subj_num}
+		]]>
+	</select>
 	
 	<insert id="addBook" parameterType="Book">
 		<![CDATA[

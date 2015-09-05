@@ -51,4 +51,9 @@ public class BookServiceImpl implements BookService {
 		List<BookVO> list = bookDAO.getBookList();
 		return list;
 	}
+	@Override
+	public List<BookVO> getSubjectBookList(int subj_num) {
+		List<BookVO> list = bookDAO.getSubjectBookList(subj_num);
+		return list;
+	}
 }

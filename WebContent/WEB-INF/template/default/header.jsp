@@ -15,15 +15,20 @@
             <div class="topbar">
                 <ul class="loginbar pull-right">
                     <c:choose>
-                    	<c:when test="${sessionScope.member == null}">
-                    		<li><a href="loginForm">Login</a></li>
+                    	<c:when test="${!empty sessionScope.teacher}">
+                    		<li><a href="teacherPageForm">${sessionScope.teacher.id}</a></li> 님 환영합니다.
                     		<li class="topbar-devider"></li>
-                    		<li><a href="joinOption">Join</a></li>
+                    		<li><a href="teacherLogout">Logout</a></li>
                     	</c:when>
-                    	<c:otherwise>
+                    	<c:when test="${!empty sessionScope.member}">
                     		<li><a href="myPageForm">${sessionScope.member.id}</a></li> 님 환영합니다.
                     		<li class="topbar-devider"></li>
                     		<li><a href="logout">Logout</a></li>
+                    	</c:when>
+                    	<c:otherwise>
+                    		<li><a href="loginOption">Login</a></li>
+                    		<li class="topbar-devider"></li>
+                    		<li><a href="joinOption">Join</a></li>
                     	</c:otherwise>
                     </c:choose>
                     <li class="topbar-devider"></li>
