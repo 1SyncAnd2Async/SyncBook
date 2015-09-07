@@ -2,8 +2,20 @@ package kr.co.syncbook.vo;
 
 public class LectureVO {
 	private int num, lect_num, subj_num, book_num;
-	private String lect_name, subj_name, teacher_id, day, beginTime, endTime;
+	private String lect_name, subj_name, teacher_id, day, beginTime, endTime, book_name, teacher_name;
 	
+	public String getBook_name() {
+		return book_name;
+	}
+	public void setBook_name(String book_name) {
+		this.book_name = book_name;
+	}
+	public String getTeacher_name() {
+		return teacher_name;
+	}
+	public void setTeacher_name(String teacher_name) {
+		this.teacher_name = teacher_name;
+	}
 	public int getNum() {
 		return num;
 	}
@@ -68,8 +80,10 @@ public class LectureVO {
 	public String toString() {
 		return "LectureVO [num=" + num + ", lect_num=" + lect_num + ", subj_num=" + subj_num + ", book_num=" + book_num
 				+ ", lect_name=" + lect_name + ", subj_name=" + subj_name + ", teacher_id=" + teacher_id + ", day="
-				+ day + ", beginTime=" + beginTime + ", endTime=" + endTime + "]";
+				+ day + ", beginTime=" + beginTime + ", endTime=" + endTime + ", book_name=" + book_name
+				+ ", teacher_name=" + teacher_name + "]";
 	}
+	
 	
 	
 	

@@ -7,7 +7,7 @@
     	<!--=== Breadcrumbs ===-->
     	<div class="breadcrumbs">
         	<div class="container">
-            	<h1 class="pull-left">Login</h1>
+            	<h1 class="pull-left">·Î±×ÀÎ</h1>
             	<ul class="pull-right breadcrumb">
                 	<li><a href="index.html">Home</a></li>
                 	<li class="active">Login</li>

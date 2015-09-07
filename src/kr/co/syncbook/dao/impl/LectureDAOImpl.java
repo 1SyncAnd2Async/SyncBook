@@ -48,7 +48,7 @@ public class LectureDAOImpl implements LectureDAO{
 
 	@Override
 	public List<LectureVO> getAllLectureList() {
-		List<LectureVO> list = sqlSession.selectList("Lecture.getLectureList");
+		List<LectureVO> list = sqlSession.selectList("Lecture.getAllLectureList");
 		return list;
 	}
 

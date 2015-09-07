@@ -74,6 +74,9 @@
                             <li class="dropdown-submenu">
                                 <a href="book">교재관리</a>
                             </li>
+                            <li class="dropdown-submenu">
+                                <a href="lecture">수업관리</a>
+                            </li>
                         </ul>
                     </li>
                     <!-- End Member Management -->
