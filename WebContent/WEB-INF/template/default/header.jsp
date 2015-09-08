@@ -116,12 +116,12 @@
                     <!-- Books -->
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            	교재
+                            	학습
                         </a>
                         <ul class="dropdown-menu">
                         	<!-- Books List Pages -->
                             <li>
-                                <a href="bookList">교재목록</a>
+                                <a href="lectureList">학습신청</a>
                             </li>
                             <!-- End Books List Pages -->
                             <!-- Category Pages -->

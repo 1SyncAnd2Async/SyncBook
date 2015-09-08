@@ -1,9 +1,16 @@
 package kr.co.syncbook.vo;
 
 public class LectureVO {
-	private int num, lect_num, subj_num, book_num;
+	private int num, lect_num, subj_num, book_num, price;
 	private String lect_name, subj_name, teacher_id, day, beginTime, endTime, book_name, teacher_name;
 	
+	
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	public String getBook_name() {
 		return book_name;
 	}
@@ -79,9 +86,9 @@ public class LectureVO {
 	@Override
 	public String toString() {
 		return "LectureVO [num=" + num + ", lect_num=" + lect_num + ", subj_num=" + subj_num + ", book_num=" + book_num
-				+ ", lect_name=" + lect_name + ", subj_name=" + subj_name + ", teacher_id=" + teacher_id + ", day="
-				+ day + ", beginTime=" + beginTime + ", endTime=" + endTime + ", book_name=" + book_name
-				+ ", teacher_name=" + teacher_name + "]";
+				+ ", price=" + price + ", lect_name=" + lect_name + ", subj_name=" + subj_name + ", teacher_id="
+				+ teacher_id + ", day=" + day + ", beginTime=" + beginTime + ", endTime=" + endTime + ", book_name="
+				+ book_name + ", teacher_name=" + teacher_name + "]";
 	}
 	
 	

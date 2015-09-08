@@ -17,12 +17,13 @@
 		<result column="day" property="day"/>
 		<result column="beginTime" property="beginTime"/>
 		<result column="endTime" property="endTime"/>
+		<result column="price" property="price"/>
 		
 	</resultMap>
 
 	<select id="getLecture" resultMap="LectureResultMap" parameterType="java.lang.Integer">
 		<![CDATA[
-			SELECT L.LECT_NUM, S.SUBJ_NAME, L.LECT_NAME, T.NAME TEACHER_NAME, B.BOOK_NAME, L.DAY, L.BEGINTIME, L.ENDTIME
+			SELECT L.LECT_NUM, S.SUBJ_NAME, L.LECT_NAME, T.NAME TEACHER_NAME, B.BOOK_NAME, L.DAY, L.BEGINTIME, L.ENDTIME, L.PRICE
 			FROM LECTURE L, SUBJECT S, BOOK B, TEACHER T
 			WHERE L.SUBJ_NUM = S.SUBJ_NUM
 			AND L.BOOK_NUM = B.BOOK_NUM
@@ -32,7 +33,7 @@
 	</select>
 	<select id="getAllLectureList" resultType="Lecture">
 		<![CDATA[
-			SELECT ROWNUM NUM, L.LECT_NUM, S.SUBJ_NAME, L.LECT_NAME, T.NAME TEACHER_NAME, B.BOOK_NAME, L.DAY, L.BEGINTIME, L.ENDTIME
+			SELECT ROWNUM NUM, L.LECT_NUM, S.SUBJ_NAME, L.LECT_NAME, T.NAME TEACHER_NAME, B.BOOK_NAME, L.DAY, L.BEGINTIME, L.ENDTIME, L.PRICE
 			FROM LECTURE L, SUBJECT S, BOOK B, TEACHER T
 			WHERE L.SUBJ_NUM = S.SUBJ_NUM
 			AND L.BOOK_NUM = B.BOOK_NUM
@@ -41,7 +42,7 @@
 	</select>
 	<select id="getLectureList" resultType="Lecture">
 		<![CDATA[
-			SELECT L.LECT_NUM, S.SUBJ_NAME, L.LECT_NAME, T.NAME TEACHER_NAME, B.BOOK_NAME, L.DAY, L.BEGINTIME, L.ENDTIME
+			SELECT L.LECT_NUM, S.SUBJ_NAME, L.LECT_NAME, T.NAME TEACHER_NAME, B.BOOK_NAME, L.DAY, L.BEGINTIME, L.ENDTIME, L.PRICE
 			FROM LECTURE L, SUBJECT S, BOOK B
 			WHERE L.SUBJ_NUM = S.SUBJ_NUM 
 			AND L.BOOK_NUM = B.BOOK_NUM
@@ -52,9 +53,9 @@
 	<insert id="addLecture"  parameterType="Lecture">
 		<![CDATA[
 			INSERT INTO LECTURE
-			(LECT_NUM, SUBJ_NUM, LECT_NAME, TEACHER_ID, BOOK_NUM, DAY, BEGINTIME, ENDTIME)
+			(LECT_NUM, SUBJ_NUM, LECT_NAME, TEACHER_ID, BOOK_NUM, DAY, BEGINTIME, ENDTIME, PRICE)
 			VALUES
-			(LECTURE_SEQ.NEXTVAL, #{subj_num}, #{lect_name}, #{teacher_id}, #{book_num}, #{day}, #{beginTime}, #{endTime})
+			(LECTURE_SEQ.NEXTVAL, #{subj_num}, #{lect_name}, #{teacher_id}, #{book_num}, #{day}, #{beginTime}, #{endTime}, #{price})
 			
 		]]>
 	</insert>
@@ -66,7 +67,7 @@
 	<update id="updateLecture" parameterType="Lecture">
 		<![CDATA[
 			UPDATE LECTURE SET SUBJ_NUM = #{subj_num}, LECT_NAME = #{lect_name}, TEACHER_ID = #{teacher_id},
-			BOOK_NUM = #{book_num}, DAY = #{day}, BEGINTIME = #{begintime}, ENDTIME = #{endtime}
+			BOOK_NUM = #{book_num}, DAY = #{day}, BEGINTIME = #{begintime}, ENDTIME = #{endtime}, PRICE = #{price}
 			WHERE LECT_NUM = #{lect_num}			
 		]]>
 	</update>
