@@ -10,9 +10,8 @@ import org.springframework.stereotype.Repository;
 import kr.co.syncbook.dao.LectureDAO;
 import kr.co.syncbook.vo.LectureVO;
 
-@Repository("LectureDAO")
+@Repository("lectureDAO")
 public class LectureDAOImpl implements LectureDAO{
-
 	@Autowired
 	private SqlSession sqlSession;
 	
@@ -25,7 +24,6 @@ public class LectureDAOImpl implements LectureDAO{
 			result = 0;
 		}
 		return result;
-		
 	}
 
 	@Override

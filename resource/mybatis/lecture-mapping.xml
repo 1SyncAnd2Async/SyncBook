@@ -10,52 +10,46 @@
 		<result column="subj_num" property="subj_num"/>
 		<result column="lect_name" property="lect_name"/>
 		<result column="subj_name" property="subj_name"/>
-		<result column="teacher_id" property="teacher_id"/>
-		<result column="teacher_name" property="teacher_name"/>
 		<result column="book_num" property="book_num"/>
 		<result column="book_name" property="book_name"/>
-		<result column="day" property="day"/>
-		<result column="beginTime" property="beginTime"/>
-		<result column="endTime" property="endTime"/>
 		<result column="price" property="price"/>
 		
 	</resultMap>
+		
+		
 
-	<select id="getLecture" resultMap="LectureResultMap" parameterType="java.lang.Integer">
+	<select id="getLecture" resultType="Lecture" parameterType="java.lang.Integer">
 		<![CDATA[
-			SELECT L.LECT_NUM, S.SUBJ_NAME, L.LECT_NAME, T.NAME TEACHER_NAME, B.BOOK_NAME, L.DAY, L.BEGINTIME, L.ENDTIME, L.PRICE
-			FROM LECTURE L, SUBJECT S, BOOK B, TEACHER T
+			SELECT L.LECT_NUM, S.SUBJ_NUM, S.SUBJ_NAME, L.LECT_NAME, B.BOOK_NUM, B.BOOK_NAME, L.PRICE
+			FROM LECTURE L, SUBJECT S, BOOK B
 			WHERE L.SUBJ_NUM = S.SUBJ_NUM
 			AND L.BOOK_NUM = B.BOOK_NUM
-			AND L.TEACHER_ID = T.ID
 			AND L.LECT_NUM = #{lect_num}
 		]]>
 	</select>
 	<select id="getAllLectureList" resultType="Lecture">
 		<![CDATA[
-			SELECT ROWNUM NUM, L.LECT_NUM, S.SUBJ_NAME, L.LECT_NAME, T.NAME TEACHER_NAME, B.BOOK_NAME, L.DAY, L.BEGINTIME, L.ENDTIME, L.PRICE
-			FROM LECTURE L, SUBJECT S, BOOK B, TEACHER T
+			SELECT ROWNUM rnum, L.LECT_NUM, S.SUBJ_NUM, S.SUBJ_NAME, L.LECT_NAME, B.BOOK_NUM, B.BOOK_NAME, L.PRICE
+			FROM LECTURE L, SUBJECT S, BOOK B
 			WHERE L.SUBJ_NUM = S.SUBJ_NUM
 			AND L.BOOK_NUM = B.BOOK_NUM
-			AND L.TEACHER_ID = T.ID
 		]]>
 	</select>
 	<select id="getLectureList" resultType="Lecture">
 		<![CDATA[
-			SELECT L.LECT_NUM, S.SUBJ_NAME, L.LECT_NAME, T.NAME TEACHER_NAME, B.BOOK_NAME, L.DAY, L.BEGINTIME, L.ENDTIME, L.PRICE
+			SELECT ROWNUM rnum, L.LECT_NUM, S.SUBJ_NUM, S.SUBJ_NAME, L.LECT_NAME, B.BOOK_NUM, B.BOOK_NAME, L.PRICE
 			FROM LECTURE L, SUBJECT S, BOOK B
 			WHERE L.SUBJ_NUM = S.SUBJ_NUM 
 			AND L.BOOK_NUM = B.BOOK_NUM
-			AND L.TEACHER_ID = T.ID
 			AND L.SUBJ_NUM = #{subj_num}
 		]]>
 	</select>
 	<insert id="addLecture"  parameterType="Lecture">
 		<![CDATA[
 			INSERT INTO LECTURE
-			(LECT_NUM, SUBJ_NUM, LECT_NAME, TEACHER_ID, BOOK_NUM, DAY, BEGINTIME, ENDTIME, PRICE)
+			(LECT_NUM, SUBJ_NUM, LECT_NAME, BOOK_NUM, PRICE)
 			VALUES
-			(LECTURE_SEQ.NEXTVAL, #{subj_num}, #{lect_name}, #{teacher_id}, #{book_num}, #{day}, #{beginTime}, #{endTime}, #{price})
+			(LECTURE_SEQ.NEXTVAL, #{subj_num}, #{lect_name}, #{book_num}, #{price})
 			
 		]]>
 	</insert>
@@ -66,11 +60,11 @@
 	</delete>
 	<update id="updateLecture" parameterType="Lecture">
 		<![CDATA[
-			UPDATE LECTURE SET SUBJ_NUM = #{subj_num}, LECT_NAME = #{lect_name}, TEACHER_ID = #{teacher_id},
-			BOOK_NUM = #{book_num}, DAY = #{day}, BEGINTIME = #{begintime}, ENDTIME = #{endtime}, PRICE = #{price}
-			WHERE LECT_NUM = #{lect_num}			
+			UPDATE LECTURE SET SUBJ_NUM = #{subj_num}, LECT_NAME = #{lect_name},
+			BOOK_NUM = #{book_num}, PRICE = #{price}
+			WHERE LECT_NUM = #{lect_num}
 		]]>
 	</update>
-	
-
 </mapper>
+
+

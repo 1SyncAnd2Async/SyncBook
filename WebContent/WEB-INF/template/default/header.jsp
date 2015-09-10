@@ -75,7 +75,11 @@
                                 <a href="book">교재관리</a>
                             </li>
                             <li class="dropdown-submenu">
-                                <a href="lecture">수업관리</a>
+                                <a href="javascript:void(0);">수업관리</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="addLectureForm">수업등록</a></li>
+                                    <li><a href="assignLectureForm">수업배정</a></li>
+                                </ul>
                             </li>
                         </ul>
                     </li>

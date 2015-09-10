@@ -28,51 +28,80 @@ public class LectureController {
 	@Autowired
 	private SubjectService subjectService;
 	@Autowired
-	private BookService bookService;
-	@Autowired
 	private TeacherService teacherService;
-	
-	@RequestMapping("/lecture")
-	public ModelAndView lecture(){
+	@Autowired
+	private BookService bookService;
+
+	@RequestMapping("/addLectureForm")
+	public ModelAndView regLecture(){
 		List<LectureVO> list = lectureService.getAllLectureList();
 		List<SubjectVO> sub_list = subjectService.getSubjectList();	
-		List<TeacherVO> teacher_list = teacherService.getTeacherList();
 
 		ModelAndView mav = new ModelAndView();		
 		mav.addObject("list", list);
 		mav.addObject("subjectList", sub_list);
-		mav.addObject("teacherList", teacher_list);
-		mav.setViewName("lecture");
+		mav.setViewName("addLectureForm");
+		return mav;
+	}
+	@RequestMapping("/assignLectureForm")
+	public ModelAndView assignLecture(){
+		List<SubjectVO> subjectList = subjectService.getSubjectList();
+		List<TeacherVO> teacherList = teacherService.getTeacherList();
+		ModelAndView mav = new ModelAndView();		
+		mav.addObject("subjectList", subjectList);
+		mav.addObject("teacherList", teacherList);
+		mav.setViewName("assignLectureForm");
 		return mav;
 	}
 	@RequestMapping("/selectBook")  
-	  public void selectBook(ServletResponse resp,
-	            @RequestParam int subj_num)
-	            throws IOException {
-	        resp.setContentType("text/html;charset=UTF-8");
-	        PrintWriter out = resp.getWriter();
-	        List<BookVO> book_list = bookService.getSubjectBookList(subj_num);
-	        out.print("<select name=\"book_num\" id=\"Book\">");
-	        out.print("<option value=\"\">선택</option>");
-	        for (BookVO book : book_list) {        
-	            out.print("<option value=\"" + book.getBook_num() + "\">" + book.getBook_name()
-	                    + "</option>");
-	        }
-	        out.print("</select>");
-	        out.close();
+	public void selectBook(ServletResponse resp, @RequestParam int subj_num) throws IOException {
+		resp.setContentType("text/html;charset=UTF-8");
+	    PrintWriter out = resp.getWriter();
+	    List<BookVO> bookList = bookService.getSubjectBookList(subj_num);
+	    out.print("<select name=\"book_num\" id=\"Book\">");
+	    out.print("<option value=\"\">선택</option>");
+	    for (BookVO book : bookList) {        
+	        out.print("<option value=\"" + book.getBook_num() + "\">" + book.getBook_name() + "</option>");
 	    }
+	    out.print("</select>");
+	    out.close();
+	}
+	@RequestMapping("/selectLecture")  
+	public void selectLecture(ServletResponse resp, @RequestParam int subj_num) throws IOException {
+		resp.setContentType("text/html;charset=UTF-8");
+	    PrintWriter out = resp.getWriter();
+	    List<LectureVO> lectureList = lectureService.getLectureList(subj_num);
+	    out.print("<select name=\"lect_num\" id=\"Lecture\">");
+	    out.print("<option value=\"\">선택</option>");
+	    for (LectureVO v : lectureList) {        
+	        out.print("<option value=\"" + v.getLect_num() + "\">" + v.getLect_name() + "</option>");
+	    }
+	    out.print("</select>");
+	    out.close();
+	}
 	@RequestMapping("/addLecture")
-	public ModelAndView addLecture(LectureVO vo){
+	public ModelAndView regLecture(LectureVO vo){
 		ModelAndView mav = new ModelAndView();
 		System.out.println(vo);
 		boolean flag = lectureService.addLecture(vo);
 		if(flag) {
-			mav.setViewName("redirect:lecture");
+			mav.setViewName("redirect:addLectureForm");
 		} else {
 			mav.setViewName("redirect:index");
 		}
 		return mav;
-		
+	}
+	@RequestMapping("/assignLecture")
+	public ModelAndView assignLecture(LectureVO vo){
+		ModelAndView mav = new ModelAndView();
+		System.out.println(vo);
+		boolean flag = lectureService.addLecture(vo);
+		if(flag) {
+			mav.setViewName("redirect:assignLectureForm");
+		} else {
+			mav.setViewName("redirect:index");
+		}
+		return mav;
 	}
 	@RequestMapping("/deleteLecture")
 	public ModelAndView deleteLecture(int lect_num){

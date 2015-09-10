@@ -15,23 +15,39 @@
             	</ul>
         	</div><!--/container-->
     	</div><!--/breadcrumbs-->
-    	<!--=== End Breadcrumbs ===-->    	
+    	<!--=== End Breadcrumbs ===-->
+    	
     	<!--=== Content ===-->
-    	 <div class="row clients-page">
-                    <div class="col-md-2">
-                        <img src="assets/img/clients2/baderbrau.png" class="img-responsive hover-effect" alt="" />
+    	<div class="container content height-500">
+    	<div class="row pricing-table-v5 no-space-pricing">
+    		<c:forEach var="list" items="${list}">
+            <div class="col-md-3 col-sm-3 col-xs-6" style="margin-right:20px;">
+                <div class="pricing-v5 pricing-v5-blue ">
+                    <div class="pricing-v5-head">
+                        <h4 class="text-center">${list.lect_name }</h4>
+                        <div class="pricing-rounded"><h5 class="text-center">${list.price }<span>Won</span><i>/Month</i></h5></div>
                     </div>
-                    <div class="col-md-10">
-                        <h3>Cisco Systems, Inc</h3>
-                        <ul class="list-inline">
-                            <li><i class="fa fa-map-marker color-green"></i> USA</li>
-                            <li><i class="fa fa-globe color-green"></i> <a class="linked" href="#">http://www.example.com</a></li>
-                            <li><i class="fa fa-briefcase color-green"></i> Web Design &amp; Development</li>
-                        </ul>
-                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati</p>
-                        <p>Olerano ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna edetquam lacus. Fusce condimentum eleifend enim a sint occaecati feugiat..</p>
-                    </div>
+                    <ul class="list-unstyled pricing-v5-content text-center">
+                        <li><span class="icon-user-female">강사 :</span> ${list.teacher_name }</li>
+                        <li><span class="icon-drawer">과목 : </span>${list.subj_name }</li>
+                        <li><span class="icon-envelope-open">교재 : </span>${list.book_name }</li>
+                        <li><span class="icon-layers">요일 : </span>${list.day }</li>
+                        <li><span class="icon-wrench">시간 : </span>${list.beginTime }~${list.endTime }</li>
+                        <li>
+                            <a href="#" class="btn-u btn-u-blue">
+                                <i class="price-corner"></i>
+                                <i class="price-corner-2"></i>
+                                Purchase Now
+                                <span class="icon-basket"></span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
+            </div>
+            </c:forEach>
+            </div>
+            </div>
+           
     	<!--=== End Content ===-->
     </tiles:putAttribute>
 </tiles:insertDefinition>

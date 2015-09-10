@@ -19,7 +19,6 @@ public class LectureServiceImpl implements LectureService{
 		int result = lectureDAO.addLecture(vo);
 		if(result==1) return true;
 		else return false;
-		
 	}
 
 	@Override
