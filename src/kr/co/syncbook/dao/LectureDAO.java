@@ -11,7 +11,4 @@ public interface LectureDAO {
 	public LectureVO getLecture(int lect_num);
 	public List<LectureVO> getAllLectureList();
 	public List<LectureVO> getLectureList(int subj_num);
-
 }
-
-

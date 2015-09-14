@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Notice">
+
+	<resultMap type="Notice" id="NoticeResultMap">
+		<result column="notice_num" property="notice_num"/>
+		<result column="title" property="title"/>
+		<result column="content" property="content"/>
+		<result column="writer" property="writer"/>
+		<result column="write_date" property="write_date"/>
+		<result column="hit" property="hit"/>
+		<result column="notice_file" property="notice_file"/>
+	</resultMap>
+
+	<select id="getNotice" resultMap="NoticeResultMap" parameterType="java.lang.Integer">
+		<![CDATA[
+				SELECT NOTICE_NUM, TITLE, CONTENT, WRITER, WRITE_DATE, HIT, NOTICE_FILE
+				FROM NOTICE
+				WHERE NOTICE_NUM = #{notice_num}
+		]]>
+	</select>
+	
+	<select id="getNoticeList" resultType="Notice">
+		<![CDATA[
+			SELECT NOTICE_NUM, TITLE, CONTENT, WRITER, WRITE_DATE, HIT, NOTICE_FILE
+			FROM NOTICE
+		]]>
+	</select>
+	<select id="getNoticeSearchList" resultType="Notice">
+		<![CDATA[
+		
+			SELECT NOTICE_NUM, TITLE, CONTENT, WRITER, WRITE_DATE, HIT, NOTICE_FILE
+			FROM NOTICE
+			WHERE #{searchKind} LIKE '%'||#{searchValue}||'%'
+		]]>
+	</select>
+	<insert id="addNotice" parameterType="Notice">
+		<![CDATA[
+			INSERT INTO NOTICE (NOTICE_NUM, TITLE, CONTENT, WRITER, WRITE_DATE, NOTICE_FILE)
+			VALUES(NOTICE_SEQ.NEXTVAL, #{title}, #{content}, #{writer}, SYSDATE, #{notice_file})
+		]]>
+	</insert>
+	<update id="updateNotice" parameterType="Notice">
+		<![CDATA[
+			UPDATE NOTICE SET TITLE = #{title}, CONTENT = #{content},
+			WRITE_DATE = SYSDATE, NOTICE_FILE = #{notice_file} WHERE  NOTICE_NUM = #{notice_num}			
+		]]>
+	</update>
+	<update id="updateNoticeHit" parameterType="java.lang.Integer">
+		<![CDATA[
+			UPDATE NOTICE SET Hit = Hit+1 WHERE  NOTICE_NUM = #{notice_num}			
+		]]>
+	</update>
+	<delete id="deleteNotice"  parameterType="java.lang.Integer">
+		<![CDATA[
+			DELETE NOTICE WHERE NOTICE_NUM = #{NOTICE_NUM}			
+		]]>
+	</delete>
+</mapper>

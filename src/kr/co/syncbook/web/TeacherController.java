@@ -85,7 +85,7 @@ public class TeacherController {
 	}
 	@RequestMapping("/updateTeacherProfile")
 	public ModelAndView updateteacherProfile(TeacherVO teacher, HttpSession session, HttpServletRequest request) {
-		String path = request.getRealPath("/resources/upload");
+		String path = request.getRealPath("/resources/upload/teacherImg");
 		String upPath = path+"\\"+teacher.getUpfile().getOriginalFilename();
 		File f = new File(upPath);
 		try {

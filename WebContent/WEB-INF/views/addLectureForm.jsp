@@ -38,9 +38,8 @@ $(function(){
 		<!--=== Content ===-->
 		<div class="container content">
 		<div class="row" style="margin-bottom:50px;">
-		<!-- Reg-Form -->
-	
-				<form action="assignLecture" method="post" id="sky-form4" class="sky-form">
+			<!-- Reg-Form -->
+			<form action="addLecture" method="post" id="sky-form4" class="sky-form" enctype="multipart/form-data">
 					<header>수업 등록</header>							
 					<fieldset>
 							<section>
@@ -72,18 +71,24 @@ $(function(){
 							<label>가격&nbsp&nbsp</label>
 							<label style="margin-right:30px;">
 							<input type="text"
-								name="price" placeholder="price">
+								name="price" placeholder="Price">
 							</label>
-							</section>
+							
+							<label>이미지&nbsp&nbsp</label>
+							<label style="margin-right:30px;">
+							<input type="file"
+								name="upfile" placeholder="IMG">
+							</label>
+						</section>
 					</fieldset>
 					<footer>
 						<div class="pull-right">
-							<button type="submit" class="btn-u">등록</button>
+							<input type="submit" class="btn-u" value="등록"/>
 						</div>
 					</footer>
-				</form>
+			</form>
 		</div>
-			<div class="row">
+		<div class="row">
 				<div class="col-md-12">
 					<div class="row margin-bottom-40">
 							<!--Basic Table-->

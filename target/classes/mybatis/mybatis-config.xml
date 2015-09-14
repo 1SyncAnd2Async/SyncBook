@@ -13,6 +13,7 @@
 		<typeAlias type="kr.co.syncbook.vo.LectureVO" alias="Lecture"/>
 		<typeAlias type="kr.co.syncbook.vo.TeacherVO" alias="Teacher"/>
 		<typeAlias type="kr.co.syncbook.vo.AssignLectVO" alias="AssignLect"/>
+		<typeAlias type="kr.co.syncbook.vo.RegLectVO" alias="RegLect"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/member-mapping.xml"/>
@@ -24,5 +25,6 @@
 		<mapper resource="mybatis/lecture-mapping.xml"/>
 		<mapper resource="mybatis/teacher-mapping.xml"/>
 		<mapper resource="mybatis/assignLect-mapping.xml"/>
+		<mapper resource="mybatis/regLect-mapping.xml"/>
 	</mappers>
 </configuration>

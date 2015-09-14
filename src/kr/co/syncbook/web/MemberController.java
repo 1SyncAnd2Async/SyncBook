@@ -111,7 +111,7 @@ public class MemberController {
 	}
 	@RequestMapping("/updateMemberProfile")
 	public ModelAndView updateMemberProfile(MemberVO member, @RequestParam String post1, @RequestParam String post2, HttpSession session, HttpServletRequest request) {
-		String path = request.getRealPath("/resources/upload");
+		String path = request.getRealPath("/resources/upload/memberImg");
 		String upPath = path+"\\"+member.getUpfile().getOriginalFilename();
 		File f = new File(upPath);
 		try {

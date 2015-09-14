@@ -125,7 +125,7 @@
                         <ul class="dropdown-menu">
                         	<!-- Books List Pages -->
                             <li>
-                                <a href="lectureList">학습신청</a>
+                                <a href="classListForm">학습신청</a>
                             </li>
                             <!-- End Books List Pages -->
                             <!-- Category Pages -->

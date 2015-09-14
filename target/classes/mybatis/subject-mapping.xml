@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Subject">
+	<resultMap type="Subject" id="SubjectResultMap">
+		<result column="num" property="num"/>
+		<result column="subj_num" property="subj_num"/>
+		<result column="subj_name" property="subj_name"/>
+	</resultMap>
+	
+	<select id="getSubject" resultMap="SubjectResultMap" parameterType="java.lang.Integer">
+		<![CDATA[
+			SELECT SUBJ_NUM, CATEGORY, SUBJ_NAME
+			FROM SUBJECT
+			WHERE SUBJ_NUM=#{subj_num}
+		]]>
+	</select>
+	
+	<insert id="addSubject" parameterType="Subject">
+		<![CDATA[
+			INSERT INTO SUBJECT VALUES(SUBJECT_SEQ.NEXTVAL, #{subj_name})
+		]]>
+	</insert>
+	
+	<delete id="deleteSubject" parameterType="java.lang.Integer">
+		<![CDATA[
+			DELETE SUBJECT WHERE SUBJ_NUM = #{subj_num}
+		]]>
+	</delete>
+	
+	<select id="getSubjectList" resultType="Subject">
+		<![CDATA[
+			SELECT ROWNUM NUM, SUBJ_NUM, SUBJ_NAME
+			FROM SUBJECT
+		]]>
+	</select>
+</mapper>

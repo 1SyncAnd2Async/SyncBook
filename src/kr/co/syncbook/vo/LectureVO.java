@@ -1,8 +1,11 @@
 package kr.co.syncbook.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class LectureVO {
 	private int rnum, lect_num, subj_num, book_num, price;
-	private String lect_name, subj_name, book_name;
+	private String lect_name, subj_name, book_name, img;
+	private MultipartFile upfile;
 	public int getRnum() {
 		return rnum;
 	}
@@ -51,9 +54,22 @@ public class LectureVO {
 	public void setBook_name(String book_name) {
 		this.book_name = book_name;
 	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	public MultipartFile getUpfile() {
+		return upfile;
+	}
+	public void setUpfile(MultipartFile upfile) {
+		this.upfile = upfile;
+	}
 	@Override
 	public String toString() {
-		return "LectureVO [lect_num=" + lect_num + ", subj_num=" + subj_num + ", book_num=" + book_num + ", price="
-				+ price + ", lect_name=" + lect_name + ", subj_name=" + subj_name + ", book_name=" + book_name + "]";
+		return "LectureVO [rnum=" + rnum + ", lect_num=" + lect_num + ", subj_num=" + subj_num + ", book_num="
+				+ book_num + ", price=" + price + ", lect_name=" + lect_name + ", subj_name=" + subj_name
+				+ ", book_name=" + book_name + ", img=" + img + ", upfile=" + upfile + "]";
 	}
 }

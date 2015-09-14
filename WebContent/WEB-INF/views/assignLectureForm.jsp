@@ -117,23 +117,36 @@ $(function(){
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>과목</th>
 											<th>수업명</th>
-											<th>교재</th>
-											<th>가격</th>
+											<th>강사</th>
+											<th>요일</th>
+											<th>시작시간</th>
+											<th>종료시간</th>
+											<th>배정상태</th>
 											<th></th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="list" items="${list}">
+										<c:forEach var="assignList" items="${assignList}">
 											<tr>
-												<td>${list.rnum}</td>
-												<td>${list.subj_name}</td>
-												<td>${list.lect_name}</td>
-												<td>${list.book_name}</td>
-												<td>${list.price} 원</td>
+												<td>${assignList.rnum}</td>
+												<td>${assignList.lect_name}</td>
+												<td>${assignList.name}</td>
+												<td>${assignList.day}</td>
+												<td>${assignList.begintime}</td>
+												<td>${assignList.endtime}</td>
 												<td>
-													<button class="btn btn-danger btn-xs" onclick="location.href='deleteLecture?lect_num='+${list.lect_num}">
+													<c:choose>
+														<c:when test="${assignList.status == 0}">
+															미배정
+														</c:when>
+														<c:otherwise>
+															배정완료
+														</c:otherwise>
+													</c:choose>
+												</td>
+												<td>
+													<button class="btn btn-danger btn-xs" onclick="location.href='deleteAssignLect?lect_num='+${list.lect_num}+'&teacher_id='+${list.teacher_id}">
 														<i class="fa fa-trash-o"></i>삭제
 													</button>
 												</td>

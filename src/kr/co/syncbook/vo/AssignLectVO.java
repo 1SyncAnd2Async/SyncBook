@@ -1,8 +1,14 @@
 package kr.co.syncbook.vo;
 
 public class AssignLectVO {
-	private int lect_num, status;
-	private String teacher_id, day, begintime, endtime;
+	private int rnum, lect_num, status;
+	private String lect_name, name, teacher_id, day, begintime, endtime;
+	public int getRnum() {
+		return rnum;
+	}
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
 	public int getLect_num() {
 		return lect_num;
 	}
@@ -14,6 +20,18 @@ public class AssignLectVO {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public String getLect_name() {
+		return lect_name;
+	}
+	public void setLect_name(String lect_name) {
+		this.lect_name = lect_name;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getTeacher_id() {
 		return teacher_id;
