@@ -1,8 +1,14 @@
 package kr.co.syncbook.vo;
 
 public class AssignLectVO {
-	private int rnum, lect_num, status;
+	private int assign_num, rnum, lect_num, status;
 	private String lect_name, name, teacher_id, day, begintime, endtime;
+	public int getAssign_num() {
+		return assign_num;
+	}
+	public void setAssign_num(int assign_num) {
+		this.assign_num = assign_num;
+	}
 	public int getRnum() {
 		return rnum;
 	}
@@ -59,7 +65,8 @@ public class AssignLectVO {
 	}
 	@Override
 	public String toString() {
-		return "AssignLectureVO [lect_num=" + lect_num + ", status=" + status + ", teacher_id=" + teacher_id + ", day="
-				+ day + ", begintime=" + begintime + ", endtime=" + endtime + "]";
+		return "AssignLectVO [assign_num=" + assign_num + ", rnum=" + rnum + ", lect_num=" + lect_num + ", status="
+				+ status + ", lect_name=" + lect_name + ", name=" + name + ", teacher_id=" + teacher_id + ", day=" + day
+				+ ", begintime=" + begintime + ", endtime=" + endtime + "]";
 	}
 }

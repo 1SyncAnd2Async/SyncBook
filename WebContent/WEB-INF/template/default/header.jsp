@@ -7,7 +7,7 @@
         <div class="container">
             <!-- Logo -->
             <a class="logo" href="index">
-                <img src="resources/assets/img/logo1-default.png" alt="Logo">
+                <img src="resources/assets/img/syncbook.png" alt="Logo">
             </a>
             <!-- End Logo -->
 

@@ -88,7 +88,7 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		boolean flag = memberService.memberJoin(member, post1, post2);
 		if(flag) {
-			mav.setViewName("loginForm");
+			mav.setViewName("redirect:loginForm?login=login");
 		} else {
 			mav.setViewName("joinForm");
 		}

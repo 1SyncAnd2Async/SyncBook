@@ -67,7 +67,7 @@ public class TeacherController {
 		ModelAndView mav = new ModelAndView();
 		boolean flag = teacherService.teacherJoin(teacher);
 		if(flag) {
-			mav.setViewName("loginForm");
+			mav.setViewName("redirect:loginForm?login=teacherLogin");
 		} else {
 			mav.setViewName("teacherJoinForm");
 		}

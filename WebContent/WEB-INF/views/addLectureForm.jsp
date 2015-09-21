@@ -37,7 +37,7 @@ $(function(){
 
 		<!--=== Content ===-->
 		<div class="container content">
-		<div class="row" style="margin-bottom:50px;">
+		<div class="row">
 			<!-- Reg-Form -->
 			<form action="addLecture" method="post" id="sky-form4" class="sky-form" enctype="multipart/form-data">
 					<header>수업 등록</header>							
@@ -93,11 +93,7 @@ $(function(){
 					<div class="row margin-bottom-40">
 							<!--Basic Table-->
 							<div class="panel panel-green margin-bottom-40">
-								<div class="panel-heading">
-									<h3 class="panel-title">
-										<i class="fa fa-tasks"></i> 수업 목록
-									</h3>
-								</div>
+								
 								<table class="table">
 									<thead>
 										<tr>

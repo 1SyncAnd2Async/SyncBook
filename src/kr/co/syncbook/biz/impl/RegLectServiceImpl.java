@@ -17,4 +17,5 @@ public class RegLectServiceImpl implements RegLectService {
 		List<RegLectVO> list = regLectDAO.getAllClassList();
 		return list;
 	}
+	
 }
