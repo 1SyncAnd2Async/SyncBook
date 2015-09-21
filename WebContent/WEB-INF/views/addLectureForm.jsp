@@ -72,13 +72,20 @@ $(function(){
 							<label style="margin-right:30px;">
 							<input type="text"
 								name="price" placeholder="Price">
-							</label>
+							</label><br>
 							
 							<label>이미지&nbsp&nbsp</label>
 							<label style="margin-right:30px;">
 							<input type="file"
 								name="upfile" placeholder="IMG">
+							</label><br>
+							
+							<label>설명&nbsp&nbsp</label><br>
+							<label style="margin-right:30px;">
+							<textarea autofocus required wrap="hard" name="explanation" cols="80" rows="10" form="sky-form4" >
+							</textarea>
 							</label>
+							
 						</section>
 					</fieldset>
 					<footer>

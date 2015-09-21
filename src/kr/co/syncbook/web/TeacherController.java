@@ -25,6 +25,10 @@ public class TeacherController {
 	@Autowired
 	TeacherService teacherService;
 	
+	@RequestMapping("/teacherPageForm")
+	public String teacherPageForm(){
+		return "teacherPageForm";
+	}
 	@RequestMapping("/teacherJoinForm")
 	public String teacherJoinForm(){
 		return "teacherJoinForm";

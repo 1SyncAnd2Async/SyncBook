@@ -8,6 +8,7 @@
 		<result column="assign_num" property="assign_num"/>
 		<result column="lect_num" property="lect_num"/>
 		<result column="teacher_id" property="teacher_id"/>
+		<result column="teacher_img" property="teacher_img"/>
 		<result column="day" property="day"/>
 		<result column="begintime" property="begintime"/>
 		<result column="endtime" property="endtime"/>
@@ -23,7 +24,7 @@
 	</select>
 	<select id="getTimeList" resultType="AssignLect" parameterType="AssignLect">
 		<![CDATA[
-			 SELECT A.ASSIGN_NUM, A.DAY, A.BEGINTIME, A.ENDTIME
+			 SELECT A.ASSIGN_NUM, A.DAY, A.BEGINTIME, A.ENDTIME, T.IMG TEACHER_IMG
 	      	 FROM ASSIGN_LECT A, LECTURE L, TEACHER T
 	         WHERE A.TEACHER_ID = T.ID
 	         AND A.LECT_NUM = L.LECT_NUM

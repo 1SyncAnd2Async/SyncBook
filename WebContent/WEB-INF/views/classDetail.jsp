@@ -46,6 +46,12 @@ $(function(){
                       <form action="#" class="sky-form" id="selectTeacher">
                         <header>${lecture.lect_name}</header>
 						<input type="hidden" name="lect_num" value="${lecture.lect_num}" id="lect_num"/>
+						<fieldset>
+                         <section>
+                             <label class="label"><pre>${lecture.explanation }</pre></label>
+                             
+                         </section>
+                     	</fieldset>
                      	<fieldset>
                          <section>
                              <label class="label">강사를 선택해 주세요.</label>
@@ -66,8 +72,6 @@ $(function(){
                      
                      <fieldset>
                          <section>
-                             <label class="label">시간표</label>
-                             
                              <span id="selectTimetable">
                              </span>
                    

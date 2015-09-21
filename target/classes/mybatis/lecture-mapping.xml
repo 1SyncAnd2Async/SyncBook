@@ -13,11 +13,12 @@
 		<result column="book_num" property="book_num"/>
 		<result column="book_name" property="book_name"/>
 		<result column="price" property="price"/>
+		<result column="explanation" property="explanation"/>
 	</resultMap>
 
 	<select id="getLecture" resultType="Lecture" parameterType="java.lang.Integer">
 		<![CDATA[
-			SELECT L.LECT_NUM, S.SUBJ_NUM, S.SUBJ_NAME, L.LECT_NAME, B.BOOK_NUM, B.BOOK_NAME, L.PRICE
+			SELECT L.LECT_NUM, S.SUBJ_NUM, S.SUBJ_NAME, L.LECT_NAME, B.BOOK_NUM, B.BOOK_NAME, L.PRICE, L.EXPLANATION
 			FROM LECTURE L, SUBJECT S, BOOK B
 			WHERE L.SUBJ_NUM = S.SUBJ_NUM
 			AND L.BOOK_NUM = B.BOOK_NUM
@@ -44,9 +45,9 @@
 	<insert id="addLecture"  parameterType="Lecture">
 		<![CDATA[
 			INSERT INTO LECTURE
-			(LECT_NUM, SUBJ_NUM, LECT_NAME, BOOK_NUM, PRICE, IMG)
+			(LECT_NUM, SUBJ_NUM, LECT_NAME, BOOK_NUM, PRICE, IMG, EXPLANATION)
 			VALUES
-			(LECTURE_SEQ.NEXTVAL, #{subj_num}, #{lect_name}, #{book_num}, #{price}, #{img})
+			(LECTURE_SEQ.NEXTVAL, #{subj_num}, #{lect_name}, #{book_num}, #{price}, #{img}, #{explanation})
 			
 		]]>
 	</insert>
@@ -58,7 +59,7 @@
 	<update id="updateLecture" parameterType="Lecture">
 		<![CDATA[
 			UPDATE LECTURE SET SUBJ_NUM = #{subj_num}, LECT_NAME = #{lect_name},
-			BOOK_NUM = #{book_num}, PRICE = #{price}
+			BOOK_NUM = #{book_num}, PRICE = #{price}, EXPLANATION = #{explanation}
 			WHERE LECT_NUM = #{lect_num}
 		]]>
 	</update>

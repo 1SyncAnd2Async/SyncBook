@@ -55,13 +55,21 @@ public class RegLectController {
 		assign.setLect_num(lect_num);
 		assign.setTeacher_id(teacher_id);
 	    List<AssignLectVO> timeList = assignLectService.getTimeList(assign);
+	    System.out.println(timeList);
     	for(int i=0; i<timeList.size(); i++) {
     		AssignLectVO v = timeList.get(i);
-    		if(i>0 && timeList.get(i).getDay().equals(timeList.get(i-1).getDay())) {
-    			out.print(v.getBegintime() +" ~ "+ v.getEndtime() + "&nbsp&nbsp&nbsp&nbsp");
+    		if(i==0){
+    			out.print("<img class=\"img-responsive profile-img margin-bottom-20\" style=\"height:150px;\"src=\"resources/upload/teacherImg/"
+    		+v.getTeacher_img()+"\"><br> <label class=\"label\">½Ã°£Ç¥</label>" + v.getDay() + " : " 
+    					+ "<a href=\"myCart?assign_num="+v.getAssign_num()+"\">"+ v.getBegintime() +" ~ "+ v.getEndtime() + "</a>&nbsp&nbsp&nbsp&nbsp");
+
+    		}
+    		else if(i>0 && timeList.get(i).getDay().equals(timeList.get(i-1).getDay())) {
+    			out.print("<a href=\"myCart?assign_num="+v.getAssign_num()+"\">"+v.getBegintime() +" ~ "+ v.getEndtime() + "</a>&nbsp&nbsp&nbsp&nbsp");
     		}
     		else {
-    			out.print("<br>" + v.getDay() + " : " + v.getBegintime() +" ~ "+ v.getEndtime() + "&nbsp&nbsp&nbsp&nbsp");
+    			out.print("<br>" + v.getDay() + " : " + "<a href=\"myCart?assign_num="+v.getAssign_num()+"\">"
+    		+ v.getBegintime() +" ~ "+ v.getEndtime() + "</a>&nbsp&nbsp&nbsp&nbsp");
     		}
 	    }
 	    out.close();
