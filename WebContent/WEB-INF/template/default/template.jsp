@@ -43,7 +43,7 @@
 <link rel="stylesheet" href="resources/assets/css/pages/profile.css">
 <link rel="stylesheet" href="resources/assets/css/pages/page_pricing.css">
 <link rel="stylesheet" href="resources/assets/css/pages/pricing/pricing_v5.css">
-
+ <link rel="stylesheet" href="resources/assets/css/pages/shortcode_timeline2.css">
 <!-- CSS Customization -->
 <link rel="stylesheet" href="resources/assets/css/custom.css">
 

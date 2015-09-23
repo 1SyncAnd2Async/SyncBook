@@ -18,5 +18,6 @@ public class RegLectDAOImpl implements RegLectDAO {
 		List<RegLectVO> list = sqlSession.selectList("RegLect.getAllClassList");
 		return list;
 	}
+	
 
 }

@@ -63,11 +63,11 @@
 }
 
 .sky-form header {
-  color: inherit;
+  color: white;
   display: block;
   font-size: 20px;
-  background: #fff;
-  font-weight: 400;
+  background: #288CD2;
+  font-weight: bolder;
   padding: 8px 30px;
 }
 
@@ -106,7 +106,7 @@
 }
 
 .sky-form .select select {
-  height: 33px;
+  /*height: 33px;*/
   padding: 6px 10px;
 }
 

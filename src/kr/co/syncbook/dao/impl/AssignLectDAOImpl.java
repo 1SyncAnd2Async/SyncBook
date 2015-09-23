@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.syncbook.dao.AssignLectDAO;
 import kr.co.syncbook.vo.AssignLectVO;
+import kr.co.syncbook.vo.RegLectVO;
 @Repository("assignLectDAO")
 public class AssignLectDAOImpl implements AssignLectDAO {
 	@Autowired
@@ -30,6 +31,16 @@ public class AssignLectDAOImpl implements AssignLectDAO {
 	@Override
 	public List<AssignLectVO> getAllAssignLectList() {
 		List<AssignLectVO> list = sqlSession.selectList("AssignLect.getAllAssignLectList");
+		return list;
+	}
+	@Override
+	public List<AssignLectVO> getClassTeacherList(int lect_num) {
+		List<AssignLectVO> list = sqlSession.selectList("AssignLect.getClassTeacherList", lect_num);
+		return list;
+	}
+	@Override
+	public List<AssignLectVO> getTimeList(AssignLectVO vo) {
+		List<AssignLectVO> list = sqlSession.selectList("AssignLect.getTimeList", vo);
 		return list;
 	}
 }

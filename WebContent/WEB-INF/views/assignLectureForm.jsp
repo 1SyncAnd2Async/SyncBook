@@ -37,7 +37,7 @@ $(function(){
 
 		<!--=== Content ===-->
 		<div class="container content">
-		<div class="row" style="margin-bottom:50px;">
+		<div class="row">
 		<!-- Reg-Form -->
 	
 				<form action="assignLecture" method="post" id="sky-form4" class="sky-form">
@@ -75,9 +75,14 @@ $(function(){
 							
 							<label>요일&nbsp&nbsp</label>
 							<label style="margin-right:30px;">
-							<span id="selectLecture">
-								<input type="text" name="day" placeholder="Day">
-                            </span>
+							<select name="day">
+								<option value="">요일선택</option>																	
+                                    <option value="월요일">월요일</option>
+                                    <option value="화요일">화요일</option>
+                                    <option value="수요일">수요일</option>
+                                    <option value="목요일">목요일</option>
+                                    <option value="금요일">금요일</option>
+                               </select> 
 							</label>
 							
 							<label>시작시간&nbsp&nbsp</label>
@@ -108,11 +113,7 @@ $(function(){
 					<div class="row margin-bottom-40">
 							<!--Basic Table-->
 							<div class="panel panel-green margin-bottom-40">
-								<div class="panel-heading">
-									<h3 class="panel-title">
-										<i class="fa fa-tasks"></i> 수업 목록
-									</h3>
-								</div>
+								
 								<table class="table">
 									<thead>
 										<tr>

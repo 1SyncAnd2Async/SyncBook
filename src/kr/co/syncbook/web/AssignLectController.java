@@ -31,6 +31,7 @@ public class AssignLectController {
 	private TeacherService teacherService;
 	@Autowired
 	private AssignLectService assignLectService;
+	
 	@RequestMapping("/assignLectureForm")
 	public ModelAndView assignLectureForm(){
 		List<SubjectVO> subjectList = subjectService.getSubjectList();
@@ -56,6 +57,7 @@ public class AssignLectController {
 	    out.print("</select>");
 	    out.close();
 	}
+	
 	@RequestMapping("/assignLecture")
 	public ModelAndView assignLecture(AssignLectVO vo){
 		ModelAndView mav = new ModelAndView();

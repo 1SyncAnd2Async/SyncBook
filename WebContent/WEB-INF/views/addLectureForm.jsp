@@ -37,7 +37,7 @@ $(function(){
 
 		<!--=== Content ===-->
 		<div class="container content">
-		<div class="row" style="margin-bottom:50px;">
+		<div class="row">
 			<!-- Reg-Form -->
 			<form action="addLecture" method="post" id="sky-form4" class="sky-form" enctype="multipart/form-data">
 					<header>수업 등록</header>							
@@ -72,13 +72,20 @@ $(function(){
 							<label style="margin-right:30px;">
 							<input type="text"
 								name="price" placeholder="Price">
-							</label>
+							</label><br>
 							
 							<label>이미지&nbsp&nbsp</label>
 							<label style="margin-right:30px;">
 							<input type="file"
 								name="upfile" placeholder="IMG">
+							</label><br>
+							
+							<label>설명&nbsp&nbsp</label><br>
+							<label style="margin-right:30px;">
+							<textarea autofocus required wrap="hard" name="explanation" cols="80" rows="10" form="sky-form4" >
+							</textarea>
 							</label>
+							
 						</section>
 					</fieldset>
 					<footer>
@@ -93,11 +100,7 @@ $(function(){
 					<div class="row margin-bottom-40">
 							<!--Basic Table-->
 							<div class="panel panel-green margin-bottom-40">
-								<div class="panel-heading">
-									<h3 class="panel-title">
-										<i class="fa fa-tasks"></i> 수업 목록
-									</h3>
-								</div>
+								
 								<table class="table">
 									<thead>
 										<tr>

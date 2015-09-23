@@ -5,8 +5,10 @@
 <mapper namespace="AssignLect">
 
 	<resultMap type="AssignLect" id="AssignLectResultMap">
+		<result column="assign_num" property="assign_num"/>
 		<result column="lect_num" property="lect_num"/>
 		<result column="teacher_id" property="teacher_id"/>
+		<result column="teacher_img" property="teacher_img"/>
 		<result column="day" property="day"/>
 		<result column="begintime" property="begintime"/>
 		<result column="endtime" property="endtime"/>
@@ -14,23 +16,48 @@
 	</resultMap>
 	<select id="getAllAssignLectList" resultType="AssignLect">
 		<![CDATA[
-			SELECT ROWNUM rnum, A.LECT_NUM, L.LECT_NAME, A.TEACHER_ID, T.NAME, A.DAY, A.BEGINTIME, A.ENDTIME, A.STATUS
+			SELECT ROWNUM rnum, A.ASSIGN_NUM, A.LECT_NUM, L.LECT_NAME, A.TEACHER_ID, T.NAME, A.DAY, A.BEGINTIME, A.ENDTIME, A.STATUS
 			FROM ASSIGN_LECT A, LECTURE L, TEACHER T
 			WHERE A.LECT_NUM = L.LECT_NUM
 			AND A.TEACHER_ID = T.ID 
 		]]>
 	</select>
+	<select id="getTimeList" resultType="AssignLect" parameterType="AssignLect">
+		<![CDATA[
+			 SELECT A.ASSIGN_NUM, A.DAY, A.BEGINTIME, A.ENDTIME, T.IMG TEACHER_IMG
+	      	 FROM ASSIGN_LECT A, LECTURE L, TEACHER T
+	         WHERE A.TEACHER_ID = T.ID
+	         AND A.LECT_NUM = L.LECT_NUM
+	         AND A.LECT_NUM = #{lect_num}
+	         AND A.TEACHER_ID = #{teacher_id}
+	         AND A.STATUS = 0
+	         ORDER BY CASE A.DAY WHEN '월요일' THEN 1
+	         WHEN '화요일' THEN 2
+	         WHEN '수요일' THEN 3
+	         WHEN '목요일' THEN 4
+	         WHEN '금요일' THEN 5
+	         END , CAST(substr(A.BEGINTIME,1,2)AS INT) ASC
+		]]>
+	</select>
+	<select id="getClassTeacherList" resultType="AssignLect" parameterType="java.lang.Integer">
+		<![CDATA[
+			SELECT DISTINCT A.TEACHER_ID, T.NAME
+			FROM ASSIGN_LECT A, TEACHER T
+			WHERE A.TEACHER_ID = T.ID 
+			AND A.LECT_NUM = #{lect_num}	
+		]]>
+	</select>
 	<insert id="assignLecture"  parameterType="AssignLect">
 		<![CDATA[
 			INSERT INTO ASSIGN_LECT
-			(LECT_NUM, TEACHER_ID, DAY, BEGINTIME, ENDTIME, STATUS)
+			(ASSIGN_NUM, LECT_NUM, TEACHER_ID, DAY, BEGINTIME, ENDTIME, STATUS)
 			VALUES
-			(#{lect_num}, #{teacher_id}, #{day}, #{begintime}, #{endtime}, DEFAULT)
+			(ASSIGN_SEQ.NEXTVAL, #{lect_num}, #{teacher_id}, #{day}, #{begintime}, #{endtime}, DEFAULT)
 		]]>
 	</insert>
 	<delete id="deleteAssignLect"  parameterType="AssignLect">
 		<![CDATA[
-			DELETE ASSIGN_LECT WHERE LECT_NUM = #{lect_num} AND TEACHER_ID = #{teacher_id}			
+			DELETE ASSIGN_LECT WHERE ASSIGN_NUM = #{assign_num}		
 		]]>
 	</delete>
 </mapper>
