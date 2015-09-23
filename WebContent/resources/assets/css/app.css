@@ -3093,7 +3093,7 @@ blockquote.hero.hero-default small {
 
 /*Panel Green*/
 .panel-green {
-   border-color: #2ecc71;
+   /*border-color: #2ecc71;*/
 }
 
 .panel-green > .panel-heading {

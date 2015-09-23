@@ -6,4 +6,5 @@ import kr.co.syncbook.vo.RegLectVO;
 
 public interface RegLectService {
 	public List<RegLectVO> getAllClassList();
+	
 }

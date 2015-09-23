@@ -25,6 +25,10 @@ public class TeacherController {
 	@Autowired
 	TeacherService teacherService;
 	
+	@RequestMapping("/teacherPageForm")
+	public String teacherPageForm(){
+		return "teacherPageForm";
+	}
 	@RequestMapping("/teacherJoinForm")
 	public String teacherJoinForm(){
 		return "teacherJoinForm";
@@ -67,7 +71,7 @@ public class TeacherController {
 		ModelAndView mav = new ModelAndView();
 		boolean flag = teacherService.teacherJoin(teacher);
 		if(flag) {
-			mav.setViewName("loginForm");
+			mav.setViewName("redirect:loginForm?login=teacherLogin");
 		} else {
 			mav.setViewName("teacherJoinForm");
 		}

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kr.co.syncbook.biz.AssignLectService;
 import kr.co.syncbook.dao.AssignLectDAO;
 import kr.co.syncbook.vo.AssignLectVO;
+import kr.co.syncbook.vo.RegLectVO;
 @Service("assignLectService")
 public class AssignLectServiceImpl implements AssignLectService {
 	@Autowired
@@ -29,4 +30,15 @@ public class AssignLectServiceImpl implements AssignLectService {
 		List<AssignLectVO> list = assignLectDAO.getAllAssignLectList();
 		return list;
 	}
+	@Override
+	public List<AssignLectVO> getClassTeacherList(int lect_num) {
+		List<AssignLectVO> list = assignLectDAO.getClassTeacherList(lect_num);
+		return list;
+	}
+	@Override
+	public List<AssignLectVO> getTimeList(AssignLectVO vo) {
+		List<AssignLectVO> list = assignLectDAO.getTimeList(vo);
+		return list;
+	}
+	
 }
