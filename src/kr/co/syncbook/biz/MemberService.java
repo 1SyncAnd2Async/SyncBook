@@ -6,11 +6,11 @@ import kr.co.syncbook.vo.MemberVO;
 
 public interface MemberService {
 	public boolean memberJoin(MemberVO member, String post1, String post2);
-	// ID Áßº¹ Ã¼Å©
+	// ID ï¿½ßºï¿½ Ã¼Å©
 	public boolean idCheck(String memberId);
 	public MemberVO memberLogin(String memberId, String memberPwd);
 	public MemberVO getMember(String memberId);
-	// »ç¿ëÀÚ ÇÁ·ÎÇÊ ¼öÁ¤
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public boolean updateMemberProfile(MemberVO member, String post1, String post2);
 	public boolean updateMemberPwd(MemberVO member);
 	public boolean pwdCheck(String memberId, String memberPwd);
