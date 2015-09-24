@@ -10,13 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.method.annotation.JsonViewResponseBodyAdvice;
 
 import kr.co.syncbook.biz.MemberService;
+import kr.co.syncbook.dao.MemberDAO;
+import kr.co.syncbook.dao.impl.MemberDAOImpl;
 import kr.co.syncbook.vo.MemberVO;
 
 @Controller
@@ -26,6 +31,7 @@ public class MemberController {
 	MemberService memberService;
 	@RequestMapping("/loginForm")
 	public ModelAndView loginForm(String login){
+		System.out.println(login);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("login", login);
 		mav.setViewName("loginForm");
@@ -164,6 +170,66 @@ public class MemberController {
 			mav.setViewName("myPageForm");
 		}
 		return mav;
+	}
+	
+	@RequestMapping("/androidMemberJoin")
+	public void Ajoin(HttpServletRequest request, @RequestParam String post1, @RequestParam String post2)	{
+		// 폼데이터 얻기
+		MemberVO member = new MemberVO();
+		member.setId(request.getParameter("id"));
+		member.setPassword(request.getParameter("password"));
+		member.setName(request.getParameter("name"));
+		member.setPhone(request.getParameter("phone"));
+		member.setAddress(request.getParameter("address"));
+		member.setDetail_address(request.getParameter("detail_address"));
+		member.setEmail(request.getParameter("email"));
+	
+		memberService.memberJoin(member, post1, post2);
+	}
+	
+	@RequestMapping("/androidLogin")
+	public void Alogin(HttpServletResponse response, HttpServletRequest request, String id, String password)	{
+		
+		response.setCharacterEncoding("UTF-8");
+		
+		System.out.println(id);
+		System.out.println(password);
+		
+		MemberVO member = memberService.memberLogin(id, password);
+		StringTokenizer stz = new StringTokenizer(member.getPost(), "-");
+		String post1 = stz.nextToken();
+		String post2 = stz.nextToken();
+		
+		PrintWriter out = null;
+		
+		System.out.println(member.getId());
+		System.out.println(member.getPassword());
+		System.out.println(member.getAddress());
+		
+		if(member != null)	{
+			JSONObject jsonObject = new JSONObject();
+			
+			jsonObject.put("id", member.getId());
+			jsonObject.put("password", member.getPassword());
+			jsonObject.put("name", member.getName());
+			jsonObject.put("phone", member.getPhone());
+			jsonObject.put("post1", post1);
+			jsonObject.put("post2", post2);
+			jsonObject.put("address", member.getAddress());
+			jsonObject.put("detail_address", member.getDetail_address());
+			jsonObject.put("email", member.getEmail());
+			
+			try {
+				out = response.getWriter();
+				
+				out.println(jsonObject.toJSONString());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			System.out.println(jsonObject.toJSONString());
+		}
 	}
 	
 }
