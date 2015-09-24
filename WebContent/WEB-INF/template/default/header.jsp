@@ -12,7 +12,7 @@
 	// 팝업 호출
 	function video_open() {
 		window.open(
-			"http://117.17.143.126:52280/canvas/"+$("#teacher").contents(),
+			"http://117.17.143.126:52280/"+$("#teacher").text()+"_123",
 			"수업 참여",
 			"width=1157px, height=850px, top=" + TopPosition + ", left=" + LeftPosition + ", menubar=no, status=no, toolbar=no, resizable=no, fullscreen=no"
 		);

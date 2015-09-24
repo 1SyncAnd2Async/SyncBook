@@ -26,7 +26,6 @@ public class MemberController {
 	MemberService memberService;
 	@RequestMapping("/loginForm")
 	public ModelAndView loginForm(String login){
-		System.out.println(login);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("login", login);
 		mav.setViewName("loginForm");

@@ -1,97 +1,53 @@
 package kr.co.syncbook.vo;
 
 public class RegLectVO {
-	private int lect_num, status, subj_num, book_num, price;
-	private String lect_name, teacher_id, name, day, begintime, endtime, img, subj_name, book_name;
-	public int getLect_num() {
-		return lect_num;
+	private int assign_num;
+	private String stud_id, phone, email, post, address, detail_address;
+	public int getAssign_num() {
+		return assign_num;
 	}
-	public void setLect_num(int lect_num) {
-		this.lect_num = lect_num;
+	public void setAssign_num(int assign_num) {
+		this.assign_num = assign_num;
 	}
-	public int getStatus() {
-		return status;
+	public String getStud_id() {
+		return stud_id;
 	}
-	public void setStatus(int status) {
-		this.status = status;
+	public void setStud_id(String stud_id) {
+		this.stud_id = stud_id;
 	}
-	public int getSubj_num() {
-		return subj_num;
+	public String getPhone() {
+		return phone;
 	}
-	public void setSubj_num(int subj_num) {
-		this.subj_num = subj_num;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
-	public int getBook_num() {
-		return book_num;
+	public String getEmail() {
+		return email;
 	}
-	public void setBook_num(int book_num) {
-		this.book_num = book_num;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getLect_name() {
-		return lect_name;
+	public String getPost() {
+		return post;
 	}
-	public void setLect_name(String lect_name) {
-		this.lect_name = lect_name;
+	public void setPost(String post) {
+		this.post = post;
 	}
-	public String getTeacher_id() {
-		return teacher_id;
+	public String getAddress() {
+		return address;
 	}
-	public void setTeacher_id(String teacher_id) {
-		this.teacher_id = teacher_id;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	public String getName() {
-		return name;
+	public String getDetail_address() {
+		return detail_address;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getDay() {
-		return day;
-	}
-	public void setDay(String day) {
-		this.day = day;
-	}
-	public String getBegintime() {
-		return begintime;
-	}
-	public void setBegintime(String begintime) {
-		this.begintime = begintime;
-	}
-	public String getEndtime() {
-		return endtime;
-	}
-	public void setEndtime(String endtime) {
-		this.endtime = endtime;
-	}
-	public String getImg() {
-		return img;
-	}
-	public void setImg(String img) {
-		this.img = img;
-	}
-	public String getSubj_name() {
-		return subj_name;
-	}
-	public void setSubj_name(String subj_name) {
-		this.subj_name = subj_name;
-	}
-	public String getBook_name() {
-		return book_name;
-	}
-	public void setBook_name(String book_name) {
-		this.book_name = book_name;
-	}
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price = price;
+	public void setDetail_address(String detail_address) {
+		this.detail_address = detail_address;
 	}
 	@Override
 	public String toString() {
-		return "RegLectVO [lect_num=" + lect_num + ", status=" + status + ", subj_num=" + subj_num + ", book_num="
-				+ book_num + ", price=" + price + ", lect_name=" + lect_name + ", teacher_id=" + teacher_id + ", name="
-				+ name + ", day=" + day + ", begintime=" + begintime + ", endtime=" + endtime + ", img=" + img
-				+ ", subj_name=" + subj_name + ", book_name=" + book_name + "]";
+		return "RegLectVO [assign_num=" + assign_num + ", stud_id=" + stud_id + ", phone=" + phone + ", email=" + email
+				+ ", post=" + post + ", address=" + address + ", detail_address=" + detail_address + "]";
 	}
 }

@@ -17,6 +17,8 @@ import kr.co.syncbook.biz.LectureService;
 import kr.co.syncbook.biz.RegLectService;
 import kr.co.syncbook.vo.AssignLectVO;
 import kr.co.syncbook.vo.LectureVO;
+import kr.co.syncbook.vo.OrderVO;
+import kr.co.syncbook.vo.RegLectVO;
 
 @Controller
 public class RegLectController {
@@ -55,23 +57,50 @@ public class RegLectController {
 		assign.setLect_num(lect_num);
 		assign.setTeacher_id(teacher_id);
 	    List<AssignLectVO> timeList = assignLectService.getTimeList(assign);
-	    System.out.println(timeList);
     	for(int i=0; i<timeList.size(); i++) {
     		AssignLectVO v = timeList.get(i);
     		if(i==0){
     			out.print("<img class=\"img-responsive profile-img margin-bottom-20\" style=\"height:150px;\"src=\"resources/upload/teacherImg/"
     		+v.getTeacher_img()+"\"><br> <label class=\"label\">½Ã°£Ç¥</label>" + v.getDay() + " : " 
-    					+ "<a href=\"myCart?assign_num="+v.getAssign_num()+"\">"+ v.getBegintime() +" ~ "+ v.getEndtime() + "</a>&nbsp&nbsp&nbsp&nbsp");
+    					+ "<a href=\"orderForm?assign_num="+v.getAssign_num()+"\">"+ v.getBegintime() +" ~ "+ v.getEndtime() + "</a>&nbsp&nbsp&nbsp&nbsp");
 
     		}
     		else if(i>0 && timeList.get(i).getDay().equals(timeList.get(i-1).getDay())) {
-    			out.print("<a href=\"myCart?assign_num="+v.getAssign_num()+"\">"+v.getBegintime() +" ~ "+ v.getEndtime() + "</a>&nbsp&nbsp&nbsp&nbsp");
+    			out.print("<a href=\"orderForm?assign_num="+v.getAssign_num()+"\">"+v.getBegintime() +" ~ "+ v.getEndtime() + "</a>&nbsp&nbsp&nbsp&nbsp");
     		}
     		else {
-    			out.print("<br>" + v.getDay() + " : " + "<a href=\"myCart?assign_num="+v.getAssign_num()+"\">"
+    			out.print("<br>" + v.getDay() + " : " + "<a href=\"orderForm?assign_num="+v.getAssign_num()+"\">"
     		+ v.getBegintime() +" ~ "+ v.getEndtime() + "</a>&nbsp&nbsp&nbsp&nbsp");
     		}
 	    }
 	    out.close();
+	}
+	
+	@RequestMapping("/orderForm")
+	public ModelAndView orderForm(int assign_num){
+		OrderVO Class = regLectService.getClass(assign_num);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("Class", Class);
+		mav.setViewName("orderForm");
+		return mav;
+	}
+	
+	@RequestMapping("/orderCancel")
+	public ModelAndView orderCancel(int lect_num){
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:classDetail?lect_num="+lect_num);
+		return mav;
+	}
+	
+	@RequestMapping("/order")
+	public ModelAndView order(RegLectVO v, @RequestParam String post1, @RequestParam String post2){
+		ModelAndView mav = new ModelAndView();
+		boolean flag = regLectService.addOrder(v, post1, post2);
+		if(flag) {
+			mav.setViewName("paySuccess");
+		} else {
+			mav.setViewName("payFailure");
+		}
+		return mav;
 	}
 }
