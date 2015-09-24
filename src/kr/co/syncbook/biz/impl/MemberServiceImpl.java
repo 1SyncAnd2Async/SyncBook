@@ -1,5 +1,7 @@
 package kr.co.syncbook.biz.impl;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -11,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.syncbook.biz.MemberService;
 import kr.co.syncbook.dao.MemberDAO;
+import kr.co.syncbook.dao.impl.MemberDAOImpl;
 import kr.co.syncbook.vo.MemberVO;
 
 @Service("memberService")
@@ -33,7 +36,7 @@ public class MemberServiceImpl implements MemberService {
 		else return false;
 	}
 	
-	// ID �ߺ� üũ
+	// ID �ߺ� üũ
 	@Override
 	@Transactional(readOnly=false)
 	public boolean idCheck(String memberId) {
