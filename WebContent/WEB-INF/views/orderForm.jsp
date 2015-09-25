@@ -77,7 +77,7 @@
 											<td bgcolor="#F9F9F9"><b>¿Ã∏ß</b></td>
 											<td>
 												${sessionScope.member.name}
-												<input type="hidden" name="stud_id" value="${sessionScope.member.id}">
+												<input type="hidden" name="member_id" value="${sessionScope.member.id}">
 											</td>
 										</tr>
 										<tr>

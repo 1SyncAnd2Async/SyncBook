@@ -17,6 +17,7 @@ import kr.co.syncbook.biz.LectureService;
 import kr.co.syncbook.biz.RegLectService;
 import kr.co.syncbook.vo.AssignLectVO;
 import kr.co.syncbook.vo.LectureVO;
+import kr.co.syncbook.vo.MemberClassVO;
 import kr.co.syncbook.vo.OrderVO;
 import kr.co.syncbook.vo.RegLectVO;
 
@@ -35,6 +36,17 @@ public class RegLectController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("classList", classList);
 		mav.setViewName("classListForm");
+		return mav;
+	}
+	@RequestMapping("/memberClassList")
+	public ModelAndView memberClassList(String member_id){
+		System.out.println(member_id);
+		List<MemberClassVO> memberClassList = regLectService.getMemberClassList(member_id);
+		
+		System.out.println(memberClassList);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("memberClassList", memberClassList);
+		mav.setViewName("memberClassList");
 		return mav;
 	}
 	@RequestMapping("/classDetail")

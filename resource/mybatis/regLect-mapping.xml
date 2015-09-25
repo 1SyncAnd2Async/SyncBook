@@ -12,6 +12,22 @@
 		<result column="endtime" property="endtime"/>
 		<result column="status" property="status"/>
 	</resultMap>
+	<resultMap type="MemberClass" id="MemberClassResultMap">
+		<result column="member_id" property="member_id"/>
+		<result column="teacher_id" property="teacher_id"/>
+		<result column="lect_name" property="lect_name"/>
+		<result column="begintime" property="begintime"/>
+		<result column="endtime" property="endtime"/>
+		<result column="explanation" property="explanation"/>
+		<result column="lect_img" property="lect_img"/>
+		<result column="teacher_img" property="teacher_img"/>
+		<result column="teacher_phone" property="teacher_phone"/>
+		<result column="teacher_email" property="teacher_email"/>
+		<result column="teacher_name" property="teacher_name"/>
+		<result column="book_name" property="book_name"/>
+		<result column="subj_name" property="subj_name"/>
+	
+	</resultMap>
 	<select id="getAllClassList" resultType="RegLect">
 		<![CDATA[
 			SELECT A.LECT_NUM, L.LECT_NAME, A.TEACHER_ID, A.DAY, A.BEGINTIME, A.ENDTIME, A.STATUS, T.NAME, S.SUBJ_NAME, B.BOOK_NAME, L.IMG, L.PRICE
@@ -35,4 +51,30 @@
 			DELETE ASSIGN_LECT WHERE LECT_NUM = #{lect_num} AND TEACHER_ID = #{teacher_id}			
 		]]>
 	</delete>
+	<select id="getMemberClassList" resultType="MemberClass" parameterType="java.lang.String">
+		<![CDATA[
+			SELECT R.REG_NUM, R.MEMBER_ID, L.LECT_NAME, L.IMG LECT_IMG, L.EXPLANATION, A.BEGINTIME, A.ENDTIME, T.ID TEACHER_ID,
+			 T.NAME TEACHER_NAME, T.PHONE TEACHER_PHONE, T.EMAIL TEACHER_EMAIL, T.IMG TEACHER_IMG, B.BOOK_NAME, S.SUBJ_NAME
+		    FROM REG_LECT R, ASSIGN_LECT A, LECTURE L, TEACHER T, BOOK B, SUBJECT S
+		    WHERE R.ASSIGN_NUM = A.ASSIGN_NUM
+		    AND A.LECT_NUM = L.LECT_NUM
+		    AND A.TEACHER_ID = T.ID
+		    AND L.BOOK_NUM = B.BOOK_NUM
+		    AND L.SUBJ_NUM = S.SUBJ_NUM
+		    AND R.MEMBER_ID = #{member_id}
+		]]>
+	</select>
+	<select id="getMemberClassDetail" resultType="MemberClass" parameterType="java.lang.Integer">
+		<![CDATA[
+			SELECT R.REG_NUM, R.MEMBER_ID, L.LECT_NAME, L.IMG LECT_IMG, L.EXPLANATION, A.BEGINTIME, A.ENDTIME, T.ID TEACHER_ID,
+			 T.NAME TEACHER_NAME, T.PHONE TEACHER_PHONE, T.EMAIL TEACHER_EMAIL, T.IMG TEACHER_IMG, B.BOOK_NAME, S.SUBJ_NAME
+		    FROM REG_LECT R, ASSIGN_LECT A, LECTURE L, TEACHER T, BOOK B, SUBJECT S
+		    WHERE R.ASSIGN_NUM = A.ASSIGN_NUM
+		    AND A.LECT_NUM = L.LECT_NUM
+		    AND A.TEACHER_ID = T.ID
+		    AND L.BOOK_NUM = B.BOOK_NUM
+		    AND L.SUBJ_NUM = S.SUBJ_NUM
+		    AND R.REG_NUM = #{reg_num}
+		]]>
+	</select>
 </mapper>
