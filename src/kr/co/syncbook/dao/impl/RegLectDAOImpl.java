@@ -8,6 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 
 import kr.co.syncbook.dao.RegLectDAO;
+import kr.co.syncbook.vo.MemberClassVO;
 import kr.co.syncbook.vo.OrderVO;
 import kr.co.syncbook.vo.RegLectVO;
 
@@ -21,6 +22,7 @@ public class RegLectDAOImpl implements RegLectDAO {
 		System.out.println(v);
 		try {
 			result = sqlSession.insert("Order.addOrder", v);
+			sqlSession.update("Order.updateStatus", v.getAssign_num());
 		} catch(DataIntegrityViolationException e) {
 			e.printStackTrace();
 			result = 0;
@@ -35,6 +37,11 @@ public class RegLectDAOImpl implements RegLectDAO {
 	@Override
 	public List<OrderVO> getAllClassList() {
 		List<OrderVO> list = sqlSession.selectList("Order.getAllClassList");
+		return list;
+	}
+	@Override
+	public List<MemberClassVO> getMemberClassList(String member_id) {
+		List<MemberClassVO> list = sqlSession.selectList("RegLect.getMemberClassList", member_id);
 		return list;
 	}
 }

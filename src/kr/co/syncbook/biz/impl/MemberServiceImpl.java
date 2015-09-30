@@ -1,11 +1,6 @@
 package kr.co.syncbook.biz.impl;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
-import java.util.StringTokenizer;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.syncbook.biz.MemberService;
 import kr.co.syncbook.dao.MemberDAO;
-import kr.co.syncbook.dao.impl.MemberDAOImpl;
 import kr.co.syncbook.vo.MemberVO;
 
 @Service("memberService")

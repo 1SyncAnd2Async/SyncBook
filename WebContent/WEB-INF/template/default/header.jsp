@@ -120,12 +120,12 @@
                 	<!-- My Books -->
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            	내 교재
+                            	내 강의
                         </a>
                         <ul class="dropdown-menu">
                             <!-- Authentication Pages -->
                             <li>
-                                <a href="authentic">교재인증</a>
+                                <a href="memberClassList?member_id=${sessionScope.member.id}">수강목록</a>
                             </li>
                             <!-- End Authentication Pages -->
                             

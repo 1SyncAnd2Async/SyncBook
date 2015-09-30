@@ -15,6 +15,7 @@
 		<typeAlias type="kr.co.syncbook.vo.AssignLectVO" alias="AssignLect"/>
 		<typeAlias type="kr.co.syncbook.vo.OrderVO" alias="Order"/>
 		<typeAlias type="kr.co.syncbook.vo.RegLectVO" alias="RegLect"/>
+		<typeAlias type="kr.co.syncbook.vo.MemberClassVO" alias="MemberClass"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/member-mapping.xml"/>

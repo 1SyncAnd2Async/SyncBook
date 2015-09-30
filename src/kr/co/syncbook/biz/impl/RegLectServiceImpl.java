@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.syncbook.biz.RegLectService;
 import kr.co.syncbook.dao.RegLectDAO;
+import kr.co.syncbook.vo.MemberClassVO;
 import kr.co.syncbook.vo.OrderVO;
 import kr.co.syncbook.vo.RegLectVO;
 @Service("regLectService")
@@ -30,6 +31,11 @@ public class RegLectServiceImpl implements RegLectService {
 	@Override
 	public List<OrderVO> getAllClassList() {
 		List<OrderVO> list = regLectDAO.getAllClassList();
+		return list;
+	}
+	@Override
+	public List<MemberClassVO> getMemberClassList(String member_id) {
+		List<MemberClassVO> list = regLectDAO.getMemberClassList(member_id);
 		return list;
 	}
 }

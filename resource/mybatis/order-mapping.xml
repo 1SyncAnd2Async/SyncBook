@@ -5,6 +5,7 @@
 <mapper namespace="Order">
 	<resultMap type="Order" id="OrderResultMap">
 		<result column="lect_num" property="lect_num"/>
+		<result column="assign_num" property="assign_num"/>
 		<result column="teacher_id" property="teacher_id"/>
 		<result column="day" property="day"/>
 		<result column="begintime" property="begintime"/>
@@ -35,9 +36,16 @@
 	<insert id="addOrder" parameterType="RegLect">
 		<![CDATA[
 			INSERT INTO REG_LECT
-			(REG_NUM, ASSIGN_NUM, STUD_ID, REG_DATE, PHONE, POST, ADDRESS, DETAIL_ADDRESS, EMAIL)
+			(REG_NUM, ASSIGN_NUM, MEMBER_ID, REG_DATE, PHONE, POST, ADDRESS, DETAIL_ADDRESS, EMAIL)
 			VALUES
-			(REG_SEQ.NEXTVAL, #{assign_num}, #{stud_id}, sysdate, #{phone}, #{post}, #{address}, #{detail_address}, #{email})
+			(REG_SEQ.NEXTVAL, #{assign_num}, #{member_id}, sysdate, #{phone}, #{post}, #{address}, #{detail_address}, #{email})
 		]]>
 	</insert>
+	<update id="updateStatus" parameterType="java.lang.Integer">
+		<![CDATA[
+			UPDATE ASSIGN_LECT
+			SET STATUS=1
+			WHERE ASSIGN_NUM=#{assign_num}
+		]]>
+	</update>
 </mapper>

@@ -1,9 +1,6 @@
 package kr.co.syncbook.biz.impl;
 
 import java.util.List;
-import java.util.StringTokenizer;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

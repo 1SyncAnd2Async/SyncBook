@@ -2,18 +2,33 @@ package kr.co.syncbook.vo;
 
 public class RegLectVO {
 	private int assign_num;
-	private String stud_id, phone, email, post, address, detail_address;
+	private String beginTime, endTime, member_id, phone, email, post, address, detail_address;
+	
+	
+	public String getBeginTime() {
+		return beginTime;
+	}
+	public void setBeginTime(String beginTime) {
+		this.beginTime = beginTime;
+	}
+	public String getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
 	public int getAssign_num() {
 		return assign_num;
 	}
 	public void setAssign_num(int assign_num) {
 		this.assign_num = assign_num;
 	}
-	public String getStud_id() {
-		return stud_id;
+	
+	public String getMember_id() {
+		return member_id;
 	}
-	public void setStud_id(String stud_id) {
-		this.stud_id = stud_id;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 	public String getPhone() {
 		return phone;
@@ -47,7 +62,9 @@ public class RegLectVO {
 	}
 	@Override
 	public String toString() {
-		return "RegLectVO [assign_num=" + assign_num + ", stud_id=" + stud_id + ", phone=" + phone + ", email=" + email
-				+ ", post=" + post + ", address=" + address + ", detail_address=" + detail_address + "]";
+		return "RegLectVO [assign_num=" + assign_num + ", beginTime=" + beginTime + ", endTime=" + endTime
+				+ ", member_id=" + member_id + ", phone=" + phone + ", email=" + email + ", post=" + post + ", address="
+				+ address + ", detail_address=" + detail_address + "]";
 	}
+	
 }
