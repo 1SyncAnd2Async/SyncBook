@@ -49,6 +49,16 @@ public class RegLectController {
 		mav.setViewName("memberClassList");
 		return mav;
 	}
+	@RequestMapping("/memberClassDetail")
+	public ModelAndView memberClassDetail(int reg_num){
+		List<MemberClassVO> memberClassDetail = regLectService.getMemberClassDetail(reg_num);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("memberClassDetail", memberClassDetail);
+		
+		mav.setViewName("memberClassDetail");
+		return mav;
+	}
 	@RequestMapping("/classDetail")
 	public ModelAndView classDetail(int lect_num){
 		List<AssignLectVO> teacherList = assignLectService.getClassTeacherList(lect_num);

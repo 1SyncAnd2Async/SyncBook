@@ -44,4 +44,9 @@ public class RegLectDAOImpl implements RegLectDAO {
 		List<MemberClassVO> list = sqlSession.selectList("RegLect.getMemberClassList", member_id);
 		return list;
 	}
+	@Override
+	public List<MemberClassVO> getMemberClassDetail(int reg_num) {
+		List<MemberClassVO> list = sqlSession.selectList("RegLect.getMemberClassDetail", reg_num);
+		return list;
+	}
 }
