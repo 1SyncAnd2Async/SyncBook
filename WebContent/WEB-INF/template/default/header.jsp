@@ -33,12 +33,12 @@
                 <ul class="loginbar pull-right">
                     <c:choose>
                     	<c:when test="${!empty sessionScope.teacher}">
-                    		<li><a href="teacherPageForm" id="teacher">${sessionScope.teacher.id}</a></li> 님 환영합니다.
+                    		<li><a href="teacherPageForm?teacher_id=${sessionScope.teacher.id}" id="teacher">${sessionScope.teacher.id}</a></li> 님 환영합니다.
                     		<li class="topbar-devider"></li>
                     		<li><a href="teacherLogout">Logout</a></li>
                     	</c:when>
                     	<c:when test="${!empty sessionScope.member}">
-                    		<li><a href="myPageForm" id="member">${sessionScope.member.id}</a></li> 님 환영합니다.
+                    		<li><a href="myPageForm?member_id=${sessionScope.member.id}" id="member">${sessionScope.member.id}</a></li> 님 환영합니다.
                     		<li class="topbar-devider"></li>
                     		<li><a href="logout">Logout</a></li>
                     	</c:when>
@@ -91,6 +91,18 @@
                         </ul>
                     </li>
                     <!-- End Member Management -->
+                    <!-- Order Management -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                            	주문관리
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-submenu">
+                                <a href="orderList">주문목록</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- End Order Management -->
                     
                     <!-- Member Management -->
                     <li class="dropdown">

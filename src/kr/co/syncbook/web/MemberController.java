@@ -12,23 +12,24 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.method.annotation.JsonViewResponseBodyAdvice;
 
 import kr.co.syncbook.biz.MemberService;
-import kr.co.syncbook.dao.MemberDAO;
-import kr.co.syncbook.dao.impl.MemberDAOImpl;
+import kr.co.syncbook.biz.RegLectService;
 import kr.co.syncbook.vo.MemberVO;
+import kr.co.syncbook.vo.OrderVO;
 
 @Controller
 //@RequestMapping("/member")
 public class MemberController {
 	@Autowired
 	MemberService memberService;
+	@Autowired
+	RegLectService regLectService;
+	
 	@RequestMapping("/loginForm")
 	public ModelAndView loginForm(String login){
 		System.out.println(login);
@@ -62,8 +63,12 @@ public class MemberController {
 	}
 	@RequestMapping("/memberDetail")
 	public ModelAndView memberDetail(String id){
+		List<OrderVO> list = regLectService.getOrderList(id);
+		System.out.println(list);
+		
 		MemberVO member =  memberService.getMember(id);
 		ModelAndView mv = new ModelAndView("memberDetail");
+		mv.addObject("orderList", list);
 		mv.addObject("member", member);
 		
 		return mv;
@@ -111,8 +116,13 @@ public class MemberController {
 
 	}
 	@RequestMapping("/myPageForm")
-	public String myPageForm(){
-		return "myPageForm";
+	public ModelAndView myPageForm(String member_id){
+		List<OrderVO> list = regLectService.getOrderList(member_id);
+		System.out.println(list);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("orderList", list);
+		mav.setViewName("myPageForm");
+		return mav;
 	}
 	@RequestMapping("/updateMemberProfile")
 	public ModelAndView updateMemberProfile(MemberVO member, @RequestParam String post1, @RequestParam String post2, HttpSession session, HttpServletRequest request) {

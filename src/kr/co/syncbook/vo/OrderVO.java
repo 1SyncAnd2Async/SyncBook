@@ -2,7 +2,14 @@ package kr.co.syncbook.vo;
 
 public class OrderVO {
 	private int assign_num, lect_num, status, subj_num, book_num, price;
-	private String lect_name, teacher_id, name, day, begintime, endtime, img, subj_name, book_name;
+	private String lect_name, teacher_id, name, day, begintime, endtime, img, subj_name, book_name, reg_date;
+	
+	public String getReg_date() {
+		return reg_date;
+	}
+	public void setReg_date(String reg_date) {
+		this.reg_date = reg_date;
+	}
 	public int getAssign_num() {
 		return assign_num;
 	}
@@ -99,6 +106,7 @@ public class OrderVO {
 				+ subj_num + ", book_num=" + book_num + ", price=" + price + ", lect_name=" + lect_name
 				+ ", teacher_id=" + teacher_id + ", name=" + name + ", day=" + day + ", begintime=" + begintime
 				+ ", endtime=" + endtime + ", img=" + img + ", subj_name=" + subj_name + ", book_name=" + book_name
-				+ "]";
+				+ ", reg_date=" + reg_date + "]";
 	}
+	
 }

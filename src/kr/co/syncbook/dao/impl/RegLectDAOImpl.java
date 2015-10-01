@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.syncbook.dao.RegLectDAO;
 import kr.co.syncbook.vo.MemberClassVO;
+import kr.co.syncbook.vo.MemberVO;
 import kr.co.syncbook.vo.OrderVO;
 import kr.co.syncbook.vo.RegLectVO;
 
@@ -45,8 +46,18 @@ public class RegLectDAOImpl implements RegLectDAO {
 		return list;
 	}
 	@Override
-	public List<MemberClassVO> getMemberClassDetail(int reg_num) {
-		List<MemberClassVO> list = sqlSession.selectList("RegLect.getMemberClassDetail", reg_num);
+	public MemberClassVO getMemberClassDetail(MemberClassVO vo) {
+		
+		return (MemberClassVO) sqlSession.selectOne("RegLect.getMemberClassDetail", vo);
+	}
+	@Override
+	public List<OrderVO> getOrderList(String member_id) {
+		List<OrderVO> list = sqlSession.selectList("Order.getOrderList",member_id);
+		return list;
+	}
+	@Override
+	public List<RegLectVO> getAllOrderList() {
+		List<RegLectVO> list = sqlSession.selectList("Order.getAllOrderList");
 		return list;
 	}
 }

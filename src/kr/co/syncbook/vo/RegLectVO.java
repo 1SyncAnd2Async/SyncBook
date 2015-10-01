@@ -1,10 +1,16 @@
 package kr.co.syncbook.vo;
 
 public class RegLectVO {
-	private int assign_num;
+	private int reg_num, assign_num;
 	private String beginTime, endTime, member_id, phone, email, post, address, detail_address;
 	
 	
+	public int getReg_num() {
+		return reg_num;
+	}
+	public void setReg_num(int reg_num) {
+		this.reg_num = reg_num;
+	}
 	public String getBeginTime() {
 		return beginTime;
 	}
@@ -62,9 +68,10 @@ public class RegLectVO {
 	}
 	@Override
 	public String toString() {
-		return "RegLectVO [assign_num=" + assign_num + ", beginTime=" + beginTime + ", endTime=" + endTime
-				+ ", member_id=" + member_id + ", phone=" + phone + ", email=" + email + ", post=" + post + ", address="
-				+ address + ", detail_address=" + detail_address + "]";
+		return "RegLectVO [reg_num=" + reg_num + ", assign_num=" + assign_num + ", beginTime=" + beginTime
+				+ ", endTime=" + endTime + ", member_id=" + member_id + ", phone=" + phone + ", email=" + email
+				+ ", post=" + post + ", address=" + address + ", detail_address=" + detail_address + "]";
 	}
+	
 	
 }

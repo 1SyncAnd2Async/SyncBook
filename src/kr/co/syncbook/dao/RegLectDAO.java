@@ -10,8 +10,10 @@ import kr.co.syncbook.vo.RegLectVO;
 public interface RegLectDAO {
 	public int addOrder(RegLectVO v);
 	public OrderVO getClass(int assign_num);
+	public List<RegLectVO> getAllOrderList();
+	public List<OrderVO> getOrderList(String member_id);
 	public List<OrderVO> getAllClassList();
 	public List<MemberClassVO> getMemberClassList(String member_id);
-	public List<MemberClassVO> getMemberClassDetail(int reg_num);
+	public MemberClassVO getMemberClassDetail(MemberClassVO vo);
 	
 }
