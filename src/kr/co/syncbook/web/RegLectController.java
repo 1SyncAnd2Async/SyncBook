@@ -41,6 +41,7 @@ public class RegLectController {
 	@RequestMapping("/orderList")
 	public ModelAndView orderList(){
 		List<RegLectVO> orderList = regLectService.getAllOrderList();
+		System.out.println(orderList);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("orderList", orderList);
 		mav.setViewName("orderList");
