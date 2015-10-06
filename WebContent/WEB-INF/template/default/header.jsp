@@ -1,23 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script>
-	w = 1157; // 팝업창 너비
-	h = 850; // 팝업창 높이
-	
-	// 중앙 위치
-	LeftPosition = (screen.width-w)/2;
-	TopPosition = (screen.height-h)/2;
-	
-	// 팝업 호출
-	function video_open() {
-		window.open(
-			"http://117.17.143.126:52280/"+$("#teacher").text()+"_123",
-			"수업 참여",
-			"width=1157px, height=850px, top=" + TopPosition + ", left=" + LeftPosition + ", menubar=no, status=no, toolbar=no, resizable=no, fullscreen=no"
-		);
-	}
-</script>
 <body class="boxed-layout container">
 	<!--=== Header ===-->
     <div class="header">
@@ -114,7 +97,11 @@
                                 <a href="subject">과목관리</a>
                             </li>
                             <li class="dropdown-submenu">
-                                <a href="book">교재관리</a>
+                                <a href="javascript:void(0);">교재관리</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="book">교재등록</a></li>
+                                    <li><a href="questionForm">문제등록</a></li>
+                                </ul>
                             </li>
                             <li class="dropdown-submenu">
                                 <a href="javascript:void(0);">수업관리</a>

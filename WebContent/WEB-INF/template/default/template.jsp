@@ -44,6 +44,7 @@
 <link rel="stylesheet" href="resources/assets/css/pages/page_pricing.css">
 <link rel="stylesheet" href="resources/assets/css/pages/pricing/pricing_v5.css">
  <link rel="stylesheet" href="resources/assets/css/pages/shortcode_timeline2.css">
+ 
 <!-- CSS Customization -->
 <link rel="stylesheet" href="resources/assets/css/custom.css">
 
@@ -51,6 +52,7 @@
 <script type="text/javascript" src="resources/assets/plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="resources/assets/plugins/jquery/jquery-migrate.min.js"></script>
 <script type="text/javascript" src="resources/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
 <!-- JS Implementing Plugins -->
 <script type="text/javascript" src="resources/assets/plugins/back-to-top.js"></script>
 <script type="text/javascript" src="resources/assets/plugins/smoothScroll.js"></script>
@@ -61,6 +63,7 @@
 <script type="text/javascript" src="resources/assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="resources/assets/plugins/sky-forms-pro/skyforms/js/jquery.maskedinput.min.js"></script>
 <script type="text/javascript" src="resources/assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
+
 <!-- JS Customization -->
 <script type="text/javascript" src="resources/assets/js/custom.js"></script>
 <!-- JS Page Level -->

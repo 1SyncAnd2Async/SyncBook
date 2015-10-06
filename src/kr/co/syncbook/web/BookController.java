@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.syncbook.biz.BookService;
+import kr.co.syncbook.biz.QuestionService;
 import kr.co.syncbook.biz.SubjectService;
 import kr.co.syncbook.vo.BookVO;
+import kr.co.syncbook.vo.QuestionVO;
 import kr.co.syncbook.vo.SubjectVO;
 
 @Controller
@@ -18,7 +20,8 @@ public class BookController {
 	private BookService bookService;
 	@Autowired
 	private SubjectService subjectService;
-		
+	@Autowired
+	private QuestionService questionService;
 	@RequestMapping("/book")
 	public ModelAndView bookList(){
 		List<BookVO> list = bookService.getBookList();
@@ -32,8 +35,10 @@ public class BookController {
 	@RequestMapping("/bookDetail")
 	public ModelAndView bookDetail(int book_num){
 		BookVO book = bookService.getBook(book_num);
+		List<QuestionVO> questionList = questionService.getQuestionList();
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("book", book);
+		mav.addObject("questionList", questionList);
 		mav.setViewName("bookDetail");
 		return mav;
 	}

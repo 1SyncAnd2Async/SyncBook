@@ -5,12 +5,6 @@ import java.util.List;
 import kr.co.syncbook.vo.QuestionVO;
 
 public interface QuestionService {
-	public boolean questionUpload(QuestionVO vo);
-	public boolean questionUpdate(QuestionVO vo);
-	public boolean questionDelete(QuestionVO vo);
-	public QuestionVO getQuestion(QuestionVO vo);
-	public List<QuestionVO> getIsbnQuestionList(String isbn);
-	public List<QuestionVO> getUnitQuestionList(QuestionVO vo);
-	
-
+	public boolean addQuestion(QuestionVO question);
+	public List<QuestionVO> getQuestionList();
 }
