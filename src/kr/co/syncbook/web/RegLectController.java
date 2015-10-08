@@ -5,7 +5,11 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -83,7 +87,7 @@ public class RegLectController {
     		AssignLectVO v = timeList.get(i);
     		if(i==0){
     			out.print("<img class=\"img-responsive profile-img margin-bottom-20\" style=\"height:150px;\"src=\"resources/upload/teacherImg/"
-    		+v.getTeacher_img()+"\"><br> <label class=\"label\">�ð�ǥ</label>" + v.getDay() + " : " 
+    		+v.getTeacher_img()+"\"><br> <label class=\"label\">�ð�ǥ</label>" + v.getDay() + " : " 
     					+ "<a href=\"orderForm?assign_num="+v.getAssign_num()+"\">"+ v.getBegintime() +" ~ "+ v.getEndtime() + "</a>&nbsp&nbsp&nbsp&nbsp");
 
     		}
@@ -124,5 +128,53 @@ public class RegLectController {
 			mav.setViewName("payFailure");
 		}
 		return mav;
+	}
+	
+	@RequestMapping("/androidMemberClassList")
+	public void androidMemberClassList(String member_id, HttpServletRequest request, HttpServletResponse response){
+		
+		response.setCharacterEncoding("UTF-8");
+		
+		System.out.println(member_id);
+		List<MemberClassVO> memberClassList = regLectService.getMemberClassList(member_id);
+		
+		JSONArray jsonArray = new JSONArray();
+		PrintWriter out = null;
+		int i=0;
+		
+		System.out.println(member_id);
+		
+		System.out.println(memberClassList);
+		
+		for(MemberClassVO v : memberClassList) {
+			String fullPath = "http://117.17.143.125/BitProject/resources/upload/lectureImg/"+v.getLect_img();
+			if(memberClassList != null)	{
+				JSONObject jsonObject = new JSONObject();
+				
+				jsonObject.put("lect_img", fullPath);
+				jsonObject.put("lect_name", v.getLect_name());
+				jsonObject.put("lect_time", v.getBeginTime()+"~"+v.getEndTime());
+				jsonObject.put("teacher_name", v.getTeacher_name());
+				System.out.println(i);
+				
+				jsonArray.add(i++, jsonObject);
+			}
+			
+		}
+		
+		i=0;
+		
+		try {
+			out = response.getWriter();
+			
+			out.println(jsonArray.toJSONString());
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		
+		System.out.println(jsonArray.toJSONString());		
+		
 	}
 }
