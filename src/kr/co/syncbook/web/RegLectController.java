@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.syncbook.biz.AssignLectService;
+import kr.co.syncbook.biz.DataService;
 import kr.co.syncbook.biz.LectureService;
 import kr.co.syncbook.biz.RegLectService;
 import kr.co.syncbook.vo.AssignLectVO;
+import kr.co.syncbook.vo.DataVO;
 import kr.co.syncbook.vo.LectureVO;
 import kr.co.syncbook.vo.MemberClassVO;
 import kr.co.syncbook.vo.OrderVO;
@@ -29,6 +31,8 @@ public class RegLectController {
 	private LectureService lectureService;
 	@Autowired
 	private AssignLectService assignLectService;
+	@Autowired
+	private DataService dataService;
 	
 	@RequestMapping("/classListForm")
 	public ModelAndView lectureListForm(){
@@ -64,9 +68,11 @@ public class RegLectController {
 		vo.setReg_num(reg_num);
 		vo.setMember_id(member_id);
 		MemberClassVO memberClassDetail = regLectService.getMemberClassDetail(vo);
+		List<DataVO> dataList = dataService.getDataList(memberClassDetail.getLect_num());
 		ModelAndView mav = new ModelAndView();
 		System.out.println(memberClassDetail);
 		mav.addObject("memberClassDetail", memberClassDetail);
+		mav.addObject("dataList", dataList);
 		mav.setViewName("memberClassDetail");
 		return mav;
 	}

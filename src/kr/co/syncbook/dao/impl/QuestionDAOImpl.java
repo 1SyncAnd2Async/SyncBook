@@ -26,8 +26,8 @@ public class QuestionDAOImpl implements QuestionDAO {
 		return result;
 	}
 	@Override
-	public List<QuestionVO> getQuestionList() {
-		List<QuestionVO> questionList  = sqlSession.selectList("Question.getQuestionList");
+	public List<QuestionVO> getQuestionList(int book_num) {
+		List<QuestionVO> questionList  = sqlSession.selectList("Question.getQuestionList",book_num);
 		return questionList;
 	}
 }

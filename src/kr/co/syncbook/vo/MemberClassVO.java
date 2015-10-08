@@ -1,12 +1,20 @@
 package kr.co.syncbook.vo;
 
 public class MemberClassVO {
-	private int reg_num;
+	private int reg_num, lect_num;
 	private String member_id, lect_name, explanation, beginTime, endTime,
 			teacher_id, teacher_name, teacher_phone, teacher_email,
 			teacher_img, book_name, subj_name, lect_img;
 	
 	
+	
+	public int getLect_num() {
+		return lect_num;
+	}
+
+	public void setLect_num(int lect_num) {
+		this.lect_num = lect_num;
+	}
 
 	public int getReg_num() {
 		return reg_num;
@@ -122,12 +130,15 @@ public class MemberClassVO {
 
 	@Override
 	public String toString() {
-		return "MemberClassVO [reg_num=" + reg_num + ", member_id=" + member_id + ", lect_name=" + lect_name
-				+ ", explanation=" + explanation + ", beginTime=" + beginTime + ", endTime=" + endTime + ", teacher_id="
-				+ teacher_id + ", teacher_name=" + teacher_name + ", teacher_phone=" + teacher_phone
-				+ ", teacher_email=" + teacher_email + ", teacher_img=" + teacher_img + ", book_name=" + book_name
-				+ ", subj_name=" + subj_name + ", lect_img=" + lect_img + "]";
+		return "MemberClassVO [reg_num=" + reg_num + ", lect_num=" + lect_num + ", member_id=" + member_id
+				+ ", lect_name=" + lect_name + ", explanation=" + explanation + ", beginTime=" + beginTime
+				+ ", endTime=" + endTime + ", teacher_id=" + teacher_id + ", teacher_name=" + teacher_name
+				+ ", teacher_phone=" + teacher_phone + ", teacher_email=" + teacher_email + ", teacher_img="
+				+ teacher_img + ", book_name=" + book_name + ", subj_name=" + subj_name + ", lect_img=" + lect_img
+				+ "]";
 	}
+
+	
 
 	
 

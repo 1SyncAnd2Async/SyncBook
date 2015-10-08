@@ -6,5 +6,5 @@ import kr.co.syncbook.vo.QuestionVO;
 
 public interface QuestionService {
 	public boolean addQuestion(QuestionVO question);
-	public List<QuestionVO> getQuestionList();
+	public List<QuestionVO> getQuestionList(int book_num);
 }

@@ -23,29 +23,8 @@
                     <div class="panel-heading">
                         <h3 class="panel-title"><i class="fa fa-tasks"></i>공지사항</h3>
                     </div>
-                    <div class="panel-body">   
-                    <form action="noticeSearchList" method="post" id="search"> 
-	                    <div class="input-group animated fadeInDown">
-	                    	
-	                    				<select name="searchKind">
-		                                    <option value="notice_num">글번호</option>
-		                                    <option value="title">제목</option>
-		                                    <option value="writer">글쓴이</option>
-		                                </select>  
-		                </div>              	
-	                   	<div class="input-group animated fadeInDown">
-	                                
-	                       	<input type="text" class="form-control" name="searchValue" placeholder="Search">
-	                           <span class="input-group-btn">
-	                           	</form>
-	                           <button class="btn-u" type="submit" >Go</button>
-	                           </span>
-	        
-	                    </div>
-	                    <div style="padding-left:94%; padding-top:20px;">
-	                    <button class="btn-u btn-u-default box-shadow-inset" onclick="location.href='noticeForm'">글쓰기</button>
-	                    </div>
-                    
+                  
+                      <button style="float:right;margin-top:20px;margin-bottom:20px;" onclick="location.href='noticeForm'">글쓰기</button>   
                     </div>
                     <table class="table">
                         <thead>
@@ -69,7 +48,21 @@
                         </c:forEach>
                         </tbody>
                     </table>
-                </div>
+                    <div style="margin:0 auto; margin-bottom:30px; width:600px;">
+                    <form action="noticeSearchList" method="post" id="search"> 
+	                    	
+	                    				<select name="searchKind">
+		                                    <option value="notice_num">글번호</option>
+		                                    <option value="title">제목</option>
+		                                    <option value="writer">글쓴이</option>
+		                                </select>  
+	                                
+	                       	<input type="text" class="form-control" name="searchValue" placeholder="Search">
+	                           
+	                           <button class="btn-u" type="submit" >Go</button>	                         
+                        </form>
+                            
+                        </div>
     	<!--=== End Content ===-->
     </tiles:putAttribute>
 </tiles:insertDefinition>

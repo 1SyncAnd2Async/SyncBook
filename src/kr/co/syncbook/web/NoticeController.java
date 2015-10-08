@@ -165,7 +165,7 @@ public class NoticeController {
         outStream.close();
  
     }
-	@RequestMapping("noticeSearchList/{searchKind,searchValue}")
+	@RequestMapping("noticeSearchList")
 	public ModelAndView noticeSearchList(@PathVariable String searchKind, String searchValue){
 		System.out.println("searchKind : "+searchKind+"   searchValue"+searchValue);
 		List<NoticeVO> list = noticeService.getNoticeSearchList(searchKind, searchValue);

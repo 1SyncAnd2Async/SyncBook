@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <tiles:insertDefinition name="defaultTemplate">
     <tiles:putAttribute name="body">
     	<!--=== Breadcrumbs ===-->
@@ -66,7 +67,26 @@
                      <fieldset>
                      <div style="width:100%;"><label><span class=" icon-doc"></span>&nbsp;&nbsp;수업 자료</label></div>
                       <section>
-                             
+                      <table class="table">
+									<!-- <thead>
+										<tr>
+											<th>#</th>
+											<th>Title</th>
+											<th>Da</th>
+											<th></th>
+										</tr>
+									</thead> -->
+									<tbody>
+										<c:forEach var="dataList" items="${dataList}">
+											<tr>
+												<td>${dataList.num}</td>
+												<td>${dataList.title}</td>
+												<td><a href="data_fileDownload?data_file=${dataList.data_file}">${dataList.data_file}</a></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+                       
                       </section>
                      </fieldset>
                      </form>

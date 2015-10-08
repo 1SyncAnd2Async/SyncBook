@@ -35,7 +35,7 @@ public class BookController {
 	@RequestMapping("/bookDetail")
 	public ModelAndView bookDetail(int book_num){
 		BookVO book = bookService.getBook(book_num);
-		List<QuestionVO> questionList = questionService.getQuestionList();
+		List<QuestionVO> questionList = questionService.getQuestionList(book_num);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("book", book);
 		mav.addObject("questionList", questionList);

@@ -117,7 +117,7 @@ $(function(){
 											<tr>
 												<td>${list.rnum}</td>
 												<td>${list.subj_name}</td>
-												<td>${list.lect_name}</td>
+												<td><a href="lectureDetail?lect_num=${list.lect_num}">${list.lect_name}</a></td>
 												<td>${list.book_name}</td>
 												<td>${list.price} ¿ø</td>
 												<td>

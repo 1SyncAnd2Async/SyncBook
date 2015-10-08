@@ -23,8 +23,8 @@ public class QuestionServiceImpl implements QuestionService {
 		}
 	}
 	@Override
-	public List<QuestionVO> getQuestionList() {
-		List<QuestionVO> questionList = questionDAO.getQuestionList();
+	public List<QuestionVO> getQuestionList(int book_num) {
+		List<QuestionVO> questionList = questionDAO.getQuestionList(book_num);
 		return questionList;
 	}
 }
