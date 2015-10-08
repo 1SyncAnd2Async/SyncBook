@@ -42,24 +42,35 @@ public class RegLectController {
 		mav.setViewName("classListForm");
 		return mav;
 	}
+	@RequestMapping("/orderList")
+	public ModelAndView orderList(){
+		List<RegLectVO> orderList = regLectService.getAllOrderList();
+		System.out.println(orderList);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("orderList", orderList);
+		mav.setViewName("orderList");
+		return mav;
+	}
 	@RequestMapping("/memberClassList")
 	public ModelAndView memberClassList(String member_id){
 		System.out.println(member_id);
 		List<MemberClassVO> memberClassList = regLectService.getMemberClassList(member_id);
 		
-		System.out.println(memberClassList);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("memberClassList", memberClassList);
 		mav.setViewName("memberClassList");
 		return mav;
 	}
 	@RequestMapping("/memberClassDetail")
-	public ModelAndView memberClassDetail(int reg_num){
-		List<MemberClassVO> memberClassDetail = regLectService.getMemberClassDetail(reg_num);
-		
+	public ModelAndView memberClassDetail(int reg_num, String member_id){
+		MemberClassVO vo = new MemberClassVO();
+		vo.setReg_num(reg_num);
+		vo.setMember_id(member_id);
+		MemberClassVO memberClassDetail = regLectService.getMemberClassDetail(vo);
 		ModelAndView mav = new ModelAndView();
+		System.out.println(memberClassDetail);
 		mav.addObject("memberClassDetail", memberClassDetail);
-		
 		mav.setViewName("memberClassDetail");
 		return mav;
 	}

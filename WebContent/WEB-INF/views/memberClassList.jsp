@@ -30,7 +30,7 @@
                         <img src="resources/upload/lectureImg/${classList.lect_img}" class="img-responsive hover-effect" alt="" />
                     </div>
                     <div class="col-md-10">
-                        <a href="memberClassDetail?reg_num=${classList.reg_num}"><h3>${classList.lect_name}</h3></a>
+                        <a href="memberClassDetail?reg_num=${classList.reg_num}&member_id=${sessionScope.member.id}"><h3>${classList.lect_name}</h3></a>
                         <ul class="list-inline">
                             <li><i class="fa fa-map-marker color-green"></i> 과목 : ${classList.subj_name} </li>
                             <li><i class="fa fa-briefcase color-green"></i> 교재 : ${classList.book_name}</li>

@@ -3,58 +3,12 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Question">
-
-	<resultMap type="Question" id="QuestionResultMap">
-		<result column="isbn" property="isbn"/>
-		<result column="unit_num" property="unit_num"/>
-		<result column="question_num" property="question_num"/>
-		<result column="explanation" property="explanation"/>
-		<result column="question_file" property="question_file"/>
-	</resultMap>
-
-	<select id="getQuestion" resultMap="QuestionResultMap" parameterType="Question">
-		<![CDATA[
-			SELECT ISBN, UNIT_NUM, QUESTION_NUM, EXPLANATION, QUESTION_FILE
-			FROM QUESTION
-			WHERE ISBN = #{isbn} AND UNIT_NUM = #{unit_num} AND QUESTION_NUM = #{question_num}
-		]]>
+	<select id="getQuestionList" resultType="Question">
+		SELECT BOOK_NUM, UNIT_NUM, QUESTION_NUM, CONTENT, EXPLANATION, QUESTION_FILE
+		FROM QUESTION
 	</select>
-	<select id="getIsbnQuestionList" resultType="Question" parameterType="java.lang.String">
-		<![CDATA[
-			SELECT ISBN, UNIT_NUM, QUESTION_NUM, EXPLANATION, QUESTION_FILE
-			FROM QUESTION
-			WHERE ISBN = #{isbn}
-		]]>
-	</select>
-	<select id="getUnitQuestionList" resultType="Question" parameterType="Question">
-		<![CDATA[
-			SELECT ISBN, UNIT_NUM, QUESTION_NUM, EXPLANATION, QUESTION_FILE
-			FROM QUESTION
-			WHERE ISBN = #{isbn} AND UNIT_NUM = #{unit_num}
-		]]>
-	</select>
-	<insert id="addQuestion"  parameterType="Question">
-		<![CDATA[
-			INSERT INTO LECTURE (ISBN, UNIT_NUM, QUESTION_NUM, EXPLANATION, QUESTION_FILE)
-			VALUES(#{isbn}, #{unit_num}, #{question_num}, #{explanation}, #{question_file})
-			
-		]]>
+	<insert id="addQuestion" parameterType="Question">
+		INSERT INTO QUESTION(BOOK_NUM, UNIT_NUM, QUESTION_NUM, CONTENT, EXPLANATION, QUESTION_FILE)
+		VALUES (#{book_num}, #{unit_num}, #{question_num}, #{content}, #{explanation}, #{question_file})
 	</insert>
-	<delete id="deleteQuestion"  parameterType="Question">
-		<![CDATA[
-			DELETE QUESTION WHERE ISBN = #{lecture_num} AND
-			UNIT_NUM = #{unit_num} AND
-			QUESTION_NUM = #{question_num}			
-		]]>
-	</delete>
-	<update id="updateQuestion" parameterType="Question">
-		<![CDATA[
-			UPDATE QUESTION SET ISBN = #{isbn}, UNIT_NUM = #{unit_num}, QUESTION_NUM = #{question_num} 
-			WHERE ISBN = #{lecture_num} AND
-			UNIT_NUM = #{unit_num} AND
-			QUESTION_NUM = #{question_num}	
-		]]>
-	</update>
-	
-
 </mapper>

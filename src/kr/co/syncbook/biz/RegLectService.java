@@ -9,7 +9,9 @@ import kr.co.syncbook.vo.RegLectVO;
 public interface RegLectService {
 	public boolean addOrder(RegLectVO v, String post1, String post2);
 	public OrderVO getClass(int assign_num);
+	public List<RegLectVO> getAllOrderList();
+	public List<OrderVO> getOrderList(String member_id);
 	public List<OrderVO> getAllClassList();
 	public List<MemberClassVO> getMemberClassList(String member_id);
-	public List<MemberClassVO> getMemberClassDetail(int reg_num);
+	public MemberClassVO getMemberClassDetail(MemberClassVO vo);
 }

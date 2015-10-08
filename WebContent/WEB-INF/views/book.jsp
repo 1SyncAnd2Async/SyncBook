@@ -45,7 +45,7 @@
 											<tr>
 												<td>${list.num}</td>
 												<td>${list.subj_name}</td>
-												<td>${list.book_name}</td>
+												<td><a href="bookDetail?book_num=${list.book_num}">${list.book_name}</a></td>
 												<td>
 													<button class="btn btn-danger btn-xs" onclick="location.href='deleteBook?book_num='+${list.book_num}">
 														<i class="fa fa-trash-o"></i>ªË¡¶

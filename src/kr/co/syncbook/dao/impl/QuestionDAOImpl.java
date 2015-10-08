@@ -8,57 +8,26 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 
 import kr.co.syncbook.dao.QuestionDAO;
+import kr.co.syncbook.vo.QnaVO;
 import kr.co.syncbook.vo.QuestionVO;
 
-@Repository("QuestionDAO")
-public class QuestionDAOImpl implements QuestionDAO{
-	
+@Repository("questionDAO")
+public class QuestionDAOImpl implements QuestionDAO {
 	@Autowired
 	private SqlSession sqlSession;
-	
 	@Override
-	public int addQuestion(QuestionVO vo) {
+	public int addQuestion(QuestionVO question) {
 		int result = 0;
-		try{
-			result = sqlSession.insert("Question.addQuestion", vo);
-		}catch(DataIntegrityViolationException e){
-			result = 0;
-		}
+		try {
+			result = sqlSession.insert("Question.addQuestion", question);
+		} catch (DataIntegrityViolationException e) {
+			e.printStackTrace();
+		} 
 		return result;
 	}
-
 	@Override
-	public int updateQuestion(QuestionVO vo) {
-		// TODO Auto-generated method stub
-		return sqlSession.update("Question.updateQuestion",vo);
+	public List<QuestionVO> getQuestionList() {
+		List<QuestionVO> questionList  = sqlSession.selectList("Question.getQuestionList");
+		return questionList;
 	}
-
-	@Override
-	public int deleteQuestion(QuestionVO vo) {
-		// TODO Auto-generated method stub
-		return sqlSession.delete("Question.deleteQuestion", vo);
-	}
-
-	@Override 
-	public QuestionVO getQuestion(QuestionVO vo) {
-		// TODO Auto-generated method stub
-		return (QuestionVO) sqlSession.selectOne("Question.getQuestion",vo);
-	}
-
-	@Override
-	public List<QuestionVO> getIsbnQuestionList(String isbn) {
-		
-		List<QuestionVO> list = sqlSession.selectList("Question.getQuestionList", isbn);
-		
-		return list;
-	}
-
-	@Override
-	public List<QuestionVO> getUnitQuestionList(QuestionVO vo) {
-		
-		List<QuestionVO> list = sqlSession.selectList("Question.getUnitQuestionList", vo);
-		
-		return list;
-	}
-
 }
