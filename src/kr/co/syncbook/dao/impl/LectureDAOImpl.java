@@ -56,4 +56,10 @@ public class LectureDAOImpl implements LectureDAO{
 		return list;
 	}
 
+	@Override
+	public int getTotalCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("Lecture.getTotalCount");
+	}
+
 }

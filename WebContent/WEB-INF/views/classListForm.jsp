@@ -24,7 +24,8 @@
             	<div class="headline"><h2>학습 신청</h2></div>
 
                 <!-- Clients Block-->
-                <c:forEach var="classList" items="${classList}">
+                <ul class="all-blogs" >
+                <c:forEach begin="${pageInfo.startRow}" end="${pageInfo.endRow}" var="classList" items="${classList}">
                 <div class="row clients-page">
                     <div class="col-md-2">
                         <img src="resources/upload/lectureImg/${classList.img}" class="img-responsive hover-effect" alt="" />
@@ -35,27 +36,87 @@
                             <li><i class="fa fa-map-marker color-green"></i> 과목 : ${classList.subj_name} </li>
                             <li><i class="fa fa-briefcase color-green"></i> 교재 : ${classList.book_name}</li>
                         </ul>
-                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati</p>
-                        <p>Olerano ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna edetquam lacus. Fusce condimentum eleifend enim a sint occaecati feugiat..</p>
+                        <p> ${classList.explanation}</p>
                     </div>
                 </div>
                 <hr>
                 </c:forEach>
+                </ul>
                 <!-- End Clients Block-->
 
                 <!-- Pagination -->
-                <div class="text-center md-margin-bottom-30">
-                    <ul class="pagination">
-                        <li><a href="#">«</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li class="active"><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">»</a></li>
-                    </ul>
-                </div>
-                <!-- End Pagination -->
+                <div align="center">
+								<table>
+									<tr>
+										<td colspan="4">&nbsp;</td>
+									</tr>
+									<tr>
+										<td colspan="4" style="text-align: center">
+											<%--Page 이전 페이지 구현 --%> <c:choose>
+												<c:when test="${searchType == null}">
+													<c:choose>
+														<c:when test="${pageInfo.currentBlock eq 1}">
+															 
+														</c:when>
+														<c:otherwise>
+															 <ul class="pagination">
+                        										<li><a
+																href="classListForm?page= ${(pageInfo.currentBlock-1)*pageInfo.pagesPerBlock }">
+																«
+															</a></li></ul>
+														</c:otherwise>
+													</c:choose>
+
+													<%--Page  페이지 구현 --%>
+													<c:choose>
+														<c:when
+															test="${pageInfo.currentBlock ne pageInfo.totalBlocks}">
+															<c:forEach begin="1" end="${pageInfo.pagesPerBlock}"
+																varStatus="num">
+                                 <ul class="pagination">
+                        										<li><a
+																	href="classListForm?page=
+                                 ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
+																	${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li></ul>
+                                </c:forEach>
+														</c:when>
+														<c:otherwise>
+															<c:forEach
+																begin="${(pageInfo.currentBlock-1)*pageInfo.pagesPerBlock + 1}"
+																end="${pageInfo.totalPages}" varStatus="num">
+                                 <ul class="pagination">
+                        										<li><a
+																	href="classListForm?page=
+                   ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
+																	${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }</a></li></ul>
+                             </c:forEach>
+														</c:otherwise>
+													</c:choose>
+
+
+													<%--Page 다음 페이지 구현 --%>
+													<c:choose>
+														<c:when
+															test="${pageInfo.currentBlock eq pageInfo.totalBlocks}">
+														</c:when>
+														<c:otherwise>
+															<ul class="pagination">
+                        										<li><a
+																href="classListForm?page=
+                  ${pageInfo.currentBlock * pageInfo.pagesPerBlock + 1 }">
+																»
+															</a></li>
+															</ul>
+														</c:otherwise>
+													</c:choose>
+												</c:when>												
+											</c:choose>
+										</td>
+									</tr>
+								</table>
+							</div>
+                
+            <!-- End Pagination -->
             </div><!--/col-md-9-->
         </div><!--/row-->
     </div><!--/container-->
