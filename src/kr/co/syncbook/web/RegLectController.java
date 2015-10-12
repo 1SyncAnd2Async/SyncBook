@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.syncbook.biz.AssignLectService;
 import kr.co.syncbook.biz.DataService;
 import kr.co.syncbook.biz.LectureService;
+import kr.co.syncbook.biz.MemberService;
 import kr.co.syncbook.biz.RegLectService;
 import kr.co.syncbook.vo.AssignLectVO;
 import kr.co.syncbook.vo.DataVO;
@@ -38,6 +39,8 @@ public class RegLectController {
 	private AssignLectService assignLectService;
 	@Autowired
 	private DataService dataService;
+	@Autowired
+	private MemberService memberService;
 
 	@RequestMapping("/classListForm")
 	public ModelAndView lectureListForm(int page) {
@@ -108,10 +111,13 @@ public class RegLectController {
 	}
 
 	@RequestMapping("/memberClassList")
-	public ModelAndView memberClassList(String member_id) {
-		System.out.println(member_id);
-		List<MemberClassVO> memberClassList = regLectService.getMemberClassList(member_id);
-
+	public ModelAndView memberClassList(String id) {
+		List<MemberClassVO> memberClassList;
+		if(memberService.idCheck(id)) {
+			memberClassList = regLectService.getMemberClassList(id);
+		} else {
+			memberClassList = regLectService.getTeacherClassList(id);
+		}
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("memberClassList", memberClassList);
 		mav.setViewName("memberClassList");
@@ -119,14 +125,19 @@ public class RegLectController {
 	}
 
 	@RequestMapping("/memberClassDetail")
-	public ModelAndView memberClassDetail(int reg_num, String member_id) {
+	public ModelAndView memberClassDetail(int reg_num, String id) {
+		MemberClassVO memberClassDetail;
 		MemberClassVO vo = new MemberClassVO();
 		vo.setReg_num(reg_num);
-		vo.setMember_id(member_id);
-		MemberClassVO memberClassDetail = regLectService.getMemberClassDetail(vo);
+		if(memberService.idCheck(id)) {
+			vo.setMember_id(id);
+			memberClassDetail = regLectService.getMemberClassDetail(vo);
+		} else {
+			vo.setTeacher_id(id);
+			memberClassDetail = regLectService.getTeacherClassDetail(vo);
+		}
 		List<DataVO> dataList = dataService.getDataList(memberClassDetail.getLect_num());
 		ModelAndView mav = new ModelAndView();
-		System.out.println(memberClassDetail);
 		mav.addObject("memberClassDetail", memberClassDetail);
 		mav.addObject("dataList", dataList);
 		mav.setViewName("memberClassDetail");
@@ -140,7 +151,6 @@ public class RegLectController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("lecture", lecture);
 		mav.addObject("classTeacherList", teacherList);
-
 		mav.setViewName("classDetail");
 		return mav;
 	}

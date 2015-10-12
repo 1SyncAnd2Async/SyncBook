@@ -30,19 +30,16 @@
                         <img src="resources/upload/lectureImg/${classList.lect_img}" class="img-responsive hover-effect" alt="" />
                     </div>
                     <div class="col-md-10">
-                    	<c:choose>
-                			<c:when test="${sessionScope.member.id != null}">
-                        		<a href="memberClassDetail?reg_num=${classList.reg_num}&id=${sessionScope.member.id}"><h3>${classList.lect_name}</h3></a>
-                        	</c:when>
-                        	<c:when test="${sessionScope.teacher.id != null}">
-                        		<a href="memberClassDetail?reg_num=${classList.reg_num}&id=${sessionScope.teacher.id}"><h3>${classList.lect_name}</h3></a>
-                        	</c:when>
-                        </c:choose>
+                        <a href="memberClassDetail?reg_num=${classList.reg_num}&member_id=${sessionScope.member.id}"><h3>${classList.lect_name}</h3></a>
                         <ul class="list-inline">
                             <li><i class="fa fa-map-marker color-green"></i> 과목 : ${classList.subj_name} </li>
                             <li><i class="fa fa-briefcase color-green"></i> 교재 : ${classList.book_name}</li>
                              <li><i class="glyphicon glyphicon-time color-green"></i> 시간 : ${classList.beginTime}~${classList.endTime}</li>
+                             
+                            
+                            
                         </ul>
+                        
                     </div>
                 </div>
                 <hr>

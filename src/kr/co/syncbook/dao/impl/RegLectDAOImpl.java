@@ -46,9 +46,17 @@ public class RegLectDAOImpl implements RegLectDAO {
 		return list;
 	}
 	@Override
+	public List<MemberClassVO> getTeacherClassList(String teacher_id) {
+		List<MemberClassVO> list = sqlSession.selectList("RegLect.getTeacherClassList", teacher_id);
+		return list;
+	}
+	@Override
 	public MemberClassVO getMemberClassDetail(MemberClassVO vo) {
-		
 		return (MemberClassVO) sqlSession.selectOne("RegLect.getMemberClassDetail", vo);
+	}
+	@Override
+	public MemberClassVO getTeacherClassDetail(MemberClassVO vo) {
+		return (MemberClassVO) sqlSession.selectOne("RegLect.getTeacherClassDetail", vo);
 	}
 	@Override
 	public List<OrderVO> getOrderList(String member_id) {

@@ -17,7 +17,9 @@ import kr.co.syncbook.biz.LectureService;
 import kr.co.syncbook.biz.SubjectService;
 import kr.co.syncbook.biz.TeacherService;
 import kr.co.syncbook.vo.AssignLectVO;
+import kr.co.syncbook.vo.DataVO;
 import kr.co.syncbook.vo.LectureVO;
+import kr.co.syncbook.vo.MemberClassVO;
 import kr.co.syncbook.vo.PageVO;
 import kr.co.syncbook.vo.SubjectVO;
 import kr.co.syncbook.vo.TeacherVO;
@@ -91,6 +93,7 @@ public class AssignLectController {
 		mav.setViewName("assignLectureForm");
 		return mav;
 	}
+	
 	@RequestMapping("/selectLecture")  
 	public void selectLecture(ServletResponse resp, @RequestParam int subj_num) throws IOException {
 		resp.setContentType("text/html;charset=UTF-8");

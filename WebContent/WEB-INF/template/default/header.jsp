@@ -105,8 +105,7 @@
                     </c:choose>
                     <!-- End Member Management -->
                 
-                	<c:choose>
-                	<c:when test="${sessionScope.member != null && sessionScope.member.id != 'admin'}">
+                	
                 	<!-- My Books -->
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
@@ -115,7 +114,14 @@
                         <ul class="dropdown-menu">
                             <!-- Authentication Pages -->
                             <li>
-                                <a href="memberClassList?member_id=${sessionScope.member.id}">수강목록</a>
+                            	<c:choose>
+                					<c:when test="${sessionScope.member.id != null}">
+                                		<a href="memberClassList?id=${sessionScope.member.id}">수강목록</a>
+                                	</c:when>
+                                	<c:when test="${sessionScope.teacher.id != null}">
+                                		<a href="memberClassList?id=${sessionScope.teacher.id}">강의목록</a>
+                                	</c:when>
+                				</c:choose>
                             </li>
                             <!-- End Authentication Pages -->
                             
@@ -134,8 +140,7 @@
                         </ul>
                     </li>
                     <!-- End My Books -->
-                    </c:when>
-                	</c:choose>
+                    
                 	
                     <!-- Books -->
                     <li class="dropdown">

@@ -5,9 +5,6 @@ public class MemberClassVO {
 	private String member_id, lect_name, explanation, beginTime, endTime,
 			teacher_id, teacher_name, teacher_phone, teacher_email,
 			teacher_img, book_name, subj_name, lect_img;
-	
-	
-	
 	public int getLect_num() {
 		return lect_num;
 	}

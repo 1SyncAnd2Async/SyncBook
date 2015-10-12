@@ -39,8 +39,18 @@ public class RegLectServiceImpl implements RegLectService {
 		return list;
 	}
 	@Override
+	public List<MemberClassVO> getTeacherClassList(String teacher_id) {
+		List<MemberClassVO> list = regLectDAO.getTeacherClassList(teacher_id);
+		return list;
+	}
+	@Override
 	public MemberClassVO getMemberClassDetail(MemberClassVO vo) {
 		MemberClassVO memberClass = regLectDAO.getMemberClassDetail(vo);
+		return memberClass;
+	}
+	@Override
+	public MemberClassVO getTeacherClassDetail(MemberClassVO vo) {
+		MemberClassVO memberClass = regLectDAO.getTeacherClassDetail(vo);
 		return memberClass;
 	}
 	@Override
