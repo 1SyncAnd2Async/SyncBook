@@ -18,7 +18,7 @@
     	<!--=== Content ===-->
     	<div class="container content height-500">
         	<!-- Write Your HTML Codes Here -->
-        	    <div class="container content-sm">
+        	    <div class="container content-sm" style="padding-left:250px;">
         	    	
         <div class="row" >
         	<a href="memberJoinForm">

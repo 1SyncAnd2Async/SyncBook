@@ -33,6 +33,17 @@
 			AND A.ASSIGN_NUM = #{assign_num}
 		]]>
 	</select>
+	<select id="getBestClassList" resultType="Order">
+		<![CDATA[
+			 SELECT IMG, EXPLANATION, LECT_NUM, LECT_NAME, COUNT(*) CNT 
+		     FROM (SELECT  L.IMG, L.EXPLANATION, L.LECT_NUM, L.LECT_NAME
+		            FROM REG_LECT R, ASSIGN_LECT A, LECTURE L
+		            WHERE R.ASSIGN_NUM = A.ASSIGN_NUM
+		            AND A.LECT_NUM = L.LECT_NUM)
+		      GROUP BY LECT_NUM, LECT_NAME, IMG, EXPLANATION
+		      ORDER BY CNT DESC
+		]]>
+	</select>
 	<insert id="addOrder" parameterType="RegLect">
 		<![CDATA[
 			INSERT INTO REG_LECT

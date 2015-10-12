@@ -19,13 +19,15 @@
     	<!--=== End Breadcrumbs ===-->
     	
     	<!--=== Content ===-->
+    	<div class="container content">
+		<div class="row">
     	<div class="panel panel-green margin-bottom-40">
                     <div class="panel-heading">
                         <h3 class="panel-title"><i class="fa fa-tasks"></i>공지사항</h3>
                     </div>
                   	<c:choose>
                 	<c:when test="${sessionScope.member != null && sessionScope.member.id == 'admin'}">
-                      <button style="float:right;margin-top:20px;margin-bottom:20px;" onclick="location.href='noticeForm'">글쓰기</button>   
+                      <button class="btn-u"  style="float:right;margin-top:20px;margin-bottom:20px;" onclick="location.href='noticeForm'">글쓰기</button>   
                     </c:when>
                     </c:choose>
                     </div>
@@ -65,6 +67,8 @@
 	                           <button class="btn-u" type="submit" >Go</button>	                         
                         </form>
                             
+                        </div>
+                        </div>
                         </div>
     	<!--=== End Content ===-->
     </tiles:putAttribute>

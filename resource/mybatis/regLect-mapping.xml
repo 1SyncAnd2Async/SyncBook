@@ -38,6 +38,7 @@
 			AND L.BOOK_NUM = B.BOOK_NUM
 		]]>
 	</select>
+	
 	<insert id="assignLecture"  parameterType="RegLect">
 		<![CDATA[
 			INSERT INTO ASSIGN_LECT

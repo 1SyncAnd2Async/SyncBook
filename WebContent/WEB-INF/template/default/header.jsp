@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<body class="boxed-layout container">
+<body>
 	<!--=== Header ===-->
     <div class="header">
         <div class="container">
@@ -107,38 +107,35 @@
                 
                 	
                 	<!-- My Books -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            	내 강의
-                        </a>
-                        <ul class="dropdown-menu">
-                            <!-- Authentication Pages -->
-                            <li>
-                            	<c:choose>
-                					<c:when test="${sessionScope.member.id != null}">
-                                		<a href="memberClassList?id=${sessionScope.member.id}">수강목록</a>
-                                	</c:when>
-                                	<c:when test="${sessionScope.teacher.id != null}">
-                                		<a href="memberClassList?id=${sessionScope.teacher.id}">강의목록</a>
-                                	</c:when>
-                				</c:choose>
-                            </li>
+                	<c:choose>
+                		<c:when test="${sessionScope.member.id != null}">
+	                    <li class="dropdown">
+	                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+	                            	내 강의
+	                        </a>
+	                        <ul class="dropdown-menu">
+	                            <!-- Authentication Pages -->
+	                            <li>
+	                            	<a href="memberClassList?id=${sessionScope.member.id}">수강목록</a>
+	                            </li>
+	                        </ul>
+	                       </li>
+                           </c:when>
+                           <c:when test="${sessionScope.teacher.id != null}">
+                           <li class="dropdown">
+	                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+	                            	내 강의
+	                        </a>
+	                        <ul class="dropdown-menu">
+	                            <!-- Authentication Pages -->
+	                            <li>
+                               		<a href="memberClassList?id=${sessionScope.teacher.id}">강의목록</a>                               	
+                            	</li>
                             <!-- End Authentication Pages -->
-                            
-                            <!-- My Books List Pages -->
-                            <li class="dropdown-submenu">
-                                <a href="javascript:void(0);">교재목록</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">TOEIC 700+</a></li>
-                                    <li><a href="#">Bootstrap</a></li>
-                                    <li><a href="#">Spring Framework</a></li>
-                                    <li><a href="#">jQuery</a></li>
-                                    <li><a href="#">Ajax</a></li>
-                                </ul>
-                            </li>
-                            <!-- End My Books List Pages -->
-                        </ul>
-                    </li>
+	                        	</ul>
+	                    		</li>
+                    		</c:when>
+                			</c:choose>
                     <!-- End My Books -->
                     
                 	

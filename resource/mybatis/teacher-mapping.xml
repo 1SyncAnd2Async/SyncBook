@@ -45,7 +45,7 @@
 	
 	<select id="getTeacherList" resultType="Teacher">
 		<![CDATA[
-			SELECT ID,PASSWORD,NAME,PHONE,EMAIL
+			SELECT ID,PASSWORD,NAME,PHONE,EMAIL,IMG
 			FROM TEACHER
 		]]>
 	</select>

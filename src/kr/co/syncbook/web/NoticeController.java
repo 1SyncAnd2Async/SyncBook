@@ -49,6 +49,34 @@ public class NoticeController {
 	public String writeForm(){
 		return "noticeForm";
 	}
+	@RequestMapping("noticeUpdate")
+	public ModelAndView updateForm(int notice_num){
+		NoticeVO notice =  noticeService.getNotice(notice_num);
+		ModelAndView mv = new ModelAndView("noticeUpdate");
+		mv.addObject("notice",notice);
+		return mv;
+	}
+	@RequestMapping("noticeUpdateOk")
+	public String noticeUpdateOk(@ModelAttribute NoticeVO vo, HttpServletRequest request){		
+		String path = request.getRealPath("/resources/upload/notice");
+		String upPath = path+"\\"+vo.getUpfile().getOriginalFilename();
+		File f = new File(upPath);
+		try {
+			vo.getUpfile().transferTo(f);
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		vo.setNotice_file(vo.getUpfile().getOriginalFilename());
+		
+		boolean flag=noticeService.noticeUpdate(vo);
+		if(flag){
+			System.out.println("Notice Insert");
+			return "redirect:noticeList";
+		}else{
+			System.out.println("Notice Insert Fail");
+			return "redirect:index";
+		}
+	}
 	@RequestMapping("noticeWrite")
 	public String write(@ModelAttribute NoticeVO vo, HttpServletRequest request){		
 		String path = request.getRealPath("/resources/upload/notice");

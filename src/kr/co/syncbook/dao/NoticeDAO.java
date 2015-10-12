@@ -11,6 +11,7 @@ public interface NoticeDAO {
 	public int deleteNotice(int notice_num);
 	public NoticeVO getNotice(int notice_num);
 	public List<NoticeVO> getNoticeList();
+	public List<NoticeVO> getMainNoticeList();
 	public List<NoticeVO> getNoticeSearchList(String searchKind, String searchValue);
 	
 	

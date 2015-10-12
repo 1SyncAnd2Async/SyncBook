@@ -65,4 +65,11 @@ public class NoticeDAOImpl implements NoticeDAO{
 		return list;
 	}
 
+	@Override
+	public List<NoticeVO> getMainNoticeList() {
+		List<NoticeVO> list = sqlSession.selectList("Notice.getMainNoticeList");
+		
+		return list;
+	}
+
 }

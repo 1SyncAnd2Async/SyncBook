@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <tiles:insertDefinition name="defaultTemplate">
     <tiles:putAttribute name="body">
     	<!--=== Slider ===-->
@@ -49,105 +50,97 @@
 
     <!--=== Content Part ===-->
     <div class="container content-sm">
-    	<!-- Service Blocks -->
+
+    	<!-- Recent Works -->
+        <div class="headline"><h2>인기 강의</h2></div>
+        <div class="row margin-bottom-20">
+         <c:forEach begin="0" end="3" var="bestClassList" items="${bestClassList}">
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnails thumbnail-style thumbnail-kenburn">
+                	<div class="thumbnail-img">
+                        <div class="overflow-hidden">
+                            <img src="resources/upload/lectureImg/${bestClassList.img}" class="img-responsive hover-effect" alt="" />
+                        </div>
+                        <a class="btn-more hover-effect" href="classDetail?lect_num=${bestClassList.lect_num}">read more +</a>
+                    </div>
+                    <div class="caption">
+                        <h3><a class="hover-effect" href="classDetail?lect_num=${bestClassList.lect_num}">${bestClassList.lect_name}</a></h3>
+                        <p>${bestClassList.explanation}</p>
+                    </div>
+                </div>
+            </div>
+            </c:forEach>
+        </div>
+    	<!-- End Recent Works -->
+		<!-- Service Blocks -->
     	<div class="row margin-bottom-30">
         	<div class="col-md-4">
         		<div class="service">
-                    <i class="fa fa-compress service-icon"></i>
         			<div class="desc">
-        				<h4>Fully Responsive</h4>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus etiam sem...</p>
+        				<h4>공지사항</h4>
+        				 <a style="float:right;"class="btn-more hover-effect" href="noticeList">더보기</a>
+                        <table class="table">
+                            <tr style="border-bottom:">
+                                <th >제목</th>
+                                <th >작성자</th>
+                            </tr>
+                        <c:forEach var="notice" items="${noticeList}">
+                        	<tr>
+                        		<td style="text-overflow:ellipsis;"><a href = "noticeDetail?notice_num=${notice.notice_num}">${notice.title }</a></td>
+                        		<td>${notice.writer }</td>                  		
+                        	</tr>
+                        </c:forEach>
+                    </table>
         			</div>
         		</div>
         	</div>
         	<div class="col-md-4">
         		<div class="service">
-                    <i class="fa fa-cogs service-icon"></i>
         			<div class="desc">
-        				<h4>HTML5 + CSS3</h4>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus etiam sem...</p>
+        				<h4>Q & A</h4>
+        				 <a style="float:right;"class="btn-more hover-effect" href="noticeList">더보기</a>
+                          <table class="table">
+                            <tr>
+                                <th style="width:250px;">제목</th>
+                                <th >작성자</th>
+                            </tr>
+                        <%-- <c:forEach var="QnaList" items="${QnaList}">
+                        	<tr>
+                        		<td style="text-overflow:ellipsis;"><a href = "qnaDetail?qna_num=${QnaList.qna_num}">${QnaList.title }</a></td>
+                        		<td>${QnaList.writer }</td>                  		
+                        	</tr>
+                        </c:forEach> --%>
+                    </table>
         			</div>
         		</div>
         	</div>
         	<div class="col-md-4">
         		<div class="service">
-                    <i class="fa fa-rocket service-icon"></i>
         			<div class="desc">
-        				<h4>Launch Ready</h4>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus etiam sem...</p>
+        				<h4>수강 후기</h4>
+        				 <a style="float:right;"class="btn-more hover-effect" href="noticeList">더보기</a>
+                         <table class="table">
+                            <tr>
+                                <th style="width:250px;">제목</th>
+                                <th >작성자</th>
+                            </tr>
+                       <%--  <c:forEach var="Review" items="${Review}">
+                        	<tr>
+                        		<td style="text-overflow:ellipsis;"><a href = "reviewDetail?review_num=${Review.review_num}">${Review.title }</a></td>
+                        		<td>${Review.writer }</td>                  		
+                        	</tr>
+                        </c:forEach> --%>
+                    </table>
         			</div>
         		</div>
         	</div>
     	</div>
     	<!-- End Service Blokcs -->
-
-    	<!-- Recent Works -->
-        <div class="headline"><h2>Recent Works</h2></div>
-        <div class="row margin-bottom-20">
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnails thumbnail-style thumbnail-kenburn">
-                	<div class="thumbnail-img">
-                        <div class="overflow-hidden">
-                            <img class="img-responsive" src="resources/assets/img/main/img1.jpg" alt="">
-                        </div>
-                        <a class="btn-more hover-effect" href="#">read more +</a>
-                    </div>
-                    <div class="caption">
-                        <h3><a class="hover-effect" href="#">Project One</a></h3>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnails thumbnail-style thumbnail-kenburn">
-                    <div class="thumbnail-img">
-                        <div class="overflow-hidden">
-                            <img class="img-responsive" src="resources/assets/img/main/img12.jpg" alt="">
-                        </div>
-                        <a class="btn-more hover-effect" href="#">read more +</a>
-                    </div>
-                    <div class="caption">
-                        <h3><a class="hover-effect" href="#">Project Two</a></h3>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnails thumbnail-style thumbnail-kenburn">
-                    <div class="thumbnail-img">
-                        <div class="overflow-hidden">
-                            <img class="img-responsive" src="resources/assets/img/main/img3.jpg" alt="">
-                        </div>
-                        <a class="btn-more hover-effect" href="#">read more +</a>
-                    </div>
-                    <div class="caption">
-                        <h3><a class="hover-effect" href="#">Project Three</a></h3>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnails thumbnail-style thumbnail-kenburn">
-                    <div class="thumbnail-img">
-                        <div class="overflow-hidden">
-                            <img class="img-responsive" src="resources/assets/img/main/img17.jpg" alt="">
-                        </div>
-                        <a class="btn-more hover-effect" href="#">read more +</a>
-                    </div>
-                    <div class="caption">
-                        <h3><a class="hover-effect" href="#">Project Four</a></h3>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    	<!-- End Recent Works -->
-
     	<!-- Info Blokcs -->
     	<div class="row margin-bottom-30">
         	<!-- Welcome Block -->
     		<div class="col-md-8 md-margin-bottom-40">
-    			<div class="headline"><h2>Welcome To Unify</h2></div>
+    			<div class="headline"><h2>Best수강후기</h2></div>
                 <div class="row">
                     <div class="col-sm-4">
                         <img class="img-responsive margin-bottom-20" src="resources/assets/img/main/img18.jpg" alt="">
@@ -208,35 +201,14 @@
     	<!-- End Info Blokcs -->
 
         <!-- Owl Clients v1 -->
-        <div class="headline"><h2>Our Clients</h2></div>
+        <div class="headline"><h2>Our Teachers</h2></div>
         <div class="owl-clients-v1">
+        	<c:forEach var="teacherList" items="${teacherList}">
             <div class="item">
-                <img src="resources/assets/img/clients4/1.png" alt="">
+                <img src="resources/upload/teacherImg/${teacherList.img}" class="img-responsive hover-effect" alt="" />
             </div>
-            <div class="item">
-                <img src="resources/assets/img/clients4/2.png" alt="">
-            </div>
-            <div class="item">
-                <img src="resources/assets/img/clients4/3.png" alt="">
-            </div>
-            <div class="item">
-                <img src="resources/assets/img/clients4/4.png" alt="">
-            </div>
-            <div class="item">
-                <img src="resources/assets/img/clients4/5.png" alt="">
-            </div>
-            <div class="item">
-                <img src="resources/assets/img/clients4/6.png" alt="">
-            </div>
-            <div class="item">
-                <img src="resources/assets/img/clients4/7.png" alt="">
-            </div>
-            <div class="item">
-                <img src="resources/assets/img/clients4/8.png" alt="">
-            </div>
-            <div class="item">
-                <img src="resources/assets/img/clients4/9.png" alt="">
-            </div>
+            </c:forEach>
+           
         </div>
         <!-- End Owl Clients v1 -->
     </div><!--/container-->

@@ -12,6 +12,7 @@ public interface RegLectService {
 	public List<RegLectVO> getAllOrderList();
 	public List<OrderVO> getOrderList(String member_id);
 	public List<OrderVO> getAllClassList();
+	public List<OrderVO> getBestClassList();
 	public List<MemberClassVO> getMemberClassList(String member_id);
 	public List<MemberClassVO> getTeacherClassList(String teacher_id);
 	public MemberClassVO getMemberClassDetail(MemberClassVO vo);

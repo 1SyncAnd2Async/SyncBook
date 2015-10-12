@@ -75,4 +75,10 @@ public class NoticeServiceImpl implements NoticeService{
 		return list;
 	}
 
+	@Override
+	public List<NoticeVO> getMainNoticeList() {
+		List<NoticeVO> list = noticeDAO.getMainNoticeList();
+		return list;
+	}
+
 }

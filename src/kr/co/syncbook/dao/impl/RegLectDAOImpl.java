@@ -68,4 +68,9 @@ public class RegLectDAOImpl implements RegLectDAO {
 		List<RegLectVO> list = sqlSession.selectList("Order.getAllOrderList");
 		return list;
 	}
+	@Override
+	public List<OrderVO> getBestClassList() {
+		List<OrderVO> list = sqlSession.selectList("Order.getBestClassList");
+		return list;
+	}
 }

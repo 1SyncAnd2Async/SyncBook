@@ -56,7 +56,7 @@ public class TeacherController {
 		System.out.println(teacher);
 		if(teacher != null) {
 			session.setAttribute("teacher", teacher);
-			mav.setViewName("index");
+			mav.setViewName("redirect:index");
 		}
 		else mav.setViewName("loginForm");
 		return mav;
@@ -64,7 +64,7 @@ public class TeacherController {
 	@RequestMapping("/teacherLogout")
 	public String logout(HttpSession session){
 		session.removeAttribute("teacher");
-		return "index";
+		return "redirect:index";
 	}
 	@RequestMapping("/teacherJoin")
 	public ModelAndView join(TeacherVO teacher) {

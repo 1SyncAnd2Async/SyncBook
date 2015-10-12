@@ -169,7 +169,7 @@ public class RegLectController {
 			if (i == 0) {
 				out.print(
 						"<img class=\"img-responsive profile-img margin-bottom-20\" style=\"height:150px;\"src=\"resources/upload/teacherImg/"
-								+ v.getTeacher_img() + "\"><br> <label class=\"label\">�ð�ǥ</label>" + v.getDay()
+								+ v.getTeacher_img() + "\"><br> <label class=\"label\">�ð�ǥ</label>" + v.getDay()
 								+ " : " + "<a href=\"orderForm?assign_num=" + v.getAssign_num() + "\">"
 								+ v.getBegintime() + " ~ " + v.getEndtime() + "</a>&nbsp&nbsp&nbsp&nbsp");
 
