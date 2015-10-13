@@ -19,15 +19,15 @@
     	<!--=== Content ===-->
     	<div class="container content height-500">
         	<!-- Write Your HTML Codes Here -->
-        	<form action="noticeUpdateOk" enctype="multipart/form-data" method="post" class="sky-form">
+        	<form action="qnaUpdateOk" enctype="multipart/form-data" method="post" class="sky-form">
                     <header>공지사항</header>
 
                     <fieldset>
                         <section>
                             <label class="label">제목</label>
                             <label class="input">
-                            	<input type="hidden" name="notice_num" value="${notice.notice_num}">
-                                <input type="text" name="title" value="${notice.title}">
+                            	<input type="hidden" name="qna_num" value="${qna.qna_num}">
+                                <input type="text" name="title" value="${qna.title}">
                             </label>
                         </section>
 
@@ -48,13 +48,13 @@
                         <section>
                             <label class="label">내용</label>
                             <label class="textarea">                         
-                                <textarea rows="30" name="content">${notice.content}</textarea>
+                                <textarea rows="30" name="content">${qna.content}</textarea>
                             </label>
                             <div class="note"><strong>Note:</strong> height of the textarea depends on the rows attribute.</div>
                         </section>      
                     </fieldset>
                     <footer>
-                        <button type="submit" class="btn-u">등록</button>
+                    	<input type="submit" class="btn-u" value="등록">
                         <button type="button" class="btn-u btn-u-default" onclick="window.history.back();">이전</button>
                     </footer>
                     </form>

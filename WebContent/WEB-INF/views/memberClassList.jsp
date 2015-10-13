@@ -29,7 +29,7 @@
                    <div class="col-md-2">
                         <img src="resources/upload/lectureImg/${classList.lect_img}" class="img-responsive hover-effect" alt="" />
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-10" style="width:700px; float:left;">
                     	<c:choose>
                 			<c:when test="${sessionScope.member.id != null}">
                         		<a href="memberClassDetail?reg_num=${classList.reg_num}&id=${sessionScope.member.id}"><h3>${classList.lect_name}</h3></a>
@@ -44,6 +44,7 @@
                              <li><i class="glyphicon glyphicon-time color-green"></i> 시간 : ${classList.beginTime}~${classList.endTime}</li>
                         </ul>
                     </div>
+                    <div style="width:100px;float:right;margin-top:40px;"><button class="btn-u pink" onclick="location.href='reviewForm?lect_num=${classList.lect_num}'">수강 후기</button></div>
                 </div>
                 <hr>
                 </c:forEach>

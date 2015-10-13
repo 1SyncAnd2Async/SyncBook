@@ -19,15 +19,14 @@
     	<!--=== Content ===-->
     	<div class="container content height-500">
         	<!-- Write Your HTML Codes Here -->
-        	<form action="noticeUpdateOk" enctype="multipart/form-data" method="post" class="sky-form">
+        	<form action="qnaWrite" enctype="multipart/form-data" method="post" class="sky-form">
                     <header>공지사항</header>
 
                     <fieldset>
                         <section>
                             <label class="label">제목</label>
                             <label class="input">
-                            	<input type="hidden" name="notice_num" value="${notice.notice_num}">
-                                <input type="text" name="title" value="${notice.title}">
+                                <input type="text" name="title">
                             </label>
                         </section>
 
@@ -48,7 +47,7 @@
                         <section>
                             <label class="label">내용</label>
                             <label class="textarea">                         
-                                <textarea rows="30" name="content">${notice.content}</textarea>
+                                <textarea rows="30" name="content"></textarea>
                             </label>
                             <div class="note"><strong>Note:</strong> height of the textarea depends on the rows attribute.</div>
                         </section>      

@@ -72,70 +72,7 @@
             </c:forEach>
         </div>
     	<!-- End Recent Works -->
-		<!-- Service Blocks -->
-    	<div class="row margin-bottom-30">
-        	<div class="col-md-4">
-        		<div class="service">
-        			<div class="desc">
-        				<h4>공지사항</h4>
-        				 <a style="float:right;"class="btn-more hover-effect" href="noticeList">더보기</a>
-                        <table class="table">
-                            <tr style="border-bottom:">
-                                <th >제목</th>
-                                <th >작성자</th>
-                            </tr>
-                        <c:forEach var="notice" items="${noticeList}">
-                        	<tr>
-                        		<td style="text-overflow:ellipsis;"><a href = "noticeDetail?notice_num=${notice.notice_num}">${notice.title }</a></td>
-                        		<td>${notice.writer }</td>                  		
-                        	</tr>
-                        </c:forEach>
-                    </table>
-        			</div>
-        		</div>
-        	</div>
-        	<div class="col-md-4">
-        		<div class="service">
-        			<div class="desc">
-        				<h4>Q & A</h4>
-        				 <a style="float:right;"class="btn-more hover-effect" href="noticeList">더보기</a>
-                          <table class="table">
-                            <tr>
-                                <th style="width:250px;">제목</th>
-                                <th >작성자</th>
-                            </tr>
-                        <%-- <c:forEach var="QnaList" items="${QnaList}">
-                        	<tr>
-                        		<td style="text-overflow:ellipsis;"><a href = "qnaDetail?qna_num=${QnaList.qna_num}">${QnaList.title }</a></td>
-                        		<td>${QnaList.writer }</td>                  		
-                        	</tr>
-                        </c:forEach> --%>
-                    </table>
-        			</div>
-        		</div>
-        	</div>
-        	<div class="col-md-4">
-        		<div class="service">
-        			<div class="desc">
-        				<h4>수강 후기</h4>
-        				 <a style="float:right;"class="btn-more hover-effect" href="noticeList">더보기</a>
-                         <table class="table">
-                            <tr>
-                                <th style="width:250px;">제목</th>
-                                <th >작성자</th>
-                            </tr>
-                       <%--  <c:forEach var="Review" items="${Review}">
-                        	<tr>
-                        		<td style="text-overflow:ellipsis;"><a href = "reviewDetail?review_num=${Review.review_num}">${Review.title }</a></td>
-                        		<td>${Review.writer }</td>                  		
-                        	</tr>
-                        </c:forEach> --%>
-                    </table>
-        			</div>
-        		</div>
-        	</div>
-    	</div>
-    	<!-- End Service Blokcs -->
+		
     	<!-- Info Blokcs -->
     	<div class="row margin-bottom-30">
         	<!-- Welcome Block -->
@@ -202,7 +139,7 @@
 
         <!-- Owl Clients v1 -->
         <div class="headline"><h2>Our Teachers</h2></div>
-        <div class="owl-clients-v1">
+        <div class="owl-clients-v1" style="margin-bottom:50px;">
         	<c:forEach var="teacherList" items="${teacherList}">
             <div class="item">
                 <img src="resources/upload/teacherImg/${teacherList.img}" class="img-responsive hover-effect" alt="" />
@@ -210,8 +147,73 @@
             </c:forEach>
            
         </div>
+        <!-- Service Blocks -->
+         <div class="headline"><h2>Community</h2></div>
+    	<div class="row margin-bottom-30">
+        	<div class="col-md-4">
+        		<div class="service">
+        			<div class="desc">
+        				<h4>공지사항</h4>
+        				 <a style="float:right;"class="btn-more hover-effect" href="noticeList">더보기</a>
+                        <table class="table">
+                        	<tr>
+                                <th >제목</th>
+                                <th >작성자</th>
+                            </tr>
+                        <c:forEach var="notice" items="${noticeList}">
+                        	<tr>
+                        		<td style="text-overflow:ellipsis;"><a href = "noticeDetail?notice_num=${notice.notice_num}">${notice.title }</a></td>
+                        		<td>${notice.writer }</td>                  		
+                        	</tr>
+                        </c:forEach>
+                    </table>
+        			</div>
+        		</div>
+        	</div>
+        	<div class="col-md-4">
+        		<div class="service">
+        			<div class="desc">
+        				<h4>Q & A</h4>
+        				 <a style="float:right;"class="btn-more hover-effect" href="noticeList">더보기</a>
+                          <table class="table">
+                            <tr>
+                                <th>제목</th>
+                                <th >작성자</th>
+                            </tr>
+                        <c:forEach var="qnaList" items="${qnaList}">
+                        	<tr>
+                        		<td style="text-overflow:ellipsis;"><a href = "qnaDetail?qna_num=${qnaList.qna_num}">${qnaList.title }</a></td>
+                        		<td>${qnaList.writer }</td>                  		
+                        	</tr>
+                        </c:forEach>
+                    </table>
+        			</div>
+        		</div>
+        	</div>
+        	<div class="col-md-4">
+        		<div class="service">
+        			<div class="desc">
+        				<h4>수강 후기</h4>
+        				 <a style="float:right;"class="btn-more hover-effect" href="noticeList">더보기</a>
+                         <table class="table">
+                            <tr>
+                                <th>제목</th>
+                                <th >작성자</th>
+                            </tr>
+                       <%--  <c:forEach var="Review" items="${Review}">
+                        	<tr>
+                        		<td style="text-overflow:ellipsis;"><a href = "reviewDetail?review_num=${Review.review_num}">${Review.title }</a></td>
+                        		<td>${Review.writer }</td>                  		
+                        	</tr>
+                        </c:forEach> --%>
+                    </table>
+        			</div>
+        		</div>
+        	</div>
+    	</div>
+    	<!-- End Service Blokcs -->
         <!-- End Owl Clients v1 -->
-    </div><!--/container-->
+    </div><!--/container-->    
     <!-- End Content Part -->
     </tiles:putAttribute>
 </tiles:insertDefinition>

@@ -186,8 +186,8 @@
                         <ul class="dropdown-menu">
                             <li>
                             	<a href="noticeList">공지사항</a>
-                                <a href="#">교재후기</a>
-                                <a href="#">자유게시판</a>
+                                <a href="reviewList">수강후기</a>
+                                <a href="qnaList">Q & A</a>
                             </li>
                         </ul>
                     </li>

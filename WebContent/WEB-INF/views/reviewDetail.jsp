@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <tiles:insertDefinition name="defaultTemplate">
@@ -7,11 +7,11 @@
     	<!--=== Breadcrumbs ===-->
     	<div class="breadcrumbs">
         	<div class="container">
-            	<h1 class="pull-left">°øÁö»çÇ×</h1>
+            	<h1 class="pull-left">ìˆ˜ê°• í›„ê¸°</h1>
             	<ul class="pull-right breadcrumb">
                 	<li><a href="index">Home</a></li>
-                	<li><a href="noticeList">°øÁö»çÇ×</a></li>
-                	<li class="active">No.${NoticeDetail.notice_num }</li>
+                	<li><a href="reviewList">ìˆ˜ê°• í›„ê¸°</a></li>
+                	<li class="active">No.${reviewDetail.review_num }</li>
             	</ul>
         	</div><!--/container-->
     	</div><!--/breadcrumbs-->
@@ -24,24 +24,19 @@
         			<c:choose>
                 	<c:when test="${sessionScope.member != null && sessionScope.member.id == 'admin'}">
         			 <button class="btn-u"  style="float:right;margin-top:20px;margin-bottom:20px;" 
-        			 onclick="location.href='noticeUpdate?notice_num=${NoticeDetail.notice_num}'">¼öÁ¤</button> 
+        			 onclick="location.href='reviewUpdate?review_num=${reviewDetail.review_num}'">ìˆ˜ì •</button> 
         			 </c:when>
         			 </c:choose>
                     <ul class="list-inline posted-info">
                     	
-                        <li>By ${NoticeDetail.writer}</li>                        
-                        <li>${NoticeDetail.write_date }</li>
-                        <li>Á¶È¸ ¼ö${NoticeDetail.hit }</li>
+                        <li>By ${reviewDetail.writer}</li>                        
+                        <li>${reviewDetail.write_date }</li>
+                        <li>ì¡°íšŒ ìˆ˜${reviewDetail.hit }</li>
                     </ul>
-                    <h2>${NoticeDetail.title}</h2>
-                    <p>${NoticeDetail.content}</p>
+                    <h2>${reviewDetail.title}</h2>
+                    <p>${reviewDetail.content}</p>
                    
             </div>
-            <c:choose>
-            	<c:when test="${NoticeDetail.notice_file != null}" >
-            <div><a href="noticeFileDownload?notice_file=${NoticeDetail.notice_file}">${NoticeDetail.notice_file}</a></div>
-            	</c:when>
-            	</c:choose>
     	</div>
     	<!--=== End Content ===-->
     </tiles:putAttribute>

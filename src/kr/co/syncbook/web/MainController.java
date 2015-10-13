@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.syncbook.biz.NoticeService;
+import kr.co.syncbook.biz.QnaService;
 import kr.co.syncbook.biz.RegLectService;
 import kr.co.syncbook.biz.TeacherService;
 import kr.co.syncbook.vo.NoticeVO;
 import kr.co.syncbook.vo.OrderVO;
+import kr.co.syncbook.vo.QnaVO;
 import kr.co.syncbook.vo.TeacherVO;
 
 @Controller
@@ -23,15 +25,20 @@ public class MainController {
 	RegLectService regLectService;
 	@Autowired
 	TeacherService teacherService;
+	@Autowired
+	QnaService qnaService;
 	
 	@RequestMapping("index")
 	public ModelAndView noticeList(){
 		List<NoticeVO> noticeList = noticeService.getMainNoticeList();
 		List<OrderVO> bestClassList = regLectService.getBestClassList();
 		List<TeacherVO> teacherList = teacherService.getTeacherList();
+		List<QnaVO> qnaList = qnaService.getMainQnaList();
+	
 		System.out.println(bestClassList);
 		System.out.println(teacherList);
 		ModelAndView mv = new ModelAndView("index");
+		mv.addObject("qnaList",qnaList);
 		mv.addObject("noticeList",noticeList);
 		mv.addObject("bestClassList",bestClassList);
 		mv.addObject("teacherList",teacherList);
