@@ -168,6 +168,17 @@ public class NoticeController {
 		mv.addObject("NotciceSearchList",list);
 		return mv;
 	}
+	@RequestMapping("/deleteNotice")
+	public ModelAndView deleteSubject(int notice_num){
+		ModelAndView mav = new ModelAndView();
+		boolean flag = noticeService.noticeDelete(notice_num);
+		if(flag) {
+			mav.setViewName("redirect:noticeList");
+		} else {
+			mav.setViewName("redirect:noticeList");
+		}
+		return mav;
+	}
 	
 
 }

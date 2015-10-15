@@ -27,21 +27,42 @@
         			 onclick="location.href='noticeUpdate?notice_num=${NoticeDetail.notice_num}'">수정</button> 
         			 </c:when>
         			 </c:choose>
-                    <ul class="list-inline posted-info">
+        			  <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th colspan="4" style="border-top:1px solid #ddd;"><h2>${NoticeDetail.title}</h2></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>	
+                                    	<td style="width:750px;"></td>
+                                        <td>By ${NoticeDetail.writer}</td>      
+                                        <td>${NoticeDetail.write_date }</td> 
+                                        <td>조회수 ${NoticeDetail.hit }</td>                                 
+                                    </tr>
+                                    <tr  style="height:550px;">
+                                        <td colspan="4">${NoticeDetail.content}</td>                                       
+                                    </tr>  
+                                    <tr><td colspan="4">
+                                    	 <c:choose>
+							            	<c:when test="${NoticeDetail.notice_file != null}" >
+							            		<div><a href="noticeFileDownload?notice_file=${NoticeDetail.notice_file}">${NoticeDetail.notice_file}</a></div>
+							            	</c:when>
+							        	</c:choose></td>
+                                    </tr>                                 
+                                </tbody>
+                            </table>
+                    <%-- <ul class="list-inline posted-info">
                     	
-                        <li>By ${NoticeDetail.writer}</li>                        
+                        <li></li>                        
                         <li>${NoticeDetail.write_date }</li>
                         <li>조회 수${NoticeDetail.hit }</li>
                     </ul>
-                    <h2>${NoticeDetail.title}</h2>
-                    <p>${NoticeDetail.content}</p>
+                    <h2></h2>
+                    <p>${NoticeDetail.content}</p> --%>
                    
             </div>
-            <c:choose>
-            	<c:when test="${NoticeDetail.notice_file != null}" >
-            <div><a href="noticeFileDownload?notice_file=${NoticeDetail.notice_file}">${NoticeDetail.notice_file}</a></div>
-            	</c:when>
-            	</c:choose>
+           
     	</div>
     	<!--=== End Content ===-->
     </tiles:putAttribute>

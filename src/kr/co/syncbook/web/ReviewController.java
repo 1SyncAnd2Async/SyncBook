@@ -3,6 +3,7 @@ package kr.co.syncbook.web;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,35 +43,40 @@ public class ReviewController {
 		return mv;
 	}
 	@RequestMapping("reviewUpdate")
-	public ModelAndView updateForm(int review_num){
+	public ModelAndView updateForm(int review_num, int lect_num){
 		ReviewVO review =  reviewService.getReview(review_num);
+		LectureVO lecture = lectureService.getLecture(lect_num);
 		ModelAndView mv = new ModelAndView("reviewUpdate");
 		mv.addObject("review",review);
+		mv.addObject("lecture", lecture);
 		return mv;
 	}
 	@RequestMapping("reviewUpdateOk")
-	public String ReviewUpdateOk(@ModelAttribute ReviewVO vo, HttpServletRequest request){		
-		
+	public ModelAndView ReviewUpdateOk(@ModelAttribute ReviewVO vo){		
+		ModelAndView mav = new ModelAndView();
 		boolean flag=reviewService.reviewUpdate(vo);
 		if(flag){
 			System.out.println("Review Insert");
-			return "redirect:reviewList";
+			mav.setViewName("redirect:reviewList");
 		}else{
 			System.out.println("Review Insert Fail");
-			return "redirect:index";
+			mav.setViewName("redirect:index");
 		}
+		return mav;
 	}
 	@RequestMapping("reviewWrite")
-	public String write(@ModelAttribute ReviewVO vo, HttpServletRequest request){		
-		
+	public ModelAndView write(@ModelAttribute ReviewVO vo){		
+		System.out.println(vo);
+		ModelAndView mav = new ModelAndView();
 		boolean flag=reviewService.reviewUpload(vo);
 		if(flag){
 			System.out.println("Review Insert");
-			return "redirect:reviewList";
+			mav.setViewName("redirect:reviewList");
 		}else{
 			System.out.println("Review Insert Fail");
-			return "redirect:index";
+			mav.setViewName("redirect:index");
 		}
+		return mav;
 	}
 	
 	
@@ -95,6 +101,16 @@ public class ReviewController {
 		mv.addObject("reviewSearchList",list);
 		return mv;
 	}
-	
+	@RequestMapping("/reviewDelete")
+	public ModelAndView deleteSubject(int review_num){
+		ModelAndView mav = new ModelAndView();
+		boolean flag = reviewService.reviewDelete(review_num);
+		if(flag) {
+			mav.setViewName("redirect:reviewList");
+		} else {
+			mav.setViewName("redirect:reviewList");
+		}
+		return mav;
+	}
 
 }

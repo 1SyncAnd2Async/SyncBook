@@ -18,6 +18,7 @@
     	<!--=== End Breadcrumbs ===-->
     	
     	<!--=== Content ===-->
+    	
     	<div class="container content">
     	<div class="row">
         	<div class="col-md-12">
@@ -119,7 +120,7 @@
             <!-- End Pagination -->
             </div><!--/col-md-9-->
         </div><!--/row-->
-    </div><!--/container-->
+    </div></div><!--/container-->
     <!--=== End Content Part ===-->
     	<!--=== End Content ===-->
     </tiles:putAttribute>

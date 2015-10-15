@@ -48,7 +48,16 @@
                         		<td><a href = "noticeDetail?notice_num=${notice.notice_num}">${notice.title }</a></td>
                         		<td>${notice.writer }</td>
                         		<td>${notice.write_date }</td>
-                        		<td>${notice.hit }</td>                        		
+                        		<td>${notice.hit }</td> 
+                        		<c:choose>
+                				<c:when test="${sessionScope.member != null && sessionScope.member.id == 'admin'}">
+                        		<td>
+									<button class="btn btn-danger btn-xs" onclick="location.href='deleteNotice?notice_num='+${notice.notice_num}">
+										<i class="fa fa-trash-o"></i>ªË¡¶
+									</button>
+								</td>  
+								</c:when>
+								</c:choose>                     		
                         	</tr>
                         </c:forEach>
                         </tbody>

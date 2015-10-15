@@ -48,7 +48,16 @@
                         		<td><a href = "reviewDetail?review_num=${reviewList.review_num}">${reviewList.title }</a></td>
                         		<td>${reviewList.writer }</td>
                         		<td>${reviewList.write_date }</td>
-                        		<td>${reviewList.hit }</td>                        		
+                        		<td>${reviewList.hit }</td>    
+                        		<c:choose>
+                				<c:when test="${sessionScope.member != null && sessionScope.member.id == 'admin'}">
+                        		<td>
+									<button class="btn btn-danger btn-xs" onclick="location.href='reviewDelete?review_num='+${reviewList.review_num}">
+										<i class="fa fa-trash-o"></i>ªË¡¶
+									</button>
+								</td>  
+								</c:when>
+								</c:choose>                      		
                         	</tr>
                         </c:forEach>
                         </tbody>

@@ -200,7 +200,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="#">FAQ</a>
+                                <a href="faqList">FAQ</a>
                                 <a href="#">자료실</a>
                                 <a href="#">고객문의</a>
                                 <a href="#">이용안내</a>
@@ -226,4 +226,5 @@
             </div><!--/end container-->
         </div><!--/navbar-collapse-->
     </div>
+    <div class="bg-image-v2 parallaxBg1">
     <!--=== End Header ===-->

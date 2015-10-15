@@ -7,7 +7,7 @@
     	<!--=== Slider ===-->
     <div class="slider-inner">
         <div id="da-slider" class="da-slider">
-            <div class="da-slide">
+            <!-- <div class="da-slide">
                 <h2><i>CLEAN &amp; FRESH</i> <br /> <i>FULLY RESPONSIVE</i> <br /> <i>DESIGN</i></h2>
                 <p><i>Lorem ipsum dolor amet</i> <br /> <i>tempor incididunt ut</i> <br /> <i>veniam omnis </i></p>
                 <div class="da-img"><img class="img-responsive" src="resources/assets/plugins/parallax-slider/img/1.png" alt=""></div>
@@ -27,7 +27,7 @@
             <div class="da-arrows">
                 <span class="da-arrows-prev"></span>
                 <span class="da-arrows-next"></span>
-            </div>
+            </div> -->
         </div>
     </div><!--/slider-->
     <!--=== End Slider ===-->
@@ -50,7 +50,7 @@
 
     <!--=== Content Part ===-->
     <div class="container content-sm">
-
+		
     	<!-- Recent Works -->
         <div class="headline"><h2>인기 강의</h2></div>
         <div class="row margin-bottom-20">
@@ -65,7 +65,7 @@
                     </div>
                     <div class="caption">
                         <h3><a class="hover-effect" href="classDetail?lect_num=${bestClassList.lect_num}">${bestClassList.lect_name}</a></h3>
-                        <p>${bestClassList.explanation}</p>
+                        <div style="overflow:hidden; text-overflow:ellipsis; word-break: break-word; -webkit-line-clamp: 3; display: -webkit-box; -webkit-box-orient: vertical;">${bestClassList.explanation}</div>
                     </div>
                 </div>
             </div>
@@ -80,22 +80,25 @@
     			<div class="headline"><h2>Best수강후기</h2></div>
                 <div class="row">
                     <div class="col-sm-4">
-                        <img class="img-responsive margin-bottom-20" src="resources/assets/img/main/img18.jpg" alt="">
+                        <img class="img-responsive margin-bottom-20" src="resources/upload/memberImg/${bestReview.img}" alt="">
                     </div>
                     <div class="col-sm-8">
-                        <p>Unify is an incredibly beautiful responsive Bootstrap Template for corporate and creative professionals. It works on all major web browsers, tablets and phone.</p>
+                     	<p style="overflow:hidden; text-overflow:ellipsis; word-break: break-word; -webkit-line-clamp:1; 
+                     	display: -webkit-box; -webkit-box-orient: vertical;">${bestReview.title}</p>
+                     	<div style="overflow:hidden; text-overflow:ellipsis; word-break: break-word; -webkit-line-clamp: 6; 
+                     	display: -webkit-box; -webkit-box-orient: vertical;">
+                        ${bestReview.content}                        
+                        </div>
+                        <br>
                         <ul class="list-unstyled margin-bottom-20">
-                            <li><i class="fa fa-check color-green"></i> Donec id elit non mi porta gravida</li>
-                            <li><i class="fa fa-check color-green"></i> Corporate and Creative</li>
-                            <li><i class="fa fa-check color-green"></i> Responsive Bootstrap Template</li>
-                            <li><i class="fa fa-check color-green"></i> Corporate and Creative</li>
+                            <li><i class="fa fa-check color-green"></i>수업명 : <a href="classDetail?lect_num=${bestReview.lect_num}">${bestReview.lect_name}</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <blockquote class="hero-unify">
-                    <p>Award winning digital agency. We bring a personal and effective approach to every project we work on, which is why. Unify is an incredibly beautiful responsive Bootstrap Template for corporate professionals.</p>
-                    <small>CEO, Jack Bour</small>
+                   
+                    <small>${bestReview.writer}&nbsp;&nbsp;&nbsp;${bestReview.write_date}</small>
                 </blockquote>
             </div><!--/col-md-8-->
 
@@ -162,7 +165,9 @@
                             </tr>
                         <c:forEach var="notice" items="${noticeList}">
                         	<tr>
-                        		<td style="text-overflow:ellipsis;"><a href = "noticeDetail?notice_num=${notice.notice_num}">${notice.title }</a></td>
+                        		<td style="overflow:hidden; text-overflow:ellipsis; 
+                        		word-break: break-word; -webkit-line-clamp: 1; display: -webkit-box;
+                        		 -webkit-box-orient: vertical; width:233px; height:30px;"><a href = "noticeDetail?notice_num=${notice.notice_num}">${notice.title }</a></td>
                         		<td>${notice.writer }</td>                  		
                         	</tr>
                         </c:forEach>
@@ -182,7 +187,9 @@
                             </tr>
                         <c:forEach var="qnaList" items="${qnaList}">
                         	<tr>
-                        		<td style="text-overflow:ellipsis;"><a href = "qnaDetail?qna_num=${qnaList.qna_num}">${qnaList.title }</a></td>
+                        		<td style="overflow:hidden; text-overflow:ellipsis; 
+                        		word-break: break-word; -webkit-line-clamp: 1; display: -webkit-box;
+                        		 -webkit-box-orient: vertical; width:233px; height:30px;"><a href = "qnaDetail?qna_num=${qnaList.qna_num}">${qnaList.title }</a></td>
                         		<td>${qnaList.writer }</td>                  		
                         	</tr>
                         </c:forEach>
@@ -193,19 +200,21 @@
         	<div class="col-md-4">
         		<div class="service">
         			<div class="desc">
-        				<h4>수강 후기</h4>
-        				 <a style="float:right;"class="btn-more hover-effect" href="noticeList">더보기</a>
+        				<h4>FAQ</h4>
+        				 <a style="float:right;"class="btn-more hover-effect" href="faqList">더보기</a>
                          <table class="table">
                             <tr>
                                 <th>제목</th>
                                 <th >작성자</th>
                             </tr>
-                       <%--  <c:forEach var="Review" items="${Review}">
+                       <c:forEach var="faqList" items="${faqList}">
                         	<tr>
-                        		<td style="text-overflow:ellipsis;"><a href = "reviewDetail?review_num=${Review.review_num}">${Review.title }</a></td>
-                        		<td>${Review.writer }</td>                  		
+                        		<td style="overflow:hidden; text-overflow:ellipsis; 
+                        		word-break: break-word; -webkit-line-clamp: 1; display: -webkit-box;
+                        		 -webkit-box-orient: vertical; width:233px; height:30px;"><a href = "faqDetail?faq_num=${faqList.faq_num}">${faqList.title }</a></td>
+                        		<td>${faqList.writer}</td>                  		
                         	</tr>
-                        </c:forEach> --%>
+                        </c:forEach>
                     </table>
         			</div>
         		</div>

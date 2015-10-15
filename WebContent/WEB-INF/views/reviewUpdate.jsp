@@ -32,17 +32,11 @@
                         </section>
 
                         <section>
-                            <label class="label">수업명</label>
-                            <label for="file" class="input input-file">
-                                <div class="button"><input type="file" id="upfile" name="upfile" onchange="this.parentNode.nextSibling.value = this.value">Browse</div><input type="text" readonly>
-                            </label>
+                            <label class="label">수업명 : ${lecture.lect_name}</label>
                         </section>
 
                         <section>
-                            <label class="label">글쓴이 : </label>  
-                            <label class="input">
-                                <input type="hidden" name="writer" value="">
-                            </label>          
+                            <label class="label">글쓴이 : ${review.writer}</label>        
                         </section>
                     
                         <section>

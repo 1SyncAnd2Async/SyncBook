@@ -37,6 +37,17 @@ public class QnaController {
 	public String writeForm(){
 		return "qnaForm";
 	}
+	@RequestMapping("/qnaDelete")
+	public ModelAndView deleteSubject(int qna_num){
+		ModelAndView mav = new ModelAndView();
+		boolean flag = QnaService.qnaDelete(qna_num);
+		if(flag) {
+			mav.setViewName("redirect:qnaList");
+		} else {
+			mav.setViewName("redirect:qnaList");
+		}
+		return mav;
+	}
 	@RequestMapping("qnaUpdate")
 	public ModelAndView updateForm(int qna_num){
 		QnaVO qna =  QnaService.getQna(qna_num);

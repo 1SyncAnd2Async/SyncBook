@@ -38,9 +38,9 @@
                         </section>
 
                         <section>
-                            <label class="label">글쓴이 : 관리자</label>  
+                            <label class="label">글쓴이 : ${sessionScope.member.name}</label>  
                             <label class="input">
-                                <input type="hidden" name="writer" value="관리자">
+                                <input type="hidden" name="writer" value="${sessionScope.member.id}">
                             </label>          
                         </section>
                     
