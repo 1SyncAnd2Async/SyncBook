@@ -80,7 +80,7 @@ public class PostNewTarget implements TargetStatusListener {
 		requestBody.put("width", 320.0); // Mandatory
 		requestBody.put("image", Base64.encodeBase64String(image)); // Mandatory
 		requestBody.put("active_flag", 1); // Optional
-		requestBody.put("application_metadata", Base64.encodeBase64String(application_metadata.getBytes())); // Optional
+		requestBody.put("application_metadata", Base64.encodeBase64String(application_metadata.getBytes())+"json"); // Optional
 	}
 	
 	private void setHeaders(HttpUriRequest request) {
