@@ -45,40 +45,40 @@ public class RegLectController {
 	@RequestMapping("/classListForm")
 	public ModelAndView lectureListForm(int page) {
 		PageVO pageInfo = new PageVO();
-		int rowsPerPage = 5; // ÇÑ ÆäÀÌÁö´ç º¸¿©ÁÙ ¸ñ·Ï ¼ö - properties
-		int pagesPerBlock = 3; // ÇÑ ºí·Ï´ç º¸¿©ÁÙ ÆäÀÌÁö ¼ö - properties
+		int rowsPerPage = 5; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ - properties
+		int pagesPerBlock = 3; // ï¿½ï¿½ ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ - properties
 		if (page == 0)
-			page = 1; // ÆäÀÌÁö ÃÊ±âÈ­
-		int currentPage = page; // ÇöÀç ÆäÀÌÁö °ª
-		int currentBlock = 0; // ÇöÀç ºí·Ï ÃÊ±âÈ­
-		if (currentPage % pagesPerBlock == 0) { // ÇöÀç ºí·Ï ÃÊ±â °ª
+			page = 1; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
+		int currentPage = page; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		int currentBlock = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
+		if (currentPage % pagesPerBlock == 0) { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½ ï¿½ï¿½
 			currentBlock = currentPage / pagesPerBlock;
-		} else { // ´ÙÀ½ ºí·ÏÀÌ³Ä
+		} else { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
 			currentBlock = currentPage / pagesPerBlock + 1;
 		}
-		int startRow = (currentPage - 1) * rowsPerPage; // ½ÃÀÛ ¸ñ·Ï °ª ¿¬»ê
-		int endRow = currentPage * rowsPerPage-1; // ¸¶Áö¸· ¸ñ·Ï °ª ¿¬»ê    
-		// SearchVO¿¡ ÀúÀå
+		int startRow = (currentPage - 1) * rowsPerPage; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		int endRow = currentPage * rowsPerPage-1; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½    
+		// SearchVOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		// SearchVO svo = new SearchVO();
 		// svo.setBegin(String.valueOf(startRow));
 		// svo.setEnd(String.valueOf(endRow));
-		// ÀüÃ¼ µ¥ÀÌÅÍ °ª
+		// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 		int totalRows = lectureService.getTotalCount();
-		// ÀüÃ¼ ÆäÀÌÁö ±¸ÇÏ´Â °ø½Ä
+		// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
 		int totalPages = 0;
 		if (totalRows % rowsPerPage == 0) {
 			totalPages = totalRows / rowsPerPage;
 		} else {
 			totalPages = totalRows / rowsPerPage + 1;
 		}
-		// ÀüÃ¼ ºí·Ï °ªÀ» ±¸ÇÏ´Â °ø½Ä
+		// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
 		int totalBlocks = 0;
 		if (totalPages % pagesPerBlock == 0) {
 			totalBlocks = totalPages / pagesPerBlock;
 		} else {
 			totalBlocks = totalPages / pagesPerBlock + 1;
 		}
-		// ¸ðµç ¿¬»êµÈ Á¤º¸¸¦ PageVO¿¡ ÀúÀåÇÑ´Ù.
+		// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ PageVOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 		pageInfo.setCurrentPage(currentPage);
 		pageInfo.setCurrentBlock(currentBlock);
 		pageInfo.setRowsPerPage(rowsPerPage);
@@ -169,7 +169,7 @@ public class RegLectController {
 			if (i == 0) {
 				out.print(
 						"<img class=\"img-responsive profile-img margin-bottom-20\" style=\"height:150px;\"src=\"resources/upload/teacherImg/"
-								+ v.getTeacher_img() + "\"><br> <label class=\"label\">½Ã°£Ç¥</label>" + v.getDay()
+								+ v.getTeacher_img() + "\"><br> <label class=\"label\">ï¿½Ã°ï¿½Ç¥</label>" + v.getDay()
 								+ " : " + "<a href=\"orderForm?assign_num=" + v.getAssign_num() + "\">"
 								+ v.getBegintime() + " ~ " + v.getEndtime() + "</a>&nbsp&nbsp&nbsp&nbsp");
 
@@ -227,17 +227,10 @@ public class RegLectController {
 		System.out.println(member_id);
 
 		System.out.println(memberClassList);
-<<<<<<< HEAD
-		
-		for(MemberClassVO v : memberClassList) {
-			String fullPath = "http://117.17.143.126/BitProject/resources/upload/lectureImg/"+v.getLect_img();
-			if(memberClassList != null)	{
-=======
 
 		for (MemberClassVO v : memberClassList) {
 			String fullPath = "http://117.17.143.125/BitProject/resources/upload/lectureImg/" + v.getLect_img();
 			if (memberClassList != null) {
->>>>>>> 5ddd188628da8096bc1cb6969fa9f563a8d91213
 				JSONObject jsonObject = new JSONObject();
 
 				jsonObject.put("lect_img", fullPath);
