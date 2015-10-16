@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@page import="kr.co.syncbook.vo.QnaVO"%>
+<%@page import="kr.co.syncbook.vo.FaqVO"%>
 <%@page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
@@ -9,11 +9,11 @@
     	<!--=== Breadcrumbs ===-->
     	<div class="breadcrumbs">
         	<div class="container">
-        		<div class="col-md-12 md-margin-bottom-40">
-            	<h1 class="pull-left">Q&A</h1>
+        	<div class="col-md-12 md-margin-bottom-40">
+            	<h1 class="pull-left">FAQ</h1>
             	<ul class="pull-right breadcrumb">
                 	<li><a href="index">Home</a></li>
-                	<li class="active">Q&A</li>
+                	<li class="active">FAQ</li>
             	</ul>
             	</div>
         	</div><!--/container-->
@@ -35,31 +35,31 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="qnaList" items="${qnaList}">
+                        <c:forEach var="faqList" items="${faqList}">
                         	<tr>
-                        		<td>${qnaList.qna_num }</td>
-                        		<td><a href = "qnaDetail?qna_num=${qnaList.qna_num}">${qnaList.title }</a></td>
-                        		<td>${qnaList.writer }</td>
-                        		<td>${qnaList.write_date }</td>
-                        		<td>${qnaList.hit }</td>  
+                        		<td>${faqList.faq_num }</td>
+                        		<td><a href = "faqDetail?faq_num=${faqList.faq_num}">${faqList.title }</a></td>
+                        		<td>${faqList.writer }</td>
+                        		<td>${faqList.write_date }</td>
+                        		<td>${faqList.hit }</td>  
                         		<c:choose>
                 				<c:when test="${sessionScope.member != null && sessionScope.member.id == 'admin'}">
                         		<td>
-									<button class="btn btn-danger btn-xs" onclick="location.href='qnaDelete?qna_num='+${qnaList.qna_num}">
+									<button class="btn btn-danger btn-xs" onclick="location.href='faqDelete?faq_num='+${faqList.faq_num}">
 										<i class="fa fa-trash-o"></i>삭제
 									</button>
 								</td>  
 								</c:when>
-								</c:choose>                         		
+								</c:choose>                        		
                         	</tr>
                         </c:forEach>
                         </tbody>
                     </table>
                     <div style="float:right;">
-                    <form action="qnaSearchList" method="post" id="search"> 
+                    <form action="faqSearchList" method="post" id="search"> 
 	                    	
 	                    				<select name="searchKind">
-		                                    <option value="qna_num">글번호</option>
+		                                    <option value="faq_num">글번호</option>
 		                                    <option value="title">제목</option>
 		                                    <option value="writer">글쓴이</option>
 		                                </select>  
@@ -69,10 +69,10 @@
 	                           <button class="btn-u" type="submit" >Go</button>	                         
                         </form>
                         <c:choose>
-	                	<c:when test="${sessionScope.member != null}">
-	                      <button class="btn-u"  style="float:right;margin-top:20px;margin-bottom:20px;" onclick="location.href='qnaForm'">글쓰기</button>   
-	                    </c:when>
-	                    </c:choose>    
+                	<c:when test="${sessionScope.member != null && sessionScope.member.id == 'admin'}">
+                      <button class="btn-u"  style="float:right;margin-top:20px;margin-bottom:20px;" onclick="location.href='faqForm'">글쓰기</button>   
+                    </c:when>
+                    </c:choose>    
                         </div>
                         </div>
                         </div>

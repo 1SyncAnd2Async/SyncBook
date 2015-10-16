@@ -7,12 +7,15 @@
     	<!--=== Breadcrumbs ===-->
     	<div class="breadcrumbs">
         	<div class="container">
+        	<div class="col-md-12 md-margin-bottom-40">
+        	
             	<h1 class="pull-left">학습신청</h1>
             	<ul class="pull-right breadcrumb">
                 	<li><a href="index">Home</a></li>
                 	<li><a href="#">학습</a></li>
                 	<li class="active">학습신청</li>
             	</ul>
+            	</div>
         	</div><!--/container-->
     	</div><!--/breadcrumbs-->
     	<!--=== End Breadcrumbs ===-->
@@ -20,6 +23,8 @@
     	<!--=== Content ===-->
     	
     	<div class="container content">
+    	 <div class="col-md-12 md-margin-bottom-40">
+    	
     	<div class="row">
         	<div class="col-md-12">
             	<div class="headline"><h2>학습 신청</h2></div>
@@ -120,7 +125,7 @@
             <!-- End Pagination -->
             </div><!--/col-md-9-->
         </div><!--/row-->
-    </div></div><!--/container-->
+    </div></div></div><!--/container-->
     <!--=== End Content Part ===-->
     	<!--=== End Content ===-->
     </tiles:putAttribute>

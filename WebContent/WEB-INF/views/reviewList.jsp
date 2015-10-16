@@ -9,28 +9,21 @@
     	<!--=== Breadcrumbs ===-->
     	<div class="breadcrumbs">
         	<div class="container">
+        	<div class="col-md-12 md-margin-bottom-40">
             	<h1 class="pull-left">수강후기</h1>
             	<ul class="pull-right breadcrumb">
                 	<li><a href="index">Home</a></li>
-                	<li class="active">수강후기</li>
+                	<li class="active">수강후기</li>                	
             	</ul>
+            	</div>
         	</div><!--/container-->
     	</div><!--/breadcrumbs-->
     	<!--=== End Breadcrumbs ===-->
     	
     	<!--=== Content ===-->
     	<div class="container content">
+    	<div class="col-md-12 md-margin-bottom-40">
 		<div class="row">
-    	<div class="panel panel-green margin-bottom-40">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-tasks"></i>수강후기</h3>
-                    </div>
-                  	<c:choose>
-                	<c:when test="${sessionScope.member != null && sessionScope.member.id == 'admin'}">
-                      <button class="btn-u"  style="float:right;margin-top:20px;margin-bottom:20px;" onclick="location.href='reviewForm'">글쓰기</button>   
-                    </c:when>
-                    </c:choose>
-                    </div>
                     <table class="table">
                         <thead>
                             <tr>
@@ -62,7 +55,7 @@
                         </c:forEach>
                         </tbody>
                     </table>
-                    <div style="margin:0 auto; margin-bottom:30px; width:600px;">
+                    <div style="float:right;">
                     <form action="reviewSearchList" method="post" id="search"> 
 	                    	
 	                    				<select name="searchKind">
@@ -75,7 +68,12 @@
 	                           
 	                           <button class="btn-u" type="submit" >Go</button>	                         
                         </form>
-                            
+                        <c:choose>
+	                	<c:when test="${sessionScope.member != null && sessionScope.member.id == 'admin'}">
+	                      <button class="btn-u"  style="float:right;margin-top:20px;margin-bottom:20px;" onclick="location.href='reviewForm'">글쓰기</button>   
+	                    </c:when>
+	                    </c:choose>   
+                        </div>
                         </div>
                         </div>
                         </div>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Faq">
+
+	<resultMap type="Faq" id="FaqResultMap">
+		<result column="faq_num" property="faq_num"/>
+		<result column="title" property="title"/>
+		<result column="content" property="content"/>
+		<result column="writer" property="writer"/>
+		<result column="write_date" property="write_date"/>
+		<result column="hit" property="hit"/>
+	</resultMap>
+
+	<select id="getFaq" resultMap="FaqResultMap" parameterType="java.lang.Integer">
+		<![CDATA[
+				SELECT FAQ_NUM, TITLE, CONTENT, WRITER, WRITE_DATE, HIT
+				FROM FAQ
+				WHERE FAQ_NUM = #{faq_num}
+		]]>
+	</select>
+	
+	<select id="getFaqList" resultType="Faq">
+		<![CDATA[
+			SELECT FAQ_NUM, TITLE, CONTENT, WRITER, WRITE_DATE, HIT
+			FROM FAQ
+		]]>
+	</select>
+	
+	<select id="getMainFaqList" resultType="Faq">
+		<![CDATA[
+			SELECT ROWNUM, FAQ_NUM, TITLE, CONTENT, WRITER, WRITE_DATE, HIT
+			FROM FAQ
+		    WHERE ROWNUM <= 3
+		    ORDER BY FAQ_NUM DESC
+		]]>
+	</select>
+	
+	<select id="getFaqSearchList" resultType="Faq">
+		<![CDATA[
+		
+			SELECT FAQ_NUM, TITLE, CONTENT, WRITER, WRITE_DATE, HIT
+			FROM FAQ
+			WHERE #{searchKind} LIKE '%'||#{searchValue}||'%'
+		]]>
+	</select>
+	<insert id="addFaq" parameterType="Faq">
+		<![CDATA[
+			INSERT INTO FAQ (FAQ_NUM, TITLE, CONTENT, WRITER, WRITE_DATE)
+			VALUES(FAQ_SEQ.NEXTVAL, #{title}, #{content}, #{writer}, SYSDATE)
+		]]>
+	</insert>
+	<update id="updateFaq" parameterType="Faq">
+		<![CDATA[
+			UPDATE FAQ SET TITLE = #{title}, CONTENT = #{content},
+			WRITE_DATE = SYSDATE
+			WHERE  FAQ_NUM = #{faq_num}			
+		]]>
+	</update>
+	<update id="updateFaqHit" parameterType="java.lang.Integer">
+		<![CDATA[
+			UPDATE FAQ SET Hit = Hit+1 WHERE  FAQ_NUM = #{faq_num}			
+		]]>
+	</update>
+	<delete id="deleteFaq"  parameterType="java.lang.Integer">
+		<![CDATA[
+			DELETE FAQ WHERE FAQ_NUM = #{faq_num}			
+		]]>
+	</delete>
+</mapper>
