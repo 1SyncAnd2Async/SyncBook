@@ -28,6 +28,16 @@
 			FROM NOTICE
 		]]>
 	</select>
+	
+	<select id="getMainNoticeList" resultType="Notice">
+		<![CDATA[
+			SELECT ROWNUM, NOTICE_NUM, TITLE, CONTENT, WRITER, WRITE_DATE, HIT, NOTICE_FILE
+			FROM NOTICE
+		    WHERE ROWNUM <= 3
+		    ORDER BY NOTICE_NUM DESC
+		]]>
+	</select>
+	
 	<select id="getNoticeSearchList" resultType="Notice">
 		<![CDATA[
 		

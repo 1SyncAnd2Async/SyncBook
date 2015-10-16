@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Review">
+
+
+	<select id="getReview" resultType="Review" parameterType="java.lang.Integer">
+		<![CDATA[
+			SELECT R.REVIEW_NUM, R.LECT_NUM, L.LECT_NAME, R.TITLE, R.CONTENT,  M.NAME WRITER, M.ID WRITER_ID,R.WRITE_DATE, R.HIT
+			FROM REVIEW R, MEMBER M, LECTURE L
+			WHERE R.WRITER = M.ID
+			AND R.LECT_NUM = L.LECT_NUM
+			AND R.REVIEW_NUM = #{review_num}
+		]]>
+	</select>
+	
+	<select id="getReviewList" resultType="Review">
+		<![CDATA[
+			SELECT R.REVIEW_NUM, R.LECT_NUM, R.TITLE, R.CONTENT,  M.NAME WRITER, M.ID WRITER_ID,R.WRITE_DATE, R.HIT
+			FROM REVIEW R, MEMBER M
+			WHERE R.WRITER = M.ID
+		]]>
+	</select>
+	
+	<select id="getBestReview" resultType="Review">
+		<![CDATA[
+			SELECT R.REVIEW_NUM, R.LECT_NUM, L.LECT_NAME, R.TITLE, R.CONTENT, M.NAME WRITER, R. WRITE_DATE, M.IMG
+			FROM REVIEW R, MEMBER M, LECTURE L
+		    WHERE R.WRITER = M.ID
+		    AND R.LECT_NUM = L.LECT_NUM
+		    AND HIT = (SELECT MAX(HIT) FROM REVIEW)
+		]]>
+	</select>
+	
+	<select id="getReviewSearchList" resultType="Review">
+		<![CDATA[
+		
+			SELECT REVIEW_NUM, LECT_NUM, TITLE, CONTENT, WRITER, WRITE_DATE, HIT
+			FROM REVIEW
+			WHERE #{searchKind} LIKE '%'||#{searchValue}||'%'
+		]]>
+	</select>
+	<insert id="addReview" parameterType="Review">
+		<![CDATA[
+			INSERT INTO REVIEW (REVIEW_NUM, LECT_NUM, TITLE, CONTENT, WRITER, WRITE_DATE)
+			VALUES(REVIEW_SEQ.NEXTVAL, #{lect_num}, #{title}, #{content}, #{writer}, SYSDATE)
+		]]>
+	</insert>
+	<update id="updateReview" parameterType="Review">
+		<![CDATA[
+			UPDATE REVIEW SET TITLE = #{title}, CONTENT = #{content},
+			WRITE_DATE = SYSDATE WHERE  REVIEW_NUM = #{review_num}			
+		]]>
+	</update>
+	<update id="updateReviewHit" parameterType="java.lang.Integer">
+		<![CDATA[
+			UPDATE REVIEW SET Hit = Hit+1 WHERE  REVIEW_NUM = #{review_num}			
+		]]>
+	</update>
+	<delete id="deleteReview"  parameterType="java.lang.Integer">
+		<![CDATA[
+			DELETE REVIEW WHERE REVIEW_NUM = #{review_num}			
+		]]>
+	</delete>
+</mapper>

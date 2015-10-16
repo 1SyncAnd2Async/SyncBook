@@ -49,6 +49,34 @@ public class NoticeController {
 	public String writeForm(){
 		return "noticeForm";
 	}
+	@RequestMapping("noticeUpdate")
+	public ModelAndView updateForm(int notice_num){
+		NoticeVO notice =  noticeService.getNotice(notice_num);
+		ModelAndView mv = new ModelAndView("noticeUpdate");
+		mv.addObject("notice",notice);
+		return mv;
+	}
+	@RequestMapping("noticeUpdateOk")
+	public String noticeUpdateOk(@ModelAttribute NoticeVO vo, HttpServletRequest request){		
+		String path = request.getRealPath("/resources/upload/notice");
+		String upPath = path+"\\"+vo.getUpfile().getOriginalFilename();
+		File f = new File(upPath);
+		try {
+			vo.getUpfile().transferTo(f);
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		vo.setNotice_file(vo.getUpfile().getOriginalFilename());
+		
+		boolean flag=noticeService.noticeUpdate(vo);
+		if(flag){
+			System.out.println("Notice Insert");
+			return "redirect:noticeList";
+		}else{
+			System.out.println("Notice Insert Fail");
+			return "redirect:index";
+		}
+	}
 	@RequestMapping("noticeWrite")
 	public String write(@ModelAttribute NoticeVO vo, HttpServletRequest request){		
 		String path = request.getRealPath("/resources/upload/notice");
@@ -75,40 +103,7 @@ public class NoticeController {
 	
 	@RequestMapping("noticeDetail")
 	public ModelAndView noticeDetail(int notice_num){
-		String myCodeText = String.valueOf(notice_num);
-        String filePath = "C:/SyncBook/image/"+myCodeText+".png";
-        int size = 125;
-        String fileType = "png";
-        File myFile = new File(filePath);
-        try {
-            Hashtable<EncodeHintType, ErrorCorrectionLevel> hintMap = new Hashtable<EncodeHintType, ErrorCorrectionLevel>();
-            hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
-            QRCodeWriter qrCodeWriter = new QRCodeWriter();
-            BitMatrix byteMatrix = qrCodeWriter.encode(myCodeText,BarcodeFormat.QR_CODE, size, size, hintMap);
-            int CrunchifyWidth = byteMatrix.getWidth();
-            BufferedImage image = new BufferedImage(CrunchifyWidth, CrunchifyWidth,
-                    BufferedImage.TYPE_INT_RGB);
-            image.createGraphics();
- 
-            Graphics2D graphics = (Graphics2D) image.getGraphics();
-            graphics.setColor(Color.WHITE);
-            graphics.fillRect(0, 0, CrunchifyWidth, CrunchifyWidth);
-            graphics.setColor(Color.CYAN);
- 
-            for (int i = 0; i < CrunchifyWidth; i++) {
-                for (int j = 0; j < CrunchifyWidth; j++) {
-                    if (byteMatrix.get(i, j)) {
-                        graphics.fillRect(i, j, 1, 1);
-                    }
-                }
-            }
-            ImageIO.write(image, fileType, myFile);
-        } catch (WriterException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("\n\nYou have successfully created QR Code.");
+		
 		noticeService.noticeHitUpdate(notice_num);
 		NoticeVO notice =  noticeService.getNotice(notice_num);
 		ModelAndView mv = new ModelAndView("noticeDetail");
@@ -118,7 +113,7 @@ public class NoticeController {
 	}
 	
 	private static final int BUFFER_SIZE = 4096;
-	@RequestMapping("fileDownload")
+	@RequestMapping("noticeFileDownload")
 	public void Download(HttpServletRequest request,
             HttpServletResponse response, String notice_file) throws IOException {
 		String filepath = "/resources/upload/notice/"+notice_file;
@@ -165,13 +160,24 @@ public class NoticeController {
         outStream.close();
  
     }
-	@RequestMapping("noticeSearchList/{searchKind,searchValue}")
+	@RequestMapping("noticeSearchList")
 	public ModelAndView noticeSearchList(@PathVariable String searchKind, String searchValue){
 		System.out.println("searchKind : "+searchKind+"   searchValue"+searchValue);
 		List<NoticeVO> list = noticeService.getNoticeSearchList(searchKind, searchValue);
 		ModelAndView mv = new ModelAndView("noticeList");
 		mv.addObject("NotciceSearchList",list);
 		return mv;
+	}
+	@RequestMapping("/deleteNotice")
+	public ModelAndView deleteSubject(int notice_num){
+		ModelAndView mav = new ModelAndView();
+		boolean flag = noticeService.noticeDelete(notice_num);
+		if(flag) {
+			mav.setViewName("redirect:noticeList");
+		} else {
+			mav.setViewName("redirect:noticeList");
+		}
+		return mav;
 	}
 	
 

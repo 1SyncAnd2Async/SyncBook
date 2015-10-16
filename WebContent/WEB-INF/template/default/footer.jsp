@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 	<!--=== Footer Version 1 ===-->
+	</div>
     <div class="footer-v1">
         <div class="footer">
             <div class="container">

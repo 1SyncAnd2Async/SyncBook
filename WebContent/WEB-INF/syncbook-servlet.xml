@@ -17,15 +17,6 @@
 	<!--  spring 3.x -->
 	<mvc:annotation-driven/>
 	
-	<!-- Bean -->
-	<bean name="/index" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
-		<property name="viewName" value="index"/>
-	</bean>
-	
-	<bean name="/authentic" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
-		<property name="viewName" value="book_authentic"/>
-	</bean>
-	
 	<!-- ViewResolver -->
 	<bean id="internalResourceViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Data">
+	<select id="getDataList" resultType="Data">
+	    <![CDATA[
+		SELECT ROWNUM NUM, DATA_NUM, LECT_NUM, TITLE, DATA_FILE
+		FROM DATA 
+		WHERE LECT_NUM = #{lect_num}
+		ORDER BY DATA_NUM
+		]]>
+	</select>
+	<select id="getData" resultType="Data">
+	    <![CDATA[
+		SELECT DATA_NUM, LECT_NUM, TITLE, DATA_FILE
+		FROM DATA 
+		WHERE DATA_NUM = #{data_num}
+		]]>
+	</select>
+	<insert id="addData" parameterType="Data">
+	    <![CDATA[
+		INSERT INTO DATA(DATA_NUM, LECT_NUM, TITLE, DATA_FILE)
+		VALUES (DATA_SEQ.NEXTVAL, #{lect_num}, #{title}, #{data_file})
+		]]>
+	</insert>
+	<delete id="deleteData"  parameterType="java.lang.Integer">
+		<![CDATA[
+			DELETE DATA WHERE DATA_NUM = #{data_num}			
+		]]>
+	</delete>
+</mapper>

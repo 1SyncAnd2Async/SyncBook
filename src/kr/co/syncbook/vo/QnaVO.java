@@ -2,19 +2,22 @@ package kr.co.syncbook.vo;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class QnaVO {
-	private int qua_num;
+	private int qna_num;
 	private String title;
 	private String content;
 	private String writer;
 	private Date write_date;
 	private int hit;
 	private String qna_file;
-	public int getQua_num() {
-		return qua_num;
+	private MultipartFile upfile;
+	public int getQna_num() {
+		return qna_num;
 	}
-	public void setQua_num(int qua_num) {
-		this.qua_num = qua_num;
+	public void setQna_num(int qna_num) {
+		this.qna_num = qna_num;
 	}
 	public String getTitle() {
 		return title;
@@ -52,11 +55,18 @@ public class QnaVO {
 	public void setQna_file(String qna_file) {
 		this.qna_file = qna_file;
 	}
+	public MultipartFile getUpfile() {
+		return upfile;
+	}
+	public void setUpfile(MultipartFile upfile) {
+		this.upfile = upfile;
+	}
 	@Override
 	public String toString() {
-		return "QnaVO [qua_num=" + qua_num + ", title=" + title + ", content=" + content + ", writer=" + writer
-				+ ", write_date=" + write_date + ", hit=" + hit + ", qna_file=" + qna_file + "]";
+		return "QnaVO [qna_num=" + qna_num + ", title=" + title + ", content=" + content + ", writer=" + writer
+				+ ", write_date=" + write_date + ", hit=" + hit + ", qna_file=" + qna_file + ", upfile=" + upfile + "]";
 	}
+	
 	
 	
 	

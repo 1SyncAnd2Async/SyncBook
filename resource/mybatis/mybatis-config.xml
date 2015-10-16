@@ -10,24 +10,30 @@
 		<typeAlias type="kr.co.syncbook.vo.SubjectVO" alias="Subject"/>
 		<typeAlias type="kr.co.syncbook.vo.BookVO" alias="Book"/>
 		<typeAlias type="kr.co.syncbook.vo.QuestionVO" alias="Question"/>
+		<typeAlias type="kr.co.syncbook.vo.DataVO" alias="Data"/>
 		<typeAlias type="kr.co.syncbook.vo.LectureVO" alias="Lecture"/>
 		<typeAlias type="kr.co.syncbook.vo.TeacherVO" alias="Teacher"/>
 		<typeAlias type="kr.co.syncbook.vo.AssignLectVO" alias="AssignLect"/>
 		<typeAlias type="kr.co.syncbook.vo.OrderVO" alias="Order"/>
 		<typeAlias type="kr.co.syncbook.vo.RegLectVO" alias="RegLect"/>
 		<typeAlias type="kr.co.syncbook.vo.MemberClassVO" alias="MemberClass"/>
+		<typeAlias type="kr.co.syncbook.vo.ReviewVO" alias="Review"/>
+		<typeAlias type="kr.co.syncbook.vo.FaqVO" alias="Faq"/>
 	</typeAliases>
 	<mappers>
-		<mapper resource="mybatis/member-mapping.xml"/>
+		<mapper resource="mybatis/member-mapping.xml"/>		
 		<mapper resource="mybatis/notice-mapping.xml"/>
 		<mapper resource="mybatis/qna-mapping.xml"/>
 		<mapper resource="mybatis/subject-mapping.xml"/>
 		<mapper resource="mybatis/book-mapping.xml"/>
 		<mapper resource="mybatis/question-mapping.xml"/>
+		<mapper resource="mybatis/data-mapping.xml"/>
 		<mapper resource="mybatis/lecture-mapping.xml"/>
 		<mapper resource="mybatis/teacher-mapping.xml"/>
 		<mapper resource="mybatis/assignLect-mapping.xml"/>
 		<mapper resource="mybatis/order-mapping.xml"/>
 		<mapper resource="mybatis/regLect-mapping.xml"/>
+		<mapper resource="mybatis/review-mapping.xml"/>
+		<mapper resource="mybatis/faq-mapping.xml"/>
 	</mappers>
 </configuration>

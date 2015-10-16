@@ -14,18 +14,36 @@
 		<result column="qna_file" property="qna_file"/>
 	</resultMap>
 
-	<select id="getQnae" resultMap="QnaResultMap" parameterType="java.lang.Integer">
+	<select id="getQna" resultMap="QnaResultMap" parameterType="java.lang.Integer">
 		<![CDATA[
-				SELECT QNA_NUM, TITLE, CONTENT, WRITER, WRITER_DATE, HIT, QNA_FILE
-				FROM NOTICE
+				SELECT QNA_NUM, TITLE, CONTENT, WRITER, WRITE_DATE, HIT, QNA_FILE
+				FROM QNA
 				WHERE QNA_NUM = #{qna_num}
 		]]>
 	</select>
 	
 	<select id="getQnaList" resultType="Qna">
 		<![CDATA[
-			SELECT QNA_NUM, TITLE, CONTENT, WRITER, WRITER_DATE, HIT, QNA_FILE
+			SELECT QNA_NUM, TITLE, CONTENT, WRITER, WRITE_DATE, HIT, QNA_FILE
 			FROM QNA
+		]]>
+	</select>
+	
+	<select id="getMainQnaList" resultType="Qna">
+		<![CDATA[
+			SELECT ROWNUM, QNA_NUM, TITLE, CONTENT, WRITER, WRITE_DATE, HIT, QNA_FILE
+			FROM QNA
+		    WHERE ROWNUM <= 3
+		    ORDER BY QNA_NUM DESC
+		]]>
+	</select>
+	
+	<select id="getQnaSearchList" resultType="Qna">
+		<![CDATA[
+		
+			SELECT QNA_NUM, TITLE, CONTENT, WRITER, WRITE_DATE, HIT, QNA_FILE
+			FROM QNA
+			WHERE #{searchKind} LIKE '%'||#{searchValue}||'%'
 		]]>
 	</select>
 	<insert id="addQna" parameterType="Qna">
@@ -37,12 +55,18 @@
 	<update id="updateQna" parameterType="Qna">
 		<![CDATA[
 			UPDATE QNA SET TITLE = #{title}, CONTENT = #{content},
-			WRITE_DATE = SYSDATE, QNA_FILE = #{qna_file} WHERE  QNA_NUM = #{qna_num}			
+			WRITE_DATE = SYSDATE, QNA_FILE = #{qna_file}
+			WHERE  QNA_NUM = #{qna_num}			
+		]]>
+	</update>
+	<update id="updateQnaHit" parameterType="java.lang.Integer">
+		<![CDATA[
+			UPDATE QNA SET Hit = Hit+1 WHERE  QNA_NUM = #{qna_num}			
 		]]>
 	</update>
 	<delete id="deleteQna"  parameterType="java.lang.Integer">
 		<![CDATA[
-			DELETE QNA WHERE QNA_NUM = #{qna_num}			
+			DELETE QNA WHERE QNA_NUM = #{qna_NUM}			
 		]]>
 	</delete>
 </mapper>

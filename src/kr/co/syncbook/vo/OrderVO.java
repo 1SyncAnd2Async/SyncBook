@@ -2,8 +2,15 @@ package kr.co.syncbook.vo;
 
 public class OrderVO {
 	private int assign_num, lect_num, status, subj_num, book_num, price;
-	private String lect_name, teacher_id, name, day, begintime, endtime, img, subj_name, book_name, reg_date;
+	private String lect_name, teacher_id, name, day, begintime, endtime, img, subj_name, book_name, reg_date, explanation;
 	
+	
+	public String getExplanation() {
+		return explanation;
+	}
+	public void setExplanation(String explanation) {
+		this.explanation = explanation;
+	}
 	public String getReg_date() {
 		return reg_date;
 	}
@@ -106,7 +113,8 @@ public class OrderVO {
 				+ subj_num + ", book_num=" + book_num + ", price=" + price + ", lect_name=" + lect_name
 				+ ", teacher_id=" + teacher_id + ", name=" + name + ", day=" + day + ", begintime=" + begintime
 				+ ", endtime=" + endtime + ", img=" + img + ", subj_name=" + subj_name + ", book_name=" + book_name
-				+ ", reg_date=" + reg_date + "]";
+				+ ", reg_date=" + reg_date + ", explanation=" + explanation + "]";
 	}
+	
 	
 }

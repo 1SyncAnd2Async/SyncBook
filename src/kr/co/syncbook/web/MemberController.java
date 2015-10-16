@@ -84,14 +84,14 @@ public class MemberController {
 			session.setAttribute("member", member);
 			session.setAttribute("post1", post1);
 			session.setAttribute("post2", post2);
-			mav.setViewName("index");
+			mav.setViewName("redirect:index");
 		} else mav.setViewName("loginForm");
 		return mav;
 	}
 	@RequestMapping("/logout")
 	public String logout(HttpSession session){
 		session.removeAttribute("member");
-		return "index";
+		return "redirect:index";
 	}
 	@RequestMapping("/memberJoin")
 	public ModelAndView join(MemberVO member, @RequestParam String post1, @RequestParam String post2) {

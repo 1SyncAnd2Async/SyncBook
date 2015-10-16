@@ -5,7 +5,8 @@
 <mapper namespace="Question">
 	<select id="getQuestionList" resultType="Question">
 		SELECT BOOK_NUM, UNIT_NUM, QUESTION_NUM, CONTENT, EXPLANATION, QUESTION_FILE
-		FROM QUESTION
+		FROM QUESTION 
+		WHERE BOOK_NUM = #{book_num}
 	</select>
 	<insert id="addQuestion" parameterType="Question">
 		INSERT INTO QUESTION(BOOK_NUM, UNIT_NUM, QUESTION_NUM, CONTENT, EXPLANATION, QUESTION_FILE)

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<body class="boxed-layout container">
+<body>
 	<!--=== Header ===-->
     <div class="header">
         <div class="container">
@@ -49,20 +49,9 @@
         <div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
             <div class="container">
                 <ul class="nav navbar-nav">
-                	<!-- Video Test -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            	수업참여
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-submenu">
-                                <a onclick="video_open();">수업참여</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- End Video Test -->
-                	
                 	<!-- Member Management -->
+                	<c:choose>
+                	<c:when test="${sessionScope.member != null && sessionScope.member.id == 'admin'}">
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                             	회원관리
@@ -107,44 +96,48 @@
                                 <a href="javascript:void(0);">수업관리</a>
                                 <ul class="dropdown-menu">
                                     <li><a href="addLectureForm">수업등록</a></li>
-                                    <li><a href="assignLectureForm">수업배정</a></li>
+                                    <li><a href="assignLectureForm?page=1">수업배정</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
+                    </c:when>
+                    </c:choose>
                     <!-- End Member Management -->
                 
-                	<c:choose>
-                	<c:when test="${sessionScope.member != null}">
+                	
                 	<!-- My Books -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            	내 강의
-                        </a>
-                        <ul class="dropdown-menu">
-                            <!-- Authentication Pages -->
-                            <li>
-                                <a href="memberClassList?member_id=${sessionScope.member.id}">수강목록</a>
-                            </li>
+                	<c:choose>
+                		<c:when test="${sessionScope.member.id != null}">
+	                    <li class="dropdown">
+	                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+	                            	내 강의
+	                        </a>
+	                        <ul class="dropdown-menu">
+	                            <!-- Authentication Pages -->
+	                            <li>
+	                            	<a href="memberClassList?id=${sessionScope.member.id}">수강목록</a>
+	                            </li>
+	                        </ul>
+	                       </li>
+                           </c:when>
+                           <c:when test="${sessionScope.teacher.id != null}">
+                           <li class="dropdown">
+	                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+	                            	내 강의
+	                        </a>
+	                        <ul class="dropdown-menu">
+	                            <!-- Authentication Pages -->
+	                            <li>
+                               		<a href="memberClassList?id=${sessionScope.teacher.id}">강의목록</a>                               	
+                            	</li>
                             <!-- End Authentication Pages -->
-                            
-                            <!-- My Books List Pages -->
-                            <li class="dropdown-submenu">
-                                <a href="javascript:void(0);">교재목록</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">TOEIC 700+</a></li>
-                                    <li><a href="#">Bootstrap</a></li>
-                                    <li><a href="#">Spring Framework</a></li>
-                                    <li><a href="#">jQuery</a></li>
-                                    <li><a href="#">Ajax</a></li>
-                                </ul>
-                            </li>
-                            <!-- End My Books List Pages -->
-                        </ul>
-                    </li>
+	                        	</ul>
+	                    		</li>
+                    		</c:when>
+                			</c:choose>
                     <!-- End My Books -->
-                    </c:when>
-                	</c:choose>
+                    
                 	
                     <!-- Books -->
                     <li class="dropdown">
@@ -154,7 +147,7 @@
                         <ul class="dropdown-menu">
                         	<!-- Books List Pages -->
                             <li>
-                                <a href="classListForm">학습신청</a>
+                                <a href="classListForm?page=1">학습신청</a>
                             </li>
                             <!-- End Books List Pages -->
                             <!-- Category Pages -->
@@ -193,8 +186,8 @@
                         <ul class="dropdown-menu">
                             <li>
                             	<a href="noticeList">공지사항</a>
-                                <a href="#">교재후기</a>
-                                <a href="#">자유게시판</a>
+                                <a href="reviewList">수강후기</a>
+                                <a href="qnaList">Q & A</a>
                             </li>
                         </ul>
                     </li>
@@ -207,7 +200,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="#">FAQ</a>
+                                <a href="faqList">FAQ</a>
                                 <a href="#">자료실</a>
                                 <a href="#">고객문의</a>
                                 <a href="#">이용안내</a>
@@ -233,4 +226,5 @@
             </div><!--/end container-->
         </div><!--/navbar-collapse-->
     </div>
+    <div class="bg-image-v2 parallaxBg1">
     <!--=== End Header ===-->

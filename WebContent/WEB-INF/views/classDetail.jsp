@@ -48,6 +48,11 @@ $(function(){
 						<input type="hidden" name="lect_num" value="${lecture.lect_num}" id="lect_num"/>
 						<fieldset>
                          <section>
+                             <img src="resources/upload/lectureImg/${lecture.img }" class="img-responsive hover-effect" alt="" />
+                         </section>
+                     	</fieldset>
+						<fieldset>
+                         <section>
                              <label class="label"><pre>${lecture.explanation }</pre></label>
                              
                          </section>

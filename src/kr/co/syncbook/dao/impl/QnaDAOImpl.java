@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.syncbook.dao.QnaDAO;
 import kr.co.syncbook.vo.QnaVO;
+import kr.co.syncbook.vo.QnaVO;
 
 @Repository("QnaDAO")
 public class QnaDAOImpl implements QnaDAO{
@@ -56,4 +57,24 @@ public class QnaDAOImpl implements QnaDAO{
 		return list;
 	}
 
+
+	@Override
+	public List<QnaVO> getQnaSearchList(String searchKind, String searchValue) {
+		System.out.println(searchKind+searchValue);
+		List<QnaVO> list = (List<QnaVO>) sqlSession.selectMap("Qna.getQnaList",searchKind,searchValue);
+		return list;
+	}
+
+	@Override
+	public List<QnaVO> getMainQnaList() {
+		List<QnaVO> list = sqlSession.selectList("Qna.getMainQnaList");
+		
+		return list;
+	}
+
+	@Override
+	public int updateQnaHit(int qna_num) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("Qna.updateQnaHit",qna_num);
+	}
 }

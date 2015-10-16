@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -41,58 +41,58 @@ $(function(){
 		<!-- Reg-Form -->
 	
 				<form action="assignLecture" method="post" id="sky-form4" class="sky-form">
-					<header>¼ö¾÷ ¹èÁ¤</header>							
+					<header>ìˆ˜ì—… ë°°ì •</header>							
 					<fieldset>
 						<section>
-							<label>°ú¸ñ&nbsp&nbsp</label>
+							<label>ê³¼ëª©&nbsp&nbsp</label>
 							<label style="margin-right:30px;">
 							<select name="subj_num" id="subjectNum">
-								<option value="">°ú¸ñ¼±ÅÃ</option>
+								<option value="">ê³¼ëª©ì„ íƒ</option>
 								<c:forEach var="subjectList" items="${subjectList}">											
                                     <option value="${subjectList.subj_num}">${subjectList.subj_name}</option>		                                	
                                 </c:forEach>
                                </select> 
 							</label>
 							
-							<label>¼ö¾÷¸í&nbsp&nbsp</label>
+							<label>ìˆ˜ì—…ëª…&nbsp&nbsp</label>
 							<label style="margin-right:30px;">
 							<span id="selectLecture">
 								<select name="lect_num" id="Lecture">
-									<option value="">¼ö¾÷¼±ÅÃ</option>											
+									<option value="">ìˆ˜ì—…ì„ íƒ</option>											
                                	</select> 
                             </span>
 							</label>
 							
-							<label>°­»ç&nbsp&nbsp</label>
+							<label>ê°•ì‚¬&nbsp&nbsp</label>
 							<label style="margin-right:30px;">
 							<select name="teacher_id">
-								<option value="">°­»ç¼±ÅÃ</option>
+								<option value="">ê°•ì‚¬ì„ íƒ</option>
 								<c:forEach var="teacherList" items="${teacherList}">											
                                     <option value="${teacherList.id}">${teacherList.name}</option>		                                	
                                 </c:forEach>
                                </select> 
 							</label>
 							
-							<label>¿äÀÏ&nbsp&nbsp</label>
+							<label>ìš”ì¼&nbsp&nbsp</label>
 							<label style="margin-right:30px;">
 							<select name="day">
-								<option value="">¿äÀÏ¼±ÅÃ</option>																	
-                                    <option value="¿ù¿äÀÏ">¿ù¿äÀÏ</option>
-                                    <option value="È­¿äÀÏ">È­¿äÀÏ</option>
-                                    <option value="¼ö¿äÀÏ">¼ö¿äÀÏ</option>
-                                    <option value="¸ñ¿äÀÏ">¸ñ¿äÀÏ</option>
-                                    <option value="±İ¿äÀÏ">±İ¿äÀÏ</option>
+								<option value="">ìš”ì¼ì„ íƒ</option>																	
+                                    <option value="ì›”ìš”ì¼">ì›”ìš”ì¼</option>
+                                    <option value="í™”ìš”ì¼">í™”ìš”ì¼</option>
+                                    <option value="ìˆ˜ìš”ì¼">ìˆ˜ìš”ì¼</option>
+                                    <option value="ëª©ìš”ì¼">ëª©ìš”ì¼</option>
+                                    <option value="ê¸ˆìš”ì¼">ê¸ˆìš”ì¼</option>
                                </select> 
 							</label>
 							
-							<label>½ÃÀÛ½Ã°£&nbsp&nbsp</label>
+							<label>ì‹œì‘ì‹œê°„&nbsp&nbsp</label>
 							<label style="margin-right:30px;">
 							<span id="selectLecture">
 								<input type="text" name="begintime" placeholder="Begin time">
                             </span>
 							</label>
 							
-							<label>Á¾·á½Ã°£&nbsp&nbsp</label>
+							<label>ì¢…ë£Œì‹œê°„&nbsp&nbsp</label>
 							<label style="margin-right:30px;">
 							<span id="selectLecture">
 								<input type="text" name="endtime" placeholder="End time">
@@ -103,7 +103,7 @@ $(function(){
 					</fieldset>
 					<footer>
 						<div class="pull-right">
-							<button type="submit" class="btn-u">µî·Ï</button>
+							<button type="submit" class="btn-u">ë“±ë¡</button>
 						</div>
 					</footer>
 				</form>
@@ -118,17 +118,17 @@ $(function(){
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>¼ö¾÷¸í</th>
-											<th>°­»ç</th>
-											<th>¿äÀÏ</th>
-											<th>½ÃÀÛ½Ã°£</th>
-											<th>Á¾·á½Ã°£</th>
-											<th>¹èÁ¤»óÅÂ</th>
+											<th>ìˆ˜ì—…ëª…</th>
+											<th>ê°•ì‚¬</th>
+											<th>ìš”ì¼</th>
+											<th>ì‹œì‘ì‹œê°„</th>
+											<th>ì¢…ë£Œì‹œê°„</th>
+											<th>ë°°ì •ìƒíƒœ</th>
 											<th></th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="assignList" items="${assignList}">
+										<c:forEach begin="${pageInfo.startRow}" end="${pageInfo.endRow}" var="assignList" items="${assignList}">
 											<tr>
 												<td>${assignList.rnum}</td>
 												<td>${assignList.lect_name}</td>
@@ -139,22 +139,95 @@ $(function(){
 												<td>
 													<c:choose>
 														<c:when test="${assignList.status == 0}">
-															¹Ì¹èÁ¤
+															ë¯¸ë°°ì •
 														</c:when>
 														<c:otherwise>
-															¹èÁ¤¿Ï·á
+															ë°°ì •ì™„ë£Œ
 														</c:otherwise>
 													</c:choose>
 												</td>
 												<td>
 													<button class="btn btn-danger btn-xs" onclick="location.href='deleteAssignLect?lect_num='+${list.lect_num}+'&teacher_id='+${list.teacher_id}">
-														<i class="fa fa-trash-o"></i>»èÁ¦
+														<i class="fa fa-trash-o"></i>ì‚­ì œ
 													</button>
 												</td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
+								<!-- Pagination -->
+                <div align="center">
+								<table>
+									<tr>
+										<td colspan="4">&nbsp;</td>
+									</tr>
+									<tr>
+										<td colspan="4" style="text-align: center">
+											<%--Page ì´ì „ í˜ì´ì§€ êµ¬í˜„ --%> <c:choose>
+												<c:when test="${searchType == null}">
+													<c:choose>
+														<c:when test="${pageInfo.currentBlock eq 1}">
+															 
+														</c:when>
+														<c:otherwise>
+															 <ul class="pagination">
+                        										<li><a
+																href="assignLectureForm?page= ${(pageInfo.currentBlock-1)*pageInfo.pagesPerBlock }">
+																Â«
+															</a></li></ul>
+														</c:otherwise>
+													</c:choose>
+
+													<%--Page  í˜ì´ì§€ êµ¬í˜„ --%>
+													<c:choose>
+														<c:when
+															test="${pageInfo.currentBlock ne pageInfo.totalBlocks}">
+															<c:forEach begin="1" end="${pageInfo.pagesPerBlock}"
+																varStatus="num">
+                                 <ul class="pagination">
+                        										<li><a
+																	href="assignLectureForm?page=
+                                 ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
+																	${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li></ul>
+                                </c:forEach>
+														</c:when>
+														<c:otherwise>
+															<c:forEach
+																begin="${(pageInfo.currentBlock-1)*pageInfo.pagesPerBlock + 1}"
+																end="${pageInfo.totalPages}" varStatus="num">
+                                 <ul class="pagination">
+                        										<li><a
+																	href="assignLectureForm?page=
+                   ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
+																	${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }</a></li></ul>
+                             </c:forEach>
+														</c:otherwise>
+													</c:choose>
+
+
+													<%--Page ë‹¤ìŒ í˜ì´ì§€ êµ¬í˜„ --%>
+													<c:choose>
+														<c:when
+															test="${pageInfo.currentBlock eq pageInfo.totalBlocks}">
+														</c:when>
+														<c:otherwise>
+															<ul class="pagination">
+                        										<li><a
+																href="assignLectureForm?page=
+                  ${pageInfo.currentBlock * pageInfo.pagesPerBlock + 1 }">
+																Â»
+															</a></li>
+															</ul>
+														</c:otherwise>
+													</c:choose>
+												</c:when>												
+											</c:choose>
+										</td>
+									</tr>
+								</table>
+							</div>
+                
+            <!-- End Pagination -->
 							</div>
 							<!--End Basic Table-->
 						</div>

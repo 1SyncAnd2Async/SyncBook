@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <tiles:insertDefinition name="defaultTemplate">
     <tiles:putAttribute name="body">
     	<!--=== Slider ===-->
     <div class="slider-inner">
         <div id="da-slider" class="da-slider">
-            <div class="da-slide">
+            <!-- <div class="da-slide">
                 <h2><i>CLEAN &amp; FRESH</i> <br /> <i>FULLY RESPONSIVE</i> <br /> <i>DESIGN</i></h2>
                 <p><i>Lorem ipsum dolor amet</i> <br /> <i>tempor incididunt ut</i> <br /> <i>veniam omnis </i></p>
                 <div class="da-img"><img class="img-responsive" src="resources/assets/plugins/parallax-slider/img/1.png" alt=""></div>
@@ -26,7 +27,7 @@
             <div class="da-arrows">
                 <span class="da-arrows-prev"></span>
                 <span class="da-arrows-next"></span>
-            </div>
+            </div> -->
         </div>
     </div><!--/slider-->
     <!--=== End Slider ===-->
@@ -49,123 +50,55 @@
 
     <!--=== Content Part ===-->
     <div class="container content-sm">
-    	<!-- Service Blocks -->
-    	<div class="row margin-bottom-30">
-        	<div class="col-md-4">
-        		<div class="service">
-                    <i class="fa fa-compress service-icon"></i>
-        			<div class="desc">
-        				<h4>Fully Responsive</h4>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus etiam sem...</p>
-        			</div>
-        		</div>
-        	</div>
-        	<div class="col-md-4">
-        		<div class="service">
-                    <i class="fa fa-cogs service-icon"></i>
-        			<div class="desc">
-        				<h4>HTML5 + CSS3</h4>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus etiam sem...</p>
-        			</div>
-        		</div>
-        	</div>
-        	<div class="col-md-4">
-        		<div class="service">
-                    <i class="fa fa-rocket service-icon"></i>
-        			<div class="desc">
-        				<h4>Launch Ready</h4>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus etiam sem...</p>
-        			</div>
-        		</div>
-        	</div>
-    	</div>
-    	<!-- End Service Blokcs -->
-
+		
     	<!-- Recent Works -->
-        <div class="headline"><h2>Recent Works</h2></div>
+        <div class="headline"><h2>인기 강의</h2></div>
         <div class="row margin-bottom-20">
+         <c:forEach begin="0" end="3" var="bestClassList" items="${bestClassList}">
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnails thumbnail-style thumbnail-kenburn">
                 	<div class="thumbnail-img">
                         <div class="overflow-hidden">
-                            <img class="img-responsive" src="resources/assets/img/main/img1.jpg" alt="">
+                            <img src="resources/upload/lectureImg/${bestClassList.img}" class="img-responsive hover-effect" alt="" />
                         </div>
-                        <a class="btn-more hover-effect" href="#">read more +</a>
+                        <a class="btn-more hover-effect" href="classDetail?lect_num=${bestClassList.lect_num}">read more +</a>
                     </div>
                     <div class="caption">
-                        <h3><a class="hover-effect" href="#">Project One</a></h3>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
+                        <h3><a class="hover-effect" href="classDetail?lect_num=${bestClassList.lect_num}">${bestClassList.lect_name}</a></h3>
+                        <div style="overflow:hidden; text-overflow:ellipsis; word-break: break-word; -webkit-line-clamp: 3; display: -webkit-box; -webkit-box-orient: vertical;">${bestClassList.explanation}</div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnails thumbnail-style thumbnail-kenburn">
-                    <div class="thumbnail-img">
-                        <div class="overflow-hidden">
-                            <img class="img-responsive" src="resources/assets/img/main/img12.jpg" alt="">
-                        </div>
-                        <a class="btn-more hover-effect" href="#">read more +</a>
-                    </div>
-                    <div class="caption">
-                        <h3><a class="hover-effect" href="#">Project Two</a></h3>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnails thumbnail-style thumbnail-kenburn">
-                    <div class="thumbnail-img">
-                        <div class="overflow-hidden">
-                            <img class="img-responsive" src="resources/assets/img/main/img3.jpg" alt="">
-                        </div>
-                        <a class="btn-more hover-effect" href="#">read more +</a>
-                    </div>
-                    <div class="caption">
-                        <h3><a class="hover-effect" href="#">Project Three</a></h3>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnails thumbnail-style thumbnail-kenburn">
-                    <div class="thumbnail-img">
-                        <div class="overflow-hidden">
-                            <img class="img-responsive" src="resources/assets/img/main/img17.jpg" alt="">
-                        </div>
-                        <a class="btn-more hover-effect" href="#">read more +</a>
-                    </div>
-                    <div class="caption">
-                        <h3><a class="hover-effect" href="#">Project Four</a></h3>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
-                    </div>
-                </div>
-            </div>
+            </c:forEach>
         </div>
     	<!-- End Recent Works -->
-
+		
     	<!-- Info Blokcs -->
     	<div class="row margin-bottom-30">
         	<!-- Welcome Block -->
     		<div class="col-md-8 md-margin-bottom-40">
-    			<div class="headline"><h2>Welcome To Unify</h2></div>
+    			<div class="headline"><h2>Best수강후기</h2></div>
                 <div class="row">
                     <div class="col-sm-4">
-                        <img class="img-responsive margin-bottom-20" src="resources/assets/img/main/img18.jpg" alt="">
+                        <img class="img-responsive margin-bottom-20" src="resources/upload/memberImg/${bestReview.img}" alt="">
                     </div>
                     <div class="col-sm-8">
-                        <p>Unify is an incredibly beautiful responsive Bootstrap Template for corporate and creative professionals. It works on all major web browsers, tablets and phone.</p>
+                     	<p style="overflow:hidden; text-overflow:ellipsis; word-break: break-word; -webkit-line-clamp:1; 
+                     	display: -webkit-box; -webkit-box-orient: vertical;">${bestReview.title}</p>
+                     	<div style="overflow:hidden; text-overflow:ellipsis; word-break: break-word; -webkit-line-clamp: 6; 
+                     	display: -webkit-box; -webkit-box-orient: vertical;">
+                        ${bestReview.content}                        
+                        </div>
+                        <br>
                         <ul class="list-unstyled margin-bottom-20">
-                            <li><i class="fa fa-check color-green"></i> Donec id elit non mi porta gravida</li>
-                            <li><i class="fa fa-check color-green"></i> Corporate and Creative</li>
-                            <li><i class="fa fa-check color-green"></i> Responsive Bootstrap Template</li>
-                            <li><i class="fa fa-check color-green"></i> Corporate and Creative</li>
+                            <li><i class="fa fa-check color-green"></i>수업명 : <a href="classDetail?lect_num=${bestReview.lect_num}">${bestReview.lect_name}</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <blockquote class="hero-unify">
-                    <p>Award winning digital agency. We bring a personal and effective approach to every project we work on, which is why. Unify is an incredibly beautiful responsive Bootstrap Template for corporate professionals.</p>
-                    <small>CEO, Jack Bour</small>
+                   
+                    <small>${bestReview.writer}&nbsp;&nbsp;&nbsp;${bestReview.write_date}</small>
                 </blockquote>
             </div><!--/col-md-8-->
 
@@ -208,38 +141,88 @@
     	<!-- End Info Blokcs -->
 
         <!-- Owl Clients v1 -->
-        <div class="headline"><h2>Our Clients</h2></div>
-        <div class="owl-clients-v1">
+        <div class="headline"><h2>Our Teachers</h2></div>
+        <div class="owl-clients-v1" style="margin-bottom:50px;">
+        	<c:forEach var="teacherList" items="${teacherList}">
             <div class="item">
-                <img src="resources/assets/img/clients4/1.png" alt="">
+                <img src="resources/upload/teacherImg/${teacherList.img}" class="img-responsive hover-effect" alt="" />
             </div>
-            <div class="item">
-                <img src="resources/assets/img/clients4/2.png" alt="">
-            </div>
-            <div class="item">
-                <img src="resources/assets/img/clients4/3.png" alt="">
-            </div>
-            <div class="item">
-                <img src="resources/assets/img/clients4/4.png" alt="">
-            </div>
-            <div class="item">
-                <img src="resources/assets/img/clients4/5.png" alt="">
-            </div>
-            <div class="item">
-                <img src="resources/assets/img/clients4/6.png" alt="">
-            </div>
-            <div class="item">
-                <img src="resources/assets/img/clients4/7.png" alt="">
-            </div>
-            <div class="item">
-                <img src="resources/assets/img/clients4/8.png" alt="">
-            </div>
-            <div class="item">
-                <img src="resources/assets/img/clients4/9.png" alt="">
-            </div>
+            </c:forEach>
+           
         </div>
+        <!-- Service Blocks -->
+         <div class="headline"><h2>Community</h2></div>
+    	<div class="row margin-bottom-30">
+        	<div class="col-md-4">
+        		<div class="service">
+        			<div class="desc">
+        				<h4>공지사항</h4>
+        				 <a style="float:right;"class="btn-more hover-effect" href="noticeList">더보기</a>
+                        <table class="table">
+                        	<tr>
+                                <th >제목</th>
+                                <th >작성자</th>
+                            </tr>
+                        <c:forEach var="notice" items="${noticeList}">
+                        	<tr>
+                        		<td style="overflow:hidden; text-overflow:ellipsis; 
+                        		word-break: break-word; -webkit-line-clamp: 1; display: -webkit-box;
+                        		 -webkit-box-orient: vertical; width:233px; height:30px;"><a href = "noticeDetail?notice_num=${notice.notice_num}">${notice.title }</a></td>
+                        		<td>${notice.writer }</td>                  		
+                        	</tr>
+                        </c:forEach>
+                    </table>
+        			</div>
+        		</div>
+        	</div>
+        	<div class="col-md-4">
+        		<div class="service">
+        			<div class="desc">
+        				<h4>Q & A</h4>
+        				 <a style="float:right;"class="btn-more hover-effect" href="noticeList">더보기</a>
+                          <table class="table">
+                            <tr>
+                                <th>제목</th>
+                                <th >작성자</th>
+                            </tr>
+                        <c:forEach var="qnaList" items="${qnaList}">
+                        	<tr>
+                        		<td style="overflow:hidden; text-overflow:ellipsis; 
+                        		word-break: break-word; -webkit-line-clamp: 1; display: -webkit-box;
+                        		 -webkit-box-orient: vertical; width:233px; height:30px;"><a href = "qnaDetail?qna_num=${qnaList.qna_num}">${qnaList.title }</a></td>
+                        		<td>${qnaList.writer }</td>                  		
+                        	</tr>
+                        </c:forEach>
+                    </table>
+        			</div>
+        		</div>
+        	</div>
+        	<div class="col-md-4">
+        		<div class="service">
+        			<div class="desc">
+        				<h4>FAQ</h4>
+        				 <a style="float:right;"class="btn-more hover-effect" href="faqList">더보기</a>
+                         <table class="table">
+                            <tr>
+                                <th>제목</th>
+                                <th >작성자</th>
+                            </tr>
+                       <c:forEach var="faqList" items="${faqList}">
+                        	<tr>
+                        		<td style="overflow:hidden; text-overflow:ellipsis; 
+                        		word-break: break-word; -webkit-line-clamp: 1; display: -webkit-box;
+                        		 -webkit-box-orient: vertical; width:233px; height:30px;"><a href = "faqDetail?faq_num=${faqList.faq_num}">${faqList.title }</a></td>
+                        		<td>${faqList.writer}</td>                  		
+                        	</tr>
+                        </c:forEach>
+                    </table>
+        			</div>
+        		</div>
+        	</div>
+    	</div>
+    	<!-- End Service Blokcs -->
         <!-- End Owl Clients v1 -->
-    </div><!--/container-->
+    </div><!--/container-->    
     <!-- End Content Part -->
     </tiles:putAttribute>
 </tiles:insertDefinition>

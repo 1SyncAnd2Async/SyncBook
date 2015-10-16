@@ -43,4 +43,8 @@ public class AssignLectDAOImpl implements AssignLectDAO {
 		List<AssignLectVO> list = sqlSession.selectList("AssignLect.getTimeList", vo);
 		return list;
 	}
+	@Override
+	public int getTotalCount() {
+		return sqlSession.selectOne("AssignLect.getTotalCount");
+	}
 }

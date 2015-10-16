@@ -39,5 +39,8 @@ public class AssignLectServiceImpl implements AssignLectService {
 		List<AssignLectVO> list = assignLectDAO.getTimeList(vo);
 		return list;
 	}
-	
+	@Override
+	public int getTotalCount() {
+		return assignLectDAO.getTotalCount();
+	}
 }
