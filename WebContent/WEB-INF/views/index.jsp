@@ -49,9 +49,10 @@
     <!-- End Purchase Block -->
 
     <!--=== Content Part ===-->
+    
     <div class="container content-sm">
-		
     	<!-- Recent Works -->
+    	<div class="col-md-12 md-margin-bottom-40">
         <div class="headline"><h2>인기 강의</h2></div>
         <div class="row margin-bottom-20">
          <c:forEach begin="0" end="3" var="bestClassList" items="${bestClassList}">
@@ -70,6 +71,7 @@
                 </div>
             </div>
             </c:forEach>
+        </div>
         </div>
     	<!-- End Recent Works -->
 		
@@ -141,6 +143,7 @@
     	<!-- End Info Blokcs -->
 
         <!-- Owl Clients v1 -->
+        <div class="col-md-12 md-margin-bottom-40">
         <div class="headline"><h2>Our Teachers</h2></div>
         <div class="owl-clients-v1" style="margin-bottom:50px;">
         	<c:forEach var="teacherList" items="${teacherList}">
@@ -149,6 +152,7 @@
             </div>
             </c:forEach>
            
+        </div>
         </div>
         <!-- Service Blocks -->
          <div class="headline"><h2>Community</h2></div>
@@ -222,7 +226,8 @@
     	</div>
     	<!-- End Service Blokcs -->
         <!-- End Owl Clients v1 -->
-    </div><!--/container-->    
+    <!--/container-->  
+    </div>  
     <!-- End Content Part -->
     </tiles:putAttribute>
 </tiles:insertDefinition>

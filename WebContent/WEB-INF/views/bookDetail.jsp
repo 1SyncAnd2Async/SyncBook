@@ -7,12 +7,15 @@
 		<!--=== Breadcrumbs ===-->
 		<div class="breadcrumbs">
 			<div class="container">
+			  	<div class="col-md-12 md-margin-bottom-40">
+			
 				<h1 class="pull-left">${book.book_name}</h1>
 				<ul class="pull-right breadcrumb">
 					<li><a href="index">Home</a></li>
 					<li><a href="#">Pages</a></li>
 					<li class="active">Book</li>
 				</ul>
+			</div>
 			</div>
 			<!--/container-->
 		</div>
@@ -21,6 +24,8 @@
 
 		<!--=== Content ===-->
 		<div class="container content">
+			<div class="col-md-12 md-margin-bottom-40">
+		
 			<div class="row">
 				<!-- Reg-Form -->
 				<form action="regQuestion" method="post"
@@ -102,9 +107,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="container content height-500">
-			<!-- Write Your HTML Codes Here -->
-
 		</div>
 		<!--=== End Content ===-->
 	</tiles:putAttribute>
