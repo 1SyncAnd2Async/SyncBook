@@ -54,7 +54,7 @@ public class SampleListener implements ServletContextListener {
 //                }
 //                p.waitFor();
             	
-            	URL url = new URL("http://117.17.143.126/BitProject/GCMSend");
+            	URL url = new URL("http://localhost/BitProject/GCMSend");
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestProperty("Accept-Charset", "UTF-8");
                 connection.connect();
