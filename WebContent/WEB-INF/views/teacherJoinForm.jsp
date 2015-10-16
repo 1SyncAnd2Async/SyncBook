@@ -29,11 +29,13 @@ $(function(){
 		<!--=== Breadcrumbs ===-->
 		<div class="breadcrumbs">
 			<div class="container">
+			<div class="col-md-12 md-margin-bottom-40">
 				<h1 class="pull-left">강사 회원가입</h1>
 				<ul class="pull-right breadcrumb">
 					<li><a href="index">Home</a></li>
 					<li class="active">Teacher Join</li>
 				</ul>
+			</div>
 			</div>
 			<!--/container-->
 		</div>
@@ -42,6 +44,7 @@ $(function(){
 
 		<!--=== Content Part ===-->
 		<div class="container content">
+		<div class="col-md-12 md-margin-bottom-40">
 			<div class="row">
 				<!-- Begin Content -->
 				<div class="col-md-9">
@@ -124,6 +127,7 @@ $(function(){
 				</div>
 				<!-- End Content -->
 			</div>
+		</div>
 		</div>
 		<!--/container-->
 		<!--=== End Content Part ===-->

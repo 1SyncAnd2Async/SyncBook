@@ -21,11 +21,18 @@
 				WHERE NOTICE_NUM = #{notice_num}
 		]]>
 	</select>
+	<select id="getNoticeTotalCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) TOTALROWS
+			FROM NOTICE
+		]]>
+	</select>
 	
 	<select id="getNoticeList" resultType="Notice">
 		<![CDATA[
 			SELECT NOTICE_NUM, TITLE, CONTENT, WRITER, WRITE_DATE, HIT, NOTICE_FILE
 			FROM NOTICE
+			ORDER BY NOTICE_NUM DESC
 		]]>
 	</select>
 	

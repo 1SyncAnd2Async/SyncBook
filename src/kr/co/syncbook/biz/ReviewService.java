@@ -13,5 +13,5 @@ public interface ReviewService {
 	public List<ReviewVO> getReviewList();
 	public ReviewVO getBestReview();
 	public List<ReviewVO> getReviewSearchList(String searchKind, String searchValue);
-
+	public int getReviewTotalCount();
 }

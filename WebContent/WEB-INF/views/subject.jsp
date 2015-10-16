@@ -7,11 +7,13 @@
 		<!--=== Breadcrumbs ===-->
 		<div class="breadcrumbs">
 			<div class="container">
+			<div class="col-md-12 md-margin-bottom-40">
 				<h1 class="pull-left">Subject</h1>
 				<ul class="pull-right breadcrumb">
 					<li><a href="index">Home</a></li>
 					<li class="active">Subject</li>
 				</ul>
+				</div>
 			</div>
 			<!--/container-->
 		</div>

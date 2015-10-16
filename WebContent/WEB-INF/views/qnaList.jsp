@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <%@page import="kr.co.syncbook.vo.QnaVO"%>
 <%@page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -27,15 +27,15 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>π¯»£</th>
-                                <th style="width:50%; margin-left:150px;">¡¶∏Ò</th>
-                                <th class="hidden-sm">±€æ¥¿Ã</th>
-                                <th>≥Ø¬•</th>
-                                <th>¡∂»∏ ºˆ</th>
+                                <th>Î≤àÌò∏</th>
+                                <th style="width:50%; margin-left:150px;">Ï†úÎ™©</th>
+                                <th class="hidden-sm">Í∏ÄÏì¥Ïù¥</th>
+                                <th>ÎÇ†Ïßú</th>
+                                <th>Ï°∞Ìöå Ïàò</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="qnaList" items="${qnaList}">
+                       <c:forEach begin="${pageInfo.startRow}" end="${pageInfo.endRow}" var="qnaList" items="${qnaList}">
                         	<tr>
                         		<td>${qnaList.qna_num }</td>
                         		<td><a href = "qnaDetail?qna_num=${qnaList.qna_num}">${qnaList.title }</a></td>
@@ -46,7 +46,7 @@
                 				<c:when test="${sessionScope.member != null && sessionScope.member.id == 'admin'}">
                         		<td>
 									<button class="btn btn-danger btn-xs" onclick="location.href='qnaDelete?qna_num='+${qnaList.qna_num}">
-										<i class="fa fa-trash-o"></i>ªË¡¶
+										<i class="fa fa-trash-o"></i>ÏÇ≠Ï†ú
 									</button>
 								</td>  
 								</c:when>
@@ -59,9 +59,9 @@
                     <form action="qnaSearchList" method="post" id="search"> 
 	                    	
 	                    				<select name="searchKind">
-		                                    <option value="qna_num">±€π¯»£</option>
-		                                    <option value="title">¡¶∏Ò</option>
-		                                    <option value="writer">±€æ¥¿Ã</option>
+		                                    <option value="qna_num">Í∏ÄÎ≤àÌò∏</option>
+		                                    <option value="title">Ï†úÎ™©</option>
+		                                    <option value="writer">Í∏ÄÏì¥Ïù¥</option>
 		                                </select>  
 	                                
 	                       	<input type="text" class="form-control" name="searchValue" placeholder="Search">
@@ -70,9 +70,82 @@
                         </form>
                         <c:choose>
 	                	<c:when test="${sessionScope.member != null}">
-	                      <button class="btn-u"  style="float:right;margin-top:20px;margin-bottom:20px;" onclick="location.href='qnaForm'">±€æ≤±‚</button>   
+	                      <button class="btn-u"  style="float:right;margin-top:20px;margin-bottom:20px;" onclick="location.href='qnaForm'">Í∏ÄÏì∞Í∏∞</button>   
 	                    </c:when>
 	                    </c:choose>    
+	                     <!-- Pagination -->
+                <div align="center">
+								<table>
+									<tr>
+										<td colspan="4">&nbsp;</td>
+									</tr>
+									<tr>
+										<td colspan="4" style="text-align: center">
+											<%--Page Ïù¥Ï†Ñ ÌéòÏù¥ÏßÄ Íµ¨ÌòÑ --%> <c:choose>
+												<c:when test="${searchType == null}">
+													<c:choose>
+														<c:when test="${pageInfo.currentBlock eq 1}">
+															 
+														</c:when>
+														<c:otherwise>
+															 <ul class="pagination">
+                        										<li><a
+																href="qnaList?page= ${(pageInfo.currentBlock-1)*pageInfo.pagesPerBlock }">
+																¬´
+															</a></li></ul>
+														</c:otherwise>
+													</c:choose>
+
+													<%--Page  ÌéòÏù¥ÏßÄ Íµ¨ÌòÑ --%>
+													<c:choose>
+														<c:when
+															test="${pageInfo.currentBlock ne pageInfo.totalBlocks}">
+															<c:forEach begin="1" end="${pageInfo.pagesPerBlock}"
+																varStatus="num">
+                                 <ul class="pagination">
+                        										<li><a
+																	href="qnaList?page=
+                                 ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
+																	${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li></ul>
+                                </c:forEach>
+														</c:when>
+														<c:otherwise>
+															<c:forEach
+																begin="${(pageInfo.currentBlock-1)*pageInfo.pagesPerBlock + 1}"
+																end="${pageInfo.totalPages}" varStatus="num">
+                                 <ul class="pagination">
+                        										<li><a
+																	href="qnaList?page=
+                   ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
+																	${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }</a></li></ul>
+                             </c:forEach>
+														</c:otherwise>
+													</c:choose>
+
+
+													<%--Page Îã§Ïùå ÌéòÏù¥ÏßÄ Íµ¨ÌòÑ --%>
+													<c:choose>
+														<c:when
+															test="${pageInfo.currentBlock eq pageInfo.totalBlocks}">
+														</c:when>
+														<c:otherwise>
+															<ul class="pagination">
+                        										<li><a
+																href="qnaList?page=
+                  ${pageInfo.currentBlock * pageInfo.pagesPerBlock + 1 }">
+																¬ª
+															</a></li>
+															</ul>
+														</c:otherwise>
+													</c:choose>
+												</c:when>												
+											</c:choose>
+										</td>
+									</tr>
+								</table>
+							</div>
+                
+            <!-- End Pagination -->
                         </div>
                         </div>
                         </div>

@@ -7,18 +7,21 @@
     	<!--=== Breadcrumbs ===-->
     	<div class="breadcrumbs">
         	<div class="container">
+        	<div class="col-md-12 md-margin-bottom-40">
             	<h1 class="pull-left">Q&A</h1>
             	<ul class="pull-right breadcrumb">
                 	<li><a href="index">Home</a></li>
                 	<li><a href="qnaList">Q&A</a></li>
                 	<li class="active">No.${qnaDetail.qna_num }</li>
             	</ul>
+            	</div>
         	</div><!--/container-->
     	</div><!--/breadcrumbs-->
     	<!--=== End Breadcrumbs ===-->
     	
     	<!--=== Content ===-->
     	<div class="container content height-500">
+    	<div class="col-md-12 md-margin-bottom-40">
         	<!-- Write Your HTML Codes Here -->
         	<div style="min-height:400px;" class="news-v3-in">
         			<c:choose>
@@ -31,7 +34,7 @@
         			 onclick="location.href='qnaUpdate?qna_num=${qnaDetail.qna_num}'">수정</button> 
         			 </c:when>
         			 </c:choose>
-        			  <table class="table table-striped">
+        			  	  <table class="table" style="background:rgba(255, 255, 255, 0.76);">
                                 <thead>
                                     <tr>
                                         <th colspan="4" style="border-top:1px solid #ddd;"><h2>${qnaDetail.title}</h2></th>
@@ -56,7 +59,7 @@
                                     </tr>                                 
                                 </tbody>
                             </table>
-                   
+              </div>     
     	</div>
     	<!--=== End Content ===-->
     </tiles:putAttribute>

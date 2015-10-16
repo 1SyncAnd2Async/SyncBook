@@ -446,8 +446,12 @@ a.read-more:hover {
 .btn-u {
 	background: #8C0000;
 }
-.btn-u.pink{
-	background: rgb(255, 169, 228);
+.btn-u.blue{
+	background: rgb(38, 62, 150);
+}
+.btn-u.blue:hover
+{
+	background:rgb(20, 35, 90);
 }
 .btn-u:hover, 
 .btn-u:focus, 

@@ -12,7 +12,6 @@
             	<h1 class="pull-left">학습신청</h1>
             	<ul class="pull-right breadcrumb">
                 	<li><a href="index">Home</a></li>
-                	<li><a href="#">학습</a></li>
                 	<li class="active">학습신청</li>
             	</ul>
             	</div>

@@ -6,11 +6,13 @@
     	<!--=== Breadcrumbs ===-->
     	<div class="breadcrumbs">
         	<div class="container">
+        	<div class="col-md-12 md-margin-bottom-40">
             	<h1 class="pull-left">회원가입</h1>
             	<ul class="pull-right breadcrumb">
                 	<li><a href="index">Home</a></li>
                 	<li class="active">Join</li>
             	</ul>
+            	</div>
         	</div><!--/container-->
     	</div><!--/breadcrumbs-->
     	<!--=== End Breadcrumbs ===-->

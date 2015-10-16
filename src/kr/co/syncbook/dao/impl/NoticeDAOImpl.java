@@ -72,4 +72,10 @@ public class NoticeDAOImpl implements NoticeDAO{
 		return list;
 	}
 
+	@Override
+	public int getNoticeTotalCount() {
+		return sqlSession.selectOne("Notice.getNoticeTotalCount");
+	}
+	
+
 }

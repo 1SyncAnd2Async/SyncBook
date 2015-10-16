@@ -6,18 +6,21 @@
     	<!--=== Breadcrumbs ===-->
     	<div class="breadcrumbs">
         	<div class="container">
+        	<div class="col-md-12 md-margin-bottom-40">
             	<h1 class="pull-left">Blank Page</h1>
             	<ul class="pull-right breadcrumb">
                 	<li><a href="index.html">Home</a></li>
                 	<li><a href="">Pages</a></li>
                 	<li class="active">Blank Page</li>
             	</ul>
+            	</div>
         	</div><!--/container-->
     	</div><!--/breadcrumbs-->
     	<!--=== End Breadcrumbs ===-->
     	
     	<!--=== Content ===-->
     	<div class="container content height-500">
+    	<div class="col-md-12 md-margin-bottom-40">
         	<!-- Write Your HTML Codes Here -->
         	<form action="noticeUpdateOk" enctype="multipart/form-data" method="post" class="sky-form">
                     <header>공지사항</header>
@@ -59,7 +62,7 @@
                     </footer>
                     </form>
                     
-    	</div>
+    	</div></div>
     	<!--=== End Content ===-->
     </tiles:putAttribute>
 </tiles:insertDefinition>

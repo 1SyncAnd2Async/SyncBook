@@ -24,18 +24,21 @@ $(function(){
     	<!--=== Breadcrumbs ===-->
     	<div class="breadcrumbs">
         	<div class="container">
+        	<div class="col-md-12 md-margin-bottom-40">
             	<h1 class="pull-left"> </h1>
             	<ul class="pull-right breadcrumb">
                 	<li><a href="index">Home</a></li>
-                	<li><a href="#">Pages</a></li>
-                	<li class="active">Blank Page</li>
+                	<li><a href="classListForm?page=1">학습신청</a></li>
+                	<li class="active">${lecture.lect_name}</li>
             	</ul>
+            	</div>
         	</div><!--/container-->
     	</div><!--/breadcrumbs-->
     	<!--=== End Breadcrumbs ===-->
     	
     	<!--=== Content ===-->
     	<div class="container content height-500">
+    	<div class="col-md-12 md-margin-bottom-40">
         	<!-- Write Your HTML Codes Here -->
                 <div class="tab-v1">
                     
@@ -88,7 +91,7 @@ $(function(){
                      
                      </div>
                      </div>
-                    
+                    </div>
     	</div>
     	<!--=== End Content ===-->
     </tiles:putAttribute>

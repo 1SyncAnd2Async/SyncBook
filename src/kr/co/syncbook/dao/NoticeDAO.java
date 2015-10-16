@@ -13,7 +13,7 @@ public interface NoticeDAO {
 	public List<NoticeVO> getNoticeList();
 	public List<NoticeVO> getMainNoticeList();
 	public List<NoticeVO> getNoticeSearchList(String searchKind, String searchValue);
-	
+	public int getNoticeTotalCount();
 	
 
 }

@@ -32,14 +32,24 @@
         			 onclick="location.href='faqUpdate?faq_num=${faqDetail.faq_num}'">수정</button> 
         			 </c:when>
         			 </c:choose>
-                    <ul class="list-inline posted-info">
-                    	
-                        <li>By ${faqDetail.writer}</li>                        
-                        <li>${faqDetail.write_date }</li>
-                        <li>조회 수${faqDetail.hit }</li>
-                    </ul>
-                    <h2>${faqDetail.title}</h2>
-                    <p>${faqDetail.content}</p>
+        			 <table class="table" style="background:rgba(255, 255, 255, 0.76);">
+                                <thead>
+                                    <tr>
+                                        <th colspan="4" style="border-top:1px solid #ddd;"><h2>${faqDetail.title}</h2></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>	
+                                    	<td style="width:750px;"></td>
+                                        <td>By ${faqDetail.writer}</td>      
+                                        <td>${faqDetail.write_date }</td> 
+                                        <td>조회수 ${faqDetail.hit }</td>                                 
+                                    </tr>
+                                    <tr  style="height:550px;">
+                                        <td colspan="4">${faqDetail.content}</td>                                       
+                                    </tr>                                   
+                                </tbody>
+                            </table>
                    
             </div>
             </div>

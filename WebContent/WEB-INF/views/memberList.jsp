@@ -9,16 +9,20 @@
     	<!--=== Breadcrumbs ===-->
     	<div class="breadcrumbs">
         	<div class="container">
+        	<div class="col-md-12 md-margin-bottom-40">
             	<h1 class="pull-left">회원목록</h1>
             	<ul class="pull-right breadcrumb">
                 	<li><a href="index">Home</a></li>
                 	<li class="active">Member List</li>
             	</ul>
+            	</div>
         	</div><!--/container-->
     	</div><!--/breadcrumbs-->
     	<!--=== End Breadcrumbs ===-->
     	
     	<!--=== Content ===-->
+    	<div class="container content">
+			<div class="col-md-12 md-margin-bottom-40">
     	<div class="panel panel-green margin-bottom-40">
                     <div class="panel-heading">
                         <h3 class="panel-title"><i class="fa fa-tasks"></i>회원목록</h3>
@@ -42,6 +46,7 @@
                         </c:forEach>
                         </tbody>
                     </table>
+                </div>
                 </div>
     	<!--=== End Content ===-->
     </tiles:putAttribute>

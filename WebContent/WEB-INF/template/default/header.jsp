@@ -185,9 +185,9 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                            	<a href="noticeList">공지사항</a>
-                                <a href="reviewList">수강후기</a>
-                                <a href="qnaList">Q & A</a>
+                            	<a href="noticeList?page=1">공지사항</a>
+                                <a href="reviewList?page=1">수강후기</a>
+                                <a href="qnaList?page=1">Q & A</a>
                             </li>
                         </ul>
                     </li>
@@ -200,7 +200,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="faqList">FAQ</a>
+                                <a href="faqList?page=1">FAQ</a>
                                 <a href="#">자료실</a>
                                 <a href="#">고객문의</a>
                                 <a href="#">이용안내</a>

@@ -6,18 +6,21 @@
     	<!--=== Breadcrumbs ===-->
     	<div class="breadcrumbs">
         	<div class="container">
-            	<h1 class="pull-left">Blank Page</h1>
+        	<div class="col-md-12 md-margin-bottom-40">
+            	<h1 class="pull-left">Q & A 글쓰기</h1>
             	<ul class="pull-right breadcrumb">
                 	<li><a href="index.html">Home</a></li>
-                	<li><a href="">Pages</a></li>
-                	<li class="active">Blank Page</li>
+                	<li><a href="qnaList">Q & A </a></li>
+                	<li class="active">Q & A 글쓰기</li>
             	</ul>
+            	</div>
         	</div><!--/container-->
     	</div><!--/breadcrumbs-->
     	<!--=== End Breadcrumbs ===-->
     	
     	<!--=== Content ===-->
     	<div class="container content height-500">
+    	<div class="col-md-12 md-margin-bottom-40">
         	<!-- Write Your HTML Codes Here -->
         	<form action="qnaWrite" enctype="multipart/form-data" method="post" class="sky-form">
                     <header>공지사항</header>
@@ -58,6 +61,7 @@
                     </footer>
                     </form>
                     
+    	</div>
     	</div>
     	<!--=== End Content ===-->
     </tiles:putAttribute>

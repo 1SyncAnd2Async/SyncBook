@@ -46,7 +46,6 @@ public class MainController {
 		List<FaqVO> faqList = faqService.getFaqList();
 		
 		
-		System.out.println(bestReview);
 		ModelAndView mv = new ModelAndView("index");
 		mv.addObject("qnaList",qnaList);
 		mv.addObject("noticeList",noticeList);

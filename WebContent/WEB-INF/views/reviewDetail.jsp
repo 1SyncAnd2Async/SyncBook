@@ -7,18 +7,21 @@
     	<!--=== Breadcrumbs ===-->
     	<div class="breadcrumbs">
         	<div class="container">
+        	<div class="col-md-12 md-margin-bottom-40">
             	<h1 class="pull-left">수강 후기</h1>
             	<ul class="pull-right breadcrumb">
                 	<li><a href="index">Home</a></li>
                 	<li><a href="reviewList">수강 후기</a></li>
                 	<li class="active">No.${reviewDetail.review_num }</li>
             	</ul>
+            	</div>
         	</div><!--/container-->
     	</div><!--/breadcrumbs-->
     	<!--=== End Breadcrumbs ===-->
     	
     	<!--=== Content ===-->
     	<div class="container content height-500">
+    	<div class="col-md-12 md-margin-bottom-40">
         	<!-- Write Your HTML Codes Here -->
         	<div  style="min-height:400px;" class="news-v3-in">
         			<c:choose>
@@ -33,7 +36,7 @@
         			 </c:when>
         			 </c:choose>
         			 
-        			 <table class="table table-striped">
+        			 	  <table class="table" style="background:rgba(255, 255, 255, 0.76);">
                                 <thead>
                                     <tr>
                                         <th colspan="4" style="border-top:1px solid #ddd;"><h2>${reviewDetail.title}</h2></th>
@@ -52,6 +55,7 @@
                                 </tbody>
                             </table>
             </div>
+    	</div>
     	</div>
     	<!--=== End Content ===-->
     </tiles:putAttribute>

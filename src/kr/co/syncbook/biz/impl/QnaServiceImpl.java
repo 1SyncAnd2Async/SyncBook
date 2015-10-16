@@ -79,4 +79,9 @@ public class QnaServiceImpl implements QnaService{
 			return false;
 		}
 	}
+	@Override
+	public int getQnaTotalCount() {
+		return qnaDAO.getQnaTotalCount();
+	}
+
 }

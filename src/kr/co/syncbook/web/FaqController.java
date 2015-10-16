@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import kr.co.syncbook.biz.FaqService;
 import kr.co.syncbook.vo.FaqVO;
+import kr.co.syncbook.vo.PageVO;
 
 @Controller
 public class FaqController {
@@ -18,9 +18,55 @@ public class FaqController {
 	FaqService faqService;
 	
 	@RequestMapping("faqList")
-	public ModelAndView faqList(){
+	public ModelAndView faqList(int page){
+		PageVO pageInfo = new PageVO();
+		int rowsPerPage = 10; // �� �������� ������ ��� �� - properties
+		int pagesPerBlock = 5; // �� ��ϴ� ������ ������ �� - properties
+		if (page == 0)
+			page = 1; // ������ �ʱ�ȭ
+		int currentPage = page; // ���� ������ ��
+		int currentBlock = 0; // ���� ��� �ʱ�ȭ
+		if (currentPage % pagesPerBlock == 0) { // ���� ��� �ʱ� ��
+			currentBlock = currentPage / pagesPerBlock;
+		} else { // ���� ����̳�
+			currentBlock = currentPage / pagesPerBlock + 1;
+		}
+		int startRow = (currentPage - 1) * rowsPerPage; // ���� ��� �� ����
+		int endRow = currentPage * rowsPerPage-1; // ������ ��� �� ����    
+		// SearchVO�� ����
+		// SearchVO svo = new SearchVO();
+		// svo.setBegin(String.valueOf(startRow));
+		// svo.setEnd(String.valueOf(endRow));
+		// ��ü ������ ��
+		int totalRows = faqService.getFaqTotalCount();
+		// ��ü ������ ���ϴ� ����
+		int totalPages = 0;
+		if (totalRows % rowsPerPage == 0) {
+			totalPages = totalRows / rowsPerPage;
+		} else {
+			totalPages = totalRows / rowsPerPage + 1;
+		}
+		// ��ü ��� ���� ���ϴ� ����
+		int totalBlocks = 0;
+		if (totalPages % pagesPerBlock == 0) {
+			totalBlocks = totalPages / pagesPerBlock;
+		} else {
+			totalBlocks = totalPages / pagesPerBlock + 1;
+		}
+		// ��� ����� ������ PageVO�� �����Ѵ�.
+		pageInfo.setCurrentPage(currentPage);
+		pageInfo.setCurrentBlock(currentBlock);
+		pageInfo.setRowsPerPage(rowsPerPage);
+		pageInfo.setPagesPerBlock(pagesPerBlock);
+		pageInfo.setStartRow(startRow);
+		pageInfo.setEndRow(endRow);
+		pageInfo.setTotalRows(totalRows);
+		pageInfo.setTotalPages(totalPages);
+		pageInfo.setTotalBlocks(totalBlocks);
+		
 		List<FaqVO> list = faqService.getFaqList();
 		ModelAndView mv = new ModelAndView("faqList");
+		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("faqList",list);
 		return mv;
 	}
