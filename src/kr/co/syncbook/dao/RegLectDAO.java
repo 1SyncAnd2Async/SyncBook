@@ -18,4 +18,5 @@ public interface RegLectDAO {
 	public List<MemberClassVO> getTeacherClassList(String teacher_id);
 	public MemberClassVO getMemberClassDetail(MemberClassVO vo);
 	public MemberClassVO getTeacherClassDetail(MemberClassVO vo);
+	public RegLectVO getlectStatus(int reg_num);
 }

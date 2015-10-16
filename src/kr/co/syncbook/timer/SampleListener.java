@@ -54,8 +54,7 @@ public class SampleListener implements ServletContextListener {
 //                }
 //                p.waitFor();
             	
-            	URL url = new URL("http://117.17.143.104:8081/BitProject/GCMSend");
-                System.out.println(url);
+            	URL url = new URL("http://localhost/BitProject/GCMSend");
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestProperty("Accept-Charset", "UTF-8");
                 connection.connect();
@@ -66,11 +65,8 @@ public class SampleListener implements ServletContextListener {
                     String line;
                     while ((line = reader.readLine()) != null)
                     {
-                   	 System.out.print(line);
                         builder.append(line);
                     }
-                    System.out.println(builder.toString());
-            	
             } catch (IOException e) {
                 e.printStackTrace();
             }

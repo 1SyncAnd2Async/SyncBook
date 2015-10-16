@@ -68,4 +68,9 @@ public class RegLectServiceImpl implements RegLectService {
 		List<OrderVO> list = regLectDAO.getBestClassList();
 		return list;
 	}
+	@Override
+	public RegLectVO getLectStatus(int reg_num) {
+		RegLectVO result = regLectDAO.getlectStatus(reg_num);
+		return result;
+	}
 }
