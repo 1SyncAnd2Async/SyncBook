@@ -28,6 +28,10 @@
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   
+  <listener>
+    <listener-class>kr.co.syncbook.timer.SampleListener</listener-class>
+</listener>
+  
   <servlet>
     <servlet-name>syncbook</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

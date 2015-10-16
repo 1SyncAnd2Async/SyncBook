@@ -227,10 +227,17 @@ public class RegLectController {
 		System.out.println(member_id);
 
 		System.out.println(memberClassList);
+<<<<<<< HEAD
+		
+		for(MemberClassVO v : memberClassList) {
+			String fullPath = "http://117.17.143.126/BitProject/resources/upload/lectureImg/"+v.getLect_img();
+			if(memberClassList != null)	{
+=======
 
 		for (MemberClassVO v : memberClassList) {
 			String fullPath = "http://117.17.143.125/BitProject/resources/upload/lectureImg/" + v.getLect_img();
 			if (memberClassList != null) {
+>>>>>>> 5ddd188628da8096bc1cb6969fa9f563a8d91213
 				JSONObject jsonObject = new JSONObject();
 
 				jsonObject.put("lect_img", fullPath);
