@@ -114,7 +114,7 @@
 																begin="${(pageInfo.currentBlock-1)*pageInfo.pagesPerBlock + 1}"
 																end="${pageInfo.totalPages}" varStatus="num">
                                  <ul class="pagination">
-                        										<li><a
+                        										<li class="active"><a
 																	href="reviewList?page=
                    ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
 																	${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }</a></li></ul>
