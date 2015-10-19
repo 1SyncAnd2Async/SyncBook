@@ -73,4 +73,9 @@ public class RegLectServiceImpl implements RegLectService {
 		RegLectVO result = regLectDAO.getlectStatus(reg_num);
 		return result;
 	}
+	@Override
+	public int getRegLectTotalCount() {
+		// TODO Auto-generated method stub
+		return regLectDAO.getRegLectTotalCount();
+	}
 }

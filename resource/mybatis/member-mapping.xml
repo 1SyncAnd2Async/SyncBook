@@ -23,7 +23,12 @@
 			WHERE ID=#{id}
 		]]>
 	</select>
-	
+	<select id="getMemberTotalCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) TOTALROWS
+			FROM MEMBER
+		]]>
+	</select>
 	<insert id="addMember" parameterType="Member">
 		<![CDATA[
 			INSERT INTO MEMBER VALUES(#{id}, #{password}, #{name}, #{phone},

@@ -5,12 +5,13 @@ import kr.co.syncbook.vo.MemberVO;
 
 public interface MemberDAO {
 	public int addMember(MemberVO member);
-	// °ü¸®ÀÚ ¸â¹ö ¼öÁ¤
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int updateMember(MemberVO member);
-	// »ç¿ëÀÚ ÇÁ·ÎÇÊ ¼öÁ¤
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int updateMemberProfile(MemberVO member);
 	public int updateMemberPwd(MemberVO member);
 	public int deleteMember(String memberId);
 	public MemberVO getMember(String memberId);
 	public List<MemberVO> getMemberList();
+	public int getMemberTotalCount();
 }

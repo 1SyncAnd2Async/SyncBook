@@ -24,11 +24,13 @@ $(function(){
 		<!--=== Breadcrumbs ===-->
 		<div class="breadcrumbs">
 			<div class="container">
+			<div class="col-md-12 md-margin-bottom-4">
 				<h1 class="pull-left">Lecture</h1>
 				<ul class="pull-right breadcrumb">
 					<li><a href="index">Home</a></li>
 					<li class="active">Lecture</li>
 				</ul>
+			</div>
 			</div>
 			<!--/container-->
 		</div>
@@ -37,7 +39,8 @@ $(function(){
 
 		<!--=== Content ===-->
 		<div class="container content">
-		<div class="row">
+		<div class="col-md-12 md-margin-bottom-4">
+		<div class="row">		
 			<!-- Reg-Form -->
 			<form action="addLecture" method="post" id="sky-form4" class="sky-form" enctype="multipart/form-data">
 					<header>수업 등록</header>							
@@ -135,6 +138,7 @@ $(function(){
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 		<!--=== End Content ===-->
 	</tiles:putAttribute>

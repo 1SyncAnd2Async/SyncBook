@@ -18,4 +18,6 @@ public interface RegLectService {
 	public MemberClassVO getMemberClassDetail(MemberClassVO vo);
 	public MemberClassVO getTeacherClassDetail(MemberClassVO vo);
 	public RegLectVO getLectStatus(int reg_num);
+	public int getRegLectTotalCount();
+
 }

@@ -76,4 +76,9 @@ public class RegLectDAOImpl implements RegLectDAO {
 		RegLectVO result = sqlSession.selectOne("RegLect.lectureStatus", reg_num);
 		return result;
 	}
+	@Override
+	public int getRegLectTotalCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("RegLect.getRegLectTotalCount");
+	}
 }

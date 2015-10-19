@@ -21,6 +21,7 @@ import kr.co.syncbook.biz.MemberService;
 import kr.co.syncbook.biz.RegLectService;
 import kr.co.syncbook.vo.MemberVO;
 import kr.co.syncbook.vo.OrderVO;
+import kr.co.syncbook.vo.PageVO;
 
 @Controller
 //@RequestMapping("/member")
@@ -55,10 +56,57 @@ public class MemberController {
 		return "userSerch";
 	}
 	@RequestMapping("/memberList")
-	public ModelAndView memberList(){
+	public ModelAndView memberList(int page){
+		
+		PageVO pageInfo = new PageVO();
+		int rowsPerPage = 10; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ - properties
+		int pagesPerBlock = 3; // ï¿½ï¿½ ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ - properties
+		if (page == 0)
+			page = 1; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
+		int currentPage = page; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		int currentBlock = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
+		if (currentPage % pagesPerBlock == 0) { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½ ï¿½ï¿½
+			currentBlock = currentPage / pagesPerBlock;
+		} else { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
+			currentBlock = currentPage / pagesPerBlock + 1;
+		}
+		int startRow = (currentPage - 1) * rowsPerPage; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		int endRow = currentPage * rowsPerPage-1; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½    
+		// SearchVOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		// SearchVO svo = new SearchVO();
+		// svo.setBegin(String.valueOf(startRow));
+		// svo.setEnd(String.valueOf(endRow));
+		// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		int totalRows = memberService.getMemberTotalCount();
+		// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
+		int totalPages = 0;
+		if (totalRows % rowsPerPage == 0) {
+			totalPages = totalRows / rowsPerPage;
+		} else {
+			totalPages = totalRows / rowsPerPage + 1;
+		}
+		// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
+		int totalBlocks = 0;
+		if (totalPages % pagesPerBlock == 0) {
+			totalBlocks = totalPages / pagesPerBlock;
+		} else {
+			totalBlocks = totalPages / pagesPerBlock + 1;
+		}
+		// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ PageVOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+		pageInfo.setCurrentPage(currentPage);
+		pageInfo.setCurrentBlock(currentBlock);
+		pageInfo.setRowsPerPage(rowsPerPage);
+		pageInfo.setPagesPerBlock(pagesPerBlock);
+		pageInfo.setStartRow(startRow);
+		pageInfo.setEndRow(endRow);
+		pageInfo.setTotalRows(totalRows);
+		pageInfo.setTotalPages(totalPages);
+		pageInfo.setTotalBlocks(totalBlocks);
+		
 		List<MemberVO> list = memberService.getMemberList();
 		ModelAndView mv = new ModelAndView("memberList");
 		mv.addObject("memberList",list);
+		mv.addObject("pageInfo", pageInfo);
 		return mv;
 	}
 	@RequestMapping("/memberDetail")
@@ -143,10 +191,10 @@ public class MemberController {
 			session.setAttribute("post1", post1);
 			session.setAttribute("post2", post2);
 			session.setAttribute("member", member);
-			mav.addObject("msg", "º¯°æ ¿Ï·á");
+			mav.addObject("msg", "ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½");
 			mav.setViewName("myPageForm");
 		} else {
-			mav.addObject("msg", "º¯°æ ½ÇÆÐ");
+			mav.addObject("msg", "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			mav.setViewName("myPageForm");
 		}
 		return mav;
@@ -173,10 +221,10 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		boolean flag = memberService.updateMemberPwd(member);
 		if(flag) {
-			// ÆË¾÷À¸·Î!
+			// ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½ï¿½!
 			mav.setViewName("myPageForm");
 		} else {
-			mav.addObject("msg", "º¯°æ ½ÇÆÐ");
+			mav.addObject("msg", "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			mav.setViewName("myPageForm");
 		}
 		return mav;
@@ -184,7 +232,7 @@ public class MemberController {
 	
 	@RequestMapping("/androidMemberJoin")
 	public void Ajoin(HttpServletRequest request, @RequestParam String post1, @RequestParam String post2)	{
-		// Æûµ¥ÀÌÅÍ ¾ò±â
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		MemberVO member = new MemberVO();
 		member.setId(request.getParameter("id"));
 		member.setPassword(request.getParameter("password"));

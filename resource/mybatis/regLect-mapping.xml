@@ -67,6 +67,12 @@
 		    AND R.REG_NUM = #{reg_num}
 		]]>
 	</select>
+	<select id="getRegLectTotalCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) TOTALROWS
+			FROM REG_LECT
+		]]>
+	</select>
 	<select id="lectureStatus" resultType="RegLect" parameterType="java.lang.Integer">
 		<![CDATA[
 			SELECT STATUS FROM REG_LECT WHERE REG_NUM = #{reg_num}

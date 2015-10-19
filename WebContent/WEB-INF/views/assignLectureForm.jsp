@@ -24,11 +24,13 @@ $(function(){
 		<!--=== Breadcrumbs ===-->
 		<div class="breadcrumbs">
 			<div class="container">
+			<div class="col-md-12 md-margin-bottom-4">
 				<h1 class="pull-left">Lecture</h1>
 				<ul class="pull-right breadcrumb">
 					<li><a href="index">Home</a></li>
 					<li class="active">Lecture</li>
 				</ul>
+			</div>
 			</div>
 			<!--/container-->
 		</div>
@@ -37,6 +39,7 @@ $(function(){
 
 		<!--=== Content ===-->
 		<div class="container content">
+		<div class="col-md-12 md-margin-bottom-4">
 		<div class="row">
 		<!-- Reg-Form -->
 	
@@ -156,8 +159,8 @@ $(function(){
 									</tbody>
 								</table>
 								<!-- Pagination -->
-                <div align="center">
-								<table>
+               <div align="center">
+								<table style="width:100%;">
 									<tr>
 										<td colspan="4">&nbsp;</td>
 									</tr>
@@ -184,23 +187,34 @@ $(function(){
 															test="${pageInfo.currentBlock ne pageInfo.totalBlocks}">
 															<c:forEach begin="1" end="${pageInfo.pagesPerBlock}"
 																varStatus="num">
-                                 <ul class="pagination">
+                                 							<ul class="pagination">
                         										<li><a
 																	href="assignLectureForm?page=
-                                 ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
+                                 									${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
 																	${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li></ul>
-                                </c:forEach>
+                                							</c:forEach>
 														</c:when>
 														<c:otherwise>
 															<c:forEach
 																begin="${(pageInfo.currentBlock-1)*pageInfo.pagesPerBlock + 1}"
 																end="${pageInfo.totalPages}" varStatus="num">
-                                 <ul class="pagination">
-                        										<li><a
-																	href="assignLectureForm?page=
-                   ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
-																	${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }</a></li></ul>
-                             </c:forEach>
+                                 								<ul class="pagination">
+                        										<c:choose>
+		                                 							<c:when test="${pageInfo.currentPage == num.count}">
+		                        										<li class="active"><a
+																			href="assignLectureForm?page=
+		                                 									${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
+																			${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li>
+		                                							</c:when>
+		                                							<c:otherwise>
+		                                								<li><a
+																			href="assignLectureForm?page=
+		                                									 ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
+																			${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li>
+		                                							</c:otherwise>
+		                                						</c:choose>
+                        										</ul>
+                            							 </c:forEach>
 														</c:otherwise>
 													</c:choose>
 
@@ -226,7 +240,6 @@ $(function(){
 									</tr>
 								</table>
 							</div>
-                
             <!-- End Pagination -->
 							</div>
 							<!--End Basic Table-->
@@ -234,6 +247,7 @@ $(function(){
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 		<!--=== End Content ===-->
 	</tiles:putAttribute>

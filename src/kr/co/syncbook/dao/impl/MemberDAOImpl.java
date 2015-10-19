@@ -58,4 +58,10 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return list;
 	}
+
+	@Override
+	public int getMemberTotalCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("Member.getMemberTotalCount");
+	}
 }
