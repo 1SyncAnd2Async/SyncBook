@@ -155,6 +155,7 @@
         </div>
         </div>
         <!-- Service Blocks -->
+        <div class="col-md-12">
          <div class="headline"><h2>Community</h2></div>
     	<div class="row margin-bottom-30">
         	<div class="col-md-4">
@@ -223,6 +224,7 @@
         			</div>
         		</div>
         	</div>
+    	</div>
     	</div>
     	<!-- End Service Blokcs -->
         <!-- End Owl Clients v1 -->

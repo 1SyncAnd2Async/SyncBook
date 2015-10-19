@@ -8,11 +8,10 @@
     	<div class="breadcrumbs">
         	<div class="container">
         	<div class="col-md-12 md-margin-bottom-40">
-            	<h1 class="pull-left">Blank Page</h1>
+            	<h1 class="pull-left">내 강의 목록</h1>
             	<ul class="pull-right breadcrumb">
                 	<li><a href="index">Home</a></li>
-                	<li><a href="#">Pages</a></li>
-                	<li class="active">Blank Page</li>
+                	<li class="active">내 강의 목록</li>
             	</ul>
             	</div>
         	</div><!--/container-->

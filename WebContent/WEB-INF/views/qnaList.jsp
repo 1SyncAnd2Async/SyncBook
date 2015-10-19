@@ -72,10 +72,12 @@
 	                	<c:when test="${sessionScope.member != null}">
 	                      <button class="btn-u"  style="float:right;margin-top:20px;margin-bottom:20px;" onclick="location.href='qnaForm'">글쓰기</button>   
 	                    </c:when>
-	                    </c:choose>    
+	                    </c:choose>  
+	                    </div>  
+	                    <br>
 	                     <!-- Pagination -->
                 <div align="center">
-								<table>
+								<table style="width:100%;">
 									<tr>
 										<td colspan="4">&nbsp;</td>
 									</tr>
@@ -102,25 +104,38 @@
 															test="${pageInfo.currentBlock ne pageInfo.totalBlocks}">
 															<c:forEach begin="1" end="${pageInfo.pagesPerBlock}"
 																varStatus="num">
-                                 <ul class="pagination">
+                                 							<ul class="pagination">
                         										<li><a
 																	href="qnaList?page=
-                                 ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
+                                 									${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
 																	${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li></ul>
-                                </c:forEach>
+                                							</c:forEach>
 														</c:when>
 														<c:otherwise>
 															<c:forEach
 																begin="${(pageInfo.currentBlock-1)*pageInfo.pagesPerBlock + 1}"
 																end="${pageInfo.totalPages}" varStatus="num">
-                                 <ul class="pagination">
-                        										<li><a
-																	href="qnaList?page=
-                   ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
-																	${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }</a></li></ul>
-                             </c:forEach>
+                                 								<ul class="pagination">
+                        										<c:choose>
+		                                 							<c:when test="${pageInfo.currentPage == num.count}">
+		                        										<li class="active"><a
+																			href="qnaList?page=
+		                                 									${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
+																			${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li>
+		                                							</c:when>
+		                                							<c:otherwise>
+		                                								<li><a
+																			href="qnaList?page=
+		                                									 ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
+																			${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li>
+		                                							</c:otherwise>
+		                                						</c:choose>
+                        										</ul>
+                            							 </c:forEach>
 														</c:otherwise>
 													</c:choose>
+
+
 
 
 													<%--Page 다음 페이지 구현 --%>
@@ -146,7 +161,6 @@
 							</div>
                 
             <!-- End Pagination -->
-                        </div>
                         </div>
                         </div>
                         </div>

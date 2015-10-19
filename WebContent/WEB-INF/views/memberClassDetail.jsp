@@ -8,11 +8,11 @@
 		<div class="breadcrumbs">
 			<div class="container">
 				<div class="col-md-12 md-margin-bottom-40">
-					<h1 class="pull-left">Blank Page</h1>
+					<h1 class="pull-left">${memberClassDetail.lect_name}</h1>
 					<ul class="pull-right breadcrumb">
 						<li><a href="index">Home</a></li>
-						<li><a href="#">Pages</a></li>
-						<li class="active">Blank Page</li>
+						<li><a href="memberClassList?id=${sessionScope.member.id}">내 강의 목록</a></li>
+						<li class="active">${memberClassDetail.lect_name}</li>
 					</ul>
 				</div>
 			</div>
