@@ -22,6 +22,7 @@ import kr.co.syncbook.biz.MemberService;
 import kr.co.syncbook.biz.RegLectService;
 import kr.co.syncbook.vo.MemberVO;
 import kr.co.syncbook.vo.OrderVO;
+import kr.co.syncbook.vo.PageVO;
 
 @Controller
 //@RequestMapping("/member")
@@ -58,10 +59,57 @@ public class MemberController {
 		return "userSerch";
 	}
 	@RequestMapping("/memberList")
-	public ModelAndView memberList(){
+	public ModelAndView memberList(int page){
+		
+		PageVO pageInfo = new PageVO();
+		int rowsPerPage = 10; // �� �������� ������ ��� �� - properties
+		int pagesPerBlock = 3; // �� ��ϴ� ������ ������ �� - properties
+		if (page == 0)
+			page = 1; // ������ �ʱ�ȭ
+		int currentPage = page; // ���� ������ ��
+		int currentBlock = 0; // ���� ��� �ʱ�ȭ
+		if (currentPage % pagesPerBlock == 0) { // ���� ��� �ʱ� ��
+			currentBlock = currentPage / pagesPerBlock;
+		} else { // ���� ����̳�
+			currentBlock = currentPage / pagesPerBlock + 1;
+		}
+		int startRow = (currentPage - 1) * rowsPerPage; // ���� ��� �� ����
+		int endRow = currentPage * rowsPerPage-1; // ������ ��� �� ����    
+		// SearchVO�� ����
+		// SearchVO svo = new SearchVO();
+		// svo.setBegin(String.valueOf(startRow));
+		// svo.setEnd(String.valueOf(endRow));
+		// ��ü ������ ��
+		int totalRows = memberService.getMemberTotalCount();
+		// ��ü ������ ���ϴ� ����
+		int totalPages = 0;
+		if (totalRows % rowsPerPage == 0) {
+			totalPages = totalRows / rowsPerPage;
+		} else {
+			totalPages = totalRows / rowsPerPage + 1;
+		}
+		// ��ü ��� ���� ���ϴ� ����
+		int totalBlocks = 0;
+		if (totalPages % pagesPerBlock == 0) {
+			totalBlocks = totalPages / pagesPerBlock;
+		} else {
+			totalBlocks = totalPages / pagesPerBlock + 1;
+		}
+		// ��� ����� ������ PageVO�� �����Ѵ�.
+		pageInfo.setCurrentPage(currentPage);
+		pageInfo.setCurrentBlock(currentBlock);
+		pageInfo.setRowsPerPage(rowsPerPage);
+		pageInfo.setPagesPerBlock(pagesPerBlock);
+		pageInfo.setStartRow(startRow);
+		pageInfo.setEndRow(endRow);
+		pageInfo.setTotalRows(totalRows);
+		pageInfo.setTotalPages(totalPages);
+		pageInfo.setTotalBlocks(totalBlocks);
+		
 		List<MemberVO> list = memberService.getMemberList();
 		ModelAndView mv = new ModelAndView("memberList");
 		mv.addObject("memberList",list);
+		mv.addObject("pageInfo", pageInfo);
 		return mv;
 	}
 	@RequestMapping("/memberDetail")

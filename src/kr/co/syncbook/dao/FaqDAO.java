@@ -14,4 +14,5 @@ public interface FaqDAO {
 	public List<FaqVO> getFaqList(String searchKind, String searchValue);	
 	public List<FaqVO> getMainFaqList();
 	public List<FaqVO> getFaqSearchList(String searchKind, String searchValue);
+	public int getFaqTotalCount();
 }

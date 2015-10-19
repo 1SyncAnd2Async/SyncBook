@@ -19,17 +19,64 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import kr.co.syncbook.biz.QnaService;
+import kr.co.syncbook.vo.PageVO;
 import kr.co.syncbook.vo.QnaVO;
 
 @Controller
 public class QnaController {
 	@Autowired
-	QnaService QnaService;
+	QnaService qnaService;
 	
 	@RequestMapping("qnaList")
-	public ModelAndView QnaList(){
-		List<QnaVO> list = QnaService.getQnaList();
+	public ModelAndView QnaList(int page){
+		PageVO pageInfo = new PageVO();
+		int rowsPerPage = 10; // �� �������� ������ ��� �� - properties
+		int pagesPerBlock = 5; // �� ��ϴ� ������ ������ �� - properties
+		if (page == 0)
+			page = 1; // ������ �ʱ�ȭ
+		int currentPage = page; // ���� ������ ��
+		int currentBlock = 0; // ���� ��� �ʱ�ȭ
+		if (currentPage % pagesPerBlock == 0) { // ���� ��� �ʱ� ��
+			currentBlock = currentPage / pagesPerBlock;
+		} else { // ���� ����̳�
+			currentBlock = currentPage / pagesPerBlock + 1;
+		}
+		int startRow = (currentPage - 1) * rowsPerPage; // ���� ��� �� ����
+		int endRow = currentPage * rowsPerPage-1; // ������ ��� �� ����    
+		// SearchVO�� ����
+		// SearchVO svo = new SearchVO();
+		// svo.setBegin(String.valueOf(startRow));
+		// svo.setEnd(String.valueOf(endRow));
+		// ��ü ������ ��
+		int totalRows = qnaService.getQnaTotalCount();
+		// ��ü ������ ���ϴ� ����
+		int totalPages = 0;
+		if (totalRows % rowsPerPage == 0) {
+			totalPages = totalRows / rowsPerPage;
+		} else {
+			totalPages = totalRows / rowsPerPage + 1;
+		}
+		// ��ü ��� ���� ���ϴ� ����
+		int totalBlocks = 0;
+		if (totalPages % pagesPerBlock == 0) {
+			totalBlocks = totalPages / pagesPerBlock;
+		} else {
+			totalBlocks = totalPages / pagesPerBlock + 1;
+		}
+		// ��� ����� ������ PageVO�� �����Ѵ�.
+		pageInfo.setCurrentPage(currentPage);
+		pageInfo.setCurrentBlock(currentBlock);
+		pageInfo.setRowsPerPage(rowsPerPage);
+		pageInfo.setPagesPerBlock(pagesPerBlock);
+		pageInfo.setStartRow(startRow);
+		pageInfo.setEndRow(endRow);
+		pageInfo.setTotalRows(totalRows);
+		pageInfo.setTotalPages(totalPages);
+		pageInfo.setTotalBlocks(totalBlocks);
+		
+		List<QnaVO> list = qnaService.getQnaList();
 		ModelAndView mv = new ModelAndView("qnaList");
+		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("qnaList",list);
 		return mv;
 	}
@@ -40,7 +87,7 @@ public class QnaController {
 	@RequestMapping("/qnaDelete")
 	public ModelAndView deleteSubject(int qna_num){
 		ModelAndView mav = new ModelAndView();
-		boolean flag = QnaService.qnaDelete(qna_num);
+		boolean flag = qnaService.qnaDelete(qna_num);
 		if(flag) {
 			mav.setViewName("redirect:qnaList");
 		} else {
@@ -50,7 +97,7 @@ public class QnaController {
 	}
 	@RequestMapping("qnaUpdate")
 	public ModelAndView updateForm(int qna_num){
-		QnaVO qna =  QnaService.getQna(qna_num);
+		QnaVO qna =  qnaService.getQna(qna_num);
 		ModelAndView mv = new ModelAndView("qnaUpdate");
 		mv.addObject("qna",qna);
 		return mv;
@@ -66,7 +113,7 @@ public class QnaController {
 			e.printStackTrace();
 		}
 		vo.setQna_file(vo.getUpfile().getOriginalFilename());
-		boolean flag=QnaService.qnaUpdate(vo);
+		boolean flag=qnaService.qnaUpdate(vo);
 		if(flag){
 			System.out.println("Qna Insert");
 			return "redirect:qnaList";
@@ -87,7 +134,7 @@ public class QnaController {
 		}
 		vo.setQna_file(vo.getUpfile().getOriginalFilename());
 		
-		boolean flag=QnaService.qnaUpload(vo);
+		boolean flag=qnaService.qnaUpload(vo);
 		if(flag){
 			System.out.println("Qna Insert");
 			return "redirect:qnaList";
@@ -100,8 +147,8 @@ public class QnaController {
 	@RequestMapping("qnaDetail")
 	public ModelAndView QnaDetail(int qna_num){
 		
-		QnaService.qnaHitUpdate(qna_num);
-		QnaVO qna =  QnaService.getQna(qna_num);
+		qnaService.qnaHitUpdate(qna_num);
+		QnaVO qna =  qnaService.getQna(qna_num);
 		ModelAndView mv = new ModelAndView("qnaDetail");
 		mv.addObject("qnaDetail", qna);
 		return mv;

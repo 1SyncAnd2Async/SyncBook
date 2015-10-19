@@ -1,7 +1,7 @@
 /* 
 * Version: 1.7
 * Aqua Color: #8C0000; 
-* Aqua Hover Color: #26bac8; 
+* Aqua Hover Color: #CE3636; 
 * Additional color: #d5eef0;
 * rgba(39, 215, 231, 1);
 */
@@ -36,18 +36,18 @@ a.read-more:hover {
 	border-top: solid 2px #8C0000;
 }
 .header .navbar-nav > li:hover > a {
-  color: #26bac8;
+  color: #CE3636;
 }
 .header .nav > li > .search:hover {
-  border-bottom-color: #26bac8;
-  color: #26bac8;
+  border-bottom-color: #CE3636;
+  color: #CE3636;
 }
 .header .navbar-nav > li > a:hover,
 .header .navbar-nav > .active > a {
   border-bottom-color: #8C0000;
 }
 .header .navbar-toggle {
-  border-color: #26bac8;
+  border-color: #CE3636;
 }
 .header .navbar-toggle,
 .header .navbar-toggle:hover,
@@ -55,7 +55,7 @@ a.read-more:hover {
   background:  #8C0000;
 }
 .header .navbar-toggle:hover {
-  background:  #26bac8 !important;
+  background:  #CE3636 !important;
 }
 .header .navbar-nav > .open > a,
 .header .navbar-nav > .open > a:hover,
@@ -99,7 +99,7 @@ a.read-more:hover {
   color: #8C0000;
 }
 .header-v1 .navbar-default .navbar-toggle {
-  border-color: #26bac8;
+  border-color: #CE3636;
 }
 .header-v1 .navbar-toggle,
 .header-v1 .navbar-default .navbar-toggle:hover,
@@ -107,7 +107,7 @@ a.read-more:hover {
   background:  #8C0000;
 }
 .header-v1 .navbar-toggle:hover {
-  background:  #26bac8 !important;
+  background:  #CE3636 !important;
 }
 
 /* Design for max-width: 991px */
@@ -134,7 +134,7 @@ a.read-more:hover {
   border-color: #8C0000;
 }
 .header-v2 .navbar-default .navbar-toggle {
-  border-color: #26bac8;
+  border-color: #CE3636;
 }
 .header-v2 .navbar-toggle,
 .header-v2 .navbar-default .navbar-toggle:hover,
@@ -142,7 +142,7 @@ a.read-more:hover {
   background:  #8C0000;
 }
 .header-v2 .navbar-toggle:hover {
-  background:  #26bac8 !important;
+  background:  #CE3636 !important;
 }
 
 /* Design for max-width: 991px */
@@ -164,13 +164,13 @@ a.read-more:hover {
   color: #8C0000;
 }
 .header-v3 .navbar-default .navbar-nav > li:hover > a {
-  color: #26bac8;
+  color: #CE3636;
 }
 .header-v3 .dropdown-menu {
   border-color: #8C0000;
 }
 .header-v3 .navbar-default .navbar-toggle {
-  border-color: #26bac8;
+  border-color: #CE3636;
 }
 .header-v3 .navbar-toggle,
 .header-v3 .navbar-default .navbar-toggle:hover,
@@ -178,7 +178,7 @@ a.read-more:hover {
   background:  #8C0000;
 }
 .header-v3 .navbar-toggle:hover {
-  background:  #26bac8 !important;
+  background:  #CE3636 !important;
 }
 .header-v3 .navbar .nav > li > .search:hover {
   background: inherit;
@@ -213,7 +213,7 @@ a.read-more:hover {
 }
 .header-v4 .navbar-default .navbar-nav > li:hover > a {
   border-color:  #8C0000;
-  color: #26bac8;
+  color: #CE3636;
 }
 .header-v4 .navbar .nav > li > .search:hover {
   color: #8C0000;
@@ -446,8 +446,12 @@ a.read-more:hover {
 .btn-u {
 	background: #8C0000;
 }
-.btn-u.pink{
-	background: rgb(255, 169, 228);
+.btn-u.blue{
+	background: rgb(38, 62, 150);
+}
+.btn-u.blue:hover
+{
+	background:rgb(20, 35, 90);
 }
 .btn-u:hover, 
 .btn-u:focus, 
@@ -460,7 +464,7 @@ a.read-more:hover {
 
 /* Buttons Color */
 .btn-u-split.dropdown-toggle {
-   border-left: solid 1px #26bac8;
+   border-left: solid 1px #CE3636;
 }
 
 /* Bordered Buttons */
@@ -468,11 +472,11 @@ a.read-more:hover {
   border-color: #8C0000;
 }
 .btn-u.btn-brd:hover {
-  color: #26bac8;
-  border-color: #26bac8;
+  color: #CE3636;
+  border-color: #CE3636;
 }
 .btn-u.btn-brd.btn-brd-hover:hover {
-  background: #26bac8;   
+  background: #CE3636;   
 }
 
 /* Service
@@ -495,7 +499,7 @@ a.read-more:hover {
 	background:#8C0000;
 }
 .thumbnail-style a.btn-more:hover {
-	box-shadow:0 0 0 2px #26bac8;
+	box-shadow:0 0 0 2px #CE3636;
 }
 
 /* Typography
@@ -518,7 +522,7 @@ blockquote.hero.hero-default {
   background: #8C0000;
 }
 blockquote.hero.hero-default:hover {
-  background: #26bac8;
+  background: #CE3636;
 }
 
 /* Carousel
@@ -583,7 +587,7 @@ blockquote.hero.hero-default:hover {
 .tab-v3 .nav-pills li a:hover,
 .tab-v3 .nav-pills li.active a {
 	background: #8C0000;
-	border: solid 1px #26bac8;
+	border: solid 1px #CE3636;
 }
 
 /* Accardion
@@ -798,15 +802,15 @@ ul.blog-tags a:hover {
   border-color: #8C0000;
 }
 .pagination li a:hover {
-  background: #26bac8;
-  border-color: #26bac8;   
+  background: #CE3636;
+  border-color: #CE3636;   
 }
 
 /* Pager */
 .pager li > a:hover, 
 .pager li > a:focus {
-  background: #26bac8;
-  border-color: #26bac8;   
+  background: #CE3636;
+  border-color: #CE3636;   
 }
 .pager.pager-v2 li > a:hover, 
 .pager.pager-v2 li > a:focus,
@@ -950,7 +954,7 @@ blockquote.text-right:hover {
   background: #8C0000;
 }
 .testimonials.testimonials-bg-default .carousel-arrow i:hover {
-  background: #26bac8;
+  background: #CE3636;
 }
 
 /* Promo Page
@@ -1090,7 +1094,7 @@ i.icon-bg-u {
 }
 .pricing-head h3 {
 	background:#8C0000;
-	text-shadow: 0 1px 0 #26bac8;	
+	text-shadow: 0 1px 0 #CE3636;	
 }
 .pricing-head h4 {
 	color:#999;
@@ -1114,7 +1118,7 @@ i.icon-bg-u {
 /* Pricing Footer */
 .pricing-footer a:hover,
 .pricing-footer button:hover {
-	background:#26bac8;
+	background:#CE3636;
 }
 
 /* Pricing Active */
@@ -1131,7 +1135,7 @@ i.icon-bg-u {
 .pricing-mega-v1 .pricing-head h3,
 .pricing-mega-v2 .pricing-head h3,
 .pricing-mega-v3 .pricing-head h3 {
-	text-shadow: 0 1px 0 #26bac8;
+	text-shadow: 0 1px 0 #CE3636;
 }
 
 /* Pricing Table Mega v1 Version
@@ -1180,7 +1184,7 @@ i.icon-bg-u {
 
 .pricing-mega-v1 .btn-group .dropdown-menu li a:hover,
 .pricing-mega-v3 .btn-group .dropdown-menu li a:hover {
-	background: #26bac8;
+	background: #CE3636;
 }
 
 /* Grid Block v2 
@@ -1379,13 +1383,13 @@ i.icon-bg-u {
     color: #8C0000;
 }
 .footer-default .footer a:hover {
-  color: #26bac8;
+  color: #CE3636;
 }
 .footer-default .copyright a {
   color: #8C0000;
 }
 .footer-default .copyright a:hover {
-  color: #26bac8;
+  color: #CE3636;
 }
 
 /* Footer v4

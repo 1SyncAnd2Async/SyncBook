@@ -71,4 +71,9 @@ public class ReviewDAOImpl implements ReviewDAO{
 		return (ReviewVO)sqlSession.selectOne("Review.getBestReview");
 	}
 
+	@Override
+	public int getReviewTotalCount() {
+		return sqlSession.selectOne("Review.getReviewTotalCount");
+	}
+
 }

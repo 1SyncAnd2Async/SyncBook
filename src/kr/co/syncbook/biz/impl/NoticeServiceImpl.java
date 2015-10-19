@@ -81,4 +81,9 @@ public class NoticeServiceImpl implements NoticeService{
 		return list;
 	}
 
+	@Override
+	public int getNoticeTotalCount() {
+		return noticeDAO.getNoticeTotalCount();
+	}
+
 }

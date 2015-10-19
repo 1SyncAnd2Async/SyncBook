@@ -21,11 +21,18 @@
 				WHERE QNA_NUM = #{qna_num}
 		]]>
 	</select>
+	<select id="getQnaTotalCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) TOTALROWS
+			FROM Qna
+		]]>
+	</select>
 	
 	<select id="getQnaList" resultType="Qna">
 		<![CDATA[
 			SELECT QNA_NUM, TITLE, CONTENT, WRITER, WRITE_DATE, HIT, QNA_FILE
 			FROM QNA
+			ORDER BY QNA_NUM DESC
 		]]>
 	</select>
 	

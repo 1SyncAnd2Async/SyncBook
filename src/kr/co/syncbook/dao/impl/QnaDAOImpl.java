@@ -77,4 +77,9 @@ public class QnaDAOImpl implements QnaDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.update("Qna.updateQnaHit",qna_num);
 	}
+
+	@Override
+	public int getQnaTotalCount() {
+		return sqlSession.selectOne("Qna.getQnaTotalCount");
+	}
 }

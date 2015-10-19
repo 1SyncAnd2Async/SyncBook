@@ -14,4 +14,5 @@ public interface QnaDAO {
 	public List<QnaVO> getQnaList(String searchKind, String searchValue);	
 	public List<QnaVO> getMainQnaList();
 	public List<QnaVO> getQnaSearchList(String searchKind, String searchValue);
+	public int getQnaTotalCount();
 }

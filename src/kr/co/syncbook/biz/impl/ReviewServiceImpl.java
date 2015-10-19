@@ -80,5 +80,10 @@ public class ReviewServiceImpl implements ReviewService{
 		ReviewVO review  = reviewDAO.getBestReview();
 		return review;
 	}
+	@Override
+	public int getReviewTotalCount() {
+		return reviewDAO.getReviewTotalCount();
+	}
+
 
 }

@@ -1,4 +1,8 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/views/assignLectureForm.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/faqList.jsp=UTF-8
 encoding//WebContent/WEB-INF/views/memberClassList.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/memberList.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/noticeList.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/qnaList.jsp=UTF-8
 encoding/<project>=UTF-8

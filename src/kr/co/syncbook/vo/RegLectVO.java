@@ -1,10 +1,8 @@
 package kr.co.syncbook.vo;
 
 public class RegLectVO {
-	private int lect_num, reg_num, assign_num, price;
+	private int lect_num, reg_num, assign_num, price, status;
 	private String book_name, lect_name, reg_date, beginTime, endTime, member_id, phone, email, post, address, detail_address;
-	
-	
 	public int getLect_num() {
 		return lect_num;
 	}
@@ -59,7 +57,6 @@ public class RegLectVO {
 	public void setAssign_num(int assign_num) {
 		this.assign_num = assign_num;
 	}
-	
 	public String getMember_id() {
 		return member_id;
 	}
@@ -96,15 +93,18 @@ public class RegLectVO {
 	public void setDetail_address(String detail_address) {
 		this.detail_address = detail_address;
 	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	@Override
 	public String toString() {
 		return "RegLectVO [lect_num=" + lect_num + ", reg_num=" + reg_num + ", assign_num=" + assign_num + ", price="
-				+ price + ", book_name=" + book_name + ", lect_name=" + lect_name + ", reg_date=" + reg_date
-				+ ", beginTime=" + beginTime + ", endTime=" + endTime + ", member_id=" + member_id + ", phone=" + phone
-				+ ", email=" + email + ", post=" + post + ", address=" + address + ", detail_address=" + detail_address
-				+ "]";
+				+ price + ", status=" + status + ", book_name=" + book_name + ", lect_name=" + lect_name + ", reg_date="
+				+ reg_date + ", beginTime=" + beginTime + ", endTime=" + endTime + ", member_id=" + member_id
+				+ ", phone=" + phone + ", email=" + email + ", post=" + post + ", address=" + address
+				+ ", detail_address=" + detail_address + "]";
 	}
-	
-	
-	
 }

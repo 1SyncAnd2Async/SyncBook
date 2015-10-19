@@ -7,12 +7,13 @@
     	<!--=== Breadcrumbs ===-->
     	<div class="breadcrumbs">
         	<div class="container">
-            	<h1 class="pull-left">Blank Page</h1>
+        	<div class="col-md-12 md-margin-bottom-40">
+            	<h1 class="pull-left">내 강의 목록</h1>
             	<ul class="pull-right breadcrumb">
                 	<li><a href="index">Home</a></li>
-                	<li><a href="#">Pages</a></li>
-                	<li class="active">Blank Page</li>
+                	<li class="active">내 강의 목록</li>
             	</ul>
+            	</div>
         	</div><!--/container-->
     	</div><!--/breadcrumbs-->
     	<!--=== End Breadcrumbs ===-->
@@ -44,7 +45,7 @@
                              <li><i class="glyphicon glyphicon-time color-green"></i> 시간 : ${classList.beginTime}~${classList.endTime}</li>
                         </ul>
                     </div>
-                    <div style="width:100px;float:right;margin-top:40px;"><button class="btn-u pink" onclick="location.href='reviewForm?lect_num=${classList.lect_num}'">수강 후기</button></div>
+                    <div style="width:100px;float:right;margin-top:40px;"><button class="btn-u blue" onclick="location.href='reviewForm?lect_num=${classList.lect_num}'">수강 후기</button></div>
                 </div>
                 <hr>
                 </c:forEach>

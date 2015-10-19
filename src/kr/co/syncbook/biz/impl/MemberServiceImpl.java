@@ -98,4 +98,10 @@ public class MemberServiceImpl implements MemberService {
 		return list;
 	}
 
+	@Override
+	public int getMemberTotalCount() {
+		// TODO Auto-generated method stub
+		return memberDAO.getMemberTotalCount();
+	}
+
 }

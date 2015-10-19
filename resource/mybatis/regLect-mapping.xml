@@ -3,31 +3,6 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="RegLect">
-
-	<resultMap type="RegLect" id="RegLectResultMap">
-		<result column="lect_num" property="lect_num"/>
-		<result column="teacher_id" property="teacher_id"/>
-		<result column="day" property="day"/>
-		<result column="begintime" property="begintime"/>
-		<result column="endtime" property="endtime"/>
-		<result column="status" property="status"/>
-	</resultMap>
-	<resultMap type="MemberClass" id="MemberClassResultMap">
-		<result column="member_id" property="member_id"/>
-		<result column="teacher_id" property="teacher_id"/>
-		<result column="lect_name" property="lect_name"/>
-		<result column="begintime" property="begintime"/>
-		<result column="endtime" property="endtime"/>
-		<result column="explanation" property="explanation"/>
-		<result column="lect_img" property="lect_img"/>
-		<result column="teacher_img" property="teacher_img"/>
-		<result column="teacher_phone" property="teacher_phone"/>
-		<result column="teacher_email" property="teacher_email"/>
-		<result column="teacher_name" property="teacher_name"/>
-		<result column="book_name" property="book_name"/>
-		<result column="subj_name" property="subj_name"/>
-	
-	</resultMap>
 	<select id="getAllClassList" resultType="RegLect">
 		<![CDATA[
 			SELECT A.LECT_NUM, L.LECT_NAME, A.TEACHER_ID, A.DAY, A.BEGINTIME, A.ENDTIME, A.STATUS, T.NAME, S.SUBJ_NAME, B.BOOK_NAME, L.IMG, L.PRICE
@@ -38,20 +13,6 @@
 			AND L.BOOK_NUM = B.BOOK_NUM
 		]]>
 	</select>
-	
-	<insert id="assignLecture"  parameterType="RegLect">
-		<![CDATA[
-			INSERT INTO ASSIGN_LECT
-			(LECT_NUM, TEACHER_ID, DAY, BEGINTIME, ENDTIME, STATUS)
-			VALUES
-			(#{lect_num}, #{teacher_id}, #{day}, #{begintime}, #{endtime}, DEFAULT)
-		]]>
-	</insert>
-	<delete id="deleteAssignLect"  parameterType="RegLect">
-		<![CDATA[
-			DELETE ASSIGN_LECT WHERE LECT_NUM = #{lect_num} AND TEACHER_ID = #{teacher_id}			
-		]]>
-	</delete>
 	<select id="getMemberClassList" resultType="MemberClass" parameterType="java.lang.String">
 		<![CDATA[
 			SELECT R.REG_NUM, R.MEMBER_ID, L.LECT_NUM, L.LECT_NAME, L.IMG LECT_IMG, L.EXPLANATION, A.DAY, A.BEGINTIME, A.ENDTIME, T.ID TEACHER_ID,
@@ -106,4 +67,28 @@
 		    AND R.REG_NUM = #{reg_num}
 		]]>
 	</select>
+	<select id="getRegLectTotalCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) TOTALROWS
+			FROM REG_LECT
+		]]>
+	</select>
+	<select id="lectureStatus" resultType="RegLect" parameterType="java.lang.Integer">
+		<![CDATA[
+			SELECT STATUS FROM REG_LECT WHERE REG_NUM = #{reg_num}
+		]]>
+	</select>
+	<insert id="assignLecture"  parameterType="RegLect">
+		<![CDATA[
+			INSERT INTO ASSIGN_LECT
+			(LECT_NUM, TEACHER_ID, DAY, BEGINTIME, ENDTIME, STATUS)
+			VALUES
+			(#{lect_num}, #{teacher_id}, #{day}, #{begintime}, #{endtime}, DEFAULT)
+		]]>
+	</insert>
+	<delete id="deleteAssignLect"  parameterType="RegLect">
+		<![CDATA[
+			DELETE ASSIGN_LECT WHERE LECT_NUM = #{lect_num} AND TEACHER_ID = #{teacher_id}			
+		]]>
+	</delete>
 </mapper>

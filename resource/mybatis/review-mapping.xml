@@ -14,12 +14,18 @@
 			AND R.REVIEW_NUM = #{review_num}
 		]]>
 	</select>
-	
+	<select id="getReviewTotalCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) TOTALROWS
+			FROM REVIEW
+		]]>
+	</select>
 	<select id="getReviewList" resultType="Review">
 		<![CDATA[
 			SELECT R.REVIEW_NUM, R.LECT_NUM, R.TITLE, R.CONTENT,  M.NAME WRITER, M.ID WRITER_ID,R.WRITE_DATE, R.HIT
 			FROM REVIEW R, MEMBER M
 			WHERE R.WRITER = M.ID
+			ORDER BY R.REVIEW_NUM DESC
 		]]>
 	</select>
 	

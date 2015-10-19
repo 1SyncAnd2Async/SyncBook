@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -25,6 +26,7 @@ import kr.co.syncbook.vo.AssignLectVO;
 import kr.co.syncbook.vo.DataVO;
 import kr.co.syncbook.vo.LectureVO;
 import kr.co.syncbook.vo.MemberClassVO;
+import kr.co.syncbook.vo.MemberVO;
 import kr.co.syncbook.vo.OrderVO;
 import kr.co.syncbook.vo.PageVO;
 import kr.co.syncbook.vo.RegLectVO;
@@ -100,12 +102,59 @@ public class RegLectController {
 	}
 
 	@RequestMapping("/orderList")
-	public ModelAndView orderList() {
+	public ModelAndView orderList(int page) {
+		
+		PageVO pageInfo = new PageVO();
+		int rowsPerPage = 10; // �� �������� ������ ��� �� - properties
+		int pagesPerBlock = 5; // �� ��ϴ� ������ ������ �� - properties
+		if (page == 0)
+			page = 1; // ������ �ʱ�ȭ
+		int currentPage = page; // ���� ������ ��
+		int currentBlock = 0; // ���� ��� �ʱ�ȭ
+		if (currentPage % pagesPerBlock == 0) { // ���� ��� �ʱ� ��
+			currentBlock = currentPage / pagesPerBlock;
+		} else { // ���� ����̳�
+			currentBlock = currentPage / pagesPerBlock + 1;
+		}
+		int startRow = (currentPage - 1) * rowsPerPage; // ���� ��� �� ����
+		int endRow = currentPage * rowsPerPage-1; // ������ ��� �� ����    
+		// SearchVO�� ����
+		// SearchVO svo = new SearchVO();
+		// svo.setBegin(String.valueOf(startRow));
+		// svo.setEnd(String.valueOf(endRow));
+		// ��ü ������ ��
+		int totalRows = regLectService.getRegLectTotalCount();
+		// ��ü ������ ���ϴ� ����
+		int totalPages = 0;
+		if (totalRows % rowsPerPage == 0) {
+			totalPages = totalRows / rowsPerPage;
+		} else {
+			totalPages = totalRows / rowsPerPage + 1;
+		}
+		// ��ü ��� ���� ���ϴ� ����
+		int totalBlocks = 0;
+		if (totalPages % pagesPerBlock == 0) {
+			totalBlocks = totalPages / pagesPerBlock;
+		} else {
+			totalBlocks = totalPages / pagesPerBlock + 1;
+		}
+		// ��� ����� ������ PageVO�� �����Ѵ�.
+		pageInfo.setCurrentPage(currentPage);
+		pageInfo.setCurrentBlock(currentBlock);
+		pageInfo.setRowsPerPage(rowsPerPage);
+		pageInfo.setPagesPerBlock(pagesPerBlock);
+		pageInfo.setStartRow(startRow);
+		pageInfo.setEndRow(endRow);
+		pageInfo.setTotalRows(totalRows);
+		pageInfo.setTotalPages(totalPages);
+		pageInfo.setTotalBlocks(totalBlocks);
+		
 		List<RegLectVO> orderList = regLectService.getAllOrderList();
 		System.out.println(orderList);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("orderList", orderList);
+		mav.addObject("pageInfo", pageInfo);
 		mav.setViewName("orderList");
 		return mav;
 	}
@@ -125,7 +174,7 @@ public class RegLectController {
 	}
 
 	@RequestMapping("/memberClassDetail")
-	public ModelAndView memberClassDetail(int reg_num, String id) {
+	public ModelAndView memberClassDetail(int reg_num, String id, String msg) {
 		MemberClassVO memberClassDetail;
 		MemberClassVO vo = new MemberClassVO();
 		vo.setReg_num(reg_num);
@@ -140,6 +189,7 @@ public class RegLectController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("memberClassDetail", memberClassDetail);
 		mav.addObject("dataList", dataList);
+		mav.addObject("msg", msg);
 		mav.setViewName("memberClassDetail");
 		return mav;
 	}
@@ -211,51 +261,50 @@ public class RegLectController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping("lectureStart")
+	public ModelAndView lectureStart(int reg_num, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		RegLectVO v = regLectService.getLectStatus(reg_num);
+		ModelAndView mav = new ModelAndView();
+		if(v.getStatus() == 1) {
+			mav.addObject("reg_num", reg_num);
+			mav.setViewName("lectureStart");
+		} else {
+			mav.addObject("msg", "Lecture isn't started yet.");
+			mav.setViewName("redirect:memberClassDetail?reg_num="+reg_num+"&id="+member.getId());
+		}
+		return mav;
+	}
 
 	@RequestMapping("/androidMemberClassList")
 	public void androidMemberClassList(String member_id, HttpServletRequest request, HttpServletResponse response) {
-
 		response.setCharacterEncoding("UTF-8");
-
-		System.out.println(member_id);
 		List<MemberClassVO> memberClassList = regLectService.getMemberClassList(member_id);
 
 		JSONArray jsonArray = new JSONArray();
 		PrintWriter out = null;
 		int i = 0;
 
-		System.out.println(member_id);
-
-		System.out.println(memberClassList);
-
 		for (MemberClassVO v : memberClassList) {
 			String fullPath = "http://117.17.143.125/BitProject/resources/upload/lectureImg/" + v.getLect_img();
 			if (memberClassList != null) {
 				JSONObject jsonObject = new JSONObject();
-
 				jsonObject.put("lect_img", fullPath);
 				jsonObject.put("lect_name", v.getLect_name());
 				jsonObject.put("lect_time", v.getBeginTime() + "~" + v.getEndTime());
 				jsonObject.put("teacher_name", v.getTeacher_name());
-				System.out.println(i);
-
 				jsonArray.add(i++, jsonObject);
 			}
-
 		}
-
 		i = 0;
-
 		try {
 			out = response.getWriter();
-
 			out.println(jsonArray.toJSONString());
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-
-		System.out.println(jsonArray.toJSONString());
-
 	}
 }

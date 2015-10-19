@@ -13,4 +13,5 @@ public interface FaqService {
 	public List<FaqVO> getFaqList();
 	public List<FaqVO> getMainFaqList();
 	public List<FaqVO> getFaqSearchList(String searchKind, String searchValue);
+	public int getFaqTotalCount();
 }

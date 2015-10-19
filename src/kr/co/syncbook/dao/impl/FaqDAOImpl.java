@@ -76,4 +76,9 @@ public class FaqDAOImpl implements FaqDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.update("Faq.updateFaqHit",faq_num);
 	}
+
+	@Override
+	public int getFaqTotalCount() {
+		return sqlSession.selectOne("Faq.getFaqTotalCount");
+	}
 }

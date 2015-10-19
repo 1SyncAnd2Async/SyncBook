@@ -20,6 +20,12 @@
 				WHERE FAQ_NUM = #{faq_num}
 		]]>
 	</select>
+	<select id="getFaqTotalCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) TOTALROWS
+			FROM FAQ
+		]]>
+	</select>
 	
 	<select id="getFaqList" resultType="Faq">
 		<![CDATA[

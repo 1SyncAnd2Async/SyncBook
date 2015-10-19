@@ -7,18 +7,23 @@
     	<!--=== Breadcrumbs ===-->
     	<div class="breadcrumbs">
         	<div class="container">
+        	 <div class="col-md-12 md-margin-bottom-40">
             	<h1 class="pull-left">회원 프로필</h1>
             	<ul class="pull-right breadcrumb">
                 	<li><a href="index">Home</a></li>
                 	<li><a href="memberList">Member List</a></li>
                 	<li class="active">Member Profile</li>
             	</ul>
+            
         	</div><!--/container-->
     	</div><!--/breadcrumbs-->
+    	</div>
     	<!--=== End Breadcrumbs ===-->
     	
     	<!--=== Content ===-->
     	<div class="container content height-500">
+    	    <div class="row">
+        	<div class="col-md-12">
         	<div class="profile-body margin-bottom-20">
 						<div class="tab-v1">
 							<ul class="nav nav-justified nav-tabs">
@@ -128,7 +133,10 @@
 						</div>
 					</div>
 				</div>
+				</div>
+				
     	</div>
+ 
     	<!--=== End Content ===-->
     </tiles:putAttribute>
 </tiles:insertDefinition>

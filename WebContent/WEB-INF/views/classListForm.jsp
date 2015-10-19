@@ -12,7 +12,6 @@
             	<h1 class="pull-left">학습신청</h1>
             	<ul class="pull-right breadcrumb">
                 	<li><a href="index">Home</a></li>
-                	<li><a href="#">학습</a></li>
                 	<li class="active">학습신청</li>
             	</ul>
             	</div>
@@ -79,25 +78,37 @@
 															test="${pageInfo.currentBlock ne pageInfo.totalBlocks}">
 															<c:forEach begin="1" end="${pageInfo.pagesPerBlock}"
 																varStatus="num">
-                                 <ul class="pagination">
+                                 							<ul class="pagination">
                         										<li><a
 																	href="classListForm?page=
-                                 ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
+                                 									${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
 																	${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li></ul>
-                                </c:forEach>
+                                							</c:forEach>
 														</c:when>
 														<c:otherwise>
 															<c:forEach
 																begin="${(pageInfo.currentBlock-1)*pageInfo.pagesPerBlock + 1}"
 																end="${pageInfo.totalPages}" varStatus="num">
-                                 <ul class="pagination">
-                        										<li><a
-																	href="classListForm?page=
-                   ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
-																	${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }</a></li></ul>
-                             </c:forEach>
+                                 								<ul class="pagination">
+                        										<c:choose>
+		                                 							<c:when test="${pageInfo.currentPage == num.count}">
+		                        										<li class="active"><a
+																			href="classListForm?page=
+		                                 									${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
+																			${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li>
+		                                							</c:when>
+		                                							<c:otherwise>
+		                                								<li><a
+																			href="classListForm?page=
+		                                									 ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
+																			${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li>
+		                                							</c:otherwise>
+		                                						</c:choose>
+                        										</ul>
+                            							 </c:forEach>
 														</c:otherwise>
 													</c:choose>
+
 
 
 													<%--Page 다음 페이지 구현 --%>

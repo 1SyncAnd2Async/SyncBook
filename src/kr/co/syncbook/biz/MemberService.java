@@ -15,4 +15,5 @@ public interface MemberService {
 	public boolean updateMemberPwd(MemberVO member);
 	public boolean pwdCheck(String memberId, String memberPwd);
 	public List<MemberVO> getMemberList();
+	public int getMemberTotalCount();
 }

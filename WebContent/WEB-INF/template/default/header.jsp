@@ -52,29 +52,7 @@
                 	<!-- Member Management -->
                 	<c:choose>
                 	<c:when test="${sessionScope.member != null && sessionScope.member.id == 'admin'}">
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            	회원관리
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-submenu">
-                                <a href="memberList">회원목록</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- End Member Management -->
-                    <!-- Order Management -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            	주문관리
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-submenu">
-                                <a href="orderList">주문목록</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- End Order Management -->
+                   
                     
                     <!-- Member Management -->
                     <li class="dropdown">
@@ -82,6 +60,27 @@
                             	관리
                         </a>
                         <ul class="dropdown-menu">
+                        	 <li class="dropdown-submenu">
+		                        <a href="javascript:void(0);">
+		                            	회원관리
+		                        </a>
+		                        <ul class="dropdown-menu">
+		                            <li>
+		                                <a href="memberList?page=1">회원목록</a>
+		                            </li>
+		                        </ul>
+		                    </li>
+                        	 <li class="dropdown-submenu">
+		                        <a href="javascript:void(0);">
+		                            	주문관리
+		                        </a>
+		                        <ul class="dropdown-menu">
+		                            <li>
+		                                <a href="orderList?page=1">주문목록</a>
+		                            </li>
+		                        </ul>
+		                    </li>
+		                    
                             <li class="dropdown-submenu">
                                 <a href="subject">과목관리</a>
                             </li>
@@ -185,9 +184,9 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                            	<a href="noticeList">공지사항</a>
-                                <a href="reviewList">수강후기</a>
-                                <a href="qnaList">Q & A</a>
+                            	<a href="noticeList?page=1">공지사항</a>
+                                <a href="reviewList?page=1">수강후기</a>
+                                <a href="qnaList?page=1">Q & A</a>
                             </li>
                         </ul>
                     </li>
@@ -200,7 +199,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="faqList">FAQ</a>
+                                <a href="faqList?page=1">FAQ</a>
                                 <a href="#">자료실</a>
                                 <a href="#">고객문의</a>
                                 <a href="#">이용안내</a>

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.syncbook.dao.RegLectDAO;
 import kr.co.syncbook.vo.MemberClassVO;
-import kr.co.syncbook.vo.MemberVO;
 import kr.co.syncbook.vo.OrderVO;
 import kr.co.syncbook.vo.RegLectVO;
 
@@ -20,7 +19,6 @@ public class RegLectDAOImpl implements RegLectDAO {
 	@Override
 	public int addOrder(RegLectVO v) {
 		int result = 0;
-		System.out.println(v);
 		try {
 			result = sqlSession.insert("Order.addOrder", v);
 			sqlSession.update("Order.updateStatus", v.getAssign_num());
@@ -72,5 +70,15 @@ public class RegLectDAOImpl implements RegLectDAO {
 	public List<OrderVO> getBestClassList() {
 		List<OrderVO> list = sqlSession.selectList("Order.getBestClassList");
 		return list;
+	}
+	@Override
+	public RegLectVO getlectStatus(int reg_num) {
+		RegLectVO result = sqlSession.selectOne("RegLect.lectureStatus", reg_num);
+		return result;
+	}
+	@Override
+	public int getRegLectTotalCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("RegLect.getRegLectTotalCount");
 	}
 }

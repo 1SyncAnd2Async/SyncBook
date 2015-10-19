@@ -72,6 +72,7 @@ public class FaqServiceImpl implements FaqService{
 
 	@Override
 	public boolean faqHitUpdate(int faq_num) {
+		System.out.println("faq조회수올라간다");
 		int result = faqDAO.updateFaqHit(faq_num);
 		if(result==1){
 			return true;
@@ -79,5 +80,10 @@ public class FaqServiceImpl implements FaqService{
 			return false;
 		}
 	}
+	@Override
+	public int getFaqTotalCount() {
+		return faqDAO.getFaqTotalCount();
+	}
+
 
 }

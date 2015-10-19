@@ -7,18 +7,21 @@
     	<!--=== Breadcrumbs ===-->
     	<div class="breadcrumbs">
         	<div class="container">
+			<div class="col-md-12 md-margin-bottom-40">
             	<h1 class="pull-left">공지사항</h1>
             	<ul class="pull-right breadcrumb">
                 	<li><a href="index">Home</a></li>
                 	<li><a href="noticeList">공지사항</a></li>
                 	<li class="active">No.${NoticeDetail.notice_num }</li>
             	</ul>
+            	</div>
         	</div><!--/container-->
     	</div><!--/breadcrumbs-->
     	<!--=== End Breadcrumbs ===-->
     	
     	<!--=== Content ===-->
     	<div class="container content height-500">
+			<div class="col-md-12 md-margin-bottom-40">
         	<!-- Write Your HTML Codes Here -->
         	<div style="min-height:400px;" class="news-v3-in">
         			<c:choose>
@@ -27,7 +30,7 @@
         			 onclick="location.href='noticeUpdate?notice_num=${NoticeDetail.notice_num}'">수정</button> 
         			 </c:when>
         			 </c:choose>
-        			  <table class="table table-striped">
+        			  <table class="table" style="background:rgba(255, 255, 255, 0.76);">
                                 <thead>
                                     <tr>
                                         <th colspan="4" style="border-top:1px solid #ddd;"><h2>${NoticeDetail.title}</h2></th>
@@ -52,15 +55,8 @@
                                     </tr>                                 
                                 </tbody>
                             </table>
-                    <%-- <ul class="list-inline posted-info">
-                    	
-                        <li></li>                        
-                        <li>${NoticeDetail.write_date }</li>
-                        <li>조회 수${NoticeDetail.hit }</li>
-                    </ul>
-                    <h2></h2>
-                    <p>${NoticeDetail.content}</p> --%>
                    
+            </div>
             </div>
            
     	</div>

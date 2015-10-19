@@ -1,16 +1,11 @@
 package kr.co.syncbook.web;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Hashtable;
 import java.util.List;
 
-import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,15 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
-import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-
 import kr.co.syncbook.biz.NoticeService;
 import kr.co.syncbook.vo.NoticeVO;
+import kr.co.syncbook.vo.PageVO;
 
 @Controller
 //@RequestMapping("/notice")
@@ -39,9 +28,55 @@ public class NoticeController {
 	NoticeService noticeService;
 	
 	@RequestMapping("noticeList")
-	public ModelAndView noticeList(){
+	public ModelAndView noticeList(int page){
+		PageVO pageInfo = new PageVO();
+		int rowsPerPage = 10; // �� �������� ������ ��� �� - properties
+		int pagesPerBlock = 5; // �� ��ϴ� ������ ������ �� - properties
+		if (page == 0)
+			page = 1; // ������ �ʱ�ȭ
+		int currentPage = page; // ���� ������ ��
+		int currentBlock = 0; // ���� ��� �ʱ�ȭ
+		if (currentPage % pagesPerBlock == 0) { // ���� ��� �ʱ� ��
+			currentBlock = currentPage / pagesPerBlock;
+		} else { // ���� ����̳�
+			currentBlock = currentPage / pagesPerBlock + 1;
+		}
+		int startRow = (currentPage - 1) * rowsPerPage; // ���� ��� �� ����
+		int endRow = currentPage * rowsPerPage-1; // ������ ��� �� ����    
+		// SearchVO�� ����
+		// SearchVO svo = new SearchVO();
+		// svo.setBegin(String.valueOf(startRow));
+		// svo.setEnd(String.valueOf(endRow));
+		// ��ü ������ ��
+		int totalRows = noticeService.getNoticeTotalCount();
+		// ��ü ������ ���ϴ� ����
+		int totalPages = 0;
+		if (totalRows % rowsPerPage == 0) {
+			totalPages = totalRows / rowsPerPage;
+		} else {
+			totalPages = totalRows / rowsPerPage + 1;
+		}
+		// ��ü ��� ���� ���ϴ� ����
+		int totalBlocks = 0;
+		if (totalPages % pagesPerBlock == 0) {
+			totalBlocks = totalPages / pagesPerBlock;
+		} else {
+			totalBlocks = totalPages / pagesPerBlock + 1;
+		}
+		// ��� ����� ������ PageVO�� �����Ѵ�.
+		pageInfo.setCurrentPage(currentPage);
+		pageInfo.setCurrentBlock(currentBlock);
+		pageInfo.setRowsPerPage(rowsPerPage);
+		pageInfo.setPagesPerBlock(pagesPerBlock);
+		pageInfo.setStartRow(startRow);
+		pageInfo.setEndRow(endRow);
+		pageInfo.setTotalRows(totalRows);
+		pageInfo.setTotalPages(totalPages);
+		pageInfo.setTotalBlocks(totalBlocks);
+		
 		List<NoticeVO> list = noticeService.getNoticeList();
 		ModelAndView mv = new ModelAndView("noticeList");
+		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("NoticeList",list);
 		return mv;
 	}
@@ -92,7 +127,7 @@ public class NoticeController {
 		boolean flag=noticeService.noticeUpload(vo);
 		if(flag){
 			System.out.println("Notice Insert");
-			return "redirect:index";
+			return "redirect:noticeList";
 		}else{
 			System.out.println("Notice Insert Fail");
 			return "redirect:index";
@@ -173,9 +208,9 @@ public class NoticeController {
 		ModelAndView mav = new ModelAndView();
 		boolean flag = noticeService.noticeDelete(notice_num);
 		if(flag) {
-			mav.setViewName("redirect:noticeList");
+			mav.setViewName("redirect:noticeList?page=1");
 		} else {
-			mav.setViewName("redirect:noticeList");
+			mav.setViewName("redirect:noticeList?page=1");
 		}
 		return mav;
 	}

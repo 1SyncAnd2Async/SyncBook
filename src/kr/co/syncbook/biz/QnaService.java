@@ -13,4 +13,5 @@ public interface QnaService {
 	public List<QnaVO> getQnaList();
 	public List<QnaVO> getMainQnaList();
 	public List<QnaVO> getqnaSearchList(String searchKind, String searchValue);
+	public int getQnaTotalCount();
 }
