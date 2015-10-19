@@ -2,7 +2,7 @@ package kr.co.syncbook.vo;
 
 public class MemberClassVO {
 	private int reg_num, lect_num;
-	private String member_id, lect_name, explanation, beginTime, endTime,
+	private String member_id, lect_name, explanation, day, beginTime, endTime,
 			teacher_id, teacher_name, teacher_phone, teacher_email,
 			teacher_img, book_name, subj_name, lect_img;
 	public int getLect_num() {
@@ -43,6 +43,14 @@ public class MemberClassVO {
 
 	public void setExplanation(String explanation) {
 		this.explanation = explanation;
+	}
+
+	public String getDay() {
+		return day;
+	}
+
+	public void setDay(String day) {
+		this.day = day;
 	}
 
 	public String getBeginTime() {
@@ -124,22 +132,13 @@ public class MemberClassVO {
 	public void setLect_img(String lect_img) {
 		this.lect_img = lect_img;
 	}
-
 	@Override
 	public String toString() {
 		return "MemberClassVO [reg_num=" + reg_num + ", lect_num=" + lect_num + ", member_id=" + member_id
-				+ ", lect_name=" + lect_name + ", explanation=" + explanation + ", beginTime=" + beginTime
-				+ ", endTime=" + endTime + ", teacher_id=" + teacher_id + ", teacher_name=" + teacher_name
+				+ ", lect_name=" + lect_name + ", explanation=" + explanation + ", day=" + day + ", beginTime="
+				+ beginTime + ", endTime=" + endTime + ", teacher_id=" + teacher_id + ", teacher_name=" + teacher_name
 				+ ", teacher_phone=" + teacher_phone + ", teacher_email=" + teacher_email + ", teacher_img="
 				+ teacher_img + ", book_name=" + book_name + ", subj_name=" + subj_name + ", lect_img=" + lect_img
 				+ "]";
 	}
-
-	
-
-	
-
-	
-	
-
 }

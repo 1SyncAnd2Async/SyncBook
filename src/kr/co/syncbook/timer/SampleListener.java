@@ -13,6 +13,11 @@ import java.util.TimerTask;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import kr.co.syncbook.vo.MemberClassVO;
+import kr.co.syncbook.vo.MemberVO;
+import kr.co.syncbook.web.GCMController;
+import kr.co.syncbook.web.MemberController;
+
 public class SampleListener implements ServletContextListener {
 
     private MyThread myThread = null;
@@ -53,6 +58,8 @@ public class SampleListener implements ServletContextListener {
 //                    Thread.sleep(10);
 //                }
 //                p.waitFor();
+            	
+            	
             	
             	URL url = new URL("http://117.17.143.104:8081/BitProject/GCMSend");
                 System.out.println(url);

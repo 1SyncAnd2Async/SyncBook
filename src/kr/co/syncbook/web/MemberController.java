@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -29,6 +30,8 @@ public class MemberController {
 	MemberService memberService;
 	@Autowired
 	RegLectService regLectService;
+	
+	
 	
 	@RequestMapping("/loginForm")
 	public ModelAndView loginForm(String login){
@@ -143,10 +146,10 @@ public class MemberController {
 			session.setAttribute("post1", post1);
 			session.setAttribute("post2", post2);
 			session.setAttribute("member", member);
-			mav.addObject("msg", "º¯°æ ¿Ï·á");
+			mav.addObject("msg", "ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½");
 			mav.setViewName("myPageForm");
 		} else {
-			mav.addObject("msg", "º¯°æ ½ÇÆÐ");
+			mav.addObject("msg", "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			mav.setViewName("myPageForm");
 		}
 		return mav;
@@ -173,10 +176,10 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		boolean flag = memberService.updateMemberPwd(member);
 		if(flag) {
-			// ÆË¾÷À¸·Î!
+			// ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½ï¿½!
 			mav.setViewName("myPageForm");
 		} else {
-			mav.addObject("msg", "º¯°æ ½ÇÆÐ");
+			mav.addObject("msg", "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			mav.setViewName("myPageForm");
 		}
 		return mav;
@@ -184,7 +187,7 @@ public class MemberController {
 	
 	@RequestMapping("/androidMemberJoin")
 	public void Ajoin(HttpServletRequest request, @RequestParam String post1, @RequestParam String post2)	{
-		// Æûµ¥ÀÌÅÍ ¾ò±â
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		MemberVO member = new MemberVO();
 		member.setId(request.getParameter("id"));
 		member.setPassword(request.getParameter("password"));
@@ -198,37 +201,40 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/androidLogin")
-	public void Alogin(HttpServletResponse response, HttpServletRequest request, String id, String password)	{
-		
+	public void Alogin(HttpSession session,HttpServletResponse response, HttpServletRequest request, String id, String password)	{
+		ServletContext context = request.getServletContext();
+		System.out.println(request.getServletContext());
 		response.setCharacterEncoding("UTF-8");
 		
 		System.out.println(id);
 		System.out.println(password);
 		
-		MemberVO member = memberService.memberLogin(id, password);
-		StringTokenizer stz = new StringTokenizer(member.getPost(), "-");
+		MemberVO Amember = memberService.memberLogin(id, password);
+		StringTokenizer stz = new StringTokenizer(Amember.getPost(), "-");
 		String post1 = stz.nextToken();
 		String post2 = stz.nextToken();
 		
 		PrintWriter out = null;
 		
-		System.out.println(member.getId());
-		System.out.println(member.getPassword());
-		System.out.println(member.getAddress());
+		System.out.println(Amember.getId());
+		System.out.println(Amember.getPassword());
+		System.out.println(Amember.getAddress());
 		
-		if(member != null)	{
+		if(Amember != null)	{
 			JSONObject jsonObject = new JSONObject();
 			
-			jsonObject.put("id", member.getId());
-			jsonObject.put("password", member.getPassword());
-			jsonObject.put("name", member.getName());
-			jsonObject.put("phone", member.getPhone());
+			jsonObject.put("id", Amember.getId());
+			jsonObject.put("password", Amember.getPassword());
+			jsonObject.put("name", Amember.getName());
+			jsonObject.put("phone", Amember.getPhone());
 			jsonObject.put("post1", post1);
 			jsonObject.put("post2", post2);
-			jsonObject.put("address", member.getAddress());
-			jsonObject.put("detail_address", member.getDetail_address());
-			jsonObject.put("email", member.getEmail());
-			
+			jsonObject.put("address", Amember.getAddress());
+			jsonObject.put("detail_address", Amember.getDetail_address());
+			jsonObject.put("email", Amember.getEmail());
+			System.out.println("appLogin:::::::::::::"+ Amember.getId());
+			//session.setAttribute("appLogin", Amember.getId());
+			context.setAttribute("appLogin", Amember.getId());
 			try {
 				out = response.getWriter();
 				
