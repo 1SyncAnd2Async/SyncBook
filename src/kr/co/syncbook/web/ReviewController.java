@@ -104,7 +104,7 @@ public class ReviewController {
 		boolean flag=reviewService.reviewUpdate(vo);
 		if(flag){
 			System.out.println("Review Insert");
-			mav.setViewName("redirect:reviewList");
+			mav.setViewName("redirect:reviewList?page=1");
 		}else{
 			System.out.println("Review Insert Fail");
 			mav.setViewName("redirect:index");
@@ -118,7 +118,7 @@ public class ReviewController {
 		boolean flag=reviewService.reviewUpload(vo);
 		if(flag){
 			System.out.println("Review Insert");
-			mav.setViewName("redirect:reviewList");
+			mav.setViewName("redirect:reviewList?page=1");
 		}else{
 			System.out.println("Review Insert Fail");
 			mav.setViewName("redirect:index");
@@ -153,9 +153,9 @@ public class ReviewController {
 		ModelAndView mav = new ModelAndView();
 		boolean flag = reviewService.reviewDelete(review_num);
 		if(flag) {
-			mav.setViewName("redirect:reviewList");
+			mav.setViewName("redirect:reviewList?page=1");
 		} else {
-			mav.setViewName("redirect:reviewList");
+			mav.setViewName("redirect:reviewList?page=1");
 		}
 		return mav;
 	}

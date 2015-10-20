@@ -45,13 +45,6 @@ public class MessageDAOImpl implements MessageDAO{
 	}
 
 	@Override
-	public List<MessageVO> getMessageList() {
-		List<MessageVO> list  = sqlSession.selectList("Message.getMessageList");
-		return list;
-	}
-
-
-	@Override
 	public int updateMessageStatus(int message_num) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("Message.updateMessageHit",message_num);
@@ -60,5 +53,18 @@ public class MessageDAOImpl implements MessageDAO{
 	@Override
 	public int getMessageTotalCount() {
 		return sqlSession.selectOne("Message.getMessageTotalCount");
+	}
+
+	@Override
+	public List<MessageVO> getReceiveMessageList(String receiver) {
+		System.out.println("DAO : "+receiver);
+		List<MessageVO> list  = sqlSession.selectList("Message.getReceiveMessageList",receiver);
+		return list;
+	}
+
+	@Override
+	public List<MessageVO> getSendMessageList(String sender) {
+		List<MessageVO> list  = sqlSession.selectList("Message.getSendMessageList",sender);
+		return list;
 	}
 }

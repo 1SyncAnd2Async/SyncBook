@@ -22,7 +22,7 @@
 		]]>
 	</select>
 	
-	<select id="getRceiveMessageList" resultType="Message">
+	<select id="getReceiveMessageList" resultType="Message">
 		<![CDATA[
 			SELECT ROWNUM NUM, M.MESSAGE_NUM, M.SENDER, M.RECEIVER, M.CONTENT, M.WRITE_DATE, M.STATUS,
 			L.LECT_NAME, A.BEGINTIME, A.ENDTIME
@@ -49,9 +49,9 @@
 			VALUES(MESSAGE_SEQ.NEXTVAL, #{sender}, #{receiver}, #{content}, #{assign_num}, SYSDATE)
 		]]>
 	</insert>
-	<update id="updateMessageStatus" parameterType="java.lang.Integer">
+	<update id="updateMessageStatus" parameterType="java.lang.Integer">	    
 		<![CDATA[
-			UPDATE MESSAGE SET  STATUS = 1 WHERE  MESSAGE_NUM = #{message_num}			
+			UPDATE MESSAGE SET  STATUS = 1 WHERE MESSAGE_NUM = #{message_num}			
 		]]>
 	</update>
 	<delete id="deleteMessage"  parameterType="java.lang.Integer">

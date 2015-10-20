@@ -8,17 +8,24 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.syncbook.biz.FaqService;
-import kr.co.syncbook.vo.FaqVO;
+import kr.co.syncbook.biz.MemberService;
+import kr.co.syncbook.biz.MessageService;
+import kr.co.syncbook.biz.RegLectService;
+import kr.co.syncbook.vo.MemberClassVO;
+import kr.co.syncbook.vo.MessageVO;
 import kr.co.syncbook.vo.PageVO;
 
 @Controller
-public class FaqController {
+public class MessageController {
 	@Autowired
-	FaqService faqService;
+	MessageService messageService;
+	@Autowired
+	MemberService memberService;
+	@Autowired
+	RegLectService regLectService;
 	
-	@RequestMapping("faqList")
-	public ModelAndView faqList(int page){
+	@RequestMapping("messageList")
+	public ModelAndView messageList(int page, String receiver){
 		PageVO pageInfo = new PageVO();
 		int rowsPerPage = 10; // �� �������� ������ ��� �� - properties
 		int pagesPerBlock = 5; // �� ��ϴ� ������ ������ �� - properties
@@ -38,7 +45,7 @@ public class FaqController {
 		// svo.setBegin(String.valueOf(startRow));
 		// svo.setEnd(String.valueOf(endRow));
 		// ��ü ������ ��
-		int totalRows = faqService.getFaqTotalCount();
+		int totalRows = messageService.getMessageTotalCount();
 		// ��ü ������ ���ϴ� ����
 		int totalPages = 0;
 		if (totalRows % rowsPerPage == 0) {
@@ -63,68 +70,67 @@ public class FaqController {
 		pageInfo.setTotalRows(totalRows);
 		pageInfo.setTotalPages(totalPages);
 		pageInfo.setTotalBlocks(totalBlocks);
-		
-		List<FaqVO> list = faqService.getFaqList();
-		ModelAndView mv = new ModelAndView("faqList");
+		System.out.println(receiver);
+		List<MessageVO> list = messageService.getReceiveMessageList(receiver);
+		System.out.println(list);
+		ModelAndView mv = new ModelAndView("messageList");
 		mv.addObject("pageInfo", pageInfo);
-		mv.addObject("faqList",list);
+		mv.addObject("messageList",list);
 		return mv;
 	}
-	@RequestMapping("faqForm")
-	public String writeForm(){
-		return "faqForm";
-	}
-	@RequestMapping("faqUpdate")
-	public ModelAndView updateForm(int faq_num){
-		FaqVO faq =  faqService.getFaq(faq_num);
-		ModelAndView mv = new ModelAndView("faqUpdate");
-		mv.addObject("faq",faq);
-		return mv;
-	}
-	@RequestMapping("faqUpdateOk")
-	public String faqUpdateOk(FaqVO vo){	
-	
-		boolean flag=faqService.faqUpdate(vo);
-		if(flag){
-			System.out.println("Faq Insert");
-			return "redirect:faqList?page=1";
-		}else{
-			System.out.println("Faq Insert Fail");
-			return "redirect:index";
-		}
-	}
-	@RequestMapping("faqWrite")
-	public String write(@ModelAttribute FaqVO vo){		
-		
-		boolean flag=faqService.faqUpload(vo);
-		if(flag){
-			System.out.println("Faq Insert");
-			return "redirect:faqList?page=1";
-		}else{
-			System.out.println("Faq Insert Fail");
-			return "redirect:index";
-		}
-	}
-	
-	@RequestMapping("faqDetail")
-	public ModelAndView faqDetail(int faq_num){
-		
-		faqService.faqHitUpdate(faq_num);
-		FaqVO faq =  faqService.getFaq(faq_num);
-		ModelAndView mv = new ModelAndView("faqDetail");
-		mv.addObject("faqDetail", faq);
-		return mv;
-	}
-	@RequestMapping("/faqDelete")
-	public ModelAndView deleteSubject(int faq_num){
-		ModelAndView mav = new ModelAndView();
-		boolean flag = faqService.faqDelete(faq_num);
-		if(flag) {
-			mav.setViewName("redirect:faqList?page=1");
+	@RequestMapping("messageForm")
+	public ModelAndView messageForm(int reg_num, String id){
+		MemberClassVO memberClassDetail;
+		MemberClassVO vo = new MemberClassVO();
+		vo.setReg_num(reg_num);
+		if(memberService.idCheck(id)) {
+			vo.setMember_id(id);
+			memberClassDetail = regLectService.getMemberClassDetail(vo);
 		} else {
-			mav.setViewName("redirect:faqList?page=1");
+			vo.setTeacher_id(id);
+			memberClassDetail = regLectService.getTeacherClassDetail(vo);
+		}
+		System.out.println(memberClassDetail);
+		ModelAndView mv = new ModelAndView("messageForm");
+		mv.addObject("memberClassDetail", memberClassDetail);
+		return mv;
+	}
+	@RequestMapping("/messageDelete")
+	public ModelAndView deleteSubject(int message_num, String id){
+		ModelAndView mav = new ModelAndView();
+		boolean flag = messageService.messageDelete(message_num);
+		if(flag) {
+			mav.setViewName("redirect:messageList?page=1&receiver="+id);
+		} else {
+			mav.setViewName("redirect:messageList?page=1&receiver="+id);
 		}
 		return mav;
 	}
+	@RequestMapping("messageWrite")
+	public String write(@ModelAttribute MessageVO vo){		
+		
+		boolean flag=messageService.messageUpload(vo);
+		if(flag){
+			System.out.println("message Insert");
+			return "redirect:messageList?page=1&receiver="+vo.getSender();
+		}else{
+			System.out.println("message Insert Fail");
+			return "redirect:index";
+		}
+	}
 	
+	@RequestMapping("messageDetail")
+	public ModelAndView messageDetail(int message_num){
+		
+		
+		MessageVO message =  messageService.getMessage(message_num);
+		if(message.getStatus()==0){
+			messageService.messageStatusUpdate(message_num);
+		}
+		ModelAndView mv = new ModelAndView("messageDetail");
+		mv.addObject("messageDetail", message);
+		return mv;
+	}
+	
+
 }

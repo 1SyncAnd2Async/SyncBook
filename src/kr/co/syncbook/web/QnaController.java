@@ -89,9 +89,9 @@ public class QnaController {
 		ModelAndView mav = new ModelAndView();
 		boolean flag = qnaService.qnaDelete(qna_num);
 		if(flag) {
-			mav.setViewName("redirect:qnaList");
+			mav.setViewName("redirect:qnaList?page=1");
 		} else {
-			mav.setViewName("redirect:qnaList");
+			mav.setViewName("redirect:qnaList?page=1");
 		}
 		return mav;
 	}
@@ -116,7 +116,7 @@ public class QnaController {
 		boolean flag=qnaService.qnaUpdate(vo);
 		if(flag){
 			System.out.println("Qna Insert");
-			return "redirect:qnaList";
+			return "redirect:qnaList?page=1";
 		}else{
 			System.out.println("Qna Insert Fail");
 			return "redirect:index";
@@ -137,7 +137,7 @@ public class QnaController {
 		boolean flag=qnaService.qnaUpload(vo);
 		if(flag){
 			System.out.println("Qna Insert");
-			return "redirect:qnaList";
+			return "redirect:qnaList?page=1";
 		}else{
 			System.out.println("Qna Insert Fail");
 			return "redirect:index";

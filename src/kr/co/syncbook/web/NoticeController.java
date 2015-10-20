@@ -106,7 +106,7 @@ public class NoticeController {
 		boolean flag=noticeService.noticeUpdate(vo);
 		if(flag){
 			System.out.println("Notice Insert");
-			return "redirect:noticeList";
+			return "redirect:noticeList?page=1";
 		}else{
 			System.out.println("Notice Insert Fail");
 			return "redirect:index";
@@ -127,7 +127,7 @@ public class NoticeController {
 		boolean flag=noticeService.noticeUpload(vo);
 		if(flag){
 			System.out.println("Notice Insert");
-			return "redirect:noticeList";
+			return "redirect:noticeList?page=1";
 		}else{
 			System.out.println("Notice Insert Fail");
 			return "redirect:index";

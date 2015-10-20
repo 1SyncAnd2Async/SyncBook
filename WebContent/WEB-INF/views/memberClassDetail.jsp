@@ -79,15 +79,22 @@
 										<label><span class="icon-earphones-alt"></span>&nbsp;&nbsp;수업
 											참여</label>
 									</div>
-									<div style="padding-left: 40%; margin-bottom: 20px;">
+									<div style="padding-left: 38%; margin-bottom: 20px;">
 										<c:choose>
 											<c:when test="${sessionScope.member.id != null}">
+												<input type="button"
+													onclick="location.href='messageForm?reg_num=${memberClassDetail.reg_num}&id=${sessionScope.member.id}'"
+													value="질문하기" class="btn-u btn-u-lg">&nbsp;&nbsp;&nbsp;&nbsp;
 												<input type="button"
 													onclick="location.href='lectureStart?reg_num=${memberClassDetail.reg_num}'"
 													value="수업 시작" class="btn-u btn-u-lg">
 											&nbsp;<b><font color="red">${msg}</font></b>
+											
 											</c:when>
 											<c:when test="${sessionScope.teacher.id != null}">
+												<input type="button"
+													onclick="location.href='messageForm?reg_num=${memberClassDetail.reg_num}&id=${sessionScope.teacher.id}'"
+													value="질문하기" class="btn-u btn-u-lg">&nbsp;&nbsp;&nbsp;&nbsp;
 												<input type="button"
 													onclick="window.open('http://117.17.143.126:52252/teacher/${memberClassDetail.reg_num}')"
 													value="수업 시작" class="btn-u btn-u-lg">

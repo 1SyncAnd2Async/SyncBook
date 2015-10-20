@@ -51,12 +51,6 @@ public class MessageServiceImpl implements MessageService{
 	}
 
 	@Override
-	public List<MessageVO> getMessageList() {
-		
-		List<MessageVO> list = messageDAO.getMessageList();
-		return list;
-	}
-	@Override
 	public boolean messageStatusUpdate(int message_num) {
 		int result = messageDAO.updateMessageStatus(message_num);
 		if(result==1){
@@ -68,6 +62,19 @@ public class MessageServiceImpl implements MessageService{
 	@Override
 	public int getMessageTotalCount() {
 		return messageDAO.getMessageTotalCount();
+	}
+
+	@Override
+	public List<MessageVO> getReceiveMessageList(String receiver) {
+		System.out.println("service : "+receiver);
+		List<MessageVO> list = messageDAO.getReceiveMessageList(receiver);
+		return list;
+	}
+
+	@Override
+	public List<MessageVO> getSendMessageList(String sender) {
+		List<MessageVO> list = messageDAO.getSendMessageList(sender);
+		return list;
 	}
 
 }

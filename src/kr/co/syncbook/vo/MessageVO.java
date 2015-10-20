@@ -4,9 +4,15 @@ import java.util.Date;
 
 public class MessageVO {
 	private String sender, receiver, content, lect_name, beginTime, endTime;
-	private int assign_num, lect_num, message_num, status;
+	private int assign_num, lect_num, message_num, status, num;
 	private Date write_date;
 	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	public int getStatus() {
 		return status;
 	}

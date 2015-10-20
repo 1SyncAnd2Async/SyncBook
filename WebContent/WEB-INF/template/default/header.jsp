@@ -17,14 +17,16 @@
                     <c:choose>
                     	<c:when test="${!empty sessionScope.teacher}">
                     		<li><a href="teacherPageForm?teacher_id=${sessionScope.teacher.id}" id="teacher">${sessionScope.teacher.id}</a></li> 님 환영합니다.
-                    		<li><i class="icon-envelope"></i></li>
+                    		<li><a href="messageList?page=1&receiver=${sessionScope.teacher.id}">
+                    		<i style="font-size: larger; color: #8C0101;" class="icon-envelope"></i></a></li>
                     		<li class="topbar-devider"></li>                    		
                     		<li><a href="teacherLogout">Logout</a></li>
                     		
                     	</c:when>
                     	<c:when test="${!empty sessionScope.member}">
                     		<li><a href="myPageForm?member_id=${sessionScope.member.id}" id="member">${sessionScope.member.id}</a></li> 님 환영합니다.
-                    		<li><i class="icon-envelope"></i></li>
+                    		<li><a href="messageList?page=1&receiver=${sessionScope.member.id}">
+                    		<i style="font-size: larger; color: #8C0101;" class="icon-envelope"></i></a></li>
                     		<li class="topbar-devider"></li>                    		
                     		<li><a href="logout">Logout</a></li>
                     	</c:when>

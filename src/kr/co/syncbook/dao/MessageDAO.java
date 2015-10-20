@@ -10,6 +10,7 @@ public interface MessageDAO {
 	public int updateMessageStatus(int message_num);
 	public int deleteMessage(int message_num);
 	public MessageVO getMessage(int message_num);
-	public List<MessageVO> getMessageList();
+	public List<MessageVO> getReceiveMessageList(String receiver);
+	public List<MessageVO> getSendMessageList(String sender);
 	public int getMessageTotalCount();
 }
