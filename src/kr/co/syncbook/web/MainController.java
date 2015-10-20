@@ -21,7 +21,6 @@ import kr.co.syncbook.vo.ReviewVO;
 import kr.co.syncbook.vo.TeacherVO;
 
 @Controller
-//@RequestMapping("/notice")
 public class MainController {
 	@Autowired
 	NoticeService noticeService;
@@ -37,14 +36,13 @@ public class MainController {
 	FaqService faqService;
 	
 	@RequestMapping("index")
-	public ModelAndView noticeList(){
+	public ModelAndView mainPage(){
 		List<NoticeVO> noticeList = noticeService.getMainNoticeList();
 		List<OrderVO> bestClassList = regLectService.getBestClassList();
 		List<TeacherVO> teacherList = teacherService.getTeacherList();
 		List<QnaVO> qnaList = qnaService.getMainQnaList();
 		ReviewVO bestReview =reviewService.getBestReview();
 		List<FaqVO> faqList = faqService.getFaqList();
-		
 		
 		ModelAndView mv = new ModelAndView("index");
 		mv.addObject("qnaList",qnaList);
@@ -55,6 +53,4 @@ public class MainController {
 		mv.addObject("faqList",faqList);
 		return mv;
 	}
-	
-
 }

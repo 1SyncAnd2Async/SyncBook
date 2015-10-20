@@ -31,9 +31,7 @@ public class MemberController {
 	MemberService memberService;
 	@Autowired
 	RegLectService regLectService;
-	
-	
-	
+
 	@RequestMapping("/loginForm")
 	public ModelAndView loginForm(String login){
 		System.out.println(login);
@@ -128,15 +126,17 @@ public class MemberController {
 	public ModelAndView login(String id, String password, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		MemberVO member = memberService.memberLogin(id, password);
-		StringTokenizer stz = new StringTokenizer(member.getPost(), "-");
-		String post1 = stz.nextToken();
-		String post2 = stz.nextToken();
 		if(member != null) {
+			StringTokenizer stz = new StringTokenizer(member.getPost(), "-");
+			String post1 = stz.nextToken();
+			String post2 = stz.nextToken();
 			session.setAttribute("member", member);
 			session.setAttribute("post1", post1);
 			session.setAttribute("post2", post2);
 			mav.setViewName("redirect:index");
-		} else mav.setViewName("loginForm");
+		} else {
+			mav.setViewName("redirect:loginForm?login=login");
+		}
 		return mav;
 	}
 	@RequestMapping("/logout")
@@ -194,11 +194,9 @@ public class MemberController {
 			session.setAttribute("post1", post1);
 			session.setAttribute("post2", post2);
 			session.setAttribute("member", member);
-			mav.addObject("msg", "���� �Ϸ�");
-			mav.setViewName("myPageForm");
+			mav.setViewName("redirect:myPageForm?member_id="+member.getId());
 		} else {
-			mav.addObject("msg", "���� ����");
-			mav.setViewName("myPageForm");
+			mav.setViewName("redirect:myPageForm?member_id="+member.getId());
 		}
 		return mav;
 	}
@@ -227,7 +225,6 @@ public class MemberController {
 			// �˾�����!
 			mav.setViewName("myPageForm");
 		} else {
-			mav.addObject("msg", "���� ����");
 			mav.setViewName("myPageForm");
 		}
 		return mav;

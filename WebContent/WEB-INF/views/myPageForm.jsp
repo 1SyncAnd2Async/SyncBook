@@ -24,6 +24,7 @@
 			$("label.input label").show();
 			$("i.fa fa-pencil").hide();
 			$("#profile_edit_btn").show();
+			$("#profile_cancel_btn").show();
 			$("input:file").show();
 		});
 	});
@@ -38,6 +39,7 @@
 					if(data == "success"){
 						document.getElementById("pwdCheckLayer").innerHTML = "<font color='green'>비밀번호가 일치합니다.</font>";
 						$("#pwd_edit_btn").show();
+						$("#pwd_cancel_btn").show();
 					} else if(data == "fail"){
 						document.getElementById("pwdCheckLayer").innerHTML = "<font color='red'>잘못된 비밀번호입니다.</font>";
 						$("#pwd_edit_btn").hide();
@@ -193,7 +195,7 @@
 										</dl>
 										<div class="pull-right">
 											<input type="submit" class="btn-u" id="profile_edit_btn" value="변경 완료" style="display: none">
-											<button type="button" class="btn-u btn-u-default" onclick="location.href='myPageForm'">변경 취소</button>
+											<button type="button" class="btn-u btn-u-default" id="profile_cancel_btn" onclick="location.href='myPageForm?member_id=${sessionScope.member.id}'" style="display: none">변경 취소</button>
 										</div>
 									</form>
 								</div>
@@ -246,7 +248,7 @@
 										</section>
 										<div class="pull-right">
 											<input type="submit" class="btn-u" id="pwd_edit_btn" value="변경 완료" style="display: none">
-											<button type="button" class="btn-u btn-u-default" onclick="location.href='myPageForm'">변경 취소</button>
+											<button type="button" class="btn-u btn-u-default" id="pwd_cancel_btn" onclick="location.href='myPageForm?member_id=${sessionScope.member.id}'" style="display: none">변경 취소</button>
 										</div>
 									</form>
 								</div>

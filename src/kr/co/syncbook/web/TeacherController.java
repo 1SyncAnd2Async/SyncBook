@@ -104,20 +104,18 @@ public class TeacherController {
 		boolean flag = teacherService.updateTeacherProfile(teacher);
 		if(flag) {
 			session.setAttribute("teacher", teacher);
-			mav.addObject("msg", "º¯°æ ¿Ï·á");
 			mav.setViewName("teacherPageForm");
 		} else {
-			mav.addObject("msg", "º¯°æ ½ÇÆÐ");
 			mav.setViewName("teacherPageForm");
 		}
 		return mav;
 	}
 	@RequestMapping("/teacherPwdCheck")
-	public void pwdCheck(HttpServletRequest request, HttpServletResponse response, @RequestParam String pwd) throws IOException {
+	public void pwdCheck(HttpServletRequest request, HttpServletResponse response, @RequestParam String teacherPwd) throws IOException {
 		HttpSession session = request.getSession();
 		TeacherVO teacher = (TeacherVO) session.getAttribute("teacher");
 		String teacherId = teacher.getId();
-		boolean flag = teacherService.pwdCheck(teacherId, pwd);
+		boolean flag = teacherService.pwdCheck(teacherId, teacherPwd);
 		String result = null;
 		PrintWriter out = response.getWriter();
 		if(flag) result = "success";
@@ -134,10 +132,10 @@ public class TeacherController {
 		ModelAndView mav = new ModelAndView();
 		boolean flag = teacherService.updateTeacherPwd(teacher);
 		if(flag) {
-			// ÆË¾÷À¸·Î!
+			// ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½ï¿½!
 			mav.setViewName("teacherPageForm");
 		} else {
-			mav.addObject("msg", "º¯°æ ½ÇÆÐ");
+			mav.addObject("msg", "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			mav.setViewName("teacherPageForm");
 		}
 		return mav;
