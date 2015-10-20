@@ -44,6 +44,7 @@
                             	<input type="submit" class="btn-u push" value="Login">
                             	<button class="btn-u btn-u-blue push" type="#">Join</button>
                         	</div>
+                        	<b><font color="red">${msg}</font></b>
                     	</div>
                     	<hr>
                     	<h4>Forget your Password ?</h4>

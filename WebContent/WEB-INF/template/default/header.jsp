@@ -16,14 +16,14 @@
                 <ul class="loginbar pull-right">
                     <c:choose>
                     	<c:when test="${!empty sessionScope.teacher}">
-                    		<li><a href="teacherPageForm?teacher_id=${sessionScope.teacher.id}" id="teacher">${sessionScope.teacher.id}</a></li> 님 환영합니다.
+                    		<li><a href="teacherPageForm" id="teacher">${sessionScope.teacher.name}</a></li> 님 환영합니다.
                     		<li><i class="icon-envelope"></i></li>
                     		<li class="topbar-devider"></li>                    		
                     		<li><a href="teacherLogout">Logout</a></li>
                     		
                     	</c:when>
                     	<c:when test="${!empty sessionScope.member}">
-                    		<li><a href="myPageForm?member_id=${sessionScope.member.id}" id="member">${sessionScope.member.id}</a></li> 님 환영합니다.
+                    		<li><a href="myPageForm?member_id=${sessionScope.member.id}" id="member">${sessionScope.member.name}</a></li> 님 환영합니다.
                     		<li><i class="icon-envelope"></i></li>
                     		<li class="topbar-devider"></li>                    		
                     		<li><a href="logout">Logout</a></li>
@@ -152,6 +152,7 @@
                                 <a href="classListForm?page=1">학습신청</a>
                             </li>
                             <!-- End Books List Pages -->
+                            
                             <!-- Category Pages -->
                             <li class="dropdown-submenu">
                                 <a href="javascript:void(0);">북 카테고리</a>
