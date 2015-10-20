@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Message">
+
+
+	<select id="getMessage" resultType="Message" parameterType="java.lang.Integer">
+		<![CDATA[
+			SELECT M.MESSAGE_NUM, M.SENDER, M.RECEIVER, M.CONTENT, M.WRITE_DATE, M.STATUS,
+			L.LECT_NAME, A.BEGINTIME, A.ENDTIME
+			FROM MESSAGE M, ASSIGN_LECT A, LECTURE L
+			WHERE M.ASSIGN_NUM = A.ASSIGN_NUM
+			AND A.LECT_NUM = L.LECT_NUM
+			WHERE MESSAGE_NUM = #{message_num}
+		]]>
+	</select>
+	<select id="getMessageTotalCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) TOTALROWS
+			FROM MESSAGE
+		]]>
+	</select>
+	
+	<select id="getRceiveMessageList" resultType="Message">
+		<![CDATA[
+			SELECT ROWNUM NUM, M.MESSAGE_NUM, M.SENDER, M.RECEIVER, M.CONTENT, M.WRITE_DATE, M.STATUS,
+			L.LECT_NAME, A.BEGINTIME, A.ENDTIME
+			FROM MESSAGE M, ASSIGN_LECT A, LECTURE L
+			WHERE M.ASSIGN_NUM = A.ASSIGN_NUM
+			AND A.LECT_NUM = L.LECT_NUM
+			AND M.RECEIVER = #{receiver}
+		]]>
+	</select>
+	
+	<select id="getSendMessageList" resultType="Message">
+		<![CDATA[
+			SELECT ROWNUM NUM, M.MESSAGE_NUM, M.SENDER, M.RECEIVER, M.CONTENT, M.WRITE_DATE, M.STATUS,
+			L.LECT_NAME, A.BEGINTIME, A.ENDTIME
+			FROM MESSAGE M, ASSIGN_LECT A, LECTURE L
+			WHERE M.ASSIGN_NUM = A.ASSIGN_NUM
+			AND M.SENDER = #{sender}
+		]]>
+	</select>	
+	
+	<insert id="addMessage" parameterType="Message">
+		<![CDATA[
+			INSERT INTO MESSAGE (MESSAGE_NUM, SENDER, RECEIVER, CONTENT, ASSIGN_NUM, WRITE_DATE)
+			VALUES(MESSAGE_SEQ.NEXTVAL, #{sender}, #{receiver}, #{content}, #{assign_num}, SYSDATE)
+		]]>
+	</insert>
+	<update id="updateMessageStatus" parameterType="java.lang.Integer">
+		<![CDATA[
+			UPDATE MESSAGE SET  STATUS = 1 WHERE  MESSAGE_NUM = #{message_num}			
+		]]>
+	</update>
+	<delete id="deleteMessage"  parameterType="java.lang.Integer">
+		<![CDATA[
+			DELETE MESSAGE WHERE MESSAGE_NUM = #{message_NUM}			
+		]]>
+	</delete>
+</mapper>

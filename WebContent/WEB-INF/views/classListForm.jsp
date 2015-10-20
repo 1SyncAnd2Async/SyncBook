@@ -33,7 +33,9 @@
                 <c:forEach begin="${pageInfo.startRow}" end="${pageInfo.endRow}" var="classList" items="${classList}">
                 <div class="row clients-page">
                     <div class="col-md-2">
+                        <a href="classDetail?lect_num=${classList.lect_num}">
                         <img src="resources/upload/lectureImg/${classList.img}" class="img-responsive hover-effect" alt="" />
+                        </a>
                     </div>
                     <div class="col-md-10">
                         <h3><a href="classDetail?lect_num=${classList.lect_num}">${classList.lect_name}</a></h3>

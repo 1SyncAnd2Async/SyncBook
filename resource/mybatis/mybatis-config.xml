@@ -19,6 +19,7 @@
 		<typeAlias type="kr.co.syncbook.vo.MemberClassVO" alias="MemberClass"/>
 		<typeAlias type="kr.co.syncbook.vo.ReviewVO" alias="Review"/>
 		<typeAlias type="kr.co.syncbook.vo.FaqVO" alias="Faq"/>
+		<typeAlias type="kr.co.syncbook.vo.MessageVO" alias="Message"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/member-mapping.xml"/>		
@@ -35,5 +36,6 @@
 		<mapper resource="mybatis/regLect-mapping.xml"/>
 		<mapper resource="mybatis/review-mapping.xml"/>
 		<mapper resource="mybatis/faq-mapping.xml"/>
+		<mapper resource="mybatis/message-mapping.xml"/>
 	</mappers>
 </configuration>

@@ -7,7 +7,7 @@
         <div class="container">
             <!-- Logo -->
             <a class="logo" href="index">
-                <img src="resources/assets/img/syncbook.png" alt="Logo">
+                <img src="resources/assets/img/logo.png" alt="Logo">
             </a>
             <!-- End Logo -->
 
@@ -17,12 +17,15 @@
                     <c:choose>
                     	<c:when test="${!empty sessionScope.teacher}">
                     		<li><a href="teacherPageForm?teacher_id=${sessionScope.teacher.id}" id="teacher">${sessionScope.teacher.id}</a></li> 님 환영합니다.
-                    		<li class="topbar-devider"></li>
+                    		<li><i class="icon-envelope"></i></li>
+                    		<li class="topbar-devider"></li>                    		
                     		<li><a href="teacherLogout">Logout</a></li>
+                    		
                     	</c:when>
                     	<c:when test="${!empty sessionScope.member}">
                     		<li><a href="myPageForm?member_id=${sessionScope.member.id}" id="member">${sessionScope.member.id}</a></li> 님 환영합니다.
-                    		<li class="topbar-devider"></li>
+                    		<li><i class="icon-envelope"></i></li>
+                    		<li class="topbar-devider"></li>                    		
                     		<li><a href="logout">Logout</a></li>
                     	</c:when>
                     	<c:otherwise>
