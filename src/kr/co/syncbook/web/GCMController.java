@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -31,11 +32,14 @@ public class GCMController {
 	private RegLectService regLectService;
 	
 	public static final String API_KEY = "AIzaSyCkO62bcjhrcPC36HvMRigpFKOdo-gak2k";
-	public static final String regId = "doXCdgS40w4:APA91bGkKb_0qXh4MGnxT_YmuFxffN_EXVQXy5Ca1pb9T7TrLBtTSbSyQxcOCSB0y_df9R4vcuAlfaw0-4ZNCfYr-qopi8-ziio1kz_6KhREIrS63B4DvOWucCAYQzrbZ4FMfqWt_BMw";
+	
+	private Sender sender;
+	private Message msg;
 	
 	@RequestMapping("/GCMSend")
-	public void sendPush(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
+	public void sendPush(String regId, HttpServletRequest request, HttpServletResponse response) {
+		System.out.println(regId);
+//		HttpSession session = request.getSession();
 //		MemberVO vo = (MemberVO) session.getAttribute("member");
 		
 		String appLogin = (String) request.getServletContext().getAttribute("appLogin");//(String)session.getAttribute("appLogin");
@@ -43,40 +47,35 @@ public class GCMController {
 		
 		System.out.println("GCMController:appLogin::::::::::::::::"+appLogin);
 		List<MemberClassVO> memberClassList = regLectService.getMemberClassList(appLogin);
-		
-		String fullPath;
-		String lect_img[] = new String [20];
-		String lect_name[] = new String [20];
-		String lect_time[] = new String [20];
-		String teacher_name[] = new String [20];
-		String book_name[] = new String[20];
-		
+				
 		SimpleDateFormat dateFormat = new  SimpleDateFormat("HH:mm E요일", java.util.Locale.getDefault());
 		Date date = new Date();
 		String strDate = dateFormat.format(date);
 		System.out.println(strDate);
 		
-		Sender sender = new Sender(API_KEY);  //구글 코드에서 발급받은 서버 키
-		   Message.Builder msg = new Message.Builder();		                                               
+		sender = new Sender(API_KEY);  //구글 코드에서 발급받은 서버 키
+		   Message.Builder builder = new Message.Builder();		                                               
 		
-		int i=0;
 		for(MemberClassVO v : memberClassList){
-			fullPath = "http://117.17.143.126/BitProject/resources/upload/lectureImg/"+v.getLect_img();
-			lect_img[i] = fullPath;
-			lect_name[i] = v.getLect_name();
-			lect_time[i] = v.getBeginTime()+" "+v.getDay();
-			teacher_name[i] = v.getTeacher_name();
-			book_name[i] = v.getBook_name();
-			i++;
+			String fullPath = "http://117.17.143.126/BitProject/resources/upload/lectureImg/"+v.getLect_img();
+			String lect_img = fullPath;
+			String lect_name = v.getLect_name();
+			String lect_time = v.getBeginTime()+" "+v.getDay();
+			String teacher_name = v.getTeacher_name();
+			String book_name = v.getBook_name();
 			
-			if(strDate.equals(lect_time[i]))	{
+			if(strDate.equals("22:02 수요일"))	{
 				try	{
-					msg.addData("lect_img", lect_img[i]);
-					msg.addData("lect_name", lect_name[i]);
-					msg.addData("book_name", book_name[i]);
-					msg.addData("lect_time", lect_time[i]);
+					builder.addData("lect_img", lect_img);
+					builder.addData("lect_name", lect_name);
+					builder.addData("book_name", book_name);
+					builder.addData("lect_time", lect_time);
 					
-					Result result = sender.send(msg.build(), regId, 5);					//푸시 전송
+					msg = builder.build();
+					
+					System.out.println(regId);
+					System.out.println(msg);
+					Result result = sender.send(msg, regId, 5);					//푸시 전송
 					System.out.println(msg);
 					String error = result.getErrorCodeName();					//에러코드
 					String msgId = result.getMessageId();						//푸시 메시지 id
