@@ -50,23 +50,31 @@
 		<div class="col-md-9">
                    <table class="table">
                         <thead>
-                            
-                            <tr><th>보낸사람 : ${messageDetail.sender}</th><th style="text-align: right;"> ${messageDetail.write_date}</th></tr>
-                            <tr><th colspan="2">받는사람 : ${messageDetail.receiver}</th></tr>                            
+                            <tr>
+                                <th style="width:50%; margin-left:150px;">수업</th>
+                                <th class="hidden-sm">받는이</th>
+                            </tr>
                         </thead>
                         <tbody>
+                        <c:forEach var="memberClassList" items="${memberClassList}">
                         	<tr>
-                                <td>수업 : ${messageDetail.lect_name}</td>
-                                <td style="text-align: right;"><i class="glyphicon glyphicon-time color-green"></i>${messageDetail.beginTime} ~ ${messageDetail.endTime}</td>
-                            </tr>                        
-                        	<tr>
-                        		<td colspan="2">${messageDetail.content }</td>
-                        		                  		
+                        		<c:choose>
+		                			<c:when test="${sessionScope.member.id != null}">
+		                        		<td><a href="messageSelectForm?reg_num=${memberClassList.reg_num}&id=${sessionScope.member.id}">
+		                        		${memberClassList.lect_name}</a></td>
+		                        		<td>${memberClassList.teacher_id}</td>
+		                        	</c:when>
+		                        	<c:when test="${sessionScope.teacher.id != null}">
+		                        		<td><a href="messageSelectForm?reg_num=${memberClassList.reg_num}&id=${sessionScope.teacher.id}">
+		                        		${memberClassList.lect_name}</a></td>
+		                        		<td>${memberClassList.member_id}</td>
+		                        	</c:when>
+		                        </c:choose>          		
                         	</tr>
+                        </c:forEach>
                         </tbody>
                     </table>
-                    
-                        </div>
+                    </div>
                         </div>
                         </div>
     	<!--=== End Content ===-->

@@ -12,7 +12,7 @@
 			FROM MESSAGE M, ASSIGN_LECT A, LECTURE L
 			WHERE M.ASSIGN_NUM = A.ASSIGN_NUM
 			AND A.LECT_NUM = L.LECT_NUM
-			WHERE MESSAGE_NUM = #{message_num}
+			AND MESSAGE_NUM = #{message_num}
 		]]>
 	</select>
 	<select id="getMessageTotalCount" resultType="int">
@@ -30,6 +30,8 @@
 			WHERE M.ASSIGN_NUM = A.ASSIGN_NUM
 			AND A.LECT_NUM = L.LECT_NUM
 			AND M.RECEIVER = #{receiver}
+			AND M.RECEIVER_STATUS = 1
+			ORDER BY M.WRITE_DATE DESC
 		]]>
 	</select>
 	
@@ -39,7 +41,10 @@
 			L.LECT_NAME, A.BEGINTIME, A.ENDTIME
 			FROM MESSAGE M, ASSIGN_LECT A, LECTURE L
 			WHERE M.ASSIGN_NUM = A.ASSIGN_NUM
+			AND A.LECT_NUM = L.LECT_NUM
 			AND M.SENDER = #{sender}
+			AND M.SENDER_STATUS = 1
+			ORDER BY M.WRITE_DATE DESC
 		]]>
 	</select>	
 	
@@ -52,6 +57,16 @@
 	<update id="updateMessageStatus" parameterType="java.lang.Integer">	    
 		<![CDATA[
 			UPDATE MESSAGE SET  STATUS = 1 WHERE MESSAGE_NUM = #{message_num}			
+		]]>
+	</update>
+	<update id="updateReceiverStatus" parameterType="java.lang.Integer">	    
+		<![CDATA[
+			UPDATE MESSAGE SET  RECEIVER_STATUS = 0 WHERE MESSAGE_NUM = #{message_num}			
+		]]>
+	</update>
+	<update id="updateSenderStatus" parameterType="java.lang.Integer">	    
+		<![CDATA[
+			UPDATE MESSAGE SET  SENDER_STATUS = 0 WHERE MESSAGE_NUM = #{message_num}			
 		]]>
 	</update>
 	<delete id="deleteMessage"  parameterType="java.lang.Integer">

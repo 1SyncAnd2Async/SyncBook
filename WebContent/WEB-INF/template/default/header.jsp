@@ -13,20 +13,24 @@
 
             <!-- Topbar -->
             <div class="topbar">
-                <ul class="loginbar pull-right">
+               <!-- <ul class="loginbar pull-right"> -->
+                <ul class="list-inline badge-lists badge-icons margin-bottom-30" style="float:right!important; margin-top:10px;">
                     <c:choose>
                     	<c:when test="${!empty sessionScope.teacher}">
                     		<li><a href="teacherPageForm" id="teacher">${sessionScope.teacher.name}</a></li> 님 환영합니다.
                     		<li><a href="messageList?page=1&receiver=${sessionScope.teacher.id}">
-                    		<i style="font-size: larger; color: #8C0101;" class="icon-envelope"></i></a></li>
+                    		 <i class="fa fa-envelope"></i>
+                                    <span class="badge badge-red rounded-x">2</span></a></li>
                     		<li class="topbar-devider"></li>                    		
                     		<li><a href="teacherLogout">Logout</a></li>
                     		
                     	</c:when>
                     	<c:when test="${!empty sessionScope.member}">
                     		<li><a href="myPageForm?member_id=${sessionScope.member.id}" id="member">${sessionScope.member.name}</a></li> 님 환영합니다.
+                    		
                     		<li><a href="messageList?page=1&receiver=${sessionScope.member.id}">
-                    		<i style="font-size: larger; color: #8C0101;" class="icon-envelope"></i></a></li>
+                    		 <i class="fa fa-envelope"></i>
+                                    <span class="badge badge-red rounded-x">2</span></a></li>
                     		<li class="topbar-devider"></li>                    		
                     		<li><a href="logout">Logout</a></li>
                     	</c:when>

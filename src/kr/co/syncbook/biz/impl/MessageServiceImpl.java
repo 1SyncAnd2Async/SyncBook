@@ -77,4 +77,24 @@ public class MessageServiceImpl implements MessageService{
 		return list;
 	}
 
+	@Override
+	public boolean updateReceiverStatus(int message_num) {
+		int result = messageDAO.updateReceiverStatus(message_num);
+		if(result==1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean updateSenderStatus(int message_num) {
+		int result = messageDAO.updateSenderStatus(message_num);
+		if(result==1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 }

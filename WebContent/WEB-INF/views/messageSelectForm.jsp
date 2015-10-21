@@ -22,6 +22,32 @@
     	<!--=== Content ===-->
     	<div class="container content height-500">
     	<div class="col-md-12 md-margin-bottom-40">
+    	<div class="col-md-3 md-margin-bottom-40" >					
+					<ul class="list-group sidebar-nav-v1 margin-bottom-40"
+						id="sidebar-nav-1">
+						<c:choose>
+						<c:when test="${sessionScope.member.id != null}">
+						<li class="list-group-item"><a href="messageSelect?id=${sessionScope.member.id}"><i
+								class="fa fa-pencil"></i> 쪽지 쓰기</a></li>
+						<li class="list-group-item"><a href="messageList?page=1&receiver=${sessionScope.member.id}"><i
+								class="fa fa-envelope-square"></i> 받은 쪽지함</a></li>
+						<li class="list-group-item"><a href="sendMessageList?page=1&sender=${sessionScope.member.id}"><i
+								class="fa fa-pencil-square-o"></i> 보낸 쪽지함</a></li>
+						</c:when>
+						<c:when test="${sessionScope.teacher.id != null}">
+						<li class="list-group-item"><a href="messageSelect?id=${sessionScope.teacher.id}"><i
+								class="fa fa-pencil"></i> 쪽지 쓰기</a></li>
+						<li class="list-group-item"><a href="messageList?page=1&receiver=${sessionScope.teacher.id}"><i
+								class="fa fa-envelope-square"></i> 받은 쪽지함</a></li>
+						<li class="list-group-item"><a href="sendMessageList?page=1&sender=${sessionScope.teacher.id}"><i
+								class="fa fa-pencil-square-o"></i> 보낸 쪽지함</a></li>
+						
+						</c:when>
+						</c:choose>
+						
+					</ul>
+				</div>
+		<div class="col-md-9">
         	<!-- Write Your HTML Codes Here -->
         	<form action="messageWrite" enctype="multipart/form-data" method="post" class="sky-form">
                     <header>질문하기</header>
@@ -57,6 +83,8 @@
                         <button type="button" class="btn-u btn-u-default" onclick="window.history.back();">이전</button>
                     </footer>
                     </form>
+                    </div>
+                   
         </div>          
     	</div>
     	<!--=== End Content ===-->

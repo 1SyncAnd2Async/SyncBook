@@ -45,6 +45,7 @@
 						
 						</c:when>
 						</c:choose>
+						
 					</ul>
 				</div>
 		<div class="col-md-9">
@@ -52,33 +53,20 @@
                         <thead>
                             <tr>
                                 <th style="width:50%; margin-left:150px;">내용</th>
-                                <th class="hidden-sm">보낸이</th>
+                                <th class="hidden-sm">받는이</th>
                                 <th>날짜</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <c:forEach begin="${pageInfo.startRow}" end="${pageInfo.endRow}" var="message" items="${messageList}">
+                        <c:forEach begin="${pageInfo.startRow}" end="${pageInfo.endRow}" var="message" items="${sendMessageList}">
                         	<tr>
-                        		
-                        		<td><input type='checkbox' class='input_check' ></td>
-                        		<td>
-                        		<c:choose>
-                        		<c:when test="${message.status == 0}">
-                        		<a style="font-weight:bolder;" href = "messageDetail?message_num=${message.message_num}">${message.content }</a>
-                        		</c:when>
-                        		<c:otherwise>
-                        		<a style="color:black;" href = "messageDetail?message_num=${message.message_num}">${message.content }</a>
-                        		</c:otherwise>
-                        		</c:choose>
-                        		</td>
-                        		<td>${message.sender }</td>
+                        		<td><a style="color:black;" href = "messageDetail?message_num=${message.message_num}">${message.content }</a></td>
+                        		<td>${message.receiver }</td>
                         		<td>${message.write_date }</td>
-                        		
-                        		<td>
-									<button class="btn btn-danger btn-xs" onclick="location.href='deleteReceiveMessage?message_num='+${message.message_num}">
+								<td><button class="btn btn-danger btn-xs" onclick="location.href='deleteMessage?message_num='+${message.message_num}">
 										<i class="fa fa-trash-o"></i>삭제
 									</button>
-								</td>                   		
+									</td>            		
                         	</tr>
                         </c:forEach>
                         </tbody>
