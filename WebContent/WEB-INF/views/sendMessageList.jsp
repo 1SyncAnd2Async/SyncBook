@@ -98,8 +98,8 @@ $(function(){
                         <thead>
                             <tr>
                             	<th><input type="checkbox" id="allCheck"/></th>
-                                <th style="width:50%; margin-left:150px;">내용</th>
-                                <th class="hidden-sm">받는이</th>
+                                <th style="width:50%;">내용</th>
+                                <th>받는이</th>
                                 <th>날짜</th>
                             </tr>
                         </thead>
@@ -107,7 +107,10 @@ $(function(){
                         <c:forEach begin="${pageInfo.startRow}" end="${pageInfo.endRow}" var="message" items="${sendMessageList}">
                         	<tr>
                         		<td><input type="checkbox" class="input_check" name="check" value="${message.message_num}"></td>
-                        		<td><a style="color:black;" href = "messageDetail?message_num=${message.message_num}">${message.content }</a></td>
+                        		<td >
+                        		<a style="overflow:hidden; text-overflow:ellipsis; 
+                        		word-break: break-word; -webkit-line-clamp: 1; display: -webkit-box;
+                        		 -webkit-box-orient: vertical; color:black;" href = "messageDetail?message_num=${message.message_num}">${message.content }</a></td>
                         		<td>${message.receiver }</td>
                         		<td>${message.write_date }</td>       		
                         	</tr>

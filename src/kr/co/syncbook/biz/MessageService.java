@@ -14,5 +14,7 @@ public interface MessageService {
 	public MessageVO getMessage(int message_num);
 	public List<MessageVO> getReceiveMessageList(String receiver);
 	public List<MessageVO> getSendMessageList(String sender);
-	public int getMessageTotalCount();
+	public int getReceiverMessageTotalCount(String receiver);
+	public int getSenderMessageTotalCount(String sender);
+	public int getMessageNotReadCount(String receiver);
 }

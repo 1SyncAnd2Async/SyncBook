@@ -108,10 +108,14 @@ $(function(){
                         		<td>
                         		<c:choose>
                         		<c:when test="${message.status == 0}">
-                        		<a style="font-weight:bolder;" href = "messageDetail?message_num=${message.message_num}">${message.content }</a>
+                        		<a style="overflow:hidden; text-overflow:ellipsis; 
+                        		word-break: break-word; -webkit-line-clamp: 1; display: -webkit-box;
+                        		 -webkit-box-orient: vertical; font-weight:bolder;" href = "messageDetail?message_num=${message.message_num}">${message.content }</a>
                         		</c:when>
                         		<c:otherwise>
-                        		<a style="color:black;" href = "messageDetail?message_num=${message.message_num}">${message.content }</a>
+                        		<a style="overflow:hidden; text-overflow:ellipsis; 
+                        		word-break: break-word; -webkit-line-clamp: 1; display: -webkit-box;
+                        		 -webkit-box-orient: vertical; color:black;" href = "messageDetail?message_num=${message.message_num}">${message.content }</a>
                         		</c:otherwise>
                         		</c:choose>
                         		</td>

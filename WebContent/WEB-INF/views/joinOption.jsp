@@ -23,14 +23,14 @@
         	    <div class="container content-sm" style="padding-left:250px;">
         	    	
         <div class="row" >
-        	<a href="memberJoinForm">
+        	<a href="joinStep?join=member">
             <div class="col-md-4 content-boxes-v6 md">
                 <i class="rounded-x icon-note"></i>
                 <h1 class="title-v3-md text-uppercase margin-bottom-10">학생</h1>
                 <p>At vero eos et accusato odio dignissimos ducimus qui blanditiis praesentium voluptatum.</p>
             </div>
             </a>
-            <a href="teacherJoinForm">
+            <a href="joinStep?join=teacher">
             <div class="col-md-4 content-boxes-v6 md">
                 <i class="rounded-x icon-briefcase"></i>
                 <h2 class="title-v3-md text-uppercase margin-bottom-10">강사</h2>

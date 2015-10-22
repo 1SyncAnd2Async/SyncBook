@@ -1,8 +1,11 @@
 package kr.co.syncbook.web;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.syncbook.biz.MemberService;
 import kr.co.syncbook.biz.MessageService;
 import kr.co.syncbook.biz.RegLectService;
+import kr.co.syncbook.vo.AssignLectVO;
 import kr.co.syncbook.vo.MemberClassVO;
 import kr.co.syncbook.vo.MessageVO;
 import kr.co.syncbook.vo.PageVO;
@@ -48,7 +52,7 @@ public class MessageController {
 		// svo.setBegin(String.valueOf(startRow));
 		// svo.setEnd(String.valueOf(endRow));
 		// ��ü ������ ��
-		int totalRows = messageService.getMessageTotalCount();
+		int totalRows = messageService.getReceiverMessageTotalCount(receiver);
 		// ��ü ������ ���ϴ� ����
 		int totalPages = 0;
 		if (totalRows % rowsPerPage == 0) {
@@ -101,7 +105,7 @@ public class MessageController {
 		// svo.setBegin(String.valueOf(startRow));
 		// svo.setEnd(String.valueOf(endRow));
 		// ��ü ������ ��
-		int totalRows = messageService.getMessageTotalCount();
+		int totalRows = messageService.getSenderMessageTotalCount(sender);
 		// ��ü ������ ���ϴ� ����
 		int totalPages = 0;
 		if (totalRows % rowsPerPage == 0) {
@@ -244,7 +248,6 @@ public class MessageController {
 		
 		
 		MessageVO message =  messageService.getMessage(message_num);
-		System.out.println(message);
 		if(message.getStatus()==0){
 			messageService.messageStatusUpdate(message_num);
 		}
@@ -252,6 +255,12 @@ public class MessageController {
 		mv.addObject("messageDetail", message);
 		return mv;
 	}
-	
-
+	@RequestMapping("messageNotification")
+	public void messageNotification(ServletResponse resp, @RequestParam String id) throws IOException{
+		resp.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = resp.getWriter();
+		int num = messageService.getMessageNotReadCount(id);
+		out.print(num);
+		out.close();
+	}
 }

@@ -1,6 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script>
+$(document).ready(function() {
+	ajaxFn();
+});
+
+var ajaxFn = function () {
+	if($('#memberId').val() != null){
+		$.ajax({
+			url: "messageNotification",
+			data: "id=" + $('#memberId').val(),
+			success:function(data) {
+			$("#notReadMessage").html(data);
+			setTimeout(ajaxFn, 10000);
+			}, error:function() {
+				alert("error!");
+			}
+		});
+	}else if($('#teacherId').val() != null){
+		$.ajax({
+			url: "messageNotification",
+			data: "id=" + $('#teacherId').val(),
+			success:function(data) {
+			$("#notReadMessage").html(data);
+			setTimeout(ajaxFn, 10000);
+			}, error:function() {
+				alert("error!");
+			}
+		});
+		
+	}
+};
+</script>
 <body>
 	<!--=== Header ===-->
     <div class="header">
@@ -14,23 +46,27 @@
             <!-- Topbar -->
             <div class="topbar">
                <!-- <ul class="loginbar pull-right"> -->
+              
+               
                 <ul class="list-inline badge-lists badge-icons margin-bottom-30" style="float:right!important; margin-top:10px;">
                     <c:choose>
                     	<c:when test="${!empty sessionScope.teacher}">
+                    		<input type="hidden" id="teacherId" value="${sessionScope.teacher.id}">
                     		<li><a href="teacherPageForm" id="teacher">${sessionScope.teacher.name}</a></li> 님 환영합니다.
                     		<li><a href="messageList?page=1&receiver=${sessionScope.teacher.id}">
                     		 <i class="fa fa-envelope"></i>
-                                    <span class="badge badge-red rounded-x">2</span></a></li>
+                                    <span id="notReadMessage" class="badge badge-red rounded-x"></span></a></li>
                     		<li class="topbar-devider"></li>                    		
                     		<li><a href="teacherLogout">Logout</a></li>
                     		
                     	</c:when>
                     	<c:when test="${!empty sessionScope.member}">
+                    		<input type="hidden" id="memberId" value="${sessionScope.member.id}">
                     		<li><a href="myPageForm?member_id=${sessionScope.member.id}" id="member">${sessionScope.member.name}</a></li> 님 환영합니다.
                     		
                     		<li><a href="messageList?page=1&receiver=${sessionScope.member.id}">
                     		 <i class="fa fa-envelope"></i>
-                                    <span class="badge badge-red rounded-x">2</span></a></li>
+                                    <span id="notReadMessage" class="badge badge-red rounded-x"></span></a></li>
                     		<li class="topbar-devider"></li>                    		
                     		<li><a href="logout">Logout</a></li>
                     	</c:when>

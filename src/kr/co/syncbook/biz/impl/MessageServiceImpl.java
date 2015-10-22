@@ -60,11 +60,6 @@ public class MessageServiceImpl implements MessageService{
 		}
 	}
 	@Override
-	public int getMessageTotalCount() {
-		return messageDAO.getMessageTotalCount();
-	}
-
-	@Override
 	public List<MessageVO> getReceiveMessageList(String receiver) {
 		List<MessageVO> list = messageDAO.getReceiveMessageList(receiver);
 		return list;
@@ -94,6 +89,24 @@ public class MessageServiceImpl implements MessageService{
 		}else{
 			return false;
 		}
+	}
+
+	@Override
+	public int getReceiverMessageTotalCount(String receiver) {
+		// TODO Auto-generated method stub
+		return messageDAO.getReceiverMessageTotalCount(receiver);
+	}
+
+	@Override
+	public int getSenderMessageTotalCount(String sender) {
+		// TODO Auto-generated method stub
+		return messageDAO.getSenderMessageTotalCount(sender);
+	}
+
+	@Override
+	public int getMessageNotReadCount(String receiver) {
+		// TODO Auto-generated method stub
+		return messageDAO.getMessageNotReadCount(receiver);
 	}
 
 }

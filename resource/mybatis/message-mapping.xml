@@ -15,10 +15,30 @@
 			AND MESSAGE_NUM = #{message_num}
 		]]>
 	</select>
-	<select id="getMessageTotalCount" resultType="int">
+	<select id="getReceiverMessageTotalCount" resultType="int">
 		<![CDATA[
 			SELECT COUNT(*) TOTALROWS
 			FROM MESSAGE
+			WHERE RECEIVER = #{receiver}
+			AND RECEIVER_STATUS = 1
+		]]>
+	</select>
+	
+	<select id="getSenderMessageTotalCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) TOTALROWS
+			FROM MESSAGE
+			WHERE SENDER = #{sender}
+			AND SENDER_STATUS = 1
+		]]>
+	</select>
+	
+	<select id="getMessageNotReadCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) NUM
+			FROM MESSAGE
+			WHERE STATUS = 0
+			AND RECEIVER = #{receiver}
 		]]>
 	</select>
 	
@@ -61,7 +81,7 @@
 	</update>
 	<update id="updateReceiverStatus" parameterType="java.lang.Integer">	    
 		<![CDATA[
-			UPDATE MESSAGE SET  RECEIVER_STATUS = 0 WHERE MESSAGE_NUM = #{message_num}			
+			UPDATE MESSAGE SET  RECEIVER_STATUS = 0, STATUS = 1  WHERE MESSAGE_NUM = #{message_num}			
 		]]>
 	</update>
 	<update id="updateSenderStatus" parameterType="java.lang.Integer">	    

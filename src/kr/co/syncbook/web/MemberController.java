@@ -34,7 +34,6 @@ public class MemberController {
 
 	@RequestMapping("/loginForm")
 	public ModelAndView loginForm(String login){
-		System.out.println(login);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("login", login);
 		mav.setViewName("loginForm");
@@ -47,6 +46,17 @@ public class MemberController {
 	@RequestMapping("/loginOption")
 	public String loginOption(){
 		return "loginOption";
+	}
+	@RequestMapping("/joinStep")
+	public ModelAndView joinStep(String join){
+		ModelAndView mav = new ModelAndView();
+		if("member".equals(join)) {
+			mav.addObject("member", join);
+		} else if("teacher".equals(join)) {
+			mav.addObject("teacher", join);
+		}
+		mav.setViewName("joinStep");
+		return mav;
 	}
 	@RequestMapping("/joinOption")
 	public String joinOption(){
@@ -113,8 +123,6 @@ public class MemberController {
 	@RequestMapping("/memberDetail")
 	public ModelAndView memberDetail(String id){
 		List<OrderVO> list = regLectService.getOrderList(id);
-		System.out.println(list);
-		
 		MemberVO member =  memberService.getMember(id);
 		ModelAndView mv = new ModelAndView("memberDetail");
 		mv.addObject("orderList", list);
@@ -169,7 +177,6 @@ public class MemberController {
 	@RequestMapping("/myPageForm")
 	public ModelAndView myPageForm(String member_id){
 		List<OrderVO> list = regLectService.getOrderList(member_id);
-		System.out.println(list);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("orderList", list);
 		mav.setViewName("myPageForm");

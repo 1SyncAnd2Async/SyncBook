@@ -84,7 +84,7 @@
 											<c:when test="${sessionScope.member.id != null}">
 												<input type="button"
 													onclick="location.href='messageForm?reg_num=${memberClassDetail.reg_num}&id=${sessionScope.member.id}'"
-													value="질문하기" class="btn-u btn-u-lg">&nbsp;&nbsp;&nbsp;&nbsp;
+													value="질문 하기" class="btn-u btn-u-lg">&nbsp;&nbsp;&nbsp;&nbsp;
 												<input type="button"
 													onclick="location.href='lectureStart?reg_num=${memberClassDetail.reg_num}'"
 													value="수업 시작" class="btn-u btn-u-lg">
@@ -94,7 +94,7 @@
 											<c:when test="${sessionScope.teacher.id != null}">
 												<input type="button"
 													onclick="location.href='messageForm?reg_num=${memberClassDetail.reg_num}&id=${sessionScope.teacher.id}'"
-													value="질문하기" class="btn-u btn-u-lg">&nbsp;&nbsp;&nbsp;&nbsp;
+													value="쪽지 쓰기" class="btn-u btn-u-lg">&nbsp;&nbsp;&nbsp;&nbsp;
 												<input type="button"
 													onclick="window.open('http://117.17.143.126:52252/teacher/${memberClassDetail.reg_num}')"
 													value="수업 시작" class="btn-u btn-u-lg">

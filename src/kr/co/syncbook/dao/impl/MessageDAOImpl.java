@@ -51,11 +51,6 @@ public class MessageDAOImpl implements MessageDAO{
 	}
 
 	@Override
-	public int getMessageTotalCount() {
-		return sqlSession.selectOne("Message.getMessageTotalCount");
-	}
-
-	@Override
 	public List<MessageVO> getReceiveMessageList(String receiver) {
 		List<MessageVO> list  = sqlSession.selectList("Message.getReceiveMessageList",receiver);
 		return list;
@@ -77,5 +72,23 @@ public class MessageDAOImpl implements MessageDAO{
 	public int updateSenderStatus(int message_num) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("Message.updateSenderStatus", message_num);
+	}
+
+	@Override
+	public int getReceiverMessageTotalCount(String receiver) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("Message.getReceiverMessageTotalCount", receiver);
+	}
+
+	@Override
+	public int getSenderMessageTotalCount(String sender) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("Message.getSenderMessageTotalCount", sender);
+	}
+
+	@Override
+	public int getMessageNotReadCount(String receiver) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("Message.getMessageNotReadCount", receiver);
 	}
 }
