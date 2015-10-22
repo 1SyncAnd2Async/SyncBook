@@ -2,10 +2,13 @@ package kr.co.syncbook.web;
 
 import java.util.List;
 
+import javax.servlet.ServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.syncbook.biz.MemberService;
@@ -70,9 +73,7 @@ public class MessageController {
 		pageInfo.setTotalRows(totalRows);
 		pageInfo.setTotalPages(totalPages);
 		pageInfo.setTotalBlocks(totalBlocks);
-		System.out.println(receiver);
 		List<MessageVO> list = messageService.getReceiveMessageList(receiver);
-		System.out.println(list);
 		ModelAndView mv = new ModelAndView("messageList");
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("messageList",list);
@@ -156,7 +157,6 @@ public class MessageController {
 		} else {
 			memberClassList = regLectService.getTeacherClassList(id);
 		}
-		System.out.println(memberClassList);
 		ModelAndView mv = new ModelAndView("messageSelect");
 		mv.addObject("memberClassList", memberClassList);
 		return mv;
@@ -178,6 +178,42 @@ public class MessageController {
 		mv.addObject("memberClassDetail", memberClassDetail);
 		return mv;
 	}
+	@RequestMapping("deleteReceiveMessage")
+	public String deleteReceiveMessage(ServletRequest request,String id){
+		 String[] checks = request.getParameterValues("check");
+		  try {
+		   for(int i=0; i< checks.length; i++) {
+			   String m = checks[i];
+			   int massage_num = Integer.parseInt(m);
+			   messageService.updateReceiverStatus(massage_num);
+		   }
+		   return "redirect:messageList?page=1&receiver="+id;
+		  }
+		  catch(Exception ex) {
+			  System.out.println("error");
+			  return "redirect:messageList?page=1&receiver="+id;
+		  }
+		
+	}
+	@RequestMapping("deleteSendMessage")
+	public String deleteSendMessage(ServletRequest request,String id){
+		 String[] checks = request.getParameterValues("check");
+		  try {
+		   for(int i=0; i< checks.length; i++) {
+			   String m = checks[i];
+			   int massage_num = Integer.parseInt(m);
+			   messageService.updateSenderStatus(massage_num);
+		   }
+		   return "redirect:sendMessageList?page=1&sender="+id;
+		  }
+		  catch(Exception ex) {
+			  System.out.println("error");
+			  return "redirect:sendMessageList?page=1&sender="+id;
+		  }
+		
+	}
+	
+	
 	@RequestMapping("/messageDelete")
 	public ModelAndView deleteSubject(int message_num, String id){
 		ModelAndView mav = new ModelAndView();

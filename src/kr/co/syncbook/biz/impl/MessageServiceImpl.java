@@ -66,7 +66,6 @@ public class MessageServiceImpl implements MessageService{
 
 	@Override
 	public List<MessageVO> getReceiveMessageList(String receiver) {
-		System.out.println("service : "+receiver);
 		List<MessageVO> list = messageDAO.getReceiveMessageList(receiver);
 		return list;
 	}

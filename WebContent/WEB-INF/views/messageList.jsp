@@ -4,6 +4,42 @@
 <%@page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>    
+<script>
+$(function(){
+    //전체선택 체크박스 클릭
+	$("#allCheck").click(function(){
+		//만약 전체 선택 체크박스가 체크된상태일경우
+		if($("#allCheck").prop("checked")) {
+			//해당화면에 전체 checkbox들을 체크해준다
+			$("input[type=checkbox]").prop("checked",true);
+		// 전체선택 체크박스가 해제된 경우
+		} else {
+			//해당화면에 모든 checkbox들의 체크를해제시킨다.
+			$("input[type=checkbox]").prop("checked",false);
+		}
+	})
+})
+
+	 function checkDel() {
+	  var chkFirList = document.getElementsByName('check');
+	  var arrFir = new Array();
+	  var cnt = 0;
+	  for ( var idx = chkFirList.length - 1; 0 <= idx; idx--) {
+	   if (chkFirList[idx].checked) {
+	    arrFir[cnt] = chkFirList[idx].value;
+	    cnt++;
+	   }
+	  }  
+	  if (arrFir.length != 0) {
+	   document.form1.submit();
+	  } else {
+	   alert('삭제할 쪽지를 선택하세요.');   
+	   return;
+	  }
+	 }
+	 
+</script>
 <tiles:insertDefinition name="defaultTemplate">
     <tiles:putAttribute name="body">
     	<!--=== Breadcrumbs ===-->
@@ -48,9 +84,18 @@
 					</ul>
 				</div>
 		<div class="col-md-9">
+					<c:choose>
+						<c:when test="${sessionScope.member.id != null}">
+						<form name="form1" method="post" action="deleteReceiveMessage?id=${sessionScope.member.id}" id="checkList">
+						</c:when>
+						<c:when test="${sessionScope.teacher.id != null}">
+						<form name="form1" method="post" action="deleteReceiveMessage?id=${sessionScope.teacher.id}" id="checkList">
+						</c:when>
+					</c:choose>
                    <table class="table">
                         <thead>
                             <tr>
+                            	<th><input type="checkbox" id="allCheck"/></th>
                                 <th style="width:50%; margin-left:150px;">내용</th>
                                 <th class="hidden-sm">보낸이</th>
                                 <th>날짜</th>
@@ -58,9 +103,8 @@
                         </thead>
                         <tbody>
                         <c:forEach begin="${pageInfo.startRow}" end="${pageInfo.endRow}" var="message" items="${messageList}">
-                        	<tr>
-                        		
-                        		<td><input type='checkbox' class='input_check' ></td>
+                        	<tr>                        		
+                        		<td><input type='checkbox' class='input_check' name="check" value="${message.message_num}"></td>
                         		<td>
                         		<c:choose>
                         		<c:when test="${message.status == 0}">
@@ -73,17 +117,16 @@
                         		</td>
                         		<td>${message.sender }</td>
                         		<td>${message.write_date }</td>
-                        		
-                        		<td>
-									<button class="btn btn-danger btn-xs" onclick="location.href='deleteReceiveMessage?message_num='+${message.message_num}">
-										<i class="fa fa-trash-o"></i>삭제
-									</button>
-								</td>                   		
+									
+								                 		
                         	</tr>
                         </c:forEach>
                         </tbody>
-                    </table>
-                    
+                    </table>	
+                    			<button style="float:right;" class="btn btn-danger btn-xs" onclick="checkDel()">
+										<i class="fa fa-trash-o"></i>삭제
+								</button>
+								</form>
                     
                         <br>
                   		<!-- Pagination -->
