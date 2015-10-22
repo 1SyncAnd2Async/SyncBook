@@ -9,4 +9,5 @@ public interface SubjectService {
 	public boolean deleteSubject(int subj_num);
 	public SubjectVO getSubject(int subj_num);
 	public List<SubjectVO> getSubjectList();
+	public List<SubjectVO> getAssignSubjectList();
 }

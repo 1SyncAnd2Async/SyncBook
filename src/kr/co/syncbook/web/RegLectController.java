@@ -100,6 +100,62 @@ public class RegLectController {
 		mav.setViewName("classListForm");
 		return mav;
 	}
+	@RequestMapping("/subjectClassList")
+	public ModelAndView subjectClassList(int page, int subj_num) {
+		PageVO pageInfo = new PageVO();
+		int rowsPerPage = 5; // �� �������� ������ ��� �� - properties
+		int pagesPerBlock = 3; // �� ��ϴ� ������ ������ �� - properties
+		if (page == 0)
+			page = 1; // ������ �ʱ�ȭ
+		int currentPage = page; // ���� ������ ��
+		int currentBlock = 0; // ���� ��� �ʱ�ȭ
+		if (currentPage % pagesPerBlock == 0) { // ���� ��� �ʱ� ��
+			currentBlock = currentPage / pagesPerBlock;
+		} else { // ���� ����̳�
+			currentBlock = currentPage / pagesPerBlock + 1;
+		}
+		int startRow = (currentPage - 1) * rowsPerPage; // ���� ��� �� ����
+		int endRow = currentPage * rowsPerPage-1; // ������ ��� �� ����    
+		// SearchVO�� ����
+		// SearchVO svo = new SearchVO();
+		// svo.setBegin(String.valueOf(startRow));
+		// svo.setEnd(String.valueOf(endRow));
+		// ��ü ������ ��
+		int totalRows = lectureService.getTotalCount();
+		// ��ü ������ ���ϴ� ����
+		int totalPages = 0;
+		if (totalRows % rowsPerPage == 0) {
+			totalPages = totalRows / rowsPerPage;
+		} else {
+			totalPages = totalRows / rowsPerPage + 1;
+		}
+		// ��ü ��� ���� ���ϴ� ����
+		int totalBlocks = 0;
+		if (totalPages % pagesPerBlock == 0) {
+			totalBlocks = totalPages / pagesPerBlock;
+		} else {
+			totalBlocks = totalPages / pagesPerBlock + 1;
+		}
+		// ��� ����� ������ PageVO�� �����Ѵ�.
+		pageInfo.setCurrentPage(currentPage);
+		pageInfo.setCurrentBlock(currentBlock);
+		pageInfo.setRowsPerPage(rowsPerPage);
+		pageInfo.setPagesPerBlock(pagesPerBlock);
+		pageInfo.setStartRow(startRow);
+		pageInfo.setEndRow(endRow);
+		pageInfo.setTotalRows(totalRows);
+		pageInfo.setTotalPages(totalPages);
+		pageInfo.setTotalBlocks(totalBlocks);
+
+		List<LectureVO> classList = lectureService.getAllLectureList();
+		ModelAndView mav = new ModelAndView();
+//		svo.setBegin(String.valueOf(startRow));
+//		svo.setEnd(String.valueOf(endRow));
+		mav.addObject("pageInfo", pageInfo);
+		mav.addObject("classList", classList);
+		mav.setViewName("classListForm");
+		return mav;
+	}
 
 	@RequestMapping("/orderList")
 	public ModelAndView orderList(int page) {

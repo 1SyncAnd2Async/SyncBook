@@ -46,4 +46,10 @@ public class SubjectDAOImpl implements SubjectDAO {
 		return sqlSession.selectList("Subject.getSubjectList");
 	}
 
+	@Override
+	public List<SubjectVO> getAssignSubjectList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("Subject.getAssignSubjectList");
+	}
+
 }
