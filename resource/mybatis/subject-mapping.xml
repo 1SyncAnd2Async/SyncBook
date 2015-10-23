@@ -17,6 +17,15 @@
 		]]>
 	</select>
 	
+	<select id="getAssignSubjectList" resultType="Subject">
+		<![CDATA[
+			SELECT DISTINCT S.SUBJ_NAME,  S.SUBJ_NUM
+			FROM LECTURE L, SUBJECT S, ASSIGN_LECT A
+			WHERE L.SUBJ_NUM = S.SUBJ_NUM
+			AND A.LECT_NUM = L.LECT_NUM
+		]]>
+	</select>
+	
 	<insert id="addSubject" parameterType="Subject">
 		<![CDATA[
 			INSERT INTO SUBJECT VALUES(SUBJECT_SEQ.NEXTVAL, #{subj_name})

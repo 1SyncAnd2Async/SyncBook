@@ -4,7 +4,19 @@
 <script>
 $(document).ready(function() {
 	ajaxFn();
+	ajaxSubject();
 });
+
+var ajaxSubject = function(){
+	$.ajax({
+		url: "assignSubject",
+		success:function(data) {
+		$("#subject").html(data);
+		}, error:function() {
+			alert("error!");
+		}
+	});
+}
 
 var ajaxFn = function () {
 	if($('#memberId').val() != null){
@@ -186,41 +198,12 @@ var ajaxFn = function () {
                     <!-- Books -->
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            	학습
+                            	학습신청
                         </a>
-                        <ul class="dropdown-menu">
-                        	<!-- Books List Pages -->
-                            <li>
-                                <a href="classListForm?page=1">학습신청</a>
-                            </li>
-                            <!-- End Books List Pages -->
+                        <ul class="dropdown-menu" id="subject">
                             
-                            <!-- Category Pages -->
-                            <li class="dropdown-submenu">
-                                <a href="javascript:void(0);">북 카테고리</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">영어수험서</a></li>
-                                    <li><a href="#">영어단행본</a></li>
-                                    <li><a href="#">초,중,고</a></li>
-                                    <li><a href="#">일본어</a></li>
-                                    <li><a href="#">학원교재</a></li>
-                                </ul>
-                            </li>
-                            <!-- End Category Pages -->
-                            
-                            <!-- New Books Pages -->
-                            <li>
-                                <a href="#">신간도서</a>
-                            </li>
-                            <!-- End New Books Pages -->
-                            
-                            <!-- Best Seller Pages -->
-                            <li>
-                                <a href="#">베스트셀러</a>
-                            </li>
-                            <!-- End Best Seller Pages -->
                         </ul>
-                    </li>
+                    </li> 
                     <!-- End Books -->
                     
                     <!-- Community -->

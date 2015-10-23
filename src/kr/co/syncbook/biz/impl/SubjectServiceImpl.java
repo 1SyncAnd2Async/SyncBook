@@ -37,4 +37,9 @@ public class SubjectServiceImpl implements SubjectService {
 		if(result==1) return true;
 		else return false;
 	}
+	@Override
+	public List<SubjectVO> getAssignSubjectList() {
+		List<SubjectVO> list = subjectDAO.getAssignSubjectList();
+		return list;
+	}
 }

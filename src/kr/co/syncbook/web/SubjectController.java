@@ -1,6 +1,10 @@
 package kr.co.syncbook.web;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+
+import javax.servlet.ServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +26,28 @@ public class SubjectController {
 		mav.setViewName("subject");
 		return mav;
 	}
+	
+	@RequestMapping("/assignSubject")
+	public void assignSubject(ServletResponse resp) throws IOException{
+		resp.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = resp.getWriter();
+		List<SubjectVO> list = subjectService.getAssignSubjectList();
+		
+		out.print(
+				"<li><a href=\"classListForm?page=1\">전체보기</a></li>");
+		for (int i = 0; i < list.size(); i++) {
+			
+			SubjectVO subject = list.get(i);
+			System.out.println(subject.getSubj_num());
+				out.print(
+						"<li><a href=\"subjectClassList?page=1&subj_num="+ subject.getSubj_num()
+						+ "\">"+subject.getSubj_name()+"</a></li>");
+		}
+		out.close();
+	}
+	
+	
+	
 	@RequestMapping("/addSubject")
 	public ModelAndView addSubject(SubjectVO subject){
 		ModelAndView mav = new ModelAndView();
@@ -33,7 +59,6 @@ public class SubjectController {
 		}
 		return mav;
 	}
-	
 	@RequestMapping("/deleteSubject")
 	public ModelAndView deleteSubject(int subject_num){
 		ModelAndView mav = new ModelAndView();
