@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.syncbook.biz.MemberService;
 import kr.co.syncbook.biz.MessageService;
 import kr.co.syncbook.biz.RegLectService;
-import kr.co.syncbook.vo.AssignLectVO;
 import kr.co.syncbook.vo.MemberClassVO;
 import kr.co.syncbook.vo.MessageVO;
 import kr.co.syncbook.vo.PageVO;
@@ -34,40 +33,35 @@ public class MessageController {
 	@RequestMapping("messageList")
 	public ModelAndView messageList(int page, String receiver){
 		PageVO pageInfo = new PageVO();
-		int rowsPerPage = 10; // �� �������� ������ ��� �� - properties
-		int pagesPerBlock = 5; // �� ��ϴ� ������ ������ �� - properties
+		int rowsPerPage = 10;
+		int pagesPerBlock = 5;
 		if (page == 0)
-			page = 1; // ������ �ʱ�ȭ
-		int currentPage = page; // ���� ������ ��
-		int currentBlock = 0; // ���� ��� �ʱ�ȭ
-		if (currentPage % pagesPerBlock == 0) { // ���� ��� �ʱ� ��
+			page = 1;
+		int currentPage = page;
+		int currentBlock = 0;
+		if (currentPage % pagesPerBlock == 0) {
 			currentBlock = currentPage / pagesPerBlock;
-		} else { // ���� ����̳�
+		} else {
 			currentBlock = currentPage / pagesPerBlock + 1;
 		}
-		int startRow = (currentPage - 1) * rowsPerPage; // ���� ��� �� ����
-		int endRow = currentPage * rowsPerPage-1; // ������ ��� �� ����    
-		// SearchVO�� ����
+		int startRow = (currentPage - 1) * rowsPerPage;
+		int endRow = currentPage * rowsPerPage-1;
 		// SearchVO svo = new SearchVO();
 		// svo.setBegin(String.valueOf(startRow));
 		// svo.setEnd(String.valueOf(endRow));
-		// ��ü ������ ��
 		int totalRows = messageService.getReceiverMessageTotalCount(receiver);
-		// ��ü ������ ���ϴ� ����
 		int totalPages = 0;
 		if (totalRows % rowsPerPage == 0) {
 			totalPages = totalRows / rowsPerPage;
 		} else {
 			totalPages = totalRows / rowsPerPage + 1;
 		}
-		// ��ü ��� ���� ���ϴ� ����
 		int totalBlocks = 0;
 		if (totalPages % pagesPerBlock == 0) {
 			totalBlocks = totalPages / pagesPerBlock;
 		} else {
 			totalBlocks = totalPages / pagesPerBlock + 1;
 		}
-		// ��� ����� ������ PageVO�� �����Ѵ�.
 		pageInfo.setCurrentPage(currentPage);
 		pageInfo.setCurrentBlock(currentBlock);
 		pageInfo.setRowsPerPage(rowsPerPage);
@@ -78,6 +72,11 @@ public class MessageController {
 		pageInfo.setTotalPages(totalPages);
 		pageInfo.setTotalBlocks(totalBlocks);
 		List<MessageVO> list = messageService.getReceiveMessageList(receiver);
+		
+		for(MessageVO v : list) {
+			v.setWrite_date(v.getWrite_date().substring(0, 16));
+		}
+		
 		ModelAndView mv = new ModelAndView("messageList");
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("messageList",list);
@@ -131,6 +130,11 @@ public class MessageController {
 		pageInfo.setTotalPages(totalPages);
 		pageInfo.setTotalBlocks(totalBlocks);
 		List<MessageVO> list = messageService.getSendMessageList(sender);
+		
+		for(MessageVO v : list) {
+			v.setWrite_date(v.getWrite_date().substring(0, 16));
+		}
+		
 		ModelAndView mv = new ModelAndView("sendMessageList");
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("sendMessageList",list);

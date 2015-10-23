@@ -63,8 +63,12 @@ public class FaqController {
 		pageInfo.setTotalRows(totalRows);
 		pageInfo.setTotalPages(totalPages);
 		pageInfo.setTotalBlocks(totalBlocks);
-		
 		List<FaqVO> list = faqService.getFaqList();
+		
+		for(FaqVO v : list) {
+			v.setWrite_date(v.getWrite_date().substring(0, 16));
+		}
+		
 		ModelAndView mv = new ModelAndView("faqList");
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("faqList",list);
@@ -86,10 +90,8 @@ public class FaqController {
 	
 		boolean flag=faqService.faqUpdate(vo);
 		if(flag){
-			System.out.println("Faq Insert");
 			return "redirect:faqList?page=1";
 		}else{
-			System.out.println("Faq Insert Fail");
 			return "redirect:index";
 		}
 	}
@@ -98,10 +100,8 @@ public class FaqController {
 		
 		boolean flag=faqService.faqUpload(vo);
 		if(flag){
-			System.out.println("Faq Insert");
 			return "redirect:faqList?page=1";
 		}else{
-			System.out.println("Faq Insert Fail");
 			return "redirect:index";
 		}
 	}

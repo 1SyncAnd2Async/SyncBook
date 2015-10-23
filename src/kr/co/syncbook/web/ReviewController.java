@@ -2,9 +2,6 @@ package kr.co.syncbook.web;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.swing.plaf.synth.SynthSeparatorUI;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -72,8 +69,12 @@ public class ReviewController {
 		pageInfo.setTotalRows(totalRows);
 		pageInfo.setTotalPages(totalPages);
 		pageInfo.setTotalBlocks(totalBlocks);
-		
 		List<ReviewVO> list = reviewService.getReviewList();
+		
+		for(ReviewVO v : list) {
+			v.setWrite_date(v.getWrite_date().substring(0, 16));
+		}
+		
 		ModelAndView mv = new ModelAndView("reviewList");
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("reviewList",list);
@@ -144,6 +145,9 @@ public class ReviewController {
 	public ModelAndView ReviewSearchList(@PathVariable String searchKind, String searchValue){
 		System.out.println("searchKind : "+searchKind+"   searchValue"+searchValue);
 		List<ReviewVO> list = reviewService.getReviewSearchList(searchKind, searchValue);
+		for(ReviewVO v : list) {
+			v.setWrite_date(v.getWrite_date().substring(0, 16));
+		}
 		ModelAndView mv = new ModelAndView("reviewList");
 		mv.addObject("reviewSearchList",list);
 		return mv;

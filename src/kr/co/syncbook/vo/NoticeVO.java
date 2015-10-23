@@ -1,7 +1,5 @@
 package kr.co.syncbook.vo;
 
-import java.util.Date;
-
 import org.springframework.web.multipart.MultipartFile;
 
 public class NoticeVO {
@@ -9,14 +7,12 @@ public class NoticeVO {
 	private String title;
 	private String content;
 	private String writer;
-	private Date write_date;
+	private String write_date;
 	private int hit;
 	private String notice_file;
 	private String searchKind;
 	private String searchValue;
 	private MultipartFile upfile;
-	
-	
 	public MultipartFile getUpfile() {
 		return upfile;
 	}
@@ -59,10 +55,10 @@ public class NoticeVO {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public Date getWrite_date() {
+	public String getWrite_date() {
 		return write_date;
 	}
-	public void setWrite_date(Date write_date) {
+	public void setWrite_date(String write_date) {
 		this.write_date = write_date;
 	}
 	public int getHit() {
@@ -82,5 +78,4 @@ public class NoticeVO {
 		return "NoticeVO [notice_num=" + notice_num + ", title=" + title + ", content=" + content + ", writer=" + writer
 				+ ", write_date=" + write_date + ", hit=" + hit + ", notice_file=" + notice_file + "]";
 	}
-
 }

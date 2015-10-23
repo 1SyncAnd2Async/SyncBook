@@ -1,16 +1,12 @@
 package kr.co.syncbook.vo;
 
-import java.util.Date;
-
 public class ReviewVO {
 	private int review_num, lect_num, hit;
 	private String title;
 	private String content;
 	private String writer, writer_id;
 	private String img, lect_name;
-	private Date write_date;
-	
-	
+	private String write_date;
 	public String getWriter_id() {
 		return writer_id;
 	}
@@ -65,10 +61,10 @@ public class ReviewVO {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public Date getWrite_date() {
+	public String getWrite_date() {
 		return write_date;
 	}
-	public void setWrite_date(Date write_date) {
+	public void setWrite_date(String write_date) {
 		this.write_date = write_date;
 	}
 	@Override
@@ -77,6 +73,4 @@ public class ReviewVO {
 				+ ", content=" + content + ", writer=" + writer + ", writer_id=" + writer_id + ", img=" + img
 				+ ", lect_name=" + lect_name + ", write_date=" + write_date + "]";
 	}
-	
-	
 }

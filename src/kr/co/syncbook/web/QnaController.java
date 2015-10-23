@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Base64.Encoder;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -75,6 +74,9 @@ public class QnaController {
 		pageInfo.setTotalBlocks(totalBlocks);
 		
 		List<QnaVO> list = qnaService.getQnaList();
+		for(QnaVO v : list) {
+			v.setWrite_date(v.getWrite_date().substring(0, 16));
+		}
 		ModelAndView mv = new ModelAndView("qnaList");
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("qnaList",list);
@@ -95,6 +97,7 @@ public class QnaController {
 		}
 		return mav;
 	}
+	
 	@RequestMapping("qnaUpdate")
 	public ModelAndView updateForm(int qna_num){
 		QnaVO qna =  qnaService.getQna(qna_num);
@@ -102,6 +105,7 @@ public class QnaController {
 		mv.addObject("qna",qna);
 		return mv;
 	}
+	
 	@RequestMapping("qnaUpdateOk")
 	public String qnaUpdateOk(QnaVO vo, HttpServletRequest request){	
 		String path = request.getRealPath("/resources/upload/qna");
@@ -114,14 +118,13 @@ public class QnaController {
 		}
 		vo.setQna_file(vo.getUpfile().getOriginalFilename());
 		boolean flag=qnaService.qnaUpdate(vo);
-		if(flag){
-			System.out.println("Qna Insert");
+		if(flag) {
 			return "redirect:qnaList?page=1";
-		}else{
-			System.out.println("Qna Insert Fail");
+		} else {
 			return "redirect:index";
 		}
 	}
+	
 	@RequestMapping("qnaWrite")
 	public String write(@ModelAttribute QnaVO vo, HttpServletRequest request){		
 		String path = request.getRealPath("/resources/upload/qna");
@@ -135,18 +138,15 @@ public class QnaController {
 		vo.setQna_file(vo.getUpfile().getOriginalFilename());
 		
 		boolean flag=qnaService.qnaUpload(vo);
-		if(flag){
-			System.out.println("Qna Insert");
+		if(flag) {
 			return "redirect:qnaList?page=1";
-		}else{
-			System.out.println("Qna Insert Fail");
+		} else {
 			return "redirect:index";
 		}
 	}
 	
 	@RequestMapping("qnaDetail")
 	public ModelAndView QnaDetail(int qna_num){
-		
 		qnaService.qnaHitUpdate(qna_num);
 		QnaVO qna =  qnaService.getQna(qna_num);
 		ModelAndView mv = new ModelAndView("qnaDetail");
@@ -158,7 +158,6 @@ public class QnaController {
 	@RequestMapping("qnaFileDownload")
 	public void Download(HttpServletRequest request,
             HttpServletResponse response, String qna_file) throws IOException {
-		System.out.println(qna_file);
 		String filepath = "/resources/upload/qna/"+qna_file;
         // get absolute path of the application
         ServletContext context = request.getServletContext();
@@ -199,11 +198,7 @@ public class QnaController {
         while ((bytesRead = inputStream.read(buffer)) != -1) {
             outStream.write(buffer, 0, bytesRead);
         }
- 
         inputStream.close();
         outStream.close();
- 
     }
-	
-
 }

@@ -1,15 +1,11 @@
 package kr.co.syncbook.vo;
 
-import java.util.Date;
-
-import org.springframework.web.multipart.MultipartFile;
-
 public class FaqVO {
 	private int faq_num;
 	private String title;
 	private String content;
 	private String writer;
-	private Date write_date;
+	private String write_date;
 	private int hit;
 	public int getFaq_num() {
 		return faq_num;
@@ -35,10 +31,10 @@ public class FaqVO {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public Date getWrite_date() {
+	public String getWrite_date() {
 		return write_date;
 	}
-	public void setWrite_date(Date write_date) {
+	public void setWrite_date(String write_date) {
 		this.write_date = write_date;
 	}
 	public int getHit() {

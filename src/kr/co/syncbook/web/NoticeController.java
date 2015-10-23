@@ -30,40 +30,33 @@ public class NoticeController {
 	@RequestMapping("noticeList")
 	public ModelAndView noticeList(int page){
 		PageVO pageInfo = new PageVO();
-		int rowsPerPage = 10; // �� �������� ������ ��� �� - properties
-		int pagesPerBlock = 5; // �� ��ϴ� ������ ������ �� - properties
+		int rowsPerPage = 10;
+		int pagesPerBlock = 5;
 		if (page == 0)
-			page = 1; // ������ �ʱ�ȭ
-		int currentPage = page; // ���� ������ ��
-		int currentBlock = 0; // ���� ��� �ʱ�ȭ
-		if (currentPage % pagesPerBlock == 0) { // ���� ��� �ʱ� ��
+			page = 1;
+		int currentPage = page;
+		int currentBlock = 0;
+		if (currentPage % pagesPerBlock == 0) {
 			currentBlock = currentPage / pagesPerBlock;
-		} else { // ���� ����̳�
+		} else {
 			currentBlock = currentPage / pagesPerBlock + 1;
 		}
-		int startRow = (currentPage - 1) * rowsPerPage; // ���� ��� �� ����
-		int endRow = currentPage * rowsPerPage-1; // ������ ��� �� ����    
-		// SearchVO�� ����
-		// SearchVO svo = new SearchVO();
-		// svo.setBegin(String.valueOf(startRow));
-		// svo.setEnd(String.valueOf(endRow));
-		// ��ü ������ ��
+		int startRow = (currentPage - 1) * rowsPerPage;
+		int endRow = currentPage * rowsPerPage-1;
+		
 		int totalRows = noticeService.getNoticeTotalCount();
-		// ��ü ������ ���ϴ� ����
 		int totalPages = 0;
 		if (totalRows % rowsPerPage == 0) {
 			totalPages = totalRows / rowsPerPage;
 		} else {
 			totalPages = totalRows / rowsPerPage + 1;
 		}
-		// ��ü ��� ���� ���ϴ� ����
 		int totalBlocks = 0;
 		if (totalPages % pagesPerBlock == 0) {
 			totalBlocks = totalPages / pagesPerBlock;
 		} else {
 			totalBlocks = totalPages / pagesPerBlock + 1;
 		}
-		// ��� ����� ������ PageVO�� �����Ѵ�.
 		pageInfo.setCurrentPage(currentPage);
 		pageInfo.setCurrentBlock(currentBlock);
 		pageInfo.setRowsPerPage(rowsPerPage);
@@ -73,8 +66,12 @@ public class NoticeController {
 		pageInfo.setTotalRows(totalRows);
 		pageInfo.setTotalPages(totalPages);
 		pageInfo.setTotalBlocks(totalBlocks);
-		
 		List<NoticeVO> list = noticeService.getNoticeList();
+		
+		for(NoticeVO v : list) {
+			v.setWrite_date(v.getWrite_date().substring(0, 16));
+		}
+		
 		ModelAndView mv = new ModelAndView("noticeList");
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("NoticeList",list);
@@ -105,10 +102,8 @@ public class NoticeController {
 		
 		boolean flag=noticeService.noticeUpdate(vo);
 		if(flag){
-			System.out.println("Notice Insert");
 			return "redirect:noticeList?page=1";
 		}else{
-			System.out.println("Notice Insert Fail");
 			return "redirect:index";
 		}
 	}
@@ -126,15 +121,11 @@ public class NoticeController {
 		
 		boolean flag=noticeService.noticeUpload(vo);
 		if(flag){
-			System.out.println("Notice Insert");
 			return "redirect:noticeList?page=1";
 		}else{
-			System.out.println("Notice Insert Fail");
 			return "redirect:index";
 		}
 	}
-	
-	
 	
 	@RequestMapping("noticeDetail")
 	public ModelAndView noticeDetail(int notice_num){
@@ -190,19 +181,22 @@ public class NoticeController {
         while ((bytesRead = inputStream.read(buffer)) != -1) {
             outStream.write(buffer, 0, bytesRead);
         }
- 
         inputStream.close();
         outStream.close();
- 
     }
+	
 	@RequestMapping("noticeSearchList")
 	public ModelAndView noticeSearchList(@PathVariable String searchKind, String searchValue){
 		System.out.println("searchKind : "+searchKind+"   searchValue"+searchValue);
 		List<NoticeVO> list = noticeService.getNoticeSearchList(searchKind, searchValue);
+		for(NoticeVO v : list) {
+			v.setWrite_date(v.getWrite_date().substring(0, 16));
+		}
 		ModelAndView mv = new ModelAndView("noticeList");
 		mv.addObject("NotciceSearchList",list);
 		return mv;
 	}
+	
 	@RequestMapping("/deleteNotice")
 	public ModelAndView deleteSubject(int notice_num){
 		ModelAndView mav = new ModelAndView();
@@ -214,6 +208,4 @@ public class NoticeController {
 		}
 		return mav;
 	}
-	
-
 }

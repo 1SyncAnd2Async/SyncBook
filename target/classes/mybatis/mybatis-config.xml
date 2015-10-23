@@ -20,6 +20,7 @@
 		<typeAlias type="kr.co.syncbook.vo.ReviewVO" alias="Review"/>
 		<typeAlias type="kr.co.syncbook.vo.FaqVO" alias="Faq"/>
 		<typeAlias type="kr.co.syncbook.vo.MessageVO" alias="Message"/>
+		<typeAlias type="kr.co.syncbook.vo.SearchVO" alias="Search"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/member-mapping.xml"/>		

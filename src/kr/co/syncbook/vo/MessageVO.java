@@ -1,11 +1,9 @@
 package kr.co.syncbook.vo;
 
-import java.util.Date;
-
 public class MessageVO {
 	private String sender, receiver, content, lect_name, beginTime, endTime;
 	private int assign_num, lect_num, message_num, status, num;
-	private Date write_date;
+	private String write_date;
 	
 	public int getNum() {
 		return num;
@@ -73,10 +71,10 @@ public class MessageVO {
 	public void setMessage_num(int message_num) {
 		this.message_num = message_num;
 	}
-	public Date getWrite_date() {
+	public String getWrite_date() {
 		return write_date;
 	}
-	public void setWrite_date(Date write_date) {
+	public void setWrite_date(String write_date) {
 		this.write_date = write_date;
 	}
 	@Override
@@ -86,6 +84,4 @@ public class MessageVO {
 				+ ", lect_num=" + lect_num + ", message_num=" + message_num + ", status=" + status + ", write_date="
 				+ write_date + "]";
 	}
-	
-
 }

@@ -17,9 +17,7 @@ import kr.co.syncbook.biz.LectureService;
 import kr.co.syncbook.biz.SubjectService;
 import kr.co.syncbook.biz.TeacherService;
 import kr.co.syncbook.vo.AssignLectVO;
-import kr.co.syncbook.vo.DataVO;
 import kr.co.syncbook.vo.LectureVO;
-import kr.co.syncbook.vo.MemberClassVO;
 import kr.co.syncbook.vo.PageVO;
 import kr.co.syncbook.vo.SubjectVO;
 import kr.co.syncbook.vo.TeacherVO;
@@ -38,40 +36,40 @@ public class AssignLectController {
 	@RequestMapping("/assignLectureForm")
 	public ModelAndView assignLectureForm(int page){
 		PageVO pageInfo = new PageVO();
-		int rowsPerPage = 10; // ÇÑ ÆäÀÌÁö´ç º¸¿©ÁÙ ¸ñ·Ï ¼ö - properties
-		int pagesPerBlock = 5; // ÇÑ ºí·Ï´ç º¸¿©ÁÙ ÆäÀÌÁö ¼ö - properties
+		int rowsPerPage = 10; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ - properties
+		int pagesPerBlock = 5; // ï¿½ï¿½ ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ - properties
 		if (page == 0)
-			page = 1; // ÆäÀÌÁö ÃÊ±âÈ­
-		int currentPage = page; // ÇöÀç ÆäÀÌÁö °ª
-		int currentBlock = 0; // ÇöÀç ºí·Ï ÃÊ±âÈ­
-		if (currentPage % pagesPerBlock == 0) { // ÇöÀç ºí·Ï ÃÊ±â °ª
+			page = 1; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
+		int currentPage = page; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		int currentBlock = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
+		if (currentPage % pagesPerBlock == 0) { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½ ï¿½ï¿½
 			currentBlock = currentPage / pagesPerBlock;
-		} else { // ´ÙÀ½ ºí·ÏÀÌ³Ä
+		} else { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
 			currentBlock = currentPage / pagesPerBlock + 1;
 		}
-		int startRow = (currentPage - 1) * rowsPerPage; // ½ÃÀÛ ¸ñ·Ï °ª ¿¬»ê
-		int endRow = currentPage * rowsPerPage-1; // ¸¶Áö¸· ¸ñ·Ï °ª ¿¬»ê    
-		// SearchVO¿¡ ÀúÀå
+		int startRow = (currentPage - 1) * rowsPerPage; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		int endRow = currentPage * rowsPerPage-1; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½    
+		// SearchVOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		// SearchVO svo = new SearchVO();
 		// svo.setBegin(String.valueOf(startRow));
 		// svo.setEnd(String.valueOf(endRow));
-		// ÀüÃ¼ µ¥ÀÌÅÍ °ª
+		// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 		int totalRows = assignLectService.getTotalCount();
-		// ÀüÃ¼ ÆäÀÌÁö ±¸ÇÏ´Â °ø½Ä
+		// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
 		int totalPages = 0;
 		if (totalRows % rowsPerPage == 0) {
 			totalPages = totalRows / rowsPerPage;
 		} else {
 			totalPages = totalRows / rowsPerPage + 1;
 		}
-		// ÀüÃ¼ ºí·Ï °ªÀ» ±¸ÇÏ´Â °ø½Ä
+		// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
 		int totalBlocks = 0;
 		if (totalPages % pagesPerBlock == 0) {
 			totalBlocks = totalPages / pagesPerBlock;
 		} else {
 			totalBlocks = totalPages / pagesPerBlock + 1;
 		}
-		// ¸ðµç ¿¬»êµÈ Á¤º¸¸¦ PageVO¿¡ ÀúÀåÇÑ´Ù.
+		// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ PageVOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 		pageInfo.setCurrentPage(currentPage);
 		pageInfo.setCurrentBlock(currentBlock);
 		pageInfo.setRowsPerPage(rowsPerPage);
@@ -100,7 +98,7 @@ public class AssignLectController {
 	    PrintWriter out = resp.getWriter();
 	    List<LectureVO> lectureList = lectureService.getLectureList(subj_num);
 	    out.print("<select name=\"lect_num\" id=\"Lecture\">");
-	    out.print("<option value=\"\">¼±ÅÃ</option>");
+	    out.print("<option value=\"\">ï¿½ï¿½ï¿½ï¿½</option>");
 	    for (LectureVO v : lectureList) {        
 	        out.print("<option value=\"" + v.getLect_num() + "\">" + v.getLect_name() + "</option>");
 	    }
