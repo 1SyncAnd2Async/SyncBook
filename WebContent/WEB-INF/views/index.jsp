@@ -37,11 +37,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9 animated fadeInLeft">
-                    <span>Unify is a clean and fully responsive incredible Template.</span>
-                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi  vehicula sem ut volutpat. Ut non libero magna fusce condimentum eleifend enim a feugiat corrupti quos.</p>
+                    <span>e-learning의 새로운 패러다임 SyncBook</span>
+                    <p>
+                    	교실에서 하는 말이 아니다. ‘SyncBook‘ 온라인 강의 플랫폼에서 새로운 유형의 실시간 강의를 만나보자.
+                    </p>
                 </div>
                 <div class="col-md-3 btn-buy animated fadeInRight">
-                    <a href="#" class="btn-u btn-u-lg"><i class="fa fa-cloud-download"></i> Download Now</a>
+                    <a href="#" class="btn-u btn-u-lg"><i class="fa fa-cloud-download"></i> 체험하기</a>
                 </div>
             </div>
         </div>
@@ -79,9 +81,9 @@
     	<div class="row margin-bottom-30">
         	<!-- Welcome Block -->
     		<div class="col-md-8 md-margin-bottom-40">
-    			<div class="headline"><h2>Best수강후기</h2></div>
+    			<div class="headline"><h2>Best 수강후기</h2></div>
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-4" style="width: 20%;">
                         <img class="img-responsive margin-bottom-20" src="resources/upload/memberImg/${bestReview.img}" alt="">
                     </div>
                     <div class="col-sm-8">
