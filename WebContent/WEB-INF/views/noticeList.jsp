@@ -108,10 +108,21 @@
 															<c:forEach begin="1" end="${pageInfo.pagesPerBlock}"
 																varStatus="num">
                                  							<ul class="pagination">
-                        										<li><a
-																	href="noticeList?page=
-                                 									${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
-																	${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li></ul>
+                        										<c:choose>
+		                                 							<c:when test="${pageInfo.currentPage == num.count}">
+		                        										<li class="active"><a
+																			href="noticeList?page=
+		                                 									${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
+																			${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li>
+		                                							</c:when>
+		                                							<c:otherwise>
+		                                								<li><a
+																			href="noticeList?page=
+		                                									 ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">
+																			${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li>
+		                                							</c:otherwise>
+		                                						</c:choose>
+		                                					</ul>
                                 							</c:forEach>
 														</c:when>
 														<c:otherwise>
@@ -120,7 +131,7 @@
 																end="${pageInfo.totalPages}" varStatus="num">
                                  								<ul class="pagination">
                         										<c:choose>
-		                                 							<c:when test="${pageInfo.currentPage == num.count}">
+		                                 							<c:when test="${pageInfo.currentPage == (pageInfo.currentBlock-1)*pageInfo.pagesPerBlock +num.count}">
 		                        										<li class="active"><a
 																			href="noticeList?page=
 		                                 									${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }">

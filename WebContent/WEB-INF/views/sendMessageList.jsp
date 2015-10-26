@@ -152,10 +152,21 @@ $(function(){
 															<c:forEach begin="1" end="${pageInfo.pagesPerBlock}"
 																varStatus="num">
                                  							<ul class="pagination">
-                        										<li><a
-																	href="sendMessageList?page=
-                                 									${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }&sender=${sessionScope.member.id}">
-																	${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li></ul>
+                        									<c:choose>
+		                                 							<c:when test="${pageInfo.currentPage == num.count}">
+		                        										<li class="active"><a
+																			href="sendMessageList?page=
+		                                 									${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }&sender=${sessionScope.member.id}">
+																			${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li>
+		                                							</c:when>
+		                                							<c:otherwise>
+		                                								<li><a
+																			href="sendMessageList?page=
+		                                									 ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }&sender=${sessionScope.member.id}">
+																			${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li>
+		                                							</c:otherwise>
+		                                						</c:choose>
+                        									</ul>
                                 							</c:forEach>
 														</c:when>
 														<c:otherwise>
@@ -199,6 +210,9 @@ $(function(){
 														</c:otherwise>
 													</c:choose>
 												</c:when>
+												
+												
+												
 												<c:when test="${sessionScope.teacher != null}">
 													<c:choose>
 														<c:when test="${pageInfo.currentBlock eq 1}">
@@ -219,10 +233,22 @@ $(function(){
 															<c:forEach begin="1" end="${pageInfo.pagesPerBlock}"
 																varStatus="num">
                                  							<ul class="pagination">
-                        										<li><a
-																	href="sendMessageList?page=
-                                 									${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }&sender=${sessionScope.teacher.id}">
-																	${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li></ul>
+                                 							<c:choose>
+		                                 							<c:when test="${pageInfo.currentPage == num.count}">
+		                        										<li class="active"><a
+																			href="sendMessageList?page=
+		                                 									${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }&sender=${sessionScope.teacher.id}">
+																			${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li>
+		                                							</c:when>
+		                                							<c:otherwise>
+		                                								<li><a
+																			href="sendMessageList?page=
+		                                									 ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }&sender=${sessionScope.teacher.id}">
+																			${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li>
+		                                							</c:otherwise>
+		                                						</c:choose>
+                                 							
+                        									</ul>
                                 							</c:forEach>
 														</c:when>
 														<c:otherwise>
@@ -231,7 +257,7 @@ $(function(){
 																end="${pageInfo.totalPages}" varStatus="num">
                                  								<ul class="pagination">
                         										<c:choose>
-		                                 							<c:when test="${pageInfo.currentPage == num.count}">
+		                                 							<c:when test="${pageInfo.currentPage == (pageInfo.currentBlock-1)*pageInfo.pagesPerBlock + num.count}">
 		                        										<li class="active"><a
 																			href="sendMessageList?page=
 		                                 									${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }&sender=${sessionScope.teacher.id}">
@@ -254,6 +280,7 @@ $(function(){
 													<c:choose>
 														<c:when
 															test="${pageInfo.currentBlock eq pageInfo.totalBlocks}">
+															
 														</c:when>
 														<c:otherwise>
 															<ul class="pagination">

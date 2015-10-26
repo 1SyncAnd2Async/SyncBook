@@ -13,7 +13,6 @@ var ajaxSubject = function(){
 		success:function(data) {
 		$("#subject").html(data);
 		}, error:function() {
-			alert("error!");
 		}
 	});
 }
@@ -27,7 +26,6 @@ var ajaxFn = function () {
 			$("#notReadMessage").html(data);
 			setTimeout(ajaxFn, 10000);
 			}, error:function() {
-				alert("error!");
 			}
 		});
 	}else if($('#teacherId').val() != null){
@@ -38,7 +36,6 @@ var ajaxFn = function () {
 			$("#notReadMessage").html(data);
 			setTimeout(ajaxFn, 10000);
 			}, error:function() {
-				alert("error!");
 			}
 		});
 		
