@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="kr.co.syncbook.vo.MessageVO"%>
 <%@page import="java.util.List"%>
@@ -102,7 +102,7 @@ $(function(){
                             </tr>
                         </thead>
                         <tbody>
-                        <c:forEach begin="${pageInfo.startRow}" end="${pageInfo.endRow}" var="message" items="${messageList}">
+                        <c:forEach begin="${pageInfo.startRow}" end="${pageInfo.endRow}" var="message" items="${message}">
                         	<tr>                        		
                         		<td><input type='checkbox' class='input_check' name="check" value="${message.message_num}"></td>
                         		<td>
@@ -134,7 +134,7 @@ $(function(){
                     
                         <br>
                   		<!-- Pagination -->
-               			 <div align="center">
+               			<div align="center">
 								<table style="width:100%;">
 									<tr>
 										<td colspan="4">&nbsp;</td>
@@ -142,15 +142,14 @@ $(function(){
 									<tr>
 										<td colspan="4" style="text-align: center">
 											<!-- Page 이전 페이지 구현  --><c:choose>
-												<c:when test="${searchType == null}">
+												<c:when test="${sessionScope.member != null}">
 													<c:choose>
 														<c:when test="${pageInfo.currentBlock eq 1}">
 															 
 														</c:when>
 														<c:otherwise>
 															 <ul class="pagination">
-                        										<li><a
-																href="messageList?page= ${(pageInfo.currentBlock-1)*pageInfo.pagesPerBlock }&receiver=${message.receiver}">
+                        										<li><a href="messageList?page= ${(pageInfo.currentBlock-1)*pageInfo.pagesPerBlock }&receiver=${sessionScope.member.id}">
 																«
 															</a></li></ul>
 														</c:otherwise>
@@ -165,7 +164,7 @@ $(function(){
                                  							<ul class="pagination">
                         										<li><a
 																	href="messageList?page=
-                                 									${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }&receiver=${message.receiver}">
+                                 									${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }&receiver=${sessionScope.member.id}">
 																	${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li></ul>
                                 							</c:forEach>
 														</c:when>
@@ -178,13 +177,13 @@ $(function(){
 		                                 							<c:when test="${pageInfo.currentPage == num.count}">
 		                        										<li class="active"><a
 																			href="messageList?page=
-		                                 									${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }&receiver=${message.receiver}">
+		                                 									${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }&receiver=${sessionScope.member.id}">
 																			${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li>
 		                                							</c:when>
 		                                							<c:otherwise>
 		                                								<li><a
 																			href="messageList?page=
-		                                									 ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }&receiver=${message.receiver}">
+		                                									 ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }&receiver=${sessionScope.member.id}">
 																			${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li>
 		                                							</c:otherwise>
 		                                						</c:choose>
@@ -203,13 +202,80 @@ $(function(){
 															<ul class="pagination">
                         										<li><a
 																href="messageList?page=
-                  ${pageInfo.currentBlock * pageInfo.pagesPerBlock + 1 }&receiver=${message.receiver}">
+                  ${pageInfo.currentBlock * pageInfo.pagesPerBlock + 1 }&receiver=${sessionScope.member.id}">
 																»
 															</a></li>
 															</ul>
 														</c:otherwise>
 													</c:choose>
-												</c:when>												
+												</c:when>
+												<c:when test="${sessionScope.teacher != null}">
+													<c:choose>
+														<c:when test="${pageInfo.currentBlock eq 1}">
+															 
+														</c:when>
+														<c:otherwise>
+															 <ul class="pagination">
+                        										<li><a href="messageList?page= ${(pageInfo.currentBlock-1)*pageInfo.pagesPerBlock }&receiver=${sessionScope.teacher.id}">
+																«
+															</a></li></ul>
+														</c:otherwise>
+													</c:choose>
+
+													<!-- Page  페이지 구현 -->
+													<c:choose>
+														<c:when
+															test="${pageInfo.currentBlock ne pageInfo.totalBlocks}">
+															<c:forEach begin="1" end="${pageInfo.pagesPerBlock}"
+																varStatus="num">
+                                 							<ul class="pagination">
+                        										<li><a
+																	href="messageList?page=
+                                 									${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }&receiver=${sessionScope.teacher.id}">
+																	${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li></ul>
+                                							</c:forEach>
+														</c:when>
+														<c:otherwise>
+															<c:forEach
+																begin="${(pageInfo.currentBlock-1)*pageInfo.pagesPerBlock + 1}"
+																end="${pageInfo.totalPages}" varStatus="num">
+                                 								<ul class="pagination">
+                        										<c:choose>
+		                                 							<c:when test="${pageInfo.currentPage == num.count}">
+		                        										<li class="active"><a
+																			href="messageList?page=
+		                                 									${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }&receiver=${sessionScope.teacher.id}">
+																			${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li>
+		                                							</c:when>
+		                                							<c:otherwise>
+		                                								<li><a
+																			href="messageList?page=
+		                                									 ${(pageInfo.currentBlock - 1) * pageInfo.pagesPerBlock + num.count }&receiver=${sessionScope.teacher.id}">
+																			${(pageInfo.currentBlock- 1) * pageInfo.pagesPerBlock + num.count }</a></li>
+		                                							</c:otherwise>
+		                                						</c:choose>
+                        										</ul>
+                            							 </c:forEach>
+														</c:otherwise>
+													</c:choose>
+
+
+													<!-- Page 다음 페이지 구현 -->
+													<c:choose>
+														<c:when
+															test="${pageInfo.currentBlock eq pageInfo.totalBlocks}">
+														</c:when>
+														<c:otherwise>
+															<ul class="pagination">
+                        										<li><a
+																href="messageList?page=
+                  ${pageInfo.currentBlock * pageInfo.pagesPerBlock + 1 }&receiver=${sessionScope.teacher.id}">
+																»
+															</a></li>
+															</ul>
+														</c:otherwise>
+													</c:choose>
+												</c:when>
 											</c:choose>
 										</td>
 									</tr>

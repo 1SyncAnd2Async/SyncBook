@@ -79,7 +79,7 @@ public class MessageController {
 		
 		ModelAndView mv = new ModelAndView("messageList");
 		mv.addObject("pageInfo", pageInfo);
-		mv.addObject("messageList",list);
+		mv.addObject("message", list);
 		return mv;
 	}
 

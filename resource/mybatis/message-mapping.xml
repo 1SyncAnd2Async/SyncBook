@@ -42,7 +42,7 @@
 		]]>
 	</select>
 	
-	<select id="getReceiveMessageList" resultType="Message">
+	<select id="getReceiveMessageList" resultType="Message" parameterType="java.lang.String">
 		<![CDATA[
 			SELECT ROWNUM NUM, M.MESSAGE_NUM, M.SENDER, M.RECEIVER, M.CONTENT, M.WRITE_DATE, M.STATUS,
 			L.LECT_NAME, A.BEGINTIME, A.ENDTIME
@@ -55,7 +55,7 @@
 		]]>
 	</select>
 	
-	<select id="getSendMessageList" resultType="Message">
+	<select id="getSendMessageList" resultType="Message" parameterType="java.lang.String">
 		<![CDATA[
 			SELECT ROWNUM NUM, M.MESSAGE_NUM, M.SENDER, M.RECEIVER, M.CONTENT, M.WRITE_DATE, M.STATUS,
 			L.LECT_NAME, A.BEGINTIME, A.ENDTIME
