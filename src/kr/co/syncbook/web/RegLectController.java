@@ -101,7 +101,7 @@ public class RegLectController {
 		return mav;
 	}
 	@RequestMapping("/subjectClassList")
-	public ModelAndView subjectClassList(int page, int subj_num) {
+	public ModelAndView subjectClassList(int page, int subj_num) { // subj_num 이용
 		PageVO pageInfo = new PageVO();
 		int rowsPerPage = 5; // �� �������� ������ ��� �� - properties
 		int pagesPerBlock = 3; // �� ��ϴ� ������ ������ �� - properties
@@ -206,7 +206,6 @@ public class RegLectController {
 		pageInfo.setTotalBlocks(totalBlocks);
 		
 		List<RegLectVO> orderList = regLectService.getAllOrderList();
-		System.out.println(orderList);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("orderList", orderList);
