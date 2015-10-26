@@ -65,7 +65,6 @@ public class QuestionController {
          obj.put("question_file", "http://117.17.143.126/BitProject/resources/upload/questionVideo/"+question.getQuestion_file());
          String jsonPath = request.getRealPath("resources/upload/questionJson");
          FileWriter fw = new FileWriter(jsonPath + "\\" + sb + ".json");
-         System.out.println(obj.toJSONString());
          fw.write(obj.toJSONString());
          fw.flush();
          fw.close();

@@ -44,11 +44,14 @@
 			AND L.BOOK_NUM = B.BOOK_NUM
 		]]>
 	</select>
-	<select id="getLectureList" resultType="Lecture">
+	<select id="getLectureList" parameterType="java.lang.Integer" resultType="Lecture">
 		<![CDATA[
-			SELECT ROWNUM rnum, L.LECT_NUM, S.SUBJ_NUM, S.SUBJ_NAME, L.LECT_NAME, B.BOOK_NUM, B.BOOK_NAME, L.PRICE
-			FROM LECTURE L, SUBJECT S, BOOK B
-			WHERE L.SUBJ_NUM = S.SUBJ_NUM 
+			SELECT ROWNUM rnum, L.LECT_NUM, L.EXPLANATION, S.SUBJ_NUM, S.SUBJ_NAME, L.LECT_NAME, B.BOOK_NUM, B.BOOK_NAME, L.PRICE, L.IMG
+			FROM LECTURE L, SUBJECT S, BOOK B, ( SELECT DISTINCT L.LECT_NUM
+		      FROM LECTURE L, ASSIGN_LECT A
+		      WHERE A.LECT_NUM = L.LECT_NUM) A
+			WHERE L.SUBJ_NUM = S.SUBJ_NUM
+			AND A.LECT_NUM = L.LECT_NUM
 			AND L.BOOK_NUM = B.BOOK_NUM
 			AND L.SUBJ_NUM = #{subj_num}
 		]]>

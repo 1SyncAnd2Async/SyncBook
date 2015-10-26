@@ -30,6 +30,7 @@ import kr.co.syncbook.vo.MemberVO;
 import kr.co.syncbook.vo.OrderVO;
 import kr.co.syncbook.vo.PageVO;
 import kr.co.syncbook.vo.RegLectVO;
+import kr.co.syncbook.vo.TeacherVO;
 
 @Controller
 public class RegLectController {
@@ -59,7 +60,7 @@ public class RegLectController {
 			currentBlock = currentPage / pagesPerBlock + 1;
 		}
 		int startRow = (currentPage - 1) * rowsPerPage; // ���� ��� �� ����
-		int endRow = currentPage * rowsPerPage-1; // ������ ��� �� ����    
+		int endRow = currentPage * rowsPerPage - 1; // ������ ��� �� ����
 		// SearchVO�� ����
 		// SearchVO svo = new SearchVO();
 		// svo.setBegin(String.valueOf(startRow));
@@ -93,15 +94,17 @@ public class RegLectController {
 
 		List<LectureVO> classList = lectureService.getAllLectureList();
 		ModelAndView mav = new ModelAndView();
-//		svo.setBegin(String.valueOf(startRow));
-//		svo.setEnd(String.valueOf(endRow));
+		// svo.setBegin(String.valueOf(startRow));
+		// svo.setEnd(String.valueOf(endRow));
 		mav.addObject("pageInfo", pageInfo);
 		mav.addObject("classList", classList);
 		mav.setViewName("classListForm");
 		return mav;
 	}
+
 	@RequestMapping("/subjectClassList")
-	public ModelAndView subjectClassList(int page, int subj_num) { // subj_num 이용
+	public ModelAndView subjectClassList(int page, int subj_num) { // subj_num
+																	// 이용
 		PageVO pageInfo = new PageVO();
 		int rowsPerPage = 5; // �� �������� ������ ��� �� - properties
 		int pagesPerBlock = 3; // �� ��ϴ� ������ ������ �� - properties
@@ -115,7 +118,7 @@ public class RegLectController {
 			currentBlock = currentPage / pagesPerBlock + 1;
 		}
 		int startRow = (currentPage - 1) * rowsPerPage; // ���� ��� �� ����
-		int endRow = currentPage * rowsPerPage-1; // ������ ��� �� ����    
+		int endRow = currentPage * rowsPerPage - 1; // ������ ��� �� ����
 		// SearchVO�� ����
 		// SearchVO svo = new SearchVO();
 		// svo.setBegin(String.valueOf(startRow));
@@ -147,10 +150,10 @@ public class RegLectController {
 		pageInfo.setTotalPages(totalPages);
 		pageInfo.setTotalBlocks(totalBlocks);
 
-		List<LectureVO> classList = lectureService.getAllLectureList();
+		List<LectureVO> classList = lectureService.getLectureList(subj_num);
 		ModelAndView mav = new ModelAndView();
-//		svo.setBegin(String.valueOf(startRow));
-//		svo.setEnd(String.valueOf(endRow));
+		// svo.setBegin(String.valueOf(startRow));
+		// svo.setEnd(String.valueOf(endRow));
 		mav.addObject("pageInfo", pageInfo);
 		mav.addObject("classList", classList);
 		mav.setViewName("classListForm");
@@ -159,7 +162,7 @@ public class RegLectController {
 
 	@RequestMapping("/orderList")
 	public ModelAndView orderList(int page) {
-		
+
 		PageVO pageInfo = new PageVO();
 		int rowsPerPage = 10; // �� �������� ������ ��� �� - properties
 		int pagesPerBlock = 5; // �� ��ϴ� ������ ������ �� - properties
@@ -173,7 +176,7 @@ public class RegLectController {
 			currentBlock = currentPage / pagesPerBlock + 1;
 		}
 		int startRow = (currentPage - 1) * rowsPerPage; // ���� ��� �� ����
-		int endRow = currentPage * rowsPerPage-1; // ������ ��� �� ����    
+		int endRow = currentPage * rowsPerPage - 1; // ������ ��� �� ����
 		// SearchVO�� ����
 		// SearchVO svo = new SearchVO();
 		// svo.setBegin(String.valueOf(startRow));
@@ -204,9 +207,9 @@ public class RegLectController {
 		pageInfo.setTotalRows(totalRows);
 		pageInfo.setTotalPages(totalPages);
 		pageInfo.setTotalBlocks(totalBlocks);
-		
+
 		List<RegLectVO> orderList = regLectService.getAllOrderList();
-		
+
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("orderList", orderList);
 		mav.addObject("pageInfo", pageInfo);
@@ -217,7 +220,7 @@ public class RegLectController {
 	@RequestMapping("/memberClassList")
 	public ModelAndView memberClassList(String id) {
 		List<MemberClassVO> memberClassList;
-		if(memberService.idCheck(id)) {
+		if (memberService.idCheck(id)) {
 			memberClassList = regLectService.getMemberClassList(id);
 		} else {
 			memberClassList = regLectService.getTeacherClassList(id);
@@ -233,7 +236,7 @@ public class RegLectController {
 		MemberClassVO memberClassDetail;
 		MemberClassVO vo = new MemberClassVO();
 		vo.setReg_num(reg_num);
-		if(memberService.idCheck(id)) {
+		if (memberService.idCheck(id)) {
 			vo.setMember_id(id);
 			memberClassDetail = regLectService.getMemberClassDetail(vo);
 		} else {
@@ -250,13 +253,19 @@ public class RegLectController {
 	}
 
 	@RequestMapping("/classDetail")
-	public ModelAndView classDetail(int lect_num) {
-		List<AssignLectVO> teacherList = assignLectService.getClassTeacherList(lect_num);
-		LectureVO lecture = lectureService.getLecture(lect_num);
+	public ModelAndView classDetail(int lect_num, HttpSession session) {
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		TeacherVO teacher = (TeacherVO) session.getAttribute("teacher");
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("lecture", lecture);
-		mav.addObject("classTeacherList", teacherList);
-		mav.setViewName("classDetail");
+		if (member != null || teacher != null) {
+			List<AssignLectVO> teacherList = assignLectService.getClassTeacherList(lect_num);
+			LectureVO lecture = lectureService.getLecture(lect_num);
+			mav.addObject("lecture", lecture);
+			mav.addObject("classTeacherList", teacherList);
+			mav.setViewName("classDetail");
+		} else {
+			mav.setViewName("loginOption");
+		}
 		return mav;
 	}
 
@@ -316,19 +325,19 @@ public class RegLectController {
 		}
 		return mav;
 	}
-	
+
 	@RequestMapping("lectureStart")
 	public ModelAndView lectureStart(int reg_num, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		RegLectVO v = regLectService.getLectStatus(reg_num);
 		ModelAndView mav = new ModelAndView();
-		if(v.getStatus() == 1) {
+		if (v.getStatus() == 1) {
 			mav.addObject("reg_num", reg_num);
 			mav.setViewName("lectureStart");
 		} else {
 			mav.addObject("msg", "Lecture isn't started yet.");
-			mav.setViewName("redirect:memberClassDetail?reg_num="+reg_num+"&id="+member.getId());
+			mav.setViewName("redirect:memberClassDetail?reg_num=" + reg_num + "&id=" + member.getId());
 		}
 		return mav;
 	}

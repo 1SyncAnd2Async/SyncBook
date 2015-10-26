@@ -53,7 +53,6 @@ public class TeacherController {
 	public ModelAndView login(String id, String password, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		TeacherVO teacher = teacherService.teacherLogin(id, password);
-		System.out.println(teacher);
 		if(teacher != null) {
 			session.setAttribute("teacher", teacher);
 			mav.setViewName("redirect:index");

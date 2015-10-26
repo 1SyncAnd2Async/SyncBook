@@ -104,24 +104,19 @@ public class ReviewController {
 		ModelAndView mav = new ModelAndView();
 		boolean flag=reviewService.reviewUpdate(vo);
 		if(flag){
-			System.out.println("Review Insert");
 			mav.setViewName("redirect:reviewList?page=1");
 		}else{
-			System.out.println("Review Insert Fail");
 			mav.setViewName("redirect:index");
 		}
 		return mav;
 	}
 	@RequestMapping("reviewWrite")
 	public ModelAndView write(@ModelAttribute ReviewVO vo){		
-		System.out.println(vo);
 		ModelAndView mav = new ModelAndView();
 		boolean flag=reviewService.reviewUpload(vo);
 		if(flag){
-			System.out.println("Review Insert");
 			mav.setViewName("redirect:reviewList?page=1");
 		}else{
-			System.out.println("Review Insert Fail");
 			mav.setViewName("redirect:index");
 		}
 		return mav;

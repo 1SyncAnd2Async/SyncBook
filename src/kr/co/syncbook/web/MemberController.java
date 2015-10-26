@@ -255,11 +255,7 @@ public class MemberController {
 	@RequestMapping("/androidLogin")
 	public void Alogin(HttpSession session,HttpServletResponse response, HttpServletRequest request, String id, String password)	{
 		ServletContext context = request.getServletContext();
-		System.out.println(request.getServletContext());
 		response.setCharacterEncoding("UTF-8");
-		
-		System.out.println(id);
-		System.out.println(password);
 		
 		MemberVO Amember = memberService.memberLogin(id, password);
 		StringTokenizer stz = new StringTokenizer(Amember.getPost(), "-");
@@ -267,10 +263,6 @@ public class MemberController {
 		String post2 = stz.nextToken();
 		
 		PrintWriter out = null;
-		
-		System.out.println(Amember.getId());
-		System.out.println(Amember.getPassword());
-		System.out.println(Amember.getAddress());
 		
 		if(Amember != null)	{
 			JSONObject jsonObject = new JSONObject();
@@ -284,7 +276,6 @@ public class MemberController {
 			jsonObject.put("address", Amember.getAddress());
 			jsonObject.put("detail_address", Amember.getDetail_address());
 			jsonObject.put("email", Amember.getEmail());
-			System.out.println("appLogin:::::::::::::"+ Amember.getId());
 			//session.setAttribute("appLogin", Amember.getId());
 			context.setAttribute("appLogin", Amember.getId());
 			try {

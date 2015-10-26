@@ -36,9 +36,7 @@ public class SubjectController {
 		out.print(
 				"<li><a href=\"classListForm?page=1\">전체보기</a></li>");
 		for (int i = 0; i < list.size(); i++) {
-			
 			SubjectVO subject = list.get(i);
-			System.out.println(subject.getSubj_num());
 				out.print(
 						"<li><a href=\"subjectClassList?page=1&subj_num="+ subject.getSubj_num()
 						+ "\">"+subject.getSubj_name()+"</a></li>");

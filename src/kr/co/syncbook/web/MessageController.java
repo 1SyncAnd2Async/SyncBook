@@ -239,10 +239,8 @@ public class MessageController {
 		boolean flag=messageService.messageUpload(vo);
 		
 		if(flag){
-			System.out.println("message Insert");
 			return "redirect:messageList?page=1&receiver="+vo.getSender();
 		}else{
-			System.out.println("message Insert Fail");
 			return "redirect:index";
 		}
 	}

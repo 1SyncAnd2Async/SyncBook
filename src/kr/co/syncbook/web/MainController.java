@@ -42,6 +42,7 @@ public class MainController {
 		List<TeacherVO> teacherList = teacherService.getTeacherList();
 		List<QnaVO> qnaList = qnaService.getMainQnaList();
 		ReviewVO bestReview =reviewService.getBestReview();
+		bestReview.setWrite_date(bestReview.getWrite_date().substring(0, 16));
 		List<FaqVO> faqList = faqService.getFaqList();
 		
 		ModelAndView mv = new ModelAndView("index");
