@@ -96,9 +96,9 @@ public class AssignLectController {
 	public void selectLecture(ServletResponse resp, @RequestParam int subj_num) throws IOException {
 		resp.setContentType("text/html;charset=UTF-8");
 	    PrintWriter out = resp.getWriter();
-	    List<LectureVO> lectureList = lectureService.getLectureList(subj_num);
+	    List<LectureVO> lectureList = lectureService.getAllSubjectLecture(subj_num);
 	    out.print("<select name=\"lect_num\" id=\"Lecture\">");
-	    out.print("<option value=\"\">����</option>");
+	    out.print("<option value=\"\">강의선택</option>");
 	    for (LectureVO v : lectureList) {        
 	        out.print("<option value=\"" + v.getLect_num() + "\">" + v.getLect_name() + "</option>");
 	    }
@@ -111,7 +111,7 @@ public class AssignLectController {
 		ModelAndView mav = new ModelAndView();
 		boolean flag = assignLectService.assignLect(vo);
 		if(flag) {
-			mav.setViewName("redirect:assignLectureForm");
+			mav.setViewName("redirect:assignLectureForm?page=1");
 		} else {
 			mav.setViewName("redirect:index");
 		}
@@ -122,7 +122,7 @@ public class AssignLectController {
 		ModelAndView mav = new ModelAndView();
 		boolean flag = assignLectService.deleteAssignLect(vo);
 		if(flag) {
-			mav.setViewName("redirect:assignLectureForm");
+			mav.setViewName("redirect:assignLectureForm?page=1");
 		} else {
 			mav.setViewName("redirect:index");
 		}

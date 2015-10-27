@@ -42,9 +42,8 @@ public class LectureController {
 
 	@RequestMapping("/addLectureForm")
 	public ModelAndView regLecture(){
-		List<LectureVO> list = lectureService.getAllLectureList();
+		List<LectureVO> list = lectureService.getAllLecture();
 		List<SubjectVO> sub_list = subjectService.getSubjectList();	
-
 		ModelAndView mav = new ModelAndView();		
 		mav.addObject("list", list);
 		mav.addObject("subjectList", sub_list);
@@ -140,7 +139,7 @@ public class LectureController {
 	    PrintWriter out = resp.getWriter();
 	    List<BookVO> bookList = bookService.getSubjectBookList(subj_num);
 	    out.print("<select name=\"book_num\" id=\"Book\">");
-	    out.print("<option value=\"\">╪╠ец</option>");
+	    out.print("<option value=\"\">О©╫О©╫О©╫О©╫</option>");
 	    for (BookVO book : bookList) {        
 	        out.print("<option value=\"" + book.getBook_num() + "\">" + book.getBook_name() + "</option>");
 	    }

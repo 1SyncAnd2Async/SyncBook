@@ -62,4 +62,16 @@ public class LectureDAOImpl implements LectureDAO{
 		return sqlSession.selectOne("Lecture.getTotalCount");
 	}
 
+	@Override
+	public List<LectureVO> getAllLecture() {
+		List<LectureVO> list = sqlSession.selectList("Lecture.getAllLecture");
+		return list;
+	}
+
+	@Override
+	public List<LectureVO> getAllSubjectLecture(int subj_num) {
+		List<LectureVO> list = sqlSession.selectList("Lecture.getAllSubjectLecture", subj_num);
+		return list;
+	}
+
 }

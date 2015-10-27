@@ -2,6 +2,7 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <tiles:insertDefinition name="defaultTemplate">
     <tiles:putAttribute name="body">
     	<!--=== Breadcrumbs ===-->
@@ -34,9 +35,13 @@
                 <div class="row clients-page">
                     <div class="col-md-2">
                         <a href="classDetail?lect_num=${classList.lect_num}">
-                        <img src="resources/upload/lectureImg/${classList.img}" class="img-responsive hover-effect" alt="" />
+                        <img src="resources/upload/lectureImg/${classList.img}" class="img-responsive hover-effect" alt=""/>                       
                         </a>
                     </div>
+                     <%-- <div class="col-md-2" style=" font-family: 'Hanna', serif; position: relative; text-align: center; position: relative;
+                     font-size: 20px; margin-top: 40px; padding-left: 25px; padding-right: 25px;">
+                     <label style="color:white; position: relative;">${classList.lect_name}</label>
+                     </div> --%>
                     <div class="col-md-10">
                         <h3><a href="classDetail?lect_num=${classList.lect_num}">${classList.lect_name}</a></h3>
                         <ul class="list-inline">

@@ -47,6 +47,7 @@ public class RegLectController {
 
 	@RequestMapping("/classListForm")
 	public ModelAndView lectureListForm(int page) {
+		List<LectureVO> classList = lectureService.getAllLectureList();
 		PageVO pageInfo = new PageVO();
 		int rowsPerPage = 5; // �� �������� ������ ��� �� - properties
 		int pagesPerBlock = 3; // �� ��ϴ� ������ ������ �� - properties
@@ -66,7 +67,7 @@ public class RegLectController {
 		// svo.setBegin(String.valueOf(startRow));
 		// svo.setEnd(String.valueOf(endRow));
 		// ��ü ������ ��
-		int totalRows = lectureService.getTotalCount();
+		int totalRows = classList.size();
 		// ��ü ������ ���ϴ� ����
 		int totalPages = 0;
 		if (totalRows % rowsPerPage == 0) {
@@ -92,7 +93,7 @@ public class RegLectController {
 		pageInfo.setTotalPages(totalPages);
 		pageInfo.setTotalBlocks(totalBlocks);
 
-		List<LectureVO> classList = lectureService.getAllLectureList();
+		
 		ModelAndView mav = new ModelAndView();
 		// svo.setBegin(String.valueOf(startRow));
 		// svo.setEnd(String.valueOf(endRow));

@@ -40,10 +40,9 @@
 												class="img-responsive hover-effect" alt="" />
 										</div>
 										<div
-											style="float: left; margin-left: 10px; width: 62%; height: 250px;">
-											<pre style="height: 100%;">
-												<span class=" icon-tag">&nbsp;${memberClassDetail.subj_name}</span>
-                             <br>${memberClassDetail.explanation }</pre>
+											style="float: left; margin-left: 10px; padding-bottom:20px; width: 62%; height: 250px;">
+											<label><span class=" icon-tag">&nbsp;${memberClassDetail.subj_name}</span></label>
+											<pre style="height: 100%;">${memberClassDetail.explanation }</pre>
 										</div>
 									</section>
 								</fieldset>

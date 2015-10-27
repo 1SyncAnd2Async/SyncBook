@@ -59,5 +59,17 @@ public class LectureServiceImpl implements LectureService{
 		// TODO Auto-generated method stub
 		return lectureDAO.getTotalCount();
 	}
+
+	@Override
+	public List<LectureVO> getAllLecture() {
+		List<LectureVO> list = lectureDAO.getAllLecture();
+		return list;
+	}
+
+	@Override
+	public List<LectureVO> getAllSubjectLecture(int subj_num) {
+		List<LectureVO> list = lectureDAO.getAllSubjectLecture(subj_num);
+		return list;
+	}
 	
 }

@@ -80,11 +80,11 @@ $(function(){
 							<label style="margin-right:30px;">
 							<select name="day">
 								<option value="">요일선택</option>																	
-                                    <option value="월요일">월요일</option>
-                                    <option value="화요일">화요일</option>
-                                    <option value="수요일">수요일</option>
-                                    <option value="목요일">목요일</option>
-                                    <option value="금요일">금요일</option>
+                                    <option value="Monday">월요일</option>
+                                    <option value="Tuesday">화요일</option>
+                                    <option value="Wednesday">수요일</option>
+                                    <option value="Thursday">목요일</option>
+                                    <option value="Friday">금요일</option>
                                </select> 
 							</label>
 							

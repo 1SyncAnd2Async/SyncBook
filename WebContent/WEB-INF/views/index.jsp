@@ -60,7 +60,7 @@
                 <div class="thumbnails thumbnail-style thumbnail-kenburn">
                 	<div class="thumbnail-img">
                         <div class="overflow-hidden">
-                            <img src="resources/upload/lectureImg/${bestClassList.img}" class="img-responsive hover-effect" alt="" />
+                            <img style="width:241px; height:155px;"src="resources/upload/lectureImg/${bestClassList.img}" class="img-responsive hover-effect" alt="" />
                         </div>
                         <a class="btn-more hover-effect" href="classDetail?lect_num=${bestClassList.lect_num}">read more +</a>
                     </div>
