@@ -88,7 +88,7 @@
                     </div>
                     <div class="col-sm-8">
                      	<p style="overflow:hidden; text-overflow:ellipsis; word-break: break-word; -webkit-line-clamp:1; 
-                     	display: -webkit-box; -webkit-box-orient: vertical;">${bestReview.title}</p>
+                     	display: -webkit-box; -webkit-box-orient: vertical;"><b>${bestReview.title}</b></p>
                      	<div style="overflow:hidden; text-overflow:ellipsis; word-break: break-word; -webkit-line-clamp: 6; 
                      	display: -webkit-box; -webkit-box-orient: vertical;">
                         ${bestReview.content}                        
@@ -164,7 +164,7 @@
         		<div class="service">
         			<div class="desc">
         				<h4>공지사항</h4>
-        				 <a style="float:right;"class="btn-more hover-effect" href="noticeList">더보기</a>
+        				 <a style="float:right;"class="btn-more hover-effect" href="noticeList?page=1">더보기</a>
                         <table class="table">
                         	<tr>
                                 <th >제목</th>
@@ -186,7 +186,7 @@
         		<div class="service">
         			<div class="desc">
         				<h4>Q & A</h4>
-        				 <a style="float:right;"class="btn-more hover-effect" href="noticeList">더보기</a>
+        				 <a style="float:right;"class="btn-more hover-effect" href="noticeList?page=1">더보기</a>
                           <table class="table">
                             <tr>
                                 <th>제목</th>
@@ -208,7 +208,7 @@
         		<div class="service">
         			<div class="desc">
         				<h4>FAQ</h4>
-        				 <a style="float:right;"class="btn-more hover-effect" href="faqList">더보기</a>
+        				 <a style="float:right;"class="btn-more hover-effect" href="faqList?page=1">더보기</a>
                          <table class="table">
                             <tr>
                                 <th>제목</th>

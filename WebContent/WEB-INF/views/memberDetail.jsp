@@ -11,8 +11,8 @@
             	<h1 class="pull-left">회원 프로필</h1>
             	<ul class="pull-right breadcrumb">
                 	<li><a href="index">Home</a></li>
-                	<li><a href="memberList">Member List</a></li>
-                	<li class="active">Member Profile</li>
+                	<li><a href="memberList?page=1">회원 목록</a></li>
+                	<li class="active">회원 프로필</li>
             	</ul>
             
         	</div><!--/container-->

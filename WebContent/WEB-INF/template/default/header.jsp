@@ -142,7 +142,6 @@ var ajaxFn = function () {
                                 <a href="javascript:void(0);">교재관리</a>
                                 <ul class="dropdown-menu">
                                     <li><a href="book">교재등록</a></li>
-                                    <li><a href="questionForm">문제등록</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown-submenu">
@@ -226,9 +225,8 @@ var ajaxFn = function () {
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="faqList?page=1">FAQ</a>
-                                <a href="#">자료실</a>
-                                <a href="#">고객문의</a>
-                                <a href="#">이용안내</a>
+                                <!-- <a href="#">고객문의</a>
+                                <a href="#">이용안내</a> -->
                             </li>
                         </ul>
                     </li>
