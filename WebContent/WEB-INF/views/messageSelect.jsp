@@ -10,10 +10,10 @@
     	<div class="breadcrumbs">
         	<div class="container">
         	<div class="col-md-12 md-margin-bottom-40">
-            	<h1 class="pull-left">받은 쪽지함</h1>
+            	<h1 class="pull-left">쪽지 쓰기</h1>
             	<ul class="pull-right breadcrumb">
                 	<li><a href="index">Home</a></li>
-                	<li class="active">받은 쪽지함</li>
+                	<li class="active">수업 선택</li>
             	</ul>
             	</div>
         	</div><!--/container-->

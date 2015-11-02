@@ -45,9 +45,14 @@
                              <li><i class="glyphicon glyphicon-time color-green"></i> 시간 : ${classList.beginTime}~${classList.endTime}</li>
                         </ul>
                     </div>
-                    <div style="width:100px;float:right;margin-top:40px;">                  
-                    <button class="btn-u blue" onclick="location.href='reviewForm?lect_num=${classList.lect_num}'">수강 후기</button>                   
-                    </div>
+                    <c:choose>
+                			<c:when test="${sessionScope.member.id != null}">
+                        		<div style="width:100px;float:right;margin-top:40px;">                                     
+			                    <button class="btn-u blue" onclick="location.href='reviewForm?lect_num=${classList.lect_num}'">수강 후기</button>                   
+			                    </div>
+                        	</c:when>
+                        </c:choose>
+                    
                 </div>
                 <hr>
                 </c:forEach>

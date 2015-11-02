@@ -9,7 +9,7 @@
 			<div class="container">
 			    	<div class="col-md-12 md-margin-bottom-40">
 			
-				<h1 class="pull-left">Book</h1>
+				<h1 class="pull-left">±³Àç</h1>
 				<ul class="pull-right breadcrumb">
 					<li><a href="index">Home</a></li>
 					<li class="active">Book</li>

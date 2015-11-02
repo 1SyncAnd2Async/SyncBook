@@ -8,9 +8,9 @@
                 <div class="row">
                     <!-- About -->
                     <div class="col-md-3 md-margin-bottom-40">
-                        <a href="index.html"><img id="logo-footer" class="footer-logo" src="resources/assets/img/logo2-default.png" alt=""></a>
-                        <p>About Unify dolor sit amet, consectetur adipiscing elit. Maecenas eget nisl id libero tincidunt sodales.</p>
-                        <p>Duis eleifend fermentum ante ut aliquam. Cras mi risus, dignissim sed adipiscing ut, placerat non arcu.</p>
+                        <a href="index.html"><img id="logo-footer" class="footer-logo" src="resources/assets/img/logo.png" style="width: 150px;" alt=""></a>
+                        <p>SyncBook은 실시간 강의를 이용한 e-learning 학습 서비스 입니다. 지루했던 인터넷 강의와는 달리 즐겁게 능동적으로 공부할 수 있습니다.</p>
+                        <p></p>
                     </div><!--/col-md-3-->
                     <!-- End About -->
 

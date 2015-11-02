@@ -23,7 +23,7 @@
     	<div class="col-md-12 md-margin-bottom-40">
         	<!-- Write Your HTML Codes Here -->
         	<form action="qnaWrite" enctype="multipart/form-data" method="post" class="sky-form">
-                    <header>공지사항</header>
+                    <header>Q & A</header>
 
                     <fieldset>
                         <section>

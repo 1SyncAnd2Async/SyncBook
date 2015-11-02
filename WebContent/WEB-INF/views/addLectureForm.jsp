@@ -25,7 +25,7 @@ $(function(){
 		<div class="breadcrumbs">
 			<div class="container">
 			<div class="col-md-12 md-margin-bottom-4">
-				<h1 class="pull-left">Lecture</h1>
+				<h1 class="pull-left">¼ö¾÷</h1>
 				<ul class="pull-right breadcrumb">
 					<li><a href="index">Home</a></li>
 					<li class="active">Lecture</li>

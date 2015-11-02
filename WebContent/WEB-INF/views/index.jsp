@@ -106,41 +106,41 @@
                 </blockquote>
             </div><!--/col-md-8-->
 
-            <!-- Latest Shots -->
-            <div class="col-md-4">
-    			<div class="headline"><h2>Latest Shots</h2></div>
-    			<div id="myCarousel" class="carousel slide carousel-v1">
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <img src="resources/assets/img/main/img4.jpg" alt="">
-                            <div class="carousel-caption">
-                                <p>Facilisis odio, dapibus ac justo acilisis gestinas.</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img src="resources/assets/img/main/img2.jpg" alt="">
-                            <div class="carousel-caption">
-                                <p>Cras justo odio, dapibus ac facilisis into egestas.</p>
-                            </div>
-                            </div>
-                        <div class="item">
-                            <img src="resources/assets/img/main/img24.jpg" alt="">
-                            <div class="carousel-caption">
-                                <p>Justo cras odio apibus ac afilisis lingestas de.</p>
-                            </div>
-                        </div>
-                    </div>
+<!--             Latest Shots -->
+<!--             <div class="col-md-4"> -->
+<!--     			<div class="headline"><h2>Latest Shots</h2></div> -->
+<!--     			<div id="myCarousel" class="carousel slide carousel-v1"> -->
+<!--                     <div class="carousel-inner"> -->
+<!--                         <div class="item active"> -->
+<!--                             <img src="resources/assets/img/main/img4.jpg" alt=""> -->
+<!--                             <div class="carousel-caption"> -->
+<!--                                 <p>Facilisis odio, dapibus ac justo acilisis gestinas.</p> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="item"> -->
+<!--                             <img src="resources/assets/img/main/img2.jpg" alt=""> -->
+<!--                             <div class="carousel-caption"> -->
+<!--                                 <p>Cras justo odio, dapibus ac facilisis into egestas.</p> -->
+<!--                             </div> -->
+<!--                             </div> -->
+<!--                         <div class="item"> -->
+<!--                             <img src="resources/assets/img/main/img24.jpg" alt=""> -->
+<!--                             <div class="carousel-caption"> -->
+<!--                                 <p>Justo cras odio apibus ac afilisis lingestas de.</p> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> -->
 
-                    <div class="carousel-arrow">
-                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                            <i class="fa fa-angle-left"></i>
-                        </a>
-                        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </div>
-    			</div>
-            </div><!--/col-md-4-->
+<!--                     <div class="carousel-arrow"> -->
+<!--                         <a class="left carousel-control" href="#myCarousel" data-slide="prev"> -->
+<!--                             <i class="fa fa-angle-left"></i> -->
+<!--                         </a> -->
+<!--                         <a class="right carousel-control" href="#myCarousel" data-slide="next"> -->
+<!--                             <i class="fa fa-angle-right"></i> -->
+<!--                         </a> -->
+<!--                     </div> -->
+<!--     			</div> -->
+<!--             </div>/col-md-4 -->
     	</div>
     	<!-- End Info Blokcs -->
 

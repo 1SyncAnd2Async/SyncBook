@@ -51,7 +51,7 @@
 									<div style="width: 100%;">
 										<label><span class=" icon-user-female"></span>&nbsp;&nbsp;°­»ç</label>
 									</div>
-									<div style="float: left; width: 20%">
+									<div style="float: left; width: 10%">
 										<img style="width: 100%;"
 											src="resources/upload/teacherImg/${memberClassDetail.teacher_img}"
 											class="img-responsive hover-effect" alt="" />

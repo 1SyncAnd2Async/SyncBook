@@ -69,7 +69,7 @@
 	                           <button class="btn-u" type="submit" >Go</button>	                         
                         </form>
                         <c:choose>
-	                	<c:when test="${sessionScope.member != null && sessionScope.member.id == 'admin'}">
+	                	<c:when test="${sessionScope.member != null && sessionScope.member.id != 'admin'}">
 	                      <button class="btn-u"  style="float:right;margin-top:20px;margin-bottom:20px;" onclick="location.href='reviewForm'">글쓰기</button>   
 	                    </c:when>
 	                    </c:choose> 
