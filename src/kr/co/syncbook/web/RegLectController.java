@@ -19,11 +19,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.syncbook.biz.AssignLectService;
 import kr.co.syncbook.biz.DataService;
+import kr.co.syncbook.biz.LectureDataService;
 import kr.co.syncbook.biz.LectureService;
 import kr.co.syncbook.biz.MemberService;
 import kr.co.syncbook.biz.RegLectService;
 import kr.co.syncbook.vo.AssignLectVO;
 import kr.co.syncbook.vo.DataVO;
+import kr.co.syncbook.vo.LectureDataVO;
 import kr.co.syncbook.vo.LectureVO;
 import kr.co.syncbook.vo.MemberClassVO;
 import kr.co.syncbook.vo.MemberVO;
@@ -44,6 +46,8 @@ public class RegLectController {
 	private DataService dataService;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private LectureDataService lectureDataService;
 
 	@RequestMapping("/classListForm")
 	public ModelAndView lectureListForm(int page) {
@@ -246,8 +250,10 @@ public class RegLectController {
 		}
 		List<DataVO> dataList = dataService.getDataList(memberClassDetail.getLect_num());
 		ModelAndView mav = new ModelAndView();
+		List<LectureDataVO> lectureData = lectureDataService.getLectureDataList(memberClassDetail.getAssign_num());
 		mav.addObject("memberClassDetail", memberClassDetail);
 		mav.addObject("dataList", dataList);
+		mav.addObject("lectureData", lectureData);
 		mav.addObject("msg", msg);
 		mav.setViewName("memberClassDetail");
 		return mav;

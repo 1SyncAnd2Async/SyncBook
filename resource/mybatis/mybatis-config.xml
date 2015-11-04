@@ -11,6 +11,7 @@
 		<typeAlias type="kr.co.syncbook.vo.BookVO" alias="Book"/>
 		<typeAlias type="kr.co.syncbook.vo.QuestionVO" alias="Question"/>
 		<typeAlias type="kr.co.syncbook.vo.DataVO" alias="Data"/>
+		<typeAlias type="kr.co.syncbook.vo.LectureDataVO" alias="LectureData"/>
 		<typeAlias type="kr.co.syncbook.vo.LectureVO" alias="Lecture"/>
 		<typeAlias type="kr.co.syncbook.vo.TeacherVO" alias="Teacher"/>
 		<typeAlias type="kr.co.syncbook.vo.AssignLectVO" alias="AssignLect"/>
@@ -30,6 +31,7 @@
 		<mapper resource="mybatis/book-mapping.xml"/>
 		<mapper resource="mybatis/question-mapping.xml"/>
 		<mapper resource="mybatis/data-mapping.xml"/>
+		<mapper resource="mybatis/lectureData-mapping.xml"/>
 		<mapper resource="mybatis/lecture-mapping.xml"/>
 		<mapper resource="mybatis/teacher-mapping.xml"/>
 		<mapper resource="mybatis/assignLect-mapping.xml"/>

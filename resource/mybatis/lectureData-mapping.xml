@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LectureData">
+	<select id="getLectureDataList" resultType="LectureData">
+	    <![CDATA[
+		SELECT ROWNUM, NUM, ASSIGN_NUM, TITLE, IMG
+		FROM LECTURE_DATA 
+		WHERE ASSIGN_NUM = #{assign_num}
+		ORDER BY NUM
+		]]>
+	</select>
+	<select id="getLectureData" resultType="LectureData">
+	    <![CDATA[
+		SELECT NUM, ASSIGN_NUM, TITLE, IMG
+		FROM LECTURE_DATA 
+		WHERE NUM = #{num}
+		]]>
+	</select>
+	<insert id="addLectureData" parameterType="LectureData">
+	    <![CDATA[
+		INSERT INTO LECTURE_DATA(NUM, ASSIGN_NUM, TITLE, IMG)
+		VALUES (LECTUREDATA_SEQ.NEXTVAL, #{assign_num}, #{title}, #{img})
+		]]>
+	</insert>
+	<delete id="deleteLectureData"  parameterType="java.lang.Integer">
+		<![CDATA[
+			DELETE LECTURE_DATA WHERE NUM = #{num}			
+		]]>
+	</delete>
+</mapper>

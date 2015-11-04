@@ -1,22 +1,27 @@
 package kr.co.syncbook.web;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.syncbook.biz.AssignLectService;
+import kr.co.syncbook.biz.LectureDataService;
 import kr.co.syncbook.biz.LectureService;
 import kr.co.syncbook.biz.SubjectService;
 import kr.co.syncbook.biz.TeacherService;
 import kr.co.syncbook.vo.AssignLectVO;
+import kr.co.syncbook.vo.LectureDataVO;
 import kr.co.syncbook.vo.LectureVO;
 import kr.co.syncbook.vo.PageVO;
 import kr.co.syncbook.vo.SubjectVO;
@@ -32,6 +37,8 @@ public class AssignLectController {
 	private TeacherService teacherService;
 	@Autowired
 	private AssignLectService assignLectService;
+	@Autowired
+	private LectureDataService lectureDataService;
 	
 	@RequestMapping("/assignLectureForm")
 	public ModelAndView assignLectureForm(int page){
@@ -127,5 +134,33 @@ public class AssignLectController {
 			mav.setViewName("redirect:index");
 		}
 		return mav;
+	}
+	@RequestMapping("/addAssignLectData")
+	public String addAssignLectData(@ModelAttribute LectureDataVO vo, HttpServletRequest request, int reg_num, String id){		
+		String path = request.getRealPath("/resources/upload/LectureData");
+		String upPath = path+"\\"+vo.getUpfile().getOriginalFilename();
+		File f = new File(upPath);
+		try {
+			vo.getUpfile().transferTo(f);
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		vo.setImg(vo.getUpfile().getOriginalFilename());
+		
+		boolean flag=lectureDataService.addLectureData(vo);
+		if(flag){
+			return "redirect:memberClassDetail?reg_num="+reg_num+"&id="+id;
+		}else{
+			return "redirect:memberClassDetail?reg_num="+reg_num+"&id="+id;
+		}
+	}
+	@RequestMapping("/deleteLectureData")
+	public String deleteLectureData(int num, int reg_num, String id){
+		boolean flag = lectureDataService.deleteLectureData(num);
+		if(flag) {
+			return "redirect:memberClassDetail?reg_num="+reg_num+"&id="+id;
+		} else {
+			return "redirect:memberClassDetail?reg_num="+reg_num+"&id="+id;
+		}
 	}
 }
