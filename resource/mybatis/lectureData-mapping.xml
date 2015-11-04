@@ -5,10 +5,10 @@
 <mapper namespace="LectureData">
 	<select id="getLectureDataList" resultType="LectureData">
 	    <![CDATA[
-		SELECT ROWNUM, NUM, ASSIGN_NUM, TITLE, IMG
+		SELECT ROWNUM ,NUM, ASSIGN_NUM, TITLE, IMG FROM (SELECT NUM, ASSIGN_NUM, TITLE, IMG
 		FROM LECTURE_DATA 
 		WHERE ASSIGN_NUM = #{assign_num}
-		ORDER BY NUM
+    	ORDER BY NUM)
 		]]>
 	</select>
 	<select id="getLectureData" resultType="LectureData">
